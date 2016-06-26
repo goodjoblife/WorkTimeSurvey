@@ -42,7 +42,7 @@ function statusChangeCallback(response) {
         $("#fb-login-word").addClass("hidden");
         $("#form").removeClass("hidden");
 
-        testAPI();
+        getUserInfo();
     } else {
         isFacebookSignedIn = false;
         $("#fb-login-word").removeClass("hidden");
@@ -51,8 +51,9 @@ function statusChangeCallback(response) {
 }
 
 window.fbAsyncInit = function() {
+    var appId = (window.location.hostname == "localhost") ? '1750608541889151' : '1750216878594984';
     FB.init({
-        appId   : '1750216878594984',
+        appId   : appId,
         cookie  : true,
         xfbml   : true,
         version : 'v2.6'
@@ -76,6 +77,11 @@ window.fbAsyncInit = function() {
             }, 1500, 'easeInOutExpo');
         }
     });
+
+    $("#submit").click(function(e) {
+        e.preventDefault();
+        checkForm();
+    });
 };
 
 (function(d, s, id) {
@@ -86,17 +92,18 @@ window.fbAsyncInit = function() {
     fjs.parentNode.insertBefore(js, fjs);
 })(document, 'script', 'facebook-jssdk');
 
-function testAPI() {
+function getUserInfo() {
     console.log("Welcome! Fetching your information");
     FB.api('/me', function(response){
         console.log('success login for: '+ response.name);
-        document.getElementById('status').innerHTML = response.name;
     });
 };
 
-function login () {
-    FB.login(function(response){
-        console.log("login");
-        statusChangeCallback(response);
-    }, {scope: 'public_profile,email'});
+function checkForm () {
+    // TODO - check data in form
+    console.log("check!");
+};
+
+function submitForm() {
+    // TODO - submit data after check to server
 };
