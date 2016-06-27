@@ -102,8 +102,21 @@ function getUserInfo() {
 function checkForm () {
     // TODO - check data in form
     console.log("check!");
+
+    // FIXME - Just submit without check
+    submitForm();
 };
 
 function submitForm() {
     // TODO - submit data after check to server
+    
+    $.ajax({
+        url: 'https://test-k57.markchen.cc/',
+        method: 'POST', 
+        data: {
+            accessToken: FB.getAccessToken()
+        }
+    }).then(function(res) {
+        console.log(res);
+    });
 };
