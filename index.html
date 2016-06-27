@@ -124,9 +124,13 @@
                     <p></p>
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label for="company" class="col-sm-2 control-label">公司名稱</label>
-                            <div class="col-sm-10">
+                            <label for="company_name" class="col-sm-2 control-label">公司名稱</label>
+                            <div class="col-sm-4">
                                 <input type="text" class="form-control" id="company_name" placeholder="公司名稱" >
+                            </div>
+                            <label for="company_id" class="col-sm-3 control-label">或 公司統一編號</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="company_id" placeholder="公司統編" >
                             </div>
                         </div>
                         <div class="form-group">
@@ -138,25 +142,27 @@
                         <div class="form-group">
                             <label for="worktime" class="col-sm-2 control-label">平均每週工時</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="worktime" placeholder="40"  >
+                                <input type="number" class="form-control" id="worktime" placeholder="40" min="0"  >
                             </div>
                         </div>
-                        <span>以下選填</span> <br>
                         <div class="form-group">
-                            <label for="salary" class="col-sm-2 control-label">平均月薪範圍</label>
+                            <label for="salary" class="col-sm-12">以下選填</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="salary" class="col-sm-2 control-label">平均月薪</label>
                             <div class="col-sm-4">
-                                <input type="number" class="form-control" id="salary" placeholder="22000"  >
+                                <input type="number" class="form-control" id="salary" placeholder="22000" min="0" >
                             </div> 
-                            <div class="col-sm-1"> 至 </div>
+                            <label class="col-sm-2">至</label>
                             <div class="col-sm-4">
-                                <input type="number" class="form-control" id="salary" placeholder="22000"  >
+                                <input type="number" class="form-control" id="salary" placeholder="22000" min="0" >
                             </div>
                             
                         </div>
                         <div class="form-group">
                             <label for="workyear" class="col-sm-2 control-label">工作年資</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="workyear" placeholder="3"  >
+                                <input type="number" class="form-control" id="workyear" placeholder="3" min="0" >
                             </div>
                         </div>
                         <div class="form-group">

@@ -10,13 +10,19 @@ $(document).ready(function(){
 	        var request = $.ajax({
 			  url: "https://company.g0v.ronny.tw/api/search",
 			  data: { q : request['term'] },
-			  dataType: "json"
+			  dataType: "json", 
+
 			}).done(function( res ) {
 			 	nameList = new Array(); 
-			 	res.data.forEach(function(item, i) {
-		            var name = item['名稱'] || item['商業名稱'] || null;
-		            if (name !== null) {
-		                nameList.push(name);
+			 	console.log(res.data);
+			 	var data = allowData(res.data, '公司狀況', ['核准成立']);
+			 	data = allowData(data, '現況', ['核准設立']);
+			 	data.forEach(function(item, i) {
+
+		            var name = item['公司名稱'] || item['商業名稱'] || null;
+		            var comId = item['統一編號'] || null; 
+		            if (name !== null && comId !== null) {
+		                nameList.push({"value": name, "company_id": comId});
 		            }
 		            console.log(name);
 	        	});
@@ -26,9 +32,28 @@ $(document).ready(function(){
 			  	response([]);
 			});
     	},
-    	minLength: 2
+    	minLength: 2,
+    	select: function(event, ui){ 
+    		$("#company_id").val(ui['item']['company_id']);
+    	}
 	});
 
 
 });
 
+//only allow the data with given condition
+function allowData(data, field, allowSet){
+	var newData = new Array();
+	for(var i = 0; i< data.length; i++){
+		var d = data[i];
+		if(field in d){
+			if(allowSet.indexOf(d[field]) >= 0){
+				newData.push(d);
+			}
+		}
+		else{
+			newData.push(d);
+		}
+	}
+	return newData;
+}
