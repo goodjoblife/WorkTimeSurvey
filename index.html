@@ -11,7 +11,7 @@
     <!-- TODO -->
     <!-- Open Graph -->
 
-    <title>群眾募「資」——工資透明化計畫</title>
+    <title>自己的工時自己救 工時資訊透明化運動</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +41,7 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">
-                    群眾募「資」
+                    自己的工時自己救
                 </a>
             </div>
 
@@ -74,8 +74,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">群眾募「資」</h1>
-                        <p class="intro-text">透過大家貢獻，讓工時工資資訊透明化</p>
+                        <h1 class="brand-heading">自己的工時自己救</h1>
+                        <p class="intro-text">工時資訊透明化運動</p>
                         <a href="#about" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
@@ -89,9 +89,28 @@
     <section id="about" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>關於這個計畫</h2>
-                <p>文案什麼的都寫在這裡呀</p>
-                <a id="fb-login" class="btn btn-default btn-lg"><span id="fb-login-word"><i class="fa fa-facebook fa-fw"></i>以 Facebook 登入</span>開始填寫</a>
+               
+                <p>
+                    2016年6月24號，華航罷工成功，消息令人振奮<br>
+                    然而，我們沒辦法高興太久，因為我們知道 <br>
+                    還有不少勞工仍然啞著嗓，連呼救都沒辦法<br>
+                    工程師認命的加班，不知睡滿八小時是何滋味<br>
+                    護理師身上插著點滴，不眠不休照顧著病患<br>
+                    議員口中「坐領高薪」的社工，犧牲假日疲於為弱勢奔走<br>
+                </p>
+                <p>
+                    我們，能不能，自己的工時自己救?<br>
+                    這是一條很漫長的路，但如果不採取第一步，永遠只會原地踏步<br>
+                    這第一步，就是「工時資訊透明化」，留下你的真實工時資料，讓我們一起揭露台灣的過勞環境。讓每一間公司的每一個職位的工時被揭露，讓過勞不再被藏在陰暗的深處。<br>
+                    我們要台灣的政府正視這個問題，也要藉由市場機制去淘汰過勞的公司!!<br>
+                </p>
+                <p>
+                    這些工時資訊不只會在我們平台上被揭露，也會整合到求職天眼通裡。 <br>
+                    從今以後，你求職的時候看到的不再是人力銀行上寫的工時資訊，而是更真實的工時資訊。如果你希望這件事情發生，就一起參與工時資訊透明化運動! <br>
+
+                    接下來還會有第二步第三步，我們誠摯地邀請您，一起 自‧己‧的‧工‧時‧自‧己‧救!!!<br>
+                </p>
+                <a id="fb-login" class="btn btn-default btn-lg"><span id="fb-login-word"><i class="fa fa-facebook fa-fw"></i>以 Facebook 登入</span> 開始參與工時透明化運動</a>
             </div>
         </div>
     </section>
@@ -101,37 +120,55 @@
         <div class="form-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <h2>提供資料</h2>
-                    <p>大概就... 放一些說明文字吧</p>
+                    <h2>參與工時透明化運動</h2>
+                    <p></p>
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label for="company" class="col-sm-2 control-label">公司名稱</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="company" placeholder="公司名稱" >
+                            <label for="company_name" class="col-sm-2 control-label">公司名稱</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="company_name" placeholder="公司名稱" >
+                            </div>
+                            <label for="company_id" class="col-sm-3 control-label">或 公司統一編號</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" id="company_id" placeholder="公司統編" >
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="title" class="col-sm-2 control-label">職稱</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="title" placeholder="職稱" >
+                                <input type="text" class="form-control" id="job_title" placeholder="職稱" >
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="worktime" class="col-sm-2 control-label">每週工時</label>
+                            <label for="worktime" class="col-sm-2 control-label">平均每週工時</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="worktime" placeholder="40"  >
+                                <input type="number" class="form-control" id="worktime" placeholder="40" min="0"  >
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="salary" class="col-sm-12">以下選填</label>
                         </div>
                         <div class="form-group">
                             <label for="salary" class="col-sm-2 control-label">平均月薪</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" id="salary" placeholder="22000"  >
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" id="salary" placeholder="22000" min="0" >
+                            </div> 
+                            <label class="col-sm-2">至</label>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" id="salary" placeholder="22000" min="0" >
                             </div>
+                            
                         </div>
                         <div class="form-group">
                             <label for="workyear" class="col-sm-2 control-label">工作年資</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="workyear" placeholder="3"  >
+                                <input type="number" class="form-control" id="workyear" placeholder="3" min="0" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-sm-2 control-label">電子郵件</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" id="email" placeholder="留下您的email，在工時資訊揭露時連絡您"  >
                             </div>
                         </div>
 
@@ -176,6 +213,10 @@
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
@@ -184,6 +225,8 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/grayscale.js"></script>
+
+    <script src="js/formUtility.js"></script>
 
 </body>
 
