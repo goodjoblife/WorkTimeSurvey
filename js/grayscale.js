@@ -102,8 +102,26 @@ function getUserInfo() {
 function checkForm () {
     // TODO - check data in form
     console.log("check!");
+
+    // FIXME - Just submit without check
+    submitForm();
 };
 
 function submitForm() {
     // TODO - submit data after check to server
+    
+    $.ajax({
+        url: 'https://tranquil-fortress-92731.herokuapp.com/',
+        method: 'POST', 
+        data: {
+            access_token: FB.getAccessToken(),
+            company: $("#company").val(),
+            title: $("#title").val(),
+            worktime: $("#worktime").val(),
+            salary: $("#salary").val(),
+            workyear: $("#workyear").val(),
+        }
+    }).then(function(res) {
+        console.log(res);
+    });
 };
