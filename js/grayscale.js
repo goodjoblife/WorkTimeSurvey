@@ -36,6 +36,15 @@ $('.navbar-collapse ul li a').click(function() {
   }
 });
 
+$("#knowMore").modal({
+    show: false 
+});
+
+$("#knowMoreBtn").click(function(e){
+    e.preventDefault();
+    $("#knowMore").modal("show");
+});
+
 function statusChangeCallback(response) {
     if (response.status == 'connected') {
         isFacebookSignedIn = true;

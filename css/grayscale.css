@@ -365,3 +365,12 @@ img::-moz-selection {
 body {
     webkit-tap-highlight-color: rgba(255,255,255,.2);
 }
+
+.know-more-about-fb-sign-in {
+    margin-top: 20px;
+}
+
+.modal-content {
+    color: #000;
+    text-align: left;
+}
