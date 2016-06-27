@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <input list="browsers" name="browser" id="browser-input">
+        <datalist id="browsers">
+            <option value="Internet Explorer">
+            <option value="Firefox">
+            <option value="Chrome">
+            <option value="Opera">
+            <option value="Safari">
+        </datalist>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+        <script>
+$("#browser-input").on('input', function() {
+    var q = $("#browser-input").val();
+
+    $.ajax({
+        url:"https://company.g0v.ronny.tw/api/search",
+        data: {
+            q: q,
+        },
+        dataType: 'json',
+    }).then(function(res) {
+        console.log(q);
+
+        $("#browsers").empty();
+        res.data.forEach(function(item, i) {
+            var name = item['名稱'] || item['商業名稱'] || null;
+            if (name !== null) {
+                $("<option value=\"" + name + "\">").appendTo($("#browsers"));
+            }
+
+            console.log(name);
+        });
+    });
+});
+        </script>
+    </body>
+</html>
