@@ -111,10 +111,10 @@ function submitForm() {
     // TODO - submit data after check to server
     
     $.ajax({
-        url: 'https://test-k57.markchen.cc/',
+        url: 'https://tranquil-fortress-92731.herokuapp.com/',
         method: 'POST', 
         data: {
-            accessToken: FB.getAccessToken()
+            access_token: FB.getAccessToken()
         }
     }).then(function(res) {
         console.log(res);
