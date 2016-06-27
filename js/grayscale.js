@@ -114,7 +114,12 @@ function submitForm() {
         url: 'https://tranquil-fortress-92731.herokuapp.com/',
         method: 'POST', 
         data: {
-            access_token: FB.getAccessToken()
+            access_token: FB.getAccessToken(),
+            company: $("#company").val(),
+            title: $("#title").val(),
+            worktime: $("#worktime").val(),
+            salary: $("#salary").val(),
+            workyear: $("#workyear").val(),
         }
     }).then(function(res) {
         console.log(res);
