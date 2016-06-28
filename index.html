@@ -11,7 +11,7 @@
     <!-- TODO -->
     <!-- Open Graph -->
 
-    <title>自己的工時自己救 工時資訊透明化運動</title>
+    <title>工時透明化運動</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +41,7 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">
-                    自己的工時自己救
+                    GoodJob
                 </a>
             </div>
 
@@ -74,8 +74,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">自己的工時自己救</h1>
-                        <p class="intro-text">工時資訊透明化運動</p>
+                        <h1 class="brand-heading">工時透明化運動</h1>
+                        <p class="intro-text">自己的工時自己救</p>
                         <a href="#about" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
@@ -111,7 +111,7 @@
 
                     接下來還會有第二步第三步，我們誠摯地邀請您，一起 自‧己‧的‧工‧時‧自‧己‧救!!!<br>
                 </p>
-                <a id="fb-login" class="btn btn-default btn-lg"><span id="fb-login-word"><i class="fa fa-facebook fa-fw"></i>以Facebook登入</span>開始參與工時透明化運動</a>
+                <a id="fb-login" class="btn btn-default btn-lg"><span id="fb-login-word"><i class="fa fa-facebook fa-fw"></i>以Facebook登入</span>開始參與</a>
                 <div class="know-more-about-fb-sign-in">
                     <i><a id="knowMoreBtn">了解為什麼需要以 Facebook 登入？</a></i>
                 </div>
@@ -121,10 +121,10 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="knowMoreAboutFBSignIn">為何需以 Facebook 登入？</h4>
+                                <h4 class="modal-title" id="knowMoreAboutFBSignIn">為何需要 Facebook 登入？</h4>
                             </div>
                             <div class="modal-body">
-                            怕被灌水啦，什麼之類的理由都可以寫在這裡。大概還要講一下我們保證不會做什麼之類的？
+                                為了避免使用者大量輸入假資訊，我們會綁定您的Facebook 帳號。但別擔心，您的帳戶資訊不會以任何形式被揭露、顯示。
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">我知道了</button>
@@ -137,7 +137,7 @@
     </section>
 
     <!-- Form Section -->
-    <section id="form" class="content-section text-center hidden">
+    <section id="form" class="content-section text-center">
         <div class="form-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
@@ -155,44 +155,46 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="title" class="col-sm-2 control-label">職稱</label>
+                            <label for="job_title" class="col-sm-2 control-label">職稱</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="job_title" placeholder="職稱" >
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="worktime" class="col-sm-2 control-label">平均每週工時</label>
+                            <label for="week_work_time" class="col-sm-2 control-label">平均每週工時</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="worktime" placeholder="40" min="0"  >
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="salary" class="col-sm-12">以下選填</label>
-                        </div>
-                        <div class="form-group">
-                            <label for="salary" class="col-sm-2 control-label">平均月薪</label>
-                            <div class="col-sm-4">
-                                <input type="number" class="form-control" id="salary" placeholder="22000" min="0" >
-                            </div> 
-                            <label class="col-sm-2">至</label>
-                            <div class="col-sm-4">
-                                <input type="number" class="form-control" id="salary" placeholder="22000" min="0" >
-                            </div>
-                            
-                        </div>
-                        <div class="form-group">
-                            <label for="workyear" class="col-sm-2 control-label">工作年資</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" id="workyear" placeholder="3" min="0" >
+                                <input type="number" class="form-control" id="week_work_time" placeholder="40" min="0"  >
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="email" class="col-sm-2 control-label">電子郵件</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="email" placeholder="留下您的email，在工時資訊揭露時連絡您"  >
+                                <input type="email" class="form-control" id="email" placeholder="留下您的email，在工時資訊查詢功能完成時連絡您"  >
                             </div>
                         </div>
 
+                        <div class="hidden">
+                            <div class="form-group">
+                                <label class="col-sm-12">我願意留下更多資訊</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="month_salary_min" class="col-sm-2 control-label">平均月薪</label>
+                                <div class="col-sm-4">
+                                    <input type="number" class="form-control" id="month_salary_min" placeholder="22000" min="0" >
+                                </div> 
+                                <label for="month_salary_max" class="col-sm-2">至</label>
+                                <div class="col-sm-4">
+                                    <input type="number" class="form-control" id="month_salary_max" placeholder="24000" min="0" >
+                                </div>
+                            
+                            </div>
+                            <div class="form-group">
+                                <label for="work_year" class="col-sm-2 control-label">工作年資</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="work_year" placeholder="3" min="0" >
+                                </div>
+                            </div>
+                        </div>
                         <a class="btn btn-default btn-lg" id="submit" >提供資料</a>
                     </form>
                 </div>
@@ -203,12 +205,10 @@
     <!-- Thanks and share section -->
     <section id="share" class="container content-section text-center hidden">
         <div class="row">
-            <h2>感謝您的分享</h2>
-            <p>就是一些感謝的文字啦，感恩，合十，平安，喜樂。</p>
+            <h2>非常感謝您的分享</h2>
+            <p>您的分享將有助於工時資訊的透明化，讓未來的求職者在求職時能有更完整的資訊，也讓過勞的現象更被看見。</p>
             <a id="fb-share" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i>認同請分享</a>
-            
         </div>
-
     </section>
 
     <!-- Contact Section -->
@@ -216,18 +216,14 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>聯絡我們</h2>
-                <p>這裡可以寫一些字，改一下信箱</p>
-                <p><a href="mailto:feedback@startbootstrap.com">feedback@startbootstrap.com</a>
+                <p><a href="mailto:feedback@startbootstrap.com">findyourgoodjob@gmail.com</a>
                 </p>
                 <ul class="list-inline banner-social-buttons">
                     <li>
-                        <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                        <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
                     </li>
                     <li>
                         <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                    </li>
-                    <li>
-                        <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
                     </li>
                 </ul>
             </div>
