@@ -138,7 +138,6 @@ function getUserInfo() {
 };
 
 function checkForm () {
-    // TODO - check data in form
     console.log("check!");
     var company_id = $("#company_id").val();
     var company_name = $("#company_name").val();
@@ -197,7 +196,6 @@ function submitForm() {
     var spinner = $("<i class=\"fa fa-spinner fa-spin fa-fw\"></i>").prependTo($("#submit"));
     $("#submit").attr("disabled", true);
     submitting = true;
-    // TODO - submit data after check to server
 
     $.ajax({
         url: 'https://tranquil-fortress-92731.herokuapp.com/',
