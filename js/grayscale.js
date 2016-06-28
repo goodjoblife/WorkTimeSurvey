@@ -97,30 +97,58 @@ window.fbAsyncInit = function() {
             
         });
     });
+}
+
+$(function() {
+    /* Indicating whether the form is submiting or not
+     * If submitting, we should avoid send it twice, it should return
+     */
+    var submitting = false;
+    var spinner;
+
+    function mash() {
+        spinner = $("<i class=\"fa fa-spinner fa-spin fa-fw\"></i>").prependTo($("#submit"));
+        $("#submit").attr("disabled", true);
+        submitting = true;
+    }
+    
+    function recover(x) {
+        spinner.fadeOut(1000, function() {
+            spinner.remove();
+        });
+        $("#submit").attr("disabled", false);
+        submitting = false;
+
+        return x;
+    }
 
     $("#submit").click(function(e) {
         e.preventDefault();
-        var msg = checkForm();
-        if(msg == 'success'){
-            submitForm();
+        if (submitting) {
+            return;
         }
-        else{
+    
+        mash();    
+
+        checkFormDeferred()
+        // we believe the submitForm can fail with msg
+        .then(function() {
+            return submitForm();
+        })
+        // so we do stuff here, on success or fail (check fail, submit fail)
+        .then(function(res) {
+            console.log(res);
+
+            // TODO
+        }, function(msg) {
             alert(msg);
-        }
+        })
+        // success or fail, do recover
+        .then(
+            recover, recover
+        );
     });
-    $("#submit-more").click(function(e) {
-        e.preventDefault();
-
-        $("#form-more").removeClass("hidden");
-        $("#submit-more").addClass("hidden");
-        $("#submit-reject").addClass("hidden");
-    });
-    $("#submit-reject").click(function(e) {
-        e.preventDefault();
-
-        checkForm();
-    });
-};
+});
 
 (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -136,6 +164,19 @@ function getUserInfo() {
         console.log('success login for: '+ response.name);
     });
 };
+
+function checkFormDeferred() {
+    var deferred = $.Deferred();
+
+    var msg = checkForm();
+    if (msg !== 'success') {
+        deferred.reject(msg);
+    } else {
+        deferred.resolve();
+    }
+
+    return deferred.promise();
+}
 
 function checkForm () {
     console.log("check!");
@@ -188,21 +229,8 @@ function checkForm () {
 
 };
 
-/* Indicating whether the form is submiting or not
- * If submitting, we should avoid send it twice, it should return
- */
-var submitting = false;
-
 function submitForm() {
-    if (submitting) {
-        return;
-    }
-    // a spinner append to button to indicate it is running (3 things)
-    var spinner = $("<i class=\"fa fa-spinner fa-spin fa-fw\"></i>").prependTo($("#submit"));
-    $("#submit").attr("disabled", true);
-    submitting = true;
-
-    $.ajax({
+    return $.ajax({
         url: 'https://tranquil-fortress-92731.herokuapp.com/',
         method: 'POST', 
         data: {
@@ -221,20 +249,9 @@ function submitForm() {
         },
         dataType: 'json',
     }).then(function(res) {
-        console.log(res);
-
-        // On success, recover the status (3 things)
-        // On fail, ... it should, TODO
-        spinner.fadeOut(2000, function() {
-            spinner.remove();
-        });
-        $("#submit").attr("disabled", false);
-        submitting = false;
-
-        // TODO if success
-    }).fail(function(jqXHR, textStatus, errorThrown) {
-        // TODO if fail
-
-        console.log(jqXHR);
+        return res;
+    }, function(jqXHR, textStatus, errorThrown) {
+        var res = JSON.parse(jqXHR.responseText);
+        return res.message;
     });
 };
