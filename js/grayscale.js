@@ -101,6 +101,18 @@ window.fbAsyncInit = function() {
         e.preventDefault();
         checkForm();
     });
+    $("#submit-more").click(function(e) {
+        e.preventDefault();
+
+        $("#form-more").removeClass("hidden");
+        $("#submit-more").addClass("hidden");
+        $("#submit-reject").addClass("hidden");
+    });
+    $("#submit-reject").click(function(e) {
+        e.preventDefault();
+
+        checkForm();
+    });
 };
 
 (function(d, s, id) {
@@ -126,8 +138,6 @@ function checkForm () {
     submitForm();
 };
 
-var _id = null;
-
 function submitForm() {
     // TODO - submit data after check to server
 
@@ -141,18 +151,13 @@ function submitForm() {
             job_title: $("#job_title").val(),
             week_work_time: $("#week_work_time").val(),
             email: $("#email").val(),
+            salary_min: $("#month_salary_min").val(),
+            salary_max: $("#month_salary_max").val(),
+            salary_type: 'month',
+            work_year: $("#work_year").val(),
         },
         dataType: 'json',
     }).then(function(res) {
-        _id = res._id;
-
-        $("#form-more").removeClass("hidden");
-        $("#submit-more").on('click', function(e) {
-            e.preventDefault();
-            checkMoreInfoForm();
-        });
-        $("#submit").addClass("hidden");
-
         console.log(res);
 
         // TODO if success
@@ -160,31 +165,5 @@ function submitForm() {
         // TODO if fail
 
         console.log(jqXHR);
-    });
-};
-
-function checkMoreInfoForm () {
-    // TODO - check data in __?
-    console.log("check!");
-
-    // FIXME - Just submit without check
-    submitMoreInfoForm();
-};
-
-function submitMoreInfoForm() {
-    // TODO - submit data after check to server
-
-    $.ajax({
-        url: 'https://tranquil-fortress-92731.herokuapp.com/' + _id,
-        method: 'POST',
-        data: {
-            salary_min: $("#month_salary_min").val(),
-            salary_max: $("#month_salary_max").val(),
-            salary_type: 'month',
-            work_year: $("#work_year").val(),
-            //review: $("#review").val(),
-        }
-    }).then(function(res) {
-        console.log(res);
     });
 };
