@@ -126,19 +126,63 @@ function checkForm () {
     submitForm();
 };
 
+var _id = null;
+
 function submitForm() {
     // TODO - submit data after check to server
-    
+
     $.ajax({
         url: 'https://tranquil-fortress-92731.herokuapp.com/',
         method: 'POST', 
         data: {
             access_token: FB.getAccessToken(),
-            company: $("#company").val(),
-            title: $("#title").val(),
-            worktime: $("#worktime").val(),
-            salary: $("#salary").val(),
-            workyear: $("#workyear").val(),
+            company_id: $("#company_id").val(),
+            company_name: $("#company_name").val(),
+            job_title: $("#job_title").val(),
+            week_work_time: $("#week_work_time").val(),
+            email: $("#email").val(),
+        },
+        dataType: 'json',
+    }).then(function(res) {
+        _id = res._id;
+
+        $("#form-more").removeClass("hidden");
+        $("#submit-more").on('click', function(e) {
+            e.preventDefault();
+            checkMoreInfoForm();
+        });
+        $("#submit").addClass("hidden");
+
+        console.log(res);
+
+        // TODO if success
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        // TODO if fail
+
+        console.log(jqXHR);
+    });
+};
+
+function checkMoreInfoForm () {
+    // TODO - check data in __?
+    console.log("check!");
+
+    // FIXME - Just submit without check
+    submitMoreInfoForm();
+};
+
+function submitMoreInfoForm() {
+    // TODO - submit data after check to server
+
+    $.ajax({
+        url: 'https://tranquil-fortress-92731.herokuapp.com/' + _id,
+        method: 'POST',
+        data: {
+            salary_min: $("#month_salary_min").val(),
+            salary_max: $("#month_salary_max").val(),
+            salary_type: 'month',
+            work_year: $("#work_year").val(),
+            //review: $("#review").val(),
         }
     }).then(function(res) {
         console.log(res);
