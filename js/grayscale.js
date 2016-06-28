@@ -126,19 +126,47 @@ function checkForm () {
     submitForm();
 };
 
+var _id = null;
+
 function submitForm() {
     // TODO - submit data after check to server
-    
+
     $.ajax({
         url: 'https://tranquil-fortress-92731.herokuapp.com/',
         method: 'POST', 
         data: {
             access_token: FB.getAccessToken(),
-            company: $("#company").val(),
-            title: $("#title").val(),
-            worktime: $("#worktime").val(),
-            salary: $("#salary").val(),
-            workyear: $("#workyear").val(),
+            company_id: $("#company_id").val(),
+            company_name: $("#company_name").val(),
+            job_title: $("#job_title").val(),
+            week_work_time: $("#week_work_time").val(),
+        },
+        dataType: 'json',
+    }).then(function(res) {
+        console.log(res);
+    });
+};
+
+function checkMoreInfoForm () {
+    // TODO - check data in __?
+    console.log("check!");
+
+    // FIXME - Just submit without check
+    submitMoreInfoForm();
+};
+
+function submitMoreInfoForm() {
+    // TODO - submit data after check to server
+
+    $.ajax({
+        url: 'https://tranquil-fortress-92731.herokuapp.com/' + _id,
+        method: 'POST',
+        data: {
+            salary_min: $("#salary_min").val(),
+            salary_max: $("#salary_max").val(),
+            salary_type: $("#salary_type").val(),
+            work_year: $("#work_year").val(),
+            review: $("#review").val(),
         }
     }).then(function(res) {
         console.log(res);
