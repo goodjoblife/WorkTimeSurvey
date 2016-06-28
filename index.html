@@ -137,7 +137,7 @@
     </section>
 
     <!-- Form Section -->
-    <section id="form" class="content-section text-center hidden">
+    <section id="form" class="content-section text-center">
         <div class="form-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
@@ -153,29 +153,31 @@
                                 <input type="text" class="form-control" id="company_id" placeholder="公司統編" >
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="job_title" class="col-sm-2 control-label">職稱</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="job_title" placeholder="職稱" >
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="week_work_time" class="col-sm-2 control-label">平均每週工時</label>
                             <div class="col-sm-10">
                                 <input type="number" class="form-control" id="week_work_time" placeholder="40" min="0"  >
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="email" class="col-sm-2 control-label">電子郵件</label>
                             <div class="col-sm-10">
                                 <input type="email" class="form-control" id="email" placeholder="留下您的email，在工時資訊查詢功能完成時連絡您"  >
                             </div>
                         </div>
-                        <a class="btn btn-default btn-lg" id="submit" >提供資料</a>
-                    </form>
-                    <div id="form-more" class="hidden">
-                        <h3>我願意留下更多資訊</h3>
-                        <form class="form-horizontal">
+                        <div class="form-group">
+                            <a class="btn" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">+我願意填更多+</a>
+                        </div>
+                        <div class="collapse" id="collapseExample">
                             <div class="form-group">
                                 <label for="month_salary_min" class="col-sm-2 control-label">平均月薪</label>
                                 <div class="col-sm-4">
@@ -192,9 +194,10 @@
                                     <input type="number" class="form-control" id="work_year" placeholder="3" min="0" >
                                 </div>
                             </div>
-                            <a class="btn btn-default btn-lg" id="submit-more" >提供資料</a>
-                        </form>
-                    </div>
+                        </div>
+
+                        <a class="btn btn-primary btn-lg" id="submit" >提供資料</a>
+                    </form>
                 </div>
             </div>
         </div>
