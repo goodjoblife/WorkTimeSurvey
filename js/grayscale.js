@@ -188,11 +188,16 @@ function checkForm () {
 
 };
 
+/* Indicating whether the form is submiting or not
+ * If submitting, we should avoid send it twice, it should return
+ */
 var submitting = false;
+
 function submitForm() {
     if (submitting) {
         return;
     }
+    // a spinner append to button to indicate it is running (3 things)
     var spinner = $("<i class=\"fa fa-spinner fa-spin fa-fw\"></i>").prependTo($("#submit"));
     $("#submit").attr("disabled", true);
     submitting = true;
@@ -218,6 +223,8 @@ function submitForm() {
     }).then(function(res) {
         console.log(res);
 
+        // On success, recover the status (3 things)
+        // On fail, ... it should, TODO
         spinner.fadeOut(2000, function() {
             spinner.remove();
         });
