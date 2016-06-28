@@ -137,12 +137,11 @@
     </section>
 
     <!-- Form Section -->
-    <section id="form" class="content-section text-center">
+    <section id="form" class="content-section text-center hidden">
         <div class="form-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>參與工時透明化運動</h2>
-                    <p></p>
                     <form class="form-horizontal">
                         <div class="form-group">
                             <label for="company_name" class="col-sm-2 control-label">公司名稱</label>
@@ -172,11 +171,11 @@
                                 <input type="email" class="form-control" id="email" placeholder="留下您的email，在工時資訊查詢功能完成時連絡您"  >
                             </div>
                         </div>
-
-                        <div class="hidden">
-                            <div class="form-group">
-                                <label class="col-sm-12">我願意留下更多資訊</label>
-                            </div>
+                        <a class="btn btn-default btn-lg" id="submit" >提供資料</a>
+                    </form>
+                    <div id="form-more" class="hidden">
+                        <h3>我願意留下更多資訊</h3>
+                        <form class="form-horizontal">
                             <div class="form-group">
                                 <label for="month_salary_min" class="col-sm-2 control-label">平均月薪</label>
                                 <div class="col-sm-4">
@@ -186,7 +185,6 @@
                                 <div class="col-sm-4">
                                     <input type="number" class="form-control" id="month_salary_max" placeholder="24000" min="0" >
                                 </div>
-                            
                             </div>
                             <div class="form-group">
                                 <label for="work_year" class="col-sm-2 control-label">工作年資</label>
@@ -194,9 +192,9 @@
                                     <input type="number" class="form-control" id="work_year" placeholder="3" min="0" >
                                 </div>
                             </div>
-                        </div>
-                        <a class="btn btn-default btn-lg" id="submit" >提供資料</a>
-                    </form>
+                            <a class="btn btn-default btn-lg" id="submit-more" >提供資料</a>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
