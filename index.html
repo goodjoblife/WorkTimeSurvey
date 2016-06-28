@@ -153,36 +153,46 @@
                                 <input type="text" class="form-control" id="company_id" placeholder="公司統編" >
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="job_title" class="col-sm-2 control-label">職稱</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="job_title" placeholder="職稱" >
+                                <input type="text" class="form-control" id="job_title" placeholder="職稱" required>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="week_work_time" class="col-sm-2 control-label">平均每週工時</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="week_work_time" placeholder="40" min="0"  >
+                                <input type="number" class="form-control" id="week_work_time" placeholder="40" min="0" required>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="email" class="col-sm-2 control-label">電子郵件</label>
                             <div class="col-sm-10">
                                 <input type="email" class="form-control" id="email" placeholder="留下您的email，在工時資訊查詢功能完成時連絡您"  >
                             </div>
                         </div>
-                        <a class="btn btn-primary btn-lg" id="submit-more" >提供更多資料</a>
-                        <a class="btn btn-danger btn-sm" id="submit-reject" >Sorry, 我只能提供這些資料</a>
-                        <div id="form-more" class="hidden">
-                            <h3>我願意留下更多資訊</h3>
+                        <div class="form-group">
+                            <a class="btn" role="button" data-toggle="collapse" href="#more_info" aria-expanded="false" aria-controls="more_info">+我願意填更多+</a>
+                        </div>
+                        <div class="collapse" id="more_info">
                             <div class="form-group">
-                                <label for="month_salary_min" class="col-sm-2 control-label">平均月薪</label>
+                                <div class="col-sm-2">
+                                    <select id="salary_type" class="form-control">
+                                          <option value="year">年薪</option>
+                                          <option value="month" selected="selected">月薪</option>
+                                          <option value="hour">時薪</option>
+                                    </select>
+                                </div>
                                 <div class="col-sm-4">
-                                    <input type="number" class="form-control" id="month_salary_min" placeholder="22000" min="0" >
+                                    <input type="number" class="form-control" id="salary_min" placeholder="22000" min="0" >
                                 </div> 
-                                <label for="month_salary_max" class="col-sm-2">至</label>
+                                
+                                <label for="salary_max" class="col-sm-2">至</label>
                                 <div class="col-sm-4">
-                                    <input type="number" class="form-control" id="month_salary_max" placeholder="24000" min="0" >
+                                    <input type="number" class="form-control" id="salary_max" placeholder="24000" min="0" >
                                 </div>
                             </div>
                             <div class="form-group">
@@ -191,8 +201,15 @@
                                     <input type="number" class="form-control" id="work_year" placeholder="3" min="0" >
                                 </div>
                             </div>
-                            <a class="btn btn-default btn-lg" id="submit" >提供資料</a>
+                            <div class="form-group">
+                                <label for="review" class="col-sm-2 control-label">評論</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" rows="3" id="review" placeholder="公司文化、工作甘苦談、我在公司學到什麼、團隊氣氛等等"></textarea>
+                                </div>
+                            </div>
                         </div>
+
+                        <a class="btn btn-primary btn-lg" id="submit" >提供資料</a>
                     </form>
                 </div>
             </div>
