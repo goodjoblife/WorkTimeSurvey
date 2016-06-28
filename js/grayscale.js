@@ -16,6 +16,7 @@ function collapseNavbar() {
 $(window).scroll(collapseNavbar);
 $(document).ready(collapseNavbar);
 
+
 var isFacebookSignedIn = false;
 
 // jQuery for page scrolling feature - requires jQuery Easing plugin
@@ -99,7 +100,13 @@ window.fbAsyncInit = function() {
 
     $("#submit").click(function(e) {
         e.preventDefault();
-        checkForm();
+        var msg = checkForm();
+        if(msg == 'success'){
+            submitForm();
+        }
+        else{
+            alert(msg);
+        }
     });
 };
 
@@ -121,9 +128,53 @@ function getUserInfo() {
 function checkForm () {
     // TODO - check data in form
     console.log("check!");
+    var company_id = $("#company_id").val();
+    var company_name = $("#company_name").val();
+    var job_title = $("#job_title").val();
+    var week_work_time = $("#week_work_time").val();
+    var email = $("#email").val();
+    var salary_type = $("#salary_type").val();
+    var salary_min = $("#salary_min").val();
+    var salary_max = $("#salary_max").val();
+    var work_year = $("#work_year").val();
+    var review = $("#review").val();
 
-    // FIXME - Just submit without check
-    submitForm();
+    if(company_name == ''){
+        if(company_id == ''){
+            return "公司名稱或公司統一編號其中一個必填"
+        }
+        else{
+            company_id = parseInt(company_id);
+            if(isNaN(company_id)){
+                return "統編要是一個數字";
+            }
+            else if(company_id < 0){
+                return "統編要大於0";
+            }
+        }
+    }
+
+    if(job_title == ''){  //allow other type of job title
+        return "需填職稱";
+    }
+    if(week_work_time == ''){  
+        return "需填平均每週工時";
+    }
+    if(salary_min != '' || salary_max != ''){
+        salary_min = parseInt(salary_min);
+        salary_max = parseInt(salary_max);
+        if(salary_min < 0 || salary_max < 0 || salary_min > salary_max){
+            return "薪資需大於0 且範圍由小至大";
+        }
+    }
+    if(work_year != ''){
+        work_year = parseInt(work_year);
+        if(work_year < 0){
+            return "年資須大於0";
+        }
+    }
+    return "success";
+
 };
 
 var _id = null;
@@ -141,6 +192,11 @@ function submitForm() {
             job_title: $("#job_title").val(),
             week_work_time: $("#week_work_time").val(),
             email: $("#email").val(),
+            salary_type: $("#salary_type").val(),
+            salary_min: $("#salary_min").val(),
+            salary_max: $("#salary_max").val(),
+            work_year: $("#work_year").val(),
+            review: $("#review").val()
         },
         dataType: 'json',
     }).then(function(res) {
@@ -160,31 +216,5 @@ function submitForm() {
         // TODO if fail
 
         console.log(jqXHR);
-    });
-};
-
-function checkMoreInfoForm () {
-    // TODO - check data in __?
-    console.log("check!");
-
-    // FIXME - Just submit without check
-    submitMoreInfoForm();
-};
-
-function submitMoreInfoForm() {
-    // TODO - submit data after check to server
-
-    $.ajax({
-        url: 'https://tranquil-fortress-92731.herokuapp.com/' + _id,
-        method: 'POST',
-        data: {
-            salary_min: $("#month_salary_min").val(),
-            salary_max: $("#month_salary_max").val(),
-            salary_type: 'month',
-            work_year: $("#work_year").val(),
-            //review: $("#review").val(),
-        }
-    }).then(function(res) {
-        console.log(res);
     });
 };
