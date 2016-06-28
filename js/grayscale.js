@@ -189,7 +189,14 @@ function checkForm () {
 
 };
 
+var submitting = false;
 function submitForm() {
+    if (submitting) {
+        return;
+    }
+    var spinner = $("<i class=\"fa fa-spinner fa-spin fa-fw\"></i>").prependTo($("#submit"));
+    $("#submit").attr("disabled", true);
+    submitting = true;
     // TODO - submit data after check to server
 
     $.ajax({
@@ -212,6 +219,12 @@ function submitForm() {
         dataType: 'json',
     }).then(function(res) {
         console.log(res);
+
+        spinner.fadeOut(2000, function() {
+            spinner.remove();
+        });
+        $("#submit").attr("disabled", false);
+        submitting = false;
 
         // TODO if success
     }).fail(function(jqXHR, textStatus, errorThrown) {
