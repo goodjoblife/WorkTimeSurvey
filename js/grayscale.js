@@ -138,7 +138,6 @@ function getUserInfo() {
 };
 
 function checkForm () {
-    // TODO - check data in form
     console.log("check!");
     var company_id = $("#company_id").val();
     var company_name = $("#company_name").val();
@@ -189,8 +188,19 @@ function checkForm () {
 
 };
 
+/* Indicating whether the form is submiting or not
+ * If submitting, we should avoid send it twice, it should return
+ */
+var submitting = false;
+
 function submitForm() {
-    // TODO - submit data after check to server
+    if (submitting) {
+        return;
+    }
+    // a spinner append to button to indicate it is running (3 things)
+    var spinner = $("<i class=\"fa fa-spinner fa-spin fa-fw\"></i>").prependTo($("#submit"));
+    $("#submit").attr("disabled", true);
+    submitting = true;
 
     $.ajax({
         url: 'https://tranquil-fortress-92731.herokuapp.com/',
@@ -212,6 +222,14 @@ function submitForm() {
         dataType: 'json',
     }).then(function(res) {
         console.log(res);
+
+        // On success, recover the status (3 things)
+        // On fail, ... it should, TODO
+        spinner.fadeOut(2000, function() {
+            spinner.remove();
+        });
+        $("#submit").attr("disabled", false);
+        submitting = false;
 
         // TODO if success
     }).fail(function(jqXHR, textStatus, errorThrown) {
