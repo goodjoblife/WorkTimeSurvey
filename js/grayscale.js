@@ -108,6 +108,18 @@ window.fbAsyncInit = function() {
             alert(msg);
         }
     });
+    $("#submit-more").click(function(e) {
+        e.preventDefault();
+
+        $("#form-more").removeClass("hidden");
+        $("#submit-more").addClass("hidden");
+        $("#submit-reject").addClass("hidden");
+    });
+    $("#submit-reject").click(function(e) {
+        e.preventDefault();
+
+        checkForm();
+    });
 };
 
 (function(d, s, id) {
@@ -177,8 +189,6 @@ function checkForm () {
 
 };
 
-var _id = null;
-
 function submitForm() {
     // TODO - submit data after check to server
 
@@ -197,18 +207,10 @@ function submitForm() {
             salary_max: $("#salary_max").val(),
             work_year: $("#work_year").val(),
             review: $("#review").val()
+
         },
         dataType: 'json',
     }).then(function(res) {
-        _id = res._id;
-
-        $("#form-more").removeClass("hidden");
-        $("#submit-more").on('click', function(e) {
-            e.preventDefault();
-            checkMoreInfoForm();
-        });
-        $("#submit").addClass("hidden");
-
         console.log(res);
 
         // TODO if success
