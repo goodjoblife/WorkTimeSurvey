@@ -143,7 +143,11 @@ function submitForm() {
         },
         dataType: 'json',
     }).then(function(res) {
-        console.log(res);
+        _id = res._id;
+
+        // TODO if success
+    }).fail(function() {
+        // TODO if fail
     });
 };
 
