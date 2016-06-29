@@ -122,6 +122,49 @@ window.fbAsyncInit = function() {
     });
 };
 
+$(function() {
+    var container = $("#workings-table tbody");
+
+    function view(w) {
+        return "<tr><td>" + w.company_name + "</td><td>" + w.week_work_time + "</td></tr>";
+    }
+
+    function queryWorkings(page) {
+        return $.ajax({
+            url: 'https://tranquil-fortress-92731.herokuapp.com/',
+            data: {
+                page: page,
+            },
+            method: 'GET',
+            dataType: 'json',
+        });
+    }
+
+    function queryAllWorkings(page) {
+        page = page || 0;
+
+        return queryWorkings(page).then(function(workings) {
+            $.map(workings, view).forEach(function(html) {
+                $(html).appendTo(container);
+            });
+
+            return workings;
+        }).then(function(workings) {
+            if (workings.length != 0) {
+                return queryAllWorkings(page + 1);
+            } else {
+                return true;
+            }
+        });
+    }
+
+    queryAllWorkings().then(function(res) {
+        if (res) {
+            console.log("finish all page query");
+        }
+    });
+});
+
 (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
