@@ -8,24 +8,18 @@ $(document).ready(function(){
 	$("#company_name").autocomplete({
     	source: function (request, response) {
 	        var request = $.ajax({
-			  url: "https://company.g0v.ronny.tw/api/search",
-			  data: { q : request['term'] },
-			  dataType: "json", 
+			  url: "http://tranquil-fortress-92731.herokuapp.com/search",
+			  data: { key : request['term'] },
+			  dataType: "json"
 
 			}).done(function( res ) {
 			 	nameList = new Array(); 
-			 	console.log(res.data);
-			 	var data = allowData(res.data, '公司狀況', ['核准成立']);
-			 	data = allowData(data, '現況', ['核准設立']);
-			 	data.forEach(function(item, i) {
-
-		            var name = item['公司名稱'] || item['商業名稱'] || null;
-		            var comId = item['統一編號'] || null; 
-		            if (name !== null && comId !== null) {
-		                nameList.push({"value": name, "company_id": comId});
-		            }
-		            console.log(name);
-	        	});
+			 	console.log(res);
+	
+			 	res.forEach(function(item, i) {
+			 		var id = item['company_id'] || item['business_id'];
+ 	        		nameList.push({"value": item['name'], "company_id": id});
+		        });
 	        	response(nameList);
 
 			}).fail(function( jqXHR, textStatus ) {
@@ -41,6 +35,7 @@ $(document).ready(function(){
 
 });
 
+/*Depricated: this function is only for RonnyWang's API */
 //only allow the data with given condition
 function allowData(data, field, allowSet){
 	var newData = new Array();
