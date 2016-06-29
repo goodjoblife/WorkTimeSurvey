@@ -11,7 +11,7 @@ $(function() {
      */
     function queryWorkings(page) {
         return $.ajax({
-            url: 'https://tranquil-fortress-92731.herokuapp.com/',
+            url: 'https://tranquil-fortress-92731.herokuapp.com/workings',
             data: {
                 page: page,
             },
