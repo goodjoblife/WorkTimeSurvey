@@ -262,6 +262,10 @@ a:focus {
     padding-top: 100px;
 }
 
+.content-section-tight {
+    padding-top: 100px;
+}
+
 .form-section {
     width: 100%;
     padding: 50px 0;
@@ -276,6 +280,10 @@ a:focus {
 @media(min-width:767px) {
     .content-section {
         padding-top: 250px;
+    }
+
+    .content-section-tight {
+        padding-top: 100px;
     }
 
     .download-section {

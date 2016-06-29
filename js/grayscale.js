@@ -51,12 +51,14 @@ function statusChangeCallback(response) {
         isFacebookSignedIn = true;
         $("#fb-login-word").addClass("hidden");
         $("#form").removeClass("hidden");
+        $("#form_nav_href").removeClass("hidden");
 
         getUserInfo();
     } else {
         isFacebookSignedIn = false;
         $("#fb-login-word").removeClass("hidden");
         $("#form").addClass("hidden");
+        $("#form_nav_href").addClass("hidden");
     }
 }
 
