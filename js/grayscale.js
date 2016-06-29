@@ -125,10 +125,14 @@ window.fbAsyncInit = function() {
 $(function() {
     var container = $("#workings-table tbody");
 
+    // A view convert working to view
     function view(w) {
         return "<tr><td>" + w.company_name + "</td><td>" + w.week_work_time + "</td></tr>";
     }
 
+    /*
+     * query a specific page workings
+     */
     function queryWorkings(page) {
         return $.ajax({
             url: 'https://tranquil-fortress-92731.herokuapp.com/',
@@ -140,6 +144,9 @@ $(function() {
         });
     }
 
+    /*
+     * query workings starting from a specific page
+     */
     function queryAllWorkings(page) {
         page = page || 0;
 
