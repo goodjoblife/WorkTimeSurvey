@@ -2,8 +2,8 @@ $(function() {
     var View = {
         currentPage: 0,
         currentWorkings: [],
-        $page: $("#view-page"),
-        $alert: $("#view-alert"),
+        $page: $("#newest-view-page"),
+        $alert: $("#newest-view-alert"),
         $container: $("#newest-data-table tbody"),
     };
 
@@ -28,7 +28,7 @@ $(function() {
         },
         // A view convert working to view
         make: function(w) {
-            return "<tr><td>" + w.company_name + "</td><td>" + w.job_title + "</td><td>" + w.week_work_time + "</td></tr>";
+            return "<tr><td>" + (w.company ? w.company.name : "") + "</td><td>" + w.job_title + "</td><td>" + w.week_work_time + "</td></tr>";
         },
     };
 
@@ -75,12 +75,12 @@ $(function() {
     });
     */
 
-    $("#view-previous").on('click', function(e) {
+    $("#newest-view-previous").on('click', function(e) {
         e.preventDefault();
         loadPage(-1);
     });
 
-    $("#view-next").on('click', function(e) {
+    $("#newest-view-next").on('click', function(e) {
         e.preventDefault();
         loadPage(1);
     });
