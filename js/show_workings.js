@@ -28,7 +28,7 @@ $(function() {
         },
         // A view convert working to view
         make: function(w) {
-            return "<tr><td>" + w.company_name + "</td><td>" + w.job_title + "</td><td>" + w.week_work_time + "</td></tr>";
+            return "<tr><td>" + (w.company ? w.company.name : "") + "</td><td>" + w.job_title + "</td><td>" + w.week_work_time + "</td></tr>";
         },
     };
 

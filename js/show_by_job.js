@@ -29,7 +29,7 @@ $(function() {
         },
         // A view convert working to view
         make: function(w) {
-            return "<tr><td>" + w.name + "</td><td>" + w.average_week_work_time + "</td></tr>";
+            return "<tr><td>" + (w._id ? w._id.name : "") + "</td><td>" + w.average_week_work_time + "</td></tr>";
         },
         show: function(){
             View.$section_body.removeClass("hidden");
