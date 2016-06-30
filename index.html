@@ -67,7 +67,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">關於</a>
+                        <a class="page-scroll" href="#about">關於工時透明化運動</a>
                     </li>
                     <li>
                         <a id="form_nav_href" class="page-scroll hidden" href="#form">提供資料</a>
@@ -76,7 +76,7 @@
                         <a href="show.html">查看資料</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">聯絡我們</a>
+                        <a class="page-scroll" href="about_us.html">關於我們</a>
                     </li>
                 </ul>
             </div>
@@ -108,7 +108,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <p>
-                    2014年，台灣的每年平均工時2141 小時，是世界第 4 高。在平面與網路媒體上不時可以看到「加班」、「高工時」、「過勞」等關鍵字，但我們似乎只能心裡嘆聲氣，然後想「台灣就是這樣，我也沒辦法」。 <br><br> 可是我們真的沒辦法嗎?
+                    2014年，台灣的每年平均工時2134 小時，是OECD國家中的第 4 高。在平面與網路媒體上不時可以看到「加班」、「高工時」、「過勞」等關鍵字，但我們似乎只能心裡嘆聲氣，然後想「台灣就是這樣，我也沒辦法」。 <br><br> 可是我們真的沒辦法嗎?
                 </p>
             </div>
         </div>
@@ -172,18 +172,18 @@
 
 
     <!-- Form Section -->
-    <section id="form" class="content-section text-center hidden">
+    <section id="form" class="content-section text-center">
         <div class="form-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>參與工時透明化運動</h2>
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label for="company_name" class="col-sm-2 control-label">公司名稱</label>
+                            <label for="company_name" class="col-sm-2 control-label">公司/單位名稱</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" id="company_name" placeholder="公司名稱" >
                             </div>
-                            <label for="company_id" class="col-sm-3 control-label">或 公司統一編號</label>
+                            <label for="company_id" class="col-sm-3 control-label">或 公司/單位統一編號</label>
                             <div class="col-sm-3">
                                 <input type="text" class="form-control" id="company_id" placeholder="公司統編" >
                             </div>
@@ -200,13 +200,14 @@
                             <label for="week_work_time" class="col-sm-2 control-label">平均每週工時</label>
                             <div class="col-sm-10">
                                 <input type="number" class="form-control" id="week_work_time" placeholder="40" min="0" required>
+                                <p class="help-block">請留下您真實的工時資訊，而非打卡資訊。此外，也請您將休息時間扣除。</p>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="email" class="col-sm-2 control-label">電子郵件</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="email" placeholder="留下您的email，有新消息時通知您"  >
+                                <input type="email" class="form-control" id="email" placeholder="有新消息時將通知您(選填)" >
                             </div>
                         </div>
                         <div class="form-group">
@@ -239,7 +240,7 @@
                             <div class="form-group">
                                 <label for="review" class="col-sm-2 control-label">評論</label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" rows="3" id="review" placeholder="公司文化、工作甘苦談、我在公司學到什麼、團隊氣氛等等"></textarea>
+                                    <textarea class="form-control" rows="3" id="review" placeholder="公司文化、工作甘苦談、我在公司學到什麼、團隊氣氛等等任何您想分享的內容"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -260,16 +261,50 @@
         </div>
     </section>
 
+    <!-- QA Section -->
+    <section id="qa" class="container content-section text-left">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>常見問答</h2>
+                <ol>
+                    <a role="button" data-toggle="collapse" href="#qa1" aria-expanded="false" aria-controls="qa1"><li>
+                        這個網站是匿名的嗎?
+                    </li></a>
+                    <div class="collapse" id="qa1"> 是的，這個網站是匿名的。您所分享的所有資訊也會是匿名的。 綁定Facebook登入是為了避免惡意使用者大量輸入假資訊。 </div>
+
+                    <a role="button" data-toggle="collapse" href="#qa2" aria-expanded="false" aria-controls="qa2"><li>
+                        我提供的資料會如何被使用?
+                    </li></a>
+                    <div class="collapse" id="qa2"> 您的資料將會被運用於本網站，供其他使用者查詢。此外，您的資訊也會顯示於<a href="#qa5">求職天眼通</a>這個瀏覽器附加元件。 </div>
+
+                    <a role="button" data-toggle="collapse" href="#qa3" aria-expanded="false" aria-controls="qa3"><li>
+                        請問你們是誰?
+                    </li></a>
+                    <div class="collapse" id="qa3"> 詳情請見<a>關於我們</a>。 </div>
+
+                    <a role="button" data-toggle="collapse" href="#qa4" aria-expanded="false" aria-controls="qa4"><li>
+                        如果我的工作型態，是屬於排班制或其他較為彈性的形式，我要如何計算平均每週工時?
+                    </li></a>
+                    <div class="collapse" id="qa4"> 若您為每月排班，您可以考慮將整個月個工時加總，除上該月天數，再乘上七估算。 </div>
+                    
+                    <a role="button" data-toggle="collapse" href="#qa5" aria-expanded="false" aria-controls="qa5"><li>
+                        求職天眼通是什麼?
+                    </li></a>
+                    <div class="collapse" id="qa5"> 求職天眼通是一款由網友熱心開發的瀏覽器套件。在您的瀏覽器上安裝後，您在104人力銀行上找工作的時候，便可以看見其他人留下的評論。 <a href="https://chrome.google.com/webstore/detail/clairvoyance-%E6%B1%82%E8%81%B7%E5%A4%A9%E7%9C%BC%E9%80%9A/mdneakdlnoidknagkamfeambdefhppbi?hl=zh-TW" target="_blank">瀏覽器套件連結。</a> </div>
+                    
+                </ol>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>聯絡我們</h2>
-                <p><a href="mailto:findyourgoodjob@gmail.com">findyourgoodjob@gmail.com</a>
-                </p>
                 <ul class="list-inline banner-social-buttons">
                     <li>
-                        <a href="" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
+                        <a href="https://www.facebook.com/goodjobplatform" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
                     </li>
                     <li>
                         <a href="https://github.com/goodjoblife/" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
