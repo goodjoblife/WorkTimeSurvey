@@ -59,6 +59,10 @@ a:focus {
     color: #FF5600;
 }
 
+th{
+    text-align: center;
+}
+
 .light {
     font-weight: 400;
 }
@@ -109,6 +113,7 @@ a:focus {
 .navbar-custom .nav li a:focus,
 .navbar-custom .nav li a:active {
     outline: 0;
+    color:#000;
     background-color: transparent;
 }
 
@@ -151,7 +156,7 @@ a:focus {
     text-align: center;
     color: #fff;
     background: url(../img/intro-bg.jpg) no-repeat bottom center scroll;
-    background-color: #000;
+    background-color: #0B62BD;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
