@@ -86,8 +86,45 @@
     </nav>
 
     <!-- Newest Data Section -->
-    <section id="newestDataTable" class="container content-section content-section-tight text-center">
-        <div class="row">
+    <section id="data-section" class="container content-section content-section-tight text-center">
+        <div class="row data-section-row">
+            <div class="col-lg-4 col-lg-offset-4">
+                <div class="input-group">
+                    <input id="query" type="text" class="form-control" placeholder="輸入職稱，搜尋工時資訊">
+                    <span class="input-group-btn">
+                        <button id="search-button" class="btn btn-default" type="button">搜尋</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div id="search-result-section" class="row data-section-row hidden">
+            <div class="col-lg-6 col-lg-offset-3">
+                <h2 id="search-result-title"><span id="job-title" class="strong"></span>的工時資訊</h2>
+                <table id="search-data-table" class="table table-hover">
+                    <thead>
+                        <tr><th>公司名稱</th><th>平均每週工時</th></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="alert alert-warning hidden" role="alert" id="search-view-alert"></div>
+                <nav>
+                    <ul class="pagination" id="search-pagination">
+                        <li>
+                            <a aria-label="Previous" id="search-view-previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a id="search-view-page">1</a></li>
+                        <li>
+                            <a aria-label="Next" id="search-view-next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="row data-section-row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>最新工時資訊</h2>
                 <table id="newest-data-table" class="table table-hover">
@@ -96,17 +133,17 @@
                     </thead>
                     <tbody></tbody>
                 </table>
-                <div class="alert alert-warning hidden" role="alert" id="view-alert"></div>
+                <div class="alert alert-warning hidden" role="alert" id="newest-view-alert"></div>
                 <nav>
-                    <ul class="pagination" id="pagination">
+                    <ul class="pagination" id="newest-pagination">
                         <li>
-                            <a aria-label="Previous" id="view-previous">
+                            <a aria-label="Previous" id="newest-view-previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <li><a id="view-page">1</a></li>
+                        <li><a id="newest-view-page">1</a></li>
                         <li>
-                            <a aria-label="Next" id="view-next">
+                            <a aria-label="Next" id="newest-view-next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
@@ -140,6 +177,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/grayscale.js"></script>
     <script src="js/show_workings.js"></script>
+    <script src="js/show_by_job.js"></script>
 
 
 </body>

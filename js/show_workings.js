@@ -2,8 +2,8 @@ $(function() {
     var View = {
         currentPage: 0,
         currentWorkings: [],
-        $page: $("#view-page"),
-        $alert: $("#view-alert"),
+        $page: $("#newest-view-page"),
+        $alert: $("#newest-view-alert"),
         $container: $("#newest-data-table tbody"),
     };
 
@@ -75,12 +75,12 @@ $(function() {
     });
     */
 
-    $("#view-previous").on('click', function(e) {
+    $("#newest-view-previous").on('click', function(e) {
         e.preventDefault();
         loadPage(-1);
     });
 
-    $("#view-next").on('click', function(e) {
+    $("#newest-view-next").on('click', function(e) {
         e.preventDefault();
         loadPage(1);
     });
