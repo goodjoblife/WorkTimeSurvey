@@ -29,7 +29,7 @@ $(function() {
         },
         // A view convert working to view
         make: function(w) {
-            return "<tr><td>" + (w._id ? w._id.name : "") + "</td><td>" + w.average_week_work_time + "</td></tr>";
+            return "<tr><td>" + escape(w._id ? w._id.name : "") + "</td><td>" + escape(w.average_week_work_time) + "</td></tr>";
         },
         show: function(){
             View.$section_body.removeClass("hidden");
@@ -63,7 +63,7 @@ $(function() {
 
     $("#search-button").on('click', function(e){
         var job_title = $("#query").val();
-        $("#job-title").html(job_title);
+        $("#job-title").text(job_title);
         View.job_title = job_title;
         loadPage(0);
     });
@@ -136,7 +136,7 @@ $(function() {
     var query = getUrlParameter("job_title");
     if(query !== undefined && query !== ''){
         $("#query").val(query);
-        $("#job-title").html(query);
+        $("#job-title").text(query);
         View.job_title = query;
         loadPage(0);        
     }
