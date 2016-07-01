@@ -127,7 +127,7 @@ window.fbAsyncInit = function() {
         var q = $("#job_title").val();
         var url = 'show.html';
         if(q !== undefined && q !== ''){
-            url += '?job_title=' + encodeURI(q);   
+            url += '?job_title=' + encodeURIComponent(q);   
         }
         window.location.href = url;
     });
