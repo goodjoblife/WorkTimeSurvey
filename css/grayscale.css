@@ -95,15 +95,7 @@ th{
 }
 
 .navbar-custom a {
-    color: #0B62BD;
-}
-
-.navbar-custom.top-nav-collapse a{
-    color:#fff;
-}
-
-.navbar-custom.full-screen-image a{
-    color:#fff;
+    color: #fff;
 }
 
 .navbar-custom .nav li a {
@@ -117,16 +109,6 @@ th{
     color: #FF5600;
     background-color: transparent;
 }
-
-.navbar-custom.top-nav-collapse .nav li a:hover,
-.navbar-custom.top-nav-collapse .nav li a:focus,
-.navbar-custom.top-nav-collapse .nav li a:active,
-.navbar-custom.top-nav-collapse .nav li.active a:hover {
-    outline: 0;
-    color: #fff;
-    background-color: rgba(255,255,255,.3)
-}
-
 
 .navbar-custom .nav li a:focus,
 .navbar-custom .nav li a:active {
@@ -163,8 +145,34 @@ th{
         border-bottom: 1px solid rgba(255,255,255,.3);
         background: #0B62BD;
     }
+    
+    .navbar-custom a {
+        color: #0B62BD;
+    }
+
+    .navbar-custom.top-nav-collapse .nav li a:hover,
+    .navbar-custom.top-nav-collapse .nav li a:focus,
+    .navbar-custom.top-nav-collapse .nav li a:active,
+    .navbar-custom.top-nav-collapse .nav li.active a:hover {
+        outline: 0;
+        color: #fff;
+        background-color: rgba(255,255,255,.3)
+    }
+
+    .navbar-custom.top-nav-collapse a{
+        color:#fff;
+    }
+
+    .navbar-custom.full-screen-image a{
+        color:#fff;
+    }
+
 }
 
+
+.navbar-header .navbar-toggle{
+    color:#fff;
+}
 
 .intro {
     display: table;
