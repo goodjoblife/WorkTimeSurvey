@@ -102,13 +102,14 @@ a:focus {
 
 .navbar-custom .nav li a:hover {
     outline: 0;
-    color: rgba(255,255,255,.8);
+    color: #FF5600;
     background-color: transparent;
 }
 
 .navbar-custom .nav li a:focus,
 .navbar-custom .nav li a:active {
     outline: 0;
+    color:#FF5600;
     background-color: transparent;
 }
 
@@ -121,7 +122,7 @@ a:focus {
 }
 
 .navbar-custom .nav li.active a:hover {
-    color: #fff;
+    color: #FF5600;
 }
 
 @media(min-width:768px) {
@@ -140,8 +141,34 @@ a:focus {
         border-bottom: 1px solid rgba(255,255,255,.3);
         background: #0B62BD;
     }
+    
+    .navbar-custom a {
+        color: #0B62BD;
+    }
+
+    .navbar-custom.top-nav-collapse .nav li a:hover,
+    .navbar-custom.top-nav-collapse .nav li a:focus,
+    .navbar-custom.top-nav-collapse .nav li a:active,
+    .navbar-custom.top-nav-collapse .nav li.active a:hover {
+        outline: 0;
+        color: #fff;
+        background-color: rgba(255,255,255,.3)
+    }
+
+    .navbar-custom.top-nav-collapse a{
+        color:#fff;
+    }
+
+    .navbar-custom.full-screen-image a{
+        color:#fff;
+    }
+
 }
 
+
+.navbar-header .navbar-toggle{
+    color:#fff;
+}
 
 .intro {
     display: table;
@@ -151,7 +178,7 @@ a:focus {
     text-align: center;
     color: #fff;
     background: url(../img/intro-bg.jpg) no-repeat bottom center scroll;
-    background-color: #000;
+    background-color: #0B62BD;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
