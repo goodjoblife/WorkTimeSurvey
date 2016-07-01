@@ -71,16 +71,22 @@ $(function() {
     });
 
     $("#search-button").on('click', function(e){
+        //reset table first
+        View.method.reset();
+
+        //get query 
         var job_title = $("#query").val();
-        console.log(job_title);
         $("#job-title").text(job_title);
         View.job_title = job_title;
-        View.currentPage = 0; 
-        loadPage(0);
+
+        loadPage(0, true);
     });
 
     var loading = false;
-    function loadPage(offset) {
+    function loadPage(offset, resetIfFailed) {
+        if(resetIfFailed === undefined){
+            resetIfFailed = false;
+        }
         if (loading) {
             return;
         }
@@ -96,10 +102,14 @@ $(function() {
             console.log("resolved!");
         }, function(e) {
             loading = false;
-            View.method.hide();
-            View.method.reset();
-            View.method.showAlert(e.message);
-
+            if(resetIfFailed){
+                View.method.hide();
+                View.method.reset();
+            }
+            else{
+                View.method.update();
+                View.method.showAlert(e.message);    
+            }
             console.log("rejected!");
         });
     }
