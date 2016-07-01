@@ -35,6 +35,13 @@ $(function() {
         },
         show: function(){
             View.$section_body.removeClass("hidden");
+        },
+        hide: function(){
+            View.$section_body.addClass("hidden");
+        },
+        reset: function(){
+            View.currentPage = 0;
+            View.currentWorkings = [];
         }
     };
 
@@ -65,8 +72,10 @@ $(function() {
 
     $("#search-button").on('click', function(e){
         var job_title = $("#query").val();
+        console.log(job_title);
         $("#job-title").text(job_title);
         View.job_title = job_title;
+        View.currentPage = 0; 
         loadPage(0);
     });
 
@@ -87,7 +96,8 @@ $(function() {
             console.log("resolved!");
         }, function(e) {
             loading = false;
-            View.method.update();
+            View.method.hide();
+            View.method.reset();
             View.method.showAlert(e.message);
 
             console.log("rejected!");
