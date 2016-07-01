@@ -46,8 +46,6 @@ $("#knowMoreBtn").click(function(e){
     $("#knowMore").modal("show");
 });
 
-
-
 function statusChangeCallback(response) {
     if (response.status == 'connected') {
         isFacebookSignedIn = true;
