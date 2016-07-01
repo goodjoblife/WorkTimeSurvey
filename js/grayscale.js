@@ -244,6 +244,9 @@ function submitForm() {
         $("#submit").attr("disabled", false);
         submitting = false;
 
+        //hide form 
+        $("#form").addClass("hidden");
+
         //remove hidden class and scroll to that div
         $("#share").removeClass("hidden");
         $('html, body').animate({
