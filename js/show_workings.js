@@ -10,8 +10,8 @@ $(function() {
     View.method = {
         update: function() {
             View.$container.empty();
-            $.map(View.currentWorkings, View.method.make).forEach(function(html) {
-                $(html).appendTo(View.$container);
+            $.map(View.currentWorkings, View.method.make).forEach(function($html) {
+                $html.appendTo(View.$container);
             });
 
             View.$page.html(View.currentPage + 1);
@@ -28,7 +28,10 @@ $(function() {
         },
         // A view convert working to view
         make: function(w) {
-            return "<tr><td>" + escape(w.company ? w.company.name : "") + "</td><td>" + escape(w.job_title) + "</td><td>" + escape(w.week_work_time) + "</td></tr>";
+            return $("<tr>")
+                .append($("<td>").text(w.company ? w.company.name : ""))
+                .append($("<td>").text(w.job_title))
+                .append($("<td>").text(w.week_work_time));
         },
     };
 
