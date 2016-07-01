@@ -122,6 +122,17 @@ window.fbAsyncInit = function() {
 
         checkForm();
     });
+
+    $("#see-data").click(function(){
+        var q = $("#job_title").val();
+        var url = 'show.html';
+        if(q !== undefined && q !== ''){
+            url += '?job_title=' + encodeURIComponent(q);   
+        }
+        window.location.href = url;
+    });
+
+
 };
 
 (function(d, s, id) {
@@ -232,6 +243,15 @@ function submitForm() {
         });
         $("#submit").attr("disabled", false);
         submitting = false;
+
+        //hide form 
+        $("#form").addClass("hidden");
+
+        //remove hidden class and scroll to that div
+        $("#share").removeClass("hidden");
+        $('html, body').animate({
+            scrollTop: $("#share").offset().top
+        }, 2000);    
 
         // TODO if success
     }).fail(function(jqXHR, textStatus, errorThrown) {
