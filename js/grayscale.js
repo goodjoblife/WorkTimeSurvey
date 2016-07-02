@@ -267,7 +267,6 @@ function submitForm() {
 
 
 function showAlert(message) {
-    console.log(message);
     $("#submit-alert").text(message).removeClass("hidden");
     setTimeout(function() {
         $("#submit-alert").text(message).addClass("hidden");
