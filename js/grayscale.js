@@ -107,7 +107,8 @@ window.fbAsyncInit = function() {
             submitForm();
         }
         else{
-            alert(msg);
+            //local checking
+            showAlert(msg);
         }
     });
     $("#submit-more").click(function(e) {
@@ -257,6 +258,18 @@ function submitForm() {
     }).fail(function(jqXHR, textStatus, errorThrown) {
         // TODO if fail
 
+        //error message from server 
+        //TODO: statusText or responseText??
+        showAlert(textStatus);
         console.log(jqXHR);
     });
 };
+
+
+function showAlert(message) {
+    console.log(message);
+    $("#submit-alert").text(message).removeClass("hidden");
+    setTimeout(function() {
+        $("#submit-alert").text(message).addClass("hidden");
+    }, 10000);
+}
