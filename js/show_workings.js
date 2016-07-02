@@ -49,35 +49,6 @@ $(function() {
         });
     }
 
-    /*
-     * query workings starting from a specific page
-     */
-    /*
-    function queryAllWorkings(page) {
-        page = page || 0;
-
-        return queryWorkings(page).then(function(workings) {
-            $.map(workings, view).forEach(function(html) {
-                $(html).appendTo(container);
-            });
-
-            return workings;
-        }).then(function(workings) {
-            if (workings.length != 0) {
-                return queryAllWorkings(page + 1);
-            } else {
-                return true;
-            }
-        });
-    }
-
-    queryAllWorkings().then(function(res) {
-        if (res) {
-            console.log("finish all page query");
-        }
-    });
-    */
-
     $("#newest-view-previous").on('click', function(e) {
         e.preventDefault();
         loadPage(-1);
