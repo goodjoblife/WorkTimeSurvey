@@ -107,7 +107,7 @@ window.fbAsyncInit = function() {
             submitForm();
         }
         else{
-            alert(msg);
+            showAlert(msg);
         }
     });
     $("#submit-more").click(function(e) {
@@ -252,11 +252,25 @@ function submitForm() {
         $('html, body').animate({
             scrollTop: $("#share").offset().top
         }, 2000);    
-
-        // TODO if success
     }).fail(function(jqXHR, textStatus, errorThrown) {
-        // TODO if fail
+        spinner.fadeOut(2000, function() {
+            spinner.remove();
+        });
+        $("#submit").attr("disabled", false);
+        submitting = false;
 
-        console.log(jqXHR);
+        showAlert(jqXHR.responseJSON.message);
     });
 };
+
+function showAlert(message) {
+    var $alert = $("<div class=\"alert alert-danger\" role=\"alert\"></div>");
+    $alert.text(message).appendTo($("#submit-alerts"));
+
+    setTimeout(function() {
+        $alert.fadeOut(2000, function() {
+            $alert.remove();
+        });
+    }, 5000);
+}
+
