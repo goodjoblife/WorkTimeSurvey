@@ -264,9 +264,13 @@ function submitForm() {
 };
 
 function showAlert(message) {
-    $("#submit-alert").text(message).removeClass("hidden");
+    var $alert = $("<div class=\"alert alert-danger\" role=\"alert\"></div>");
+    $alert.text(message).appendTo($("#submit-alerts"));
+
     setTimeout(function() {
-        $("#submit-alert").addClass("hidden");
-    }, 10000);
+        $alert.fadeOut(2000, function() {
+            $alert.remove();
+        });
+    }, 5000);
 }
 
