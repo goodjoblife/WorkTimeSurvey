@@ -107,7 +107,6 @@ window.fbAsyncInit = function() {
             submitForm();
         }
         else{
-            //local checking
             showAlert(msg);
         }
     });
@@ -253,22 +252,21 @@ function submitForm() {
         $('html, body').animate({
             scrollTop: $("#share").offset().top
         }, 2000);    
-
-        // TODO if success
     }).fail(function(jqXHR, textStatus, errorThrown) {
-        // TODO if fail
+        spinner.fadeOut(2000, function() {
+            spinner.remove();
+        });
+        $("#submit").attr("disabled", false);
+        submitting = false;
 
-        //error message from server 
-        //TODO: statusText or responseText??
-        showAlert(textStatus);
-        console.log(jqXHR);
+        showAlert(jqXHR.responseJSON.message);
     });
 };
-
 
 function showAlert(message) {
     $("#submit-alert").text(message).removeClass("hidden");
     setTimeout(function() {
-        $("#submit-alert").text(message).addClass("hidden");
+        $("#submit-alert").addClass("hidden");
     }, 10000);
 }
+
