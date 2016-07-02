@@ -69,9 +69,10 @@ $(function() {
         loadPage(1);
     });
 
-    $("#search-button").on('click', function(e){
-        var job_title = $("#query").val();
-        loadSearch(job_title);
+    $("#search-form").on('submit', function(e) {
+        e.preventDefault();
+        
+        loadSearch($("#query").val());
     });
 
     var loading = false;
