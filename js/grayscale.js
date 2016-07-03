@@ -143,11 +143,13 @@ function checkForm () {
     var job_title = $("#job_title").val();
     var week_work_time = $("#week_work_time").val();
     var email = $("#email").val();
+    /*
     var salary_type = $("#salary_type").val();
     var salary_min = $("#salary_min").val();
     var salary_max = $("#salary_max").val();
     var work_year = $("#work_year").val();
     var review = $("#review").val();
+    */
 
     if (company_name == '') {
         if (company_id == '') {
@@ -169,6 +171,7 @@ function checkForm () {
     if (week_work_time == ''){  
         return "需填平均每週工時";
     }
+    /*
     if (salary_min != '' || salary_max != '') {
         salary_min = parseInt(salary_min);
         salary_max = parseInt(salary_max);
@@ -181,7 +184,7 @@ function checkForm () {
         if (work_year < 0) {
             return "年資須大於0";
         }
-    }
+    }*/
 
     return "success";
 }
