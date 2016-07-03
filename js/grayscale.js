@@ -75,7 +75,6 @@ function statusChangeCallback(response) {
             submitForm();    
         }
         else{
-            showAlert(msg);
         }
         
         
