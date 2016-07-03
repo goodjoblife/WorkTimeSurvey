@@ -64,11 +64,21 @@ $("#submit").click(function(e) {
 function statusChangeCallback(response) {
     if (response.status == 'connected') {
         isFacebookSignedIn = true;
+        getUserInfo();
+
         $("#fb-login-word").addClass("hidden");
         $("#form").removeClass("hidden");
         $("#form_nav_href").removeClass("hidden");
-        submitForm();
-        getUserInfo();
+        
+        var msg = checkForm();
+        if(msg == 'success'){
+            submitForm();    
+        }
+        else{
+            showAlert(msg);
+        }
+        
+        
     } else {
         isFacebookSignedIn = false;
         //$("#fb-login-word").removeClass("hidden");
