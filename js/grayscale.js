@@ -56,7 +56,7 @@ function statusChangeCallback(response) {
     } else {
         isFacebookSignedIn = false;
         $("#fb-login-word").removeClass("hidden");
-        $("#form").addClass("hidden");
+        //$("#form").addClass("hidden");
         $("#form_nav_href").addClass("hidden");
     }
 }
