@@ -16,8 +16,7 @@ $(document).ready(function(){
                 console.log(res);
 
                 res.forEach(function(item, i) {
-                    var id = item['company_id'] || item['business_id'];
-                    nameList.push({"value": item['name'], "company_id": id});
+                    nameList.push({"value": item['name'], "company_id": item.id});
                 });
                 response(nameList);
             }).fail(function( jqXHR, textStatus ) {
