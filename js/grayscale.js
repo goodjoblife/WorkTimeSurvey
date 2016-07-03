@@ -233,9 +233,9 @@ function submitForm() {
         $("#form").addClass("hidden");
 
         //remove hidden class and scroll to that div
-        $("#share").removeClass("hidden");
+        $("#result").removeClass("hidden");
         $('html, body').animate({
-            scrollTop: $("#share").offset().top
+            scrollTop: $("#result").offset().top
         }, 2000);    
     }).fail(function(jqXHR, textStatus, errorThrown) {
         spinner.fadeOut(2000, function() {
