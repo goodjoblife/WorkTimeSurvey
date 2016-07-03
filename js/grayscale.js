@@ -49,14 +49,22 @@ $("#knowMoreBtn").click(function(e){
 $("#submit").click(function(e) {
     e.preventDefault();
     var msg = checkForm();
-    if(msg == 'success'){
-        FB.ui({
-            method: 'share',
-            href: 'https://goodjoblife.github.io/WorkTimeSurvey/'
-        }, function(response){    
-        });    
-    }
-    else{
+    if (msg == 'success') {
+        if (isFacebookSignedIn) {
+            submitForm();
+        } else {
+            FB.login(function(response){
+                statusChangeCallback(response);
+                if (response.status == 'connected') {
+                    submitForm();
+                } else {
+                    showAlert("未登入FB，取消送出資料");
+                }
+            },{
+                scope: 'public_profile,email'
+            });
+        }
+    } else {
         showAlert(msg);
     }
 });
@@ -67,17 +75,6 @@ function statusChangeCallback(response) {
         getUserInfo();
 
         $("#fb-login-word").addClass("hidden");
-        $("#form").removeClass("hidden");
-        $("#form_nav_href").removeClass("hidden");
-        
-        var msg = checkForm();
-        if(msg == 'success'){
-            submitForm();    
-        }
-        else{
-        }
-        
-        
     } else {
         isFacebookSignedIn = false;
         //$("#fb-login-word").removeClass("hidden");
@@ -97,21 +94,6 @@ window.fbAsyncInit = function() {
 
     FB.getLoginStatus(function(response) {
         statusChangeCallback(response); 
-    });
-
-    $("#fb-login").click(function(e){
-        e.preventDefault();
-        if (!isFacebookSignedIn) {
-            FB.login(function(response){
-                statusChangeCallback(response);
-            },{
-                scope: 'public_profile,email'
-            });
-        } else {
-            $('html, body').stop().animate({
-                scrollTop: $("#form").offset().top
-            }, 1500, 'easeInOutExpo');
-        }
     });
 
     $("#fb-share").click(function(e){
