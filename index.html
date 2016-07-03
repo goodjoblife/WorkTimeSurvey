@@ -122,6 +122,7 @@
                                 <input type="text" class="form-control" id="job_title" placeholder="職稱" required>
                             </div>
                         </div>
+                        
                         <div class="form-group">
                             <label for="week_work_time" class="col-sm-2 control-label">平均每週工時</label>
                             <div class="col-sm-10">
@@ -129,6 +130,24 @@
                                 <div class="help-block">請留下您真實的工時資訊，而非打卡資訊。此外，也請您將休息時間扣除。</div>
                             </div>
                         </div>
+                        <div id="overtime_frequency_input" class="form-group">
+                            <label for="overtime_frequency" class="col-sm-2 control-label">加班頻率</label>
+                            <div class="col-sm-10">
+                                <label class="radio-inline">
+                                  <input type="radio" name="frequency" value="0"> 幾乎不加班
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" name="frequency" value="1"> 偶爾加班
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" name="frequency" value="2"> 經常加班
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" name="frequency" value="3"> 幾乎每天加班
+                                </label>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label for="email" class="col-sm-2 control-label">電子郵件</label>
                             <div class="col-sm-10">
