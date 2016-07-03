@@ -45,19 +45,35 @@ $("#knowMoreBtn").click(function(e){
     $("#knowMore").modal("show");
 });
 
+    //change to only one button: check -> login -> submit
+$("#submit").click(function(e) {
+    e.preventDefault();
+    var msg = checkForm();
+    if(msg == 'success'){
+        FB.ui({
+            method: 'share',
+            href: 'https://goodjoblife.github.io/WorkTimeSurvey/'
+        }, function(response){    
+        });    
+    }
+    else{
+        showAlert(msg);
+    }
+});
+
 function statusChangeCallback(response) {
     if (response.status == 'connected') {
         isFacebookSignedIn = true;
         $("#fb-login-word").addClass("hidden");
         $("#form").removeClass("hidden");
         $("#form_nav_href").removeClass("hidden");
-
+        submitForm();
         getUserInfo();
     } else {
         isFacebookSignedIn = false;
-        $("#fb-login-word").removeClass("hidden");
+        //$("#fb-login-word").removeClass("hidden");
         //$("#form").addClass("hidden");
-        $("#form_nav_href").addClass("hidden");
+        //$("#form_nav_href").addClass("hidden");
     }
 }
 
@@ -90,25 +106,10 @@ window.fbAsyncInit = function() {
     });
 
     $("#fb-share").click(function(e){
-        e.preventDefault();
-        FB.ui({
-            method: 'share',
-            href: 'https://goodjoblife.github.io/WorkTimeSurvey/'
-        }, function(response){
-            
-        });
+        
     });
 
-    $("#submit").click(function(e) {
-        e.preventDefault();
-        var msg = checkForm();
-        if(msg == 'success'){
-            submitForm();
-        }
-        else{
-            showAlert(msg);
-        }
-    });
+
 
     $("#see-data").click(function(){
         var q = $("#job_title").val();
