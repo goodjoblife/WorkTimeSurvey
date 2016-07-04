@@ -40,7 +40,7 @@ $(function() {
      */
     function queryWorkings(page) {
         return $.ajax({
-            url: 'https://tranquil-fortress-92731.herokuapp.com/workings',
+            url: 'https://tranquil-fortress-92731.herokuapp.com/workings/latest',
             data: {
                 page: page,
             },

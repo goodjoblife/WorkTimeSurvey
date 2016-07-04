@@ -50,7 +50,7 @@ $(function() {
      */
     function queryWorkings(job_title, page) {
         return $.ajax({
-            url: 'https://tranquil-fortress-92731.herokuapp.com/jobs/' + encodeURIComponent(job_title),
+            url: 'https://tranquil-fortress-92731.herokuapp.com/jobs/' + encodeURIComponent(job_title) + '/statistics',
             data: {
                 page: page,
             },
