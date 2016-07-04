@@ -16,7 +16,6 @@ function collapseNavbar() {
 $(window).scroll(collapseNavbar);
 $(document).ready(collapseNavbar);
 
-
 var isFacebookSignedIn = false;
 
 // jQuery for page scrolling feature - requires jQuery Easing plugin
@@ -46,19 +45,44 @@ $("#knowMoreBtn").click(function(e){
     $("#knowMore").modal("show");
 });
 
+    //change to only one button: check -> login -> submit
+$("#submit").click(function(e) {
+    e.preventDefault();
+    var msg = checkForm();
+    if(msg == 'success'){
+        FB.ui({
+            method: 'share',
+            href: 'https://goodjoblife.github.io/WorkTimeSurvey/'
+        }, function(response){    
+        });    
+    }
+    else{
+        showAlert(msg);
+    }
+});
+
 function statusChangeCallback(response) {
     if (response.status == 'connected') {
         isFacebookSignedIn = true;
+        getUserInfo();
+
         $("#fb-login-word").addClass("hidden");
         $("#form").removeClass("hidden");
         $("#form_nav_href").removeClass("hidden");
-
-        getUserInfo();
+        
+        var msg = checkForm();
+        if(msg == 'success'){
+            submitForm();    
+        }
+        else{
+        }
+        
+        
     } else {
         isFacebookSignedIn = false;
-        $("#fb-login-word").removeClass("hidden");
-        $("#form").addClass("hidden");
-        $("#form_nav_href").addClass("hidden");
+        //$("#fb-login-word").removeClass("hidden");
+        //$("#form").addClass("hidden");
+        //$("#form_nav_href").addClass("hidden");
     }
 }
 
@@ -91,37 +115,10 @@ window.fbAsyncInit = function() {
     });
 
     $("#fb-share").click(function(e){
-        e.preventDefault();
-        FB.ui({
-            method: 'share',
-            href: 'https://goodjoblife.github.io/WorkTimeSurvey/'
-        }, function(response){
-            
-        });
+        
     });
 
-    $("#submit").click(function(e) {
-        e.preventDefault();
-        var msg = checkForm();
-        if(msg == 'success'){
-            submitForm();
-        }
-        else{
-            alert(msg);
-        }
-    });
-    $("#submit-more").click(function(e) {
-        e.preventDefault();
 
-        $("#form-more").removeClass("hidden");
-        $("#submit-more").addClass("hidden");
-        $("#submit-reject").addClass("hidden");
-    });
-    $("#submit-reject").click(function(e) {
-        e.preventDefault();
-
-        checkForm();
-    });
 
     $("#see-data").click(function(){
         var q = $("#job_title").val();
@@ -131,7 +128,6 @@ window.fbAsyncInit = function() {
         }
         window.location.href = url;
     });
-
 
 };
 
@@ -148,7 +144,7 @@ function getUserInfo() {
     FB.api('/me', function(response){
         console.log('success login for: '+ response.name);
     });
-};
+}
 
 function checkForm () {
     console.log("check!");
@@ -157,49 +153,51 @@ function checkForm () {
     var job_title = $("#job_title").val();
     var week_work_time = $("#week_work_time").val();
     var email = $("#email").val();
+    /*
     var salary_type = $("#salary_type").val();
     var salary_min = $("#salary_min").val();
     var salary_max = $("#salary_max").val();
     var work_year = $("#work_year").val();
     var review = $("#review").val();
+    */
 
-    if(company_name == ''){
-        if(company_id == ''){
+    if (company_name == '') {
+        if (company_id == '') {
             return "公司名稱或公司統一編號其中一個必填"
-        }
-        else{
+        } else {
             company_id = parseInt(company_id);
-            if(isNaN(company_id)){
+            if (isNaN(company_id)) {
                 return "統編要是一個數字";
-            }
-            else if(company_id < 0){
+            } else if(company_id < 0) {
                 return "統編要大於0";
             }
         }
     }
 
-    if(job_title == ''){  //allow other type of job title
+    //allow other type of job title
+    if (job_title == '') {
         return "需填職稱";
     }
-    if(week_work_time == ''){  
+    if (week_work_time == ''){  
         return "需填平均每週工時";
     }
-    if(salary_min != '' || salary_max != ''){
+    /*
+    if (salary_min != '' || salary_max != '') {
         salary_min = parseInt(salary_min);
         salary_max = parseInt(salary_max);
-        if(salary_min < 0 || salary_max < 0 || salary_min > salary_max){
+        if (salary_min < 0 || salary_max < 0 || salary_min > salary_max) {
             return "薪資需大於0 且範圍由小至大";
         }
     }
-    if(work_year != ''){
+    if (work_year != '') {
         work_year = parseInt(work_year);
-        if(work_year < 0){
+        if (work_year < 0) {
             return "年資須大於0";
         }
-    }
-    return "success";
+    }*/
 
-};
+    return "success";
+}
 
 /* Indicating whether the form is submiting or not
  * If submitting, we should avoid send it twice, it should return
@@ -248,15 +246,29 @@ function submitForm() {
         $("#form").addClass("hidden");
 
         //remove hidden class and scroll to that div
-        $("#share").removeClass("hidden");
+        $("#result").removeClass("hidden");
         $('html, body').animate({
-            scrollTop: $("#share").offset().top
+            scrollTop: $("#result").offset().top
         }, 2000);    
-
-        // TODO if success
     }).fail(function(jqXHR, textStatus, errorThrown) {
-        // TODO if fail
+        spinner.fadeOut(2000, function() {
+            spinner.remove();
+        });
+        $("#submit").attr("disabled", false);
+        submitting = false;
 
-        console.log(jqXHR);
+        showAlert(jqXHR.responseJSON.message);
     });
-};
+}
+
+function showAlert(message) {
+    var $alert = $("<div class=\"alert alert-danger\" role=\"alert\"></div>");
+    $alert.text(message).appendTo($("#submit-alerts"));
+
+    setTimeout(function() {
+        $alert.fadeOut(2000, function() {
+            $alert.remove();
+        });
+    }, 5000);
+}
+

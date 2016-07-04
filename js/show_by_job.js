@@ -59,7 +59,6 @@ $(function() {
         });
     }
 
-
     $("#search-view-previous").on('click', function(e) {
         e.preventDefault();
         loadPage(-1);
@@ -70,9 +69,10 @@ $(function() {
         loadPage(1);
     });
 
-    $("#search-button").on('click', function(e){
-        var job_title = $("#query").val();
-        loadSearch(job_title);
+    $("#search-form").on('submit', function(e) {
+        e.preventDefault();
+        
+        loadSearch($("#query").val());
     });
 
     var loading = false;
@@ -162,7 +162,7 @@ $(function() {
     }
 
 
-    var getUrlParameter = function getUrlParameter(sParam) {
+    function getUrlParameter(sParam) {
         var sPageURL = decodeURIComponent(window.location.search.substring(1)),
             sURLVariables = sPageURL.split('&'),
             sParameterName,
@@ -175,10 +175,10 @@ $(function() {
                 return sParameterName[1] === undefined ? true : sParameterName[1];
             }
         }
-    };
+    }
 
     var query = getUrlParameter("job_title");
-    if(query !== undefined && query !== ''){
+    if (query !== undefined && query !== '') {
         $("#query").val(query);
         $("#job-title").text(query);
         View.job_title = query;
