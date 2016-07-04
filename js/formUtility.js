@@ -8,7 +8,7 @@ $(document).ready(function(){
     $("#company_name").autocomplete({
         source: function (request, response) {
             $.ajax({
-                url: "https://tranquil-fortress-92731.herokuapp.com/search",
+                url: "https://tranquil-fortress-92731.herokuapp.com/companies/search",
                 data: { key : request['term'] },
                 dataType: "json",
             }).done(function( res ) {

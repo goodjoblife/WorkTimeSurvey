@@ -196,7 +196,7 @@ function submitForm() {
     submitting = true;
 
     $.ajax({
-        url: 'https://tranquil-fortress-92731.herokuapp.com/',
+        url: 'https://tranquil-fortress-92731.herokuapp.com/workings',
         method: 'POST', 
         data: {
             access_token: FB.getAccessToken(),
