@@ -378,6 +378,18 @@ footer p {
     margin: 0;
 }
 
+::-moz-selection {
+    text-shadow: none;
+    background: #fcfcfc;
+    background: rgba(255,255,255,.2);
+}
+
+::selection {
+    text-shadow: none;
+    background: #fcfcfc;
+    background: rgba(255,255,255,.2);
+}
+
 img::selection {
     background: 0 0;
 }
@@ -399,3 +411,6 @@ body {
     text-align: left;
 }
 
+.table-in-section {
+    margin-top: 35px;
+}
