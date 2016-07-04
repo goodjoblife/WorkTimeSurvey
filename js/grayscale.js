@@ -97,7 +97,11 @@ window.fbAsyncInit = function() {
     });
 
     $("#fb-share").click(function(e){
-        
+        FB.ui({
+            method: 'share',
+            href: 'https://goodjoblife.github.io/WorkTimeSurvey/'
+        }, function(response){
+        });
     });
 
 
