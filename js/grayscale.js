@@ -140,6 +140,7 @@ function checkForm () {
     var company_name = $("#company_name").val();
     var job_title = $("#job_title").val();
     var week_work_time = $("#week_work_time").val();
+    var overtime_frequency = $("#overtime_frequency_input input[name='frequency']:checked").val();
     var email = $("#email").val();
     /*
     var salary_type = $("#salary_type").val();
@@ -168,6 +169,10 @@ function checkForm () {
     }
     if (week_work_time == ''){  
         return "需填平均每週工時";
+    }
+
+    if(overtime_frequency === undefined || overtime_frequency == ''){
+        return "需填寫加班頻率";
     }
     /*
     if (salary_min != '' || salary_max != '') {
@@ -210,6 +215,7 @@ function submitForm() {
             company_name: $("#company_name").val(),
             job_title: $("#job_title").val(),
             week_work_time: $("#week_work_time").val(),
+            overtime_frequency: $("#overtime_frequency_input input[name='frequency']:checked").val(),
             email: $("#email").val(),
             salary_type: $("#salary_type").val(),
             salary_min: $("#salary_min").val(),
