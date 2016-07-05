@@ -169,8 +169,14 @@ function checkForm () {
     if (job_title == '') {
         return "需填職稱";
     }
-    if (week_work_time == ''){  
+    if (week_work_time === undefined || week_work_time == ''){  
         return "需填平均每週工時";
+    }
+    else{
+        var t = parseInt(week_work_time);
+        if(t < 0 || t > 168){
+            return "最近一週工時範圍為0~168小時";
+        }
     }
 
     if(day_promise_work_time === undefined || day_promise_work_time == ''){
