@@ -137,10 +137,42 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="day_promised_work_time" class="col-sm-2 control-label">工作日 表訂工時</label>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="day_promised_work_time" aria-describedby="hr-text1" placeholder="8" min="0" max="24" required>
+                                    <span class="input-group-addon" id="hr-text1">小時</span>
+                                </div>
+                            </div>
+                            <label for="day_real_work_time" class="col-sm-2 control-label">實際平均工時</label>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="day_real_work_time" aria-describedby="hr-text2" placeholder="10" min="0" max="24" required>
+                                    <span class="input-group-addon" id="hr-text2">小時</span>
+                                </div>
+                            </div>
+                            <div class="help-block">工作日指與雇主約定的上班日，或是排班排定的日子。  
+                                <a role="button" data-toggle="collapse" href="#exp1" aria-expanded="false" aria-controls="exp1">我有疑問</a>
+                                <div class="collapse" id="exp1"> 
+                                    例如: 公司規定9:00上班，18:00下班，午休1小時。 那麼表訂工作時間為 18:00 - 9:00 - 1 = 8 小時。<br>
+                                    若實際上平均20:00才下班，則實際工作時間為 20:00 - 9:00 - 1 = 10小時。 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="week_work_time" class="col-sm-2 control-label">平均每週工時</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="week_work_time" placeholder="40" min="0" required>
-                                <div class="help-block">請留下您最近一週的真實工時資訊，而非打卡資訊。此外，也請您將休息時間扣除。</div>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="week_work_time" aria-describedby="hr-text3" placeholder="40" min="0" required>
+                                    <span class="input-group-addon" id="hr-text3">小時</span>
+                                </div>
+                                    <div class="help-block">
+                                        請您留下最近一週的「實際工作時數（不含休息時間，如：午休）」。
+                                        <a role="button" data-toggle="collapse" href="#exp2" aria-expanded="false" aria-controls="exp2">我有疑問</a>
+                                        <div class="collapse" id="exp2"> 
+                                            例如: 週一至週五工作10小時，週六加班8小時，則最近一週工時為 10x5+8 = 58小時。
+                                        </div>
+                                    </div>
                             </div>
                         </div>
                         <div id="overtime_frequency_input" class="form-group">
