@@ -287,11 +287,11 @@ a:focus {
 }
 
 .content-section {
-    padding-top: 100px;
+    padding-top: 60px;
 }
 
 .content-section-tight {
-    padding-top: 100px;
+    padding-top: 60px;
 }
 
 .form-section {
@@ -305,9 +305,10 @@ a:focus {
     -o-background-size: cover;
 }
 
+
 @media(min-width:767px) {
     .content-section {
-        padding-top: 250px;
+        padding-top: 100px;
     }
 
     .content-section-tight {
@@ -368,6 +369,10 @@ ul.banner-social-buttons {
     ul.banner-social-buttons li:last-child {
         margin-bottom: 0;
     }
+
+    p {
+        font-size: 15px;
+    }
 }
 
 footer {
@@ -398,4 +403,14 @@ body {
     color: #000;
     text-align: left;
 }
+
+#about .row {
+    margin-bottom: 30px;
+}
+
+#about p {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
 
