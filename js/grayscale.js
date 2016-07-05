@@ -244,6 +244,8 @@ function submitForm() {
         $('html, body').animate({
             scrollTop: $("#result").offset().top
         }, 2000);    
+        
+        window.WorkingLoader.loadPage(0);
     }).fail(function(jqXHR, textStatus, errorThrown) {
         spinner.fadeOut(2000, function() {
             spinner.remove();
@@ -266,3 +268,8 @@ function showAlert(message) {
     }, 5000);
 }
 
+$(function() {
+    window.WorkingLoader.init(function() {
+        window.WorkingLoader.View.limit = 10;
+    });
+});
