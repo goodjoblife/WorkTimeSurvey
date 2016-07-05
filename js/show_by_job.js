@@ -41,7 +41,8 @@ $(function() {
         make: function(w) {
             return $("<tr>")
                 .append($("<td>").text(w._id ? w._id.name : ""))
-                .append($("<td>").text(w.average_week_work_time));
+                .append($("<td>").text(w.average_week_work_time))
+                .append($("<td>").text(w.count));
         },
     };
 
