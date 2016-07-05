@@ -358,7 +358,7 @@ a:focus {
 }
 
 ul.banner-social-buttons {
-    margin-top: 0;
+    margin-top: 0px;
 }
 
 @media(max-width:1199px) {
@@ -370,6 +370,7 @@ ul.banner-social-buttons {
 @media(max-width:767px) {
     ul.banner-social-buttons li {
         display: block;
+        margin-top: 0px;
         margin-bottom: 20px;
         padding: 0;
     }
