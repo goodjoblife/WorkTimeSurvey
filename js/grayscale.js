@@ -142,7 +142,7 @@ function checkForm () {
     var week_work_time = $("#week_work_time").val();
     var overtime_frequency = $("#overtime_frequency_input input[name='frequency']:checked").val();
     var email = $("#email").val();
-    var day_promise_work_time = $("#day_promise_work_time").val();
+    var day_promised_work_time = $("#day_promised_work_time").val();
     var day_real_work_time = $("#day_real_work_time").val();
     /*
     var salary_type = $("#salary_type").val();
@@ -179,11 +179,11 @@ function checkForm () {
         }
     }
 
-    if(day_promise_work_time === undefined || day_promise_work_time == ''){
+    if(day_promised_work_time === undefined || day_promised_work_time == ''){
         return "需填寫工作日表定工作時間";
     }
     else{
-        var t = parseInt(day_promise_work_time);
+        var t = parseInt(day_promised_work_time);
         if(t < 0 || t > 24){
             return "工作日表定工作時間範圍為0~24小時";
         }
@@ -243,7 +243,7 @@ function submitForm() {
             company_name: $("#company_name").val(),
             job_title: $("#job_title").val(),
             week_work_time: $("#week_work_time").val(),
-            day_promise_work_time: $("#day_promise_work_time").val(),
+            day_promised_work_time: $("#day_promised_work_time").val(),
             day_real_work_time: $("#day_real_work_time").val(),
             overtime_frequency: $("#overtime_frequency_input input[name='frequency']:checked").val(),
             email: $("#email").val(),
