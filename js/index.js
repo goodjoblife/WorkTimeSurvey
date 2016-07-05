@@ -18,24 +18,26 @@ $(function() {
 
 $("#submit").click(function(e) {
     e.preventDefault();
-    var msg = checkForm();
-    if (msg == 'success') {
-        if (isFacebookSignedIn) {
-            submitForm();
-        } else {
-            FB.login(function(response){
-                statusChangeCallback(response);
-                if (response.status == 'connected') {
-                    submitForm();
-                } else {
-                    showAlert("未登入FB，取消送出資料");
-                }
-            },{
-                scope: 'public_profile,email'
-            });
-        }
+    try {
+        checkForm();
+    } catch (err) {
+        showAlert(err.message);
+        return;
+    } 
+
+    if (isFacebookSignedIn) {
+        submitForm();
     } else {
-        showAlert(msg);
+        FB.login(function(response){
+            statusChangeCallback(response);
+            if (response.status == 'connected') {
+                submitForm();
+            } else {
+                showAlert("未登入FB，取消送出資料");
+            }
+        },{
+            scope: 'public_profile,email'
+        });
     }
 });
 
@@ -111,53 +113,60 @@ function checkForm () {
 
     if (company_name === '') {
         if (company_id === '') {
-            return "公司名稱或公司統一編號其中一個必填"
+            throw new Error("公司名稱或公司統一編號其中一個必填");
         } else {
             company_id = parseInt(company_id);
             if (isNaN(company_id)) {
-                return "統編要是一個數字";
+                throw new Error("統編要是一個數字");
             } else if(company_id < 0) {
-                return "統編要大於0";
+                throw new Error("統編要大於0");
             }
         }
     }
 
     //allow other type of job title
-    if (job_title == '') {
-        return "需填職稱";
+    if (job_title === '') {
+        throw new Error("需填職稱");
     }
+
     if (week_work_time === undefined || week_work_time === '') {
-        return "需填平均每週工時";
-    } else {
-        var t = parseInt(week_work_time);
-        if (t < 0 || t > 168) {
-            return "最近一週工時範圍為0~168小時";
-        }
+        throw new Error("需填平均每週工時");
+    }
+    week_work_time = parseInt(week_work_time);
+    if (week_work_time < 0 || week_work_time > 168) {
+        throw new Error("最近一週工時範圍為0~168小時");
     }
 
     if (day_promised_work_time === undefined || day_promised_work_time === '') {
-        return "需填寫工作日表定工作時間";
-    } else {
-        var t = parseInt(day_promised_work_time);
-        if (t < 0 || t > 24) {
-            return "工作日表定工作時間範圍為0~24小時";
-        }
+        throw new Error("需填寫工作日表定工作時間");
+    }
+    day_promised_work_time = parseInt(day_promised_work_time);
+    if (day_promised_work_time < 0 || day_promised_work_time > 24) {
+        throw new Error("工作日表定工作時間範圍為0~24小時");
     }
 
     if (day_real_work_time === undefined || day_real_work_time === '') {
-        return "需填寫工作日實際工作時間";
-    } else {
-        var t = parseInt(day_real_work_time);
-        if (t < 0 || t > 24) {
-            return "工作日實際工作時間範圍為0~24小時";
-        }
+        throw new Error("需填寫工作日實際工作時間");
+    }
+    day_real_work_time = parseInt(day_real_work_time);
+    if (day_real_work_time < 0 || day_real_work_time > 24) {
+        throw new Error("工作日實際工作時間範圍為0~24小時");
     }
 
     if (overtime_frequency === undefined || overtime_frequency === '') {
-        return "需填寫加班頻率";
+        throw new Error("需填寫加班頻率");
     }
 
-    return "success";
+    return {
+        company_id            : company_id,
+        company_name          : company_name,
+        job_title             : job_title,
+        week_work_time        : week_work_time,
+        day_promised_work_time: day_promised_work_time,
+        day_real_work_time    : day_real_work_time,
+        overtime_frequency    : overtime_frequency,
+        email                 : email,
+    };
 }
 
 /* Indicating whether the form is submiting or not
