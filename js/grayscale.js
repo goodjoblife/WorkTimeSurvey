@@ -246,13 +246,14 @@ function submitForm() {
             day_promise_work_time: $("#day_promise_work_time").val(),
             day_real_work_time: $("#day_real_work_time").val(),
             overtime_frequency: $("#overtime_frequency_input input[name='frequency']:checked").val(),
-            email: $("#email").val(),
+            email: $("#email").val()
+            /*
             salary_type: $("#salary_type").val(),
             salary_min: $("#salary_min").val(),
             salary_max: $("#salary_max").val(),
             work_year: $("#work_year").val(),
             review: $("#review").val()
-
+            */
         },
         dataType: 'json',
     }).then(function(res) {
