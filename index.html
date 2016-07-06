@@ -114,39 +114,42 @@
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>參與工時透明化運動</h2>
-                    <form class="form-horizontal">
+                    <form class="form-horizontal text-left">
                         <div class="form-group">
-                            <label for="company_name" class="col-sm-2 control-label">公司/單位名稱</label>
-                            <div class="col-sm-4">
+                            <label for="company_name" class="col-xs-12 col-sm-2 control-label">
+                                公司/單位名稱 <span class="visible-xs-inline">或 統一編號</span>
+                            </label>
+                            <div class="col-xs-7 col-sm-4">
                                 <input type="text" class="form-control" id="company_name" placeholder="公司名稱" >
                             </div>
-                            <label for="company_id" class="col-sm-3 control-label">或 公司/單位統一編號</label>
-                            <div class="col-sm-3">
+                            <label for="company_id" class="hidden-xs col-sm-3 control-label">或 公司/單位統一編號</label>
+                            <div class="col-xs-5 col-sm-3">
                                 <input type="text" class="form-control" id="company_id" placeholder="公司統編" >
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="job_title" class="col-sm-2 control-label">職稱</label>
-                            <div class="col-sm-10">
+                            <label for="job_title" class="col-xs-5 col-sm-2 control-label">職稱</label>
+                            <div class="col-xs-7 col-sm-10">
                                 <input type="text" class="form-control" id="job_title" placeholder="職稱" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="day_promised_work_time" class="col-sm-2 control-label">工作日 表訂工時</label>
-                            <div class="col-sm-4">
+                            <label for="day_promised_work_time" class="col-xs-5 col-sm-2 control-label">工作日 表訂工時</label>
+                            <div class="col-xs-7 col-sm-4">
                                 <div class="input-group">
                                     <input type="number" class="form-control" id="day_promised_work_time" aria-describedby="hr-text1" placeholder="8" min="0" max="24" required>
                                     <span class="input-group-addon" id="hr-text1">小時</span>
                                 </div>
                             </div>
-                            <label for="day_real_work_time" class="col-sm-2 control-label">實際平均工時</label>
-                            <div class="col-sm-4">
+                            <div class="visible-xs-block clearfix"></div>
+                            <label for="day_real_work_time" class="col-xs-5 col-sm-2 control-label">實際平均工時</label>
+                            <div class="col-xs-7 col-sm-4">
                                 <div class="input-group">
                                     <input type="number" class="form-control" id="day_real_work_time" aria-describedby="hr-text2" placeholder="10" min="0" max="24" required>
                                     <span class="input-group-addon" id="hr-text2">小時</span>
                                 </div>
                             </div>
-                            <div class="help-block">工作日指與雇主約定的上班日，或是排班排定的日子。  
+                            <div class="col-sm-12 help-block">工作日指與雇主約定的上班日，或是排班排定的日子。  
                                 <a role="button" data-toggle="collapse" href="#exp1" aria-expanded="false" aria-controls="exp1">我有疑問</a>
                                 <div class="collapse" id="exp1"> 
                                     例如: 公司規定9:00上班，18:00下班，午休1小時。 那麼表訂工作時間為 18:00 - 9:00 - 1 = 8 小時。<br>
@@ -155,30 +158,31 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="week_work_time" class="col-sm-2 control-label">平均每週工時</label>
-                            <div class="col-sm-10">
+                            <label for="week_work_time" class="col-xs-5 col-sm-2 control-label">平均每週工時</label>
+                            <div class="col-xs-7 col-sm-10">
                                 <div class="input-group">
                                     <input type="number" class="form-control" id="week_work_time" aria-describedby="hr-text3" placeholder="40" min="0" required>
                                     <span class="input-group-addon" id="hr-text3">小時</span>
                                 </div>
-                                    <div class="help-block">
-                                        請您留下最近一週的「實際工作時數（不含休息時間，如：午休）」。
-                                        <a role="button" data-toggle="collapse" href="#exp2" aria-expanded="false" aria-controls="exp2">我有疑問</a>
-                                        <div class="collapse" id="exp2"> 
-                                            例如: 週一至週五工作10小時，週六加班8小時，則最近一週工時為 10x5+8 = 58小時。
-                                        </div>
-                                    </div>
+                            </div>
+                            <div class="col-sm-12 help-block">
+                                請您留下最近一週的「實際工作時數（不含休息時間，如：午休）」。
+                                <a role="button" data-toggle="collapse" href="#exp2" aria-expanded="false" aria-controls="exp2">我有疑問</a>
+                                <div class="collapse" id="exp2"> 
+                                    例如: 週一至週五工作10小時，週六加班8小時，則最近一週工時為 10x5+8 = 58小時。
+                                </div>
                             </div>
                         </div>
                         <div id="overtime_frequency_input" class="form-group">
                             <label for="overtime_frequency" class="col-sm-2 control-label">加班頻率</label>
-                            <div class="col-sm-10">
+                            <div class="col-xs-12 col-sm-10">
                                 <label class="radio-inline">
                                   <input type="radio" name="frequency" value="0" required> 幾乎不加班
                                 </label>
                                 <label class="radio-inline">
                                   <input type="radio" name="frequency" value="1" required> 偶爾加班
                                 </label>
+                                <div class="visible-xs-block"></div>
                                 <label class="radio-inline">
                                   <input type="radio" name="frequency" value="2" required> 經常加班
                                 </label>
@@ -188,11 +192,12 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="email" class="col-sm-2 control-label">電子郵件</label>
-                            <div class="col-sm-10">
+                            <label for="email" class="col-xs-5 col-sm-2 control-label">電子郵件 <span class="visible-xs-inline">(選填)</span></label>
+                            <div class="col-xs-7 col-sm-10">
                                 <input type="email" class="form-control" id="email" placeholder="有新消息時將通知您(選填)" >
                             </div>
                         </div>
+                    </form>
                         <div id="submit-alerts"></div>
                         <a id="submit" class="btn btn-default btn-lg"><span id="fb-login-word"><i class="fa fa-facebook fa-fw"></i>以Facebook登入</span>開始參與</a>
                         <div class="know-more-about-fb-sign-in">
@@ -214,7 +219,6 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
