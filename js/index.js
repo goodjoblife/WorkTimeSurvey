@@ -52,6 +52,28 @@ $("#submit").click(function(e) {
     }
 });
 
+$("#fb-login").click(function(e) {
+    e.preventDefault();
+    if (isFacebookSignedIn) {
+        $('html, body').animate({
+            scrollTop: $("#form").offset().top
+        }, 2000);
+    } else {
+        FB.login(function(response){
+            statusChangeCallback(response);
+            if (response.status == 'connected') {
+                $('html, body').animate({
+                    scrollTop: $("#form").offset().top
+                }, 2000);
+            } else {
+                //TODO: should prompt any error message?
+            }
+        },{
+            scope: 'public_profile,email'
+        });
+    }
+});
+
 function statusChangeCallback(response) {
     if (response.status == 'connected') {
         isFacebookSignedIn = true;
