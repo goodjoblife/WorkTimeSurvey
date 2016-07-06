@@ -382,6 +382,15 @@ ul.banner-social-buttons {
     p {
         font-size: 15px;
     }
+
+    #form .container {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    #form .control-label {
+        padding-right: 0px;
+    }
 }
 
 footer {
@@ -406,6 +415,10 @@ body {
 
 .know-more-about-fb-sign-in {
     margin-top: 20px;
+}
+
+a#knowMoreBtn {
+    cursor: pointer;
 }
 
 .modal-content {

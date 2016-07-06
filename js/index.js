@@ -5,7 +5,7 @@ $(function() {
         show: false
     });
 
-    $("#knowMoreBtn").click(function(e){
+    $(".knowMoreBtn").click(function(e){
         e.preventDefault();
         $("#knowMore").modal("show");
     });
