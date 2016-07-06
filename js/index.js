@@ -54,13 +54,11 @@ $("#submit").click(function(e) {
 
 $("#fb-login").click(function(e) {
     e.preventDefault();
-    if(isFacebookSignedIn){
+    if (isFacebookSignedIn) {
         $('html, body').animate({
             scrollTop: $("#form").offset().top
         }, 2000);
-
-    }
-    else{
+    } else {
         FB.login(function(response){
             statusChangeCallback(response);
             if (response.status == 'connected') {
@@ -72,7 +70,7 @@ $("#fb-login").click(function(e) {
             }
         },{
             scope: 'public_profile,email'
-        });   
+        });
     }
 });
 
