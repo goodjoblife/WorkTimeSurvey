@@ -79,9 +79,11 @@ function statusChangeCallback(response) {
         isFacebookSignedIn = true;
         getUserInfo();
         $("#fb-login-word").addClass("hidden");
+        $("#fb-login-word-at-login").addClass("hidden");
     } else {
         isFacebookSignedIn = false;
         $("#fb-login-word").removeClass("hidden");
+        $("#fb-login-word-at-login").removeClass("hidden");
     }
 }
 
