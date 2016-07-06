@@ -1,20 +1,23 @@
-$(function() {
+(function() {
     var View = {
-        currentPage: 0,
-        currentWorkings: [],
-        $page: $("#newest-view-page"),
-        $alert: $("#newest-view-alert"),
-        $container: $("#newest-data-table tbody"),
+        page: 0,
+        limit: 25,
+        workings: [],
+        $page: undefined,
+        $alert: undefined,
+        $container: undefined,
+        $previous: undefined,
+        $next: undefined,
     };
 
-    View.method = {
+    var Method = {
         update: function() {
             View.$container.empty();
-            $.map(View.currentWorkings, View.method.make).forEach(function($html) {
+            $.map(View.workings, Method.make).forEach(function($html) {
                 $html.appendTo(View.$container);
             });
 
-            View.$page.html(View.currentPage + 1);
+            View.$page.html(View.page + 1);
         },
         addSpinner: function() {
             View.$page.html($("<i class=\"fa fa-spinner fa-spin fa-fw\"></i>"));
@@ -38,69 +41,85 @@ $(function() {
     /*
      * query a specific page workings
      */
-    function queryWorkings(page) {
+    function queryWorkings(page, limit) {
+        limit = limit || 25;
         return $.ajax({
             url: 'https://tranquil-fortress-92731.herokuapp.com/workings/latest',
             data: {
                 page: page,
+                limit: limit,
             },
             method: 'GET',
             dataType: 'json',
         });
     }
 
-    $("#newest-view-previous").on('click', function(e) {
-        e.preventDefault();
-        loadPage(-1);
-    });
+    function init(callback) {
+        View.$page = $("#newest-view-page");
+        View.$alert = $("#newest-view-alert");
+        View.$container = $("#newest-data-table tbody");
+        View.$previous = $("#newest-view-previous");
+        View.$next = $("#newest-view-next");
 
-    $("#newest-view-next").on('click', function(e) {
-        e.preventDefault();
-        loadPage(1);
-    });
+        callback && callback();
+        
+        View.$previous.on('click', function(e) {
+            e.preventDefault();
+            loadPage(View.page - 1);
+        });
+
+        View.$next.on('click', function(e) {
+            e.preventDefault();
+            loadPage(View.page + 1);
+        });
+
+    }
 
     var loading = false;
-    function loadPage(offset) {
+    function loadPage(page) {
         if (loading) {
             return;
         }
         loading = true;
-        View.method.addSpinner();
+        Method.addSpinner();
 
         console.log("begin");
 
-        __loadPage(offset).then(function() {
+        __loadPage(page).then(function(d) {
             loading = false;
-            View.method.update();
+
+            View.page = d.page;
+            View.workings = d.workings;
+            Method.update();
 
             console.log("resolved!");
         }, function(e) {
             loading = false;
-            View.method.update();
-            View.method.showAlert(e.message);
+
+            Method.update();
+            Method.showAlert(e.message);
 
             console.log("rejected!");
         });
     }
 
-    function __loadPage(offset) {
+    function __loadPage(page) {
         var deferred = $.Deferred();
 
-        if (offset == -1 && View.currentPage == 0) {
+        if (page < 0) {
 
             deferred.reject(new Error("第一頁！"));
         } else {
-            var page = View.currentPage + offset;
-
-            queryWorkings(page).then(function(workings) {
+            queryWorkings(page, View.limit).then(function(workings) {
                 if (workings.length == 0) {
                     deferred.reject(new Error("最後一頁"));
                     return;
                 }
 
-                View.currentPage = page;
-                View.currentWorkings = workings;
-                deferred.resolve();
+                deferred.resolve({
+                    page: page,
+                    workings: workings,
+                });
             }, function() {
                 deferred.reject(new Error("存取錯誤"));
             });
@@ -109,6 +128,11 @@ $(function() {
         return deferred.promise();
     }
 
-    loadPage(0);
-});
+    window.WorkingLoader = {
+        View: View,
+        Method: Method,
+        loadPage: loadPage,
+        init: init,
+    };
+})();
 

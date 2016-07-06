@@ -142,6 +142,8 @@ function checkForm () {
     var week_work_time = $("#week_work_time").val();
     var overtime_frequency = $("#overtime_frequency_input input[name='frequency']:checked").val();
     var email = $("#email").val();
+    var day_promised_work_time = $("#day_promised_work_time").val();
+    var day_real_work_time = $("#day_real_work_time").val();
     /*
     var salary_type = $("#salary_type").val();
     var salary_min = $("#salary_min").val();
@@ -167,8 +169,34 @@ function checkForm () {
     if (job_title == '') {
         return "需填職稱";
     }
-    if (week_work_time == ''){  
+    if (week_work_time === undefined || week_work_time == ''){  
         return "需填平均每週工時";
+    }
+    else{
+        var t = parseInt(week_work_time);
+        if(t < 0 || t > 168){
+            return "最近一週工時範圍為0~168小時";
+        }
+    }
+
+    if(day_promised_work_time === undefined || day_promised_work_time == ''){
+        return "需填寫工作日表定工作時間";
+    }
+    else{
+        var t = parseInt(day_promised_work_time);
+        if(t < 0 || t > 24){
+            return "工作日表定工作時間範圍為0~24小時";
+        }
+    }
+
+    if(day_real_work_time === undefined || day_real_work_time == ''){
+        return "需填寫工作日實際工作時間";
+    }
+    else{
+        var t = parseInt(day_real_work_time);
+        if(t < 0 || t > 24){
+            return "工作日實際工作時間範圍為0~24小時";
+        }
     }
 
     if(overtime_frequency === undefined || overtime_frequency == ''){
@@ -215,14 +243,10 @@ function submitForm() {
             company_name: $("#company_name").val(),
             job_title: $("#job_title").val(),
             week_work_time: $("#week_work_time").val(),
+            day_promised_work_time: $("#day_promised_work_time").val(),
+            day_real_work_time: $("#day_real_work_time").val(),
             overtime_frequency: $("#overtime_frequency_input input[name='frequency']:checked").val(),
             email: $("#email").val(),
-            salary_type: $("#salary_type").val(),
-            salary_min: $("#salary_min").val(),
-            salary_max: $("#salary_max").val(),
-            work_year: $("#work_year").val(),
-            review: $("#review").val()
-
         },
         dataType: 'json',
     }).then(function(res) {
@@ -244,6 +268,8 @@ function submitForm() {
         $('html, body').animate({
             scrollTop: $("#result").offset().top
         }, 2000);    
+        
+        window.WorkingLoader.loadPage(0);
     }).fail(function(jqXHR, textStatus, errorThrown) {
         spinner.fadeOut(2000, function() {
             spinner.remove();
@@ -266,3 +292,8 @@ function showAlert(message) {
     }, 5000);
 }
 
+$(function() {
+    window.WorkingLoader.init(function() {
+        window.WorkingLoader.View.limit = 10;
+    });
+});

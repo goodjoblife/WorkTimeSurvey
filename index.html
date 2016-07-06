@@ -95,7 +95,16 @@
             <p>你是否和我們有一樣的經驗？</p>
 
             <p>在求職網站上看到的上下班時間總是只寫著「日班」或「依公司規定」；面試時談的工作時間和實際上的總是不同。如果一開始就能知道真正的工時，我們是不是可以做出更好的選擇？</p>
+            </div>
+        </div>
+        <a href="#about2" class="btn btn-circle page-scroll">
+            <i class="fa fa-angle-double-down animated"></i>
+        </a>
+    </section>
 
+    <section id="about2" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
             <p>「工時透明化運動」希望藉由每個人分享最近一週的實際工時，讓不同公司、不同職位的工時能夠更公開透明。而留下資訊後，你將可以查詢所有其他人分享的資訊。</p>
 
             <p>我們誠摯地邀請你，一起改善工時不透明的現況！</p>
@@ -134,10 +143,42 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="day_promised_work_time" class="col-sm-2 control-label">工作日 表訂工時</label>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="day_promised_work_time" aria-describedby="hr-text1" placeholder="8" min="0" max="24" required>
+                                    <span class="input-group-addon" id="hr-text1">小時</span>
+                                </div>
+                            </div>
+                            <label for="day_real_work_time" class="col-sm-2 control-label">實際平均工時</label>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="day_real_work_time" aria-describedby="hr-text2" placeholder="10" min="0" max="24" required>
+                                    <span class="input-group-addon" id="hr-text2">小時</span>
+                                </div>
+                            </div>
+                            <div class="help-block">工作日指與雇主約定的上班日，或是排班排定的日子。  
+                                <a role="button" data-toggle="collapse" href="#exp1" aria-expanded="false" aria-controls="exp1">我有疑問</a>
+                                <div class="collapse" id="exp1"> 
+                                    例如: 公司規定9:00上班，18:00下班，午休1小時。 那麼表訂工作時間為 18:00 - 9:00 - 1 = 8 小時。<br>
+                                    若實際上平均20:00才下班，則實際工作時間為 20:00 - 9:00 - 1 = 10小時。 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="week_work_time" class="col-sm-2 control-label">平均每週工時</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="week_work_time" placeholder="40" min="0" required>
-                                <div class="help-block">請留下您最近一週的真實工時資訊，而非打卡資訊。此外，也請您將休息時間扣除。</div>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="week_work_time" aria-describedby="hr-text3" placeholder="40" min="0" required>
+                                    <span class="input-group-addon" id="hr-text3">小時</span>
+                                </div>
+                                    <div class="help-block">
+                                        請您留下最近一週的「實際工作時數（不含休息時間，如：午休）」。
+                                        <a role="button" data-toggle="collapse" href="#exp2" aria-expanded="false" aria-controls="exp2">我有疑問</a>
+                                        <div class="collapse" id="exp2"> 
+                                            例如: 週一至週五工作10小時，週六加班8小時，則最近一週工時為 10x5+8 = 58小時。
+                                        </div>
+                                    </div>
                             </div>
                         </div>
                         <div id="overtime_frequency_input" class="form-group">
@@ -192,12 +233,44 @@
 
     <section id="result" class="container content-section text-center hidden">
         <div class="row">
-            <h2>非常感謝您的分享</h2>
-            <p>您的分享將有助於工時資訊的透明化，讓未來的求職者在求職時能有更完整的資訊，進而做出更好的選擇。</p>
-            <a class="btn btn-default btn-lg fb-share"><i class="fa fa-facebook fa-fw"></i>認同請分享</a>
-            <p></p>
-            <p>您也可以開始查看其他人分享的工時資訊。</p>
-            <a id="see-data" class="btn btn-default btn-lg"> 查看工時資訊</a>
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>非常感謝您的分享</h2>
+                <p>您的分享將有助於工時資訊的透明化，讓未來的求職者在求職時能有更完整的資訊，進而做出更好的選擇。</p>
+                <p><a class="btn btn-default btn-lg fb-share"><i class="fa fa-facebook fa-fw"></i>認同請分享</a></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>最新工時資訊</h2>
+                <table id="newest-data-table" class="table table-hover">
+                    <thead>
+                        <tr><th>公司名稱</th><th>職稱</th><th>平均每週工時</th></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="alert alert-warning hidden" role="alert" id="newest-view-alert"></div>
+                <nav>
+                    <ul class="pagination" id="newest-pagination">
+                        <li>
+                            <a aria-label="Previous" id="newest-view-previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a id="newest-view-page">1</a></li>
+                        <li>
+                            <a aria-label="Next" id="newest-view-next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <p>您也可以開始查看其他人分享的工時資訊。</p>
+                <a id="see-data" class="btn btn-default btn-lg"> 查看工時資訊</a>
+            </div>
         </div>
     </section>
     <section id="qa" class="container content-section text-left">
@@ -249,6 +322,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/grayscale.js"></script>
+    <script src="js/show_workings.js"></script>
     <script src="js/formUtility.js"></script>
     <!-- font CSS -->
     <link href="css/font.css" rel="newer stylesheet">
