@@ -14,6 +14,26 @@ $(function() {
         window.WorkingLoader.View.limit = 10;
     });
 
+    $("#fb-login-modal").modal({
+        show: false
+    });
+
+    // Modal should login into FB or fail
+    $("#fb-login-modal-login-button").click(function(e) {
+        e.preventDefault();
+
+        FB.login(function(response){
+            statusChangeCallback(response);
+            $("#fb-login-modal").modal("hide");
+            if (response.status == 'connected') {
+                submitForm();
+            } else {
+                showAlert("未登入FB，取消送出資料");
+            }
+        },{
+            scope: 'public_profile,email'
+        });
+    });
 });
 
 $("#submit").click(function(e) {
@@ -28,16 +48,7 @@ $("#submit").click(function(e) {
     if (isFacebookSignedIn) {
         submitForm();
     } else {
-        FB.login(function(response){
-            statusChangeCallback(response);
-            if (response.status == 'connected') {
-                submitForm();
-            } else {
-                showAlert("未登入FB，取消送出資料");
-            }
-        },{
-            scope: 'public_profile,email'
-        });
+        $("#fb-login-modal").modal('show');
     }
 });
 
