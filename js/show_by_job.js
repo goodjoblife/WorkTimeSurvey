@@ -76,6 +76,28 @@ $(function() {
         loadSearch($("#query").val());
     });
 
+    $("#query").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: "https://tranquil-fortress-92731.herokuapp.com/jobs/search",
+                data: {
+                    key : request.term,
+                },
+                dataType: "json",
+            }).done(function(res) {
+                var nameList = $.map(res, function(item, i) {
+                    return {
+                        value: item.des,
+                        id: item._id,
+                    };
+                });
+                response(nameList);
+            }).fail(function( jqXHR, textStatus ) {
+                response([]);
+            });
+        },
+    });
+
     var loading = false;
     function loadSearch(job_title) {
         if (loading) {
