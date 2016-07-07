@@ -393,6 +393,13 @@ ul.banner-social-buttons {
     }
 }
 
+@media(min-width:767px) {
+    #form .smaller-padding {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
 footer {
     padding: 50px 0;
 }
