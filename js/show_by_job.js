@@ -7,6 +7,7 @@ $(function() {
         $section_body: $("#search-result-section"),
         $page: $("#search-view-page"),
         $alert: $("#search-view-alert"),
+        $searchBarAlert: $("#search-bar-alert"),
         $container: $("#search-data-table tbody"),
         $title: $("#job-title"),
     };
@@ -36,6 +37,12 @@ $(function() {
             setTimeout(function() {
                 View.$alert.addClass("hidden");
             }, 3000);
+        },
+        showSearchBarAlert: function(message) {
+            View.$searchBarAlert.html(message).removeClass("hidden");
+            setTimeout(function() {
+                View.$searchBarAlert.addClass("hidden");
+            }, 3000);    
         },
         // A view convert working to view
         make: function(w) {
@@ -72,7 +79,6 @@ $(function() {
 
     $("#search-form").on('submit', function(e) {
         e.preventDefault();
-        
         loadSearch($("#query").val());
     });
 
@@ -117,7 +123,7 @@ $(function() {
             View.currentWorkings = workings;
             if (workings.length == 0) {
                 View.sectionHide = true;
-                View.method.showAlert("查詢無資料");
+                View.method.showSearchBarAlert("查詢無資料");
                 console.log("0 search result resolved!");
             } else {
                 View.sectionHide = false;
@@ -131,7 +137,7 @@ $(function() {
             View.currentWorkings = [];
             View.sectionHide = true;
             View.method.update();
-            View.method.showAlert("存取錯誤");
+            View.method.showSearchBarAlert("存取錯誤");
             console.log("rejected!");
         });
     }
