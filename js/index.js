@@ -104,7 +104,7 @@ window.fbAsyncInit = function() {
         e.preventDefault();
         FB.ui({
             method: 'share',
-            href: 'https://goodjoblife.github.io/WorkTimeSurvey/'
+            href: 'https://worktime.goodjob.life/'
         }, function(response){
         });
     });
