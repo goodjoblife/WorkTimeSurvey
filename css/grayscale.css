@@ -442,4 +442,6 @@ a#knowMoreBtn {
     text-align: left;
 }
 
-
+.word-not-break{
+    word-break: keep-all;
+}
