@@ -259,7 +259,13 @@ function submitForm() {
         $("#submit").attr("disabled", false);
         submitting = false;
 
-        showAlert(jqXHR.responseJSON.message);
+        if (jqXHR.readyState === 0) {
+            showAlert("目前網路有些問題，稍後再試");
+        } else if (jqXHR.readyState === 4) {
+            showAlert(jqXHR.responseJSON.message);
+        } else {
+            showAlert("Oops 有些錯誤發生");
+        }
     });
 }
 
