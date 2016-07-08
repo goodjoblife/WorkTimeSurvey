@@ -367,6 +367,10 @@ ul.banner-social-buttons {
     margin-top: 0px;
 }
 
+ul.content-list {
+    font-size: 20px;
+}
+
 @media(max-width:1199px) {
     ul.banner-social-buttons {
         margin-top: 15px;
@@ -385,6 +389,10 @@ ul.banner-social-buttons {
     }
 
     p {
+        font-size: 15px;
+    }
+
+    ul.content-list {
         font-size: 15px;
     }
 
