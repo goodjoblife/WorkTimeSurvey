@@ -137,6 +137,7 @@ function getUserInfo() {
 
 function checkForm () {
     console.log("check!");
+    var company_id = $("#company_id").val();
     var company_query = $("#company_query").val();
     var job_title = $("#job_title").val();
     var week_work_time = $("#week_work_time").val();
@@ -183,6 +184,7 @@ function checkForm () {
     }
 
     return {
+        company_id            : company_id,
         company_query         : company_query,
         job_title             : job_title,
         week_work_time        : week_work_time,
