@@ -139,16 +139,22 @@ a:focus {
         transition: background .5s ease-in-out,padding .5s ease-in-out;
     }
 
+    .navbar-custom a {
+        color: #000;
+    }
+
+    .navbar-custom .nav li a:hover, 
+    .navbar-custom .nav li a:focus, 
+    .navbar-custom .nav li a:active{
+        color: #EB5637;
+    } 
+
     .navbar-custom.top-nav-collapse {
         padding: 0;
         border-bottom: 1px solid rgba(255,255,255,.3);
         background: #EB5637;
     }
     
-    .navbar-custom a {
-        color: #000;
-    }
-
     .navbar-custom.top-nav-collapse .nav li a,
     .navbar-custom.top-nav-collapse .navbar-header a{
         color:#fff;
