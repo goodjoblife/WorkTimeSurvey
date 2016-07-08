@@ -437,7 +437,7 @@ body {
     margin-top: 20px;
 }
 
-a#knowMoreBtn {
+a.knowMoreBtn {
     cursor: pointer;
 }
 
