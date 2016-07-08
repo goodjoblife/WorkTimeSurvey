@@ -137,8 +137,7 @@ function getUserInfo() {
 
 function checkForm () {
     console.log("check!");
-    var company_id = $("#company_id").val();
-    var company_name = $("#company_name").val();
+    var company_query = $("#company_query").val();
     var job_title = $("#job_title").val();
     var week_work_time = $("#week_work_time").val();
     var overtime_frequency = $("#overtime_frequency_input input[name='frequency']:checked").val();
@@ -146,17 +145,8 @@ function checkForm () {
     var day_promised_work_time = $("#day_promised_work_time").val();
     var day_real_work_time = $("#day_real_work_time").val();
 
-    if (company_name === '') {
-        if (company_id === '') {
-            throw new Error("公司名稱或公司統一編號其中一個必填");
-        } else {
-            company_id = parseInt(company_id);
-            if (isNaN(company_id)) {
-                throw new Error("統編要是一個數字");
-            } else if(company_id < 0) {
-                throw new Error("統編要大於0");
-            }
-        }
+    if (company_query === '') {
+        throw new Error("需填公司/單位名稱或統一編號");
     }
 
     //allow other type of job title
@@ -193,8 +183,7 @@ function checkForm () {
     }
 
     return {
-        company_id            : company_id,
-        company_name          : company_name,
+        company_query         : company_query,
         job_title             : job_title,
         week_work_time        : week_work_time,
         day_promised_work_time: day_promised_work_time,
@@ -224,7 +213,7 @@ function submitForm() {
         data: {
             access_token: FB.getAccessToken(),
             company_id: $("#company_id").val(),
-            company_name: $("#company_name").val(),
+            company: $("#company_query").val(),
             job_title: $("#job_title").val(),
             week_work_time: $("#week_work_time").val(),
             day_promised_work_time: $("#day_promised_work_time").val(),
