@@ -21,7 +21,7 @@ $(document).ready(function(){
         },
     });
 
-    $("#company_name").autocomplete({
+    $("#company_query").autocomplete({
         source: function (request, response) {
             $.ajax({
                 url: "https://tranquil-fortress-92731.herokuapp.com/companies/search",
