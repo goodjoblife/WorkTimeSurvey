@@ -355,6 +355,13 @@ a:focus {
     box-shadow: 0px 3px 2px #888888;
 }
 
+label.btn-default {
+    border-color: #ccc;
+    color: #000;
+    background: #eee;
+    box-shadow: unset;
+}
+
 .btn-default:hover,
 .btn-default:focus {
     border: 1px solid #E64D36;
@@ -403,6 +410,18 @@ ul.content-list {
 
     #form .control-label {
         padding-right: 0px;
+    }
+}
+
+@media (max-width: 400px) {
+    #overtime-freq-btn-group {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    #overtime-freq-btn-group label {
+        padding-right: 0;
+        padding-left: 0;
     }
 }
 
@@ -458,3 +477,8 @@ a.knowMoreBtn {
 .word-not-break{
     word-break: keep-all;
 }
+
+.emoji {
+    padding-right: 3px;
+}
+
