@@ -80,10 +80,12 @@ function statusChangeCallback(response) {
         getUserInfo();
         $("#fb-login-word").addClass("hidden");
         $("#fb-login-word-at-login").addClass("hidden");
+        $("section#form div.know-more-about-fb-sign-in").addClass("hidden");
     } else {
         isFacebookSignedIn = false;
         $("#fb-login-word").removeClass("hidden");
         $("#fb-login-word-at-login").removeClass("hidden");
+        $("section#form div.know-more-about-fb-sign-in").removeClass("hidden");
     }
 }
 
