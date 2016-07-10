@@ -177,21 +177,21 @@
                         </div>
                         <div id="overtime_frequency_input" class="form-group">
                             <label for="overtime_frequency" class="col-sm-2 control-label">加班頻率</label>
-                            <div class="col-xs-12 col-sm-10">
-                                <label class="radio-inline">
-                                  <input type="radio" name="frequency" value="0" required> 幾乎不加班
+                            <div id="overtime-freq-btn-group" class="btn-group col-xs-12 col-sm-10" data-toggle="buttons">
+                                <label class="btn btn-default col-xs-3">
+                                    <input type="radio" name="frequency" value="0" required><span class="emoji">😀</span>幾乎不<span class="hidden-xs">加班</span>
                                 </label>
-                                <label class="radio-inline">
-                                  <input type="radio" name="frequency" value="1" required> 偶爾加班
+                                <label class="btn btn-default col-xs-3">
+                                    <input type="radio" name="frequency" value="1" required><span class="emoji">😦</span>偶而<span class="hidden-xs">加班</span>
                                 </label>
-                                <div class="visible-xs-block"></div>
-                                <label class="radio-inline">
-                                  <input type="radio" name="frequency" value="2" required> 經常加班
+                                <label class="btn btn-default col-xs-3">
+                                    <input type="radio" name="frequency" value="2" required><span class="emoji">😠</span>經常<span class="hidden-xs">加班</span>
                                 </label>
-                                <label class="radio-inline">
-                                  <input type="radio" name="frequency" value="3" required> 幾乎每天加班
+                                <label class="btn btn-default col-xs-3">
+                                    <input type="radio" name="frequency" value="3" required><span class="emoji">😱</span>幾乎每天<span class="hidden-xs">加班</span>
                                 </label>
                             </div>
+
                         </div>
                         <div class="form-group">
                             <label for="email" class="col-xs-12 col-sm-2 control-label">電子郵件 <span class="visible-xs-inline">(選填)</span></label>
