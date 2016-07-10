@@ -426,6 +426,10 @@ ul.content-list {
 }
 
 @media(min-width:767px) {
+    #form .control-label {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
     #form .smaller-padding {
         padding-left: 5px;
         padding-right: 5px;
@@ -482,3 +486,7 @@ a.knowMoreBtn {
     padding-right: 3px;
 }
 
+.form-group {
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
