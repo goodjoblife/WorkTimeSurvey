@@ -13,8 +13,8 @@
 
 若您有以下任一專長，歡迎您以[Facebook](https://www.facebook.com/goodjob.life/)聯絡我們，一起加入工作資訊透明化的行列！
 
-* 網頁後端開發(NodeJs, Express, MongoDB)
-* 網頁前端開發(Javascript, CSS)
+* 網頁後端開發(Node.js, Express, MongoDB)
+* 網頁前端開發(JavaScript, CSS)
 * 使用者介面設計(UI)
 * 使用者經驗設計(UX)
 
