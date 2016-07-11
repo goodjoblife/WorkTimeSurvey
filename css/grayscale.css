@@ -43,6 +43,11 @@ p {
         font-size: 20px;
         line-height: 1.6;
     }
+
+    ol.content-list{
+        font-size: 20px;
+        line-height: 1.6;
+    }
 }
 
 a {
@@ -378,6 +383,10 @@ ul.content-list {
     font-size: 20px;
 }
 
+ol.content-list {
+    font-size: 18px;
+}
+
 @media(max-width:1199px) {
     ul.banner-social-buttons {
         margin-top: 15px;
@@ -400,6 +409,10 @@ ul.content-list {
     }
 
     ul.content-list {
+        font-size: 15px;
+    }
+
+    ol.content-list {
         font-size: 15px;
     }
 
