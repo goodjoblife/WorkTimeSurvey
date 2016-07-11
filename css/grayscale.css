@@ -487,6 +487,8 @@ a.knowMoreBtn {
     padding-bottom: 10px;
 }
 
-.h2-smaller-in-xs{
-    font-size: 24px;
+@media (max-width: 400px) {
+    .h2-smaller-in-xs{
+        font-size: 24px;
+    }
 }
