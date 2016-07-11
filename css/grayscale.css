@@ -486,3 +486,9 @@ a.knowMoreBtn {
     padding-top: 5px;
     padding-bottom: 10px;
 }
+
+@media (max-width: 767px) {
+    .h2-smaller-in-xs{
+        font-size: 24px;
+    }
+}
