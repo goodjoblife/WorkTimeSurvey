@@ -482,6 +482,26 @@ a.knowMoreBtn {
     padding-right: 3px;
 }
 
+.emoji {
+    width: 18px;
+    display: inline-block;
+    height: 18px;
+    vertical-align: middle;
+}
+
+.emoji.emoji-smile {
+    background-image: url('../img/1f603.svg');
+}
+.emoji.emoji-disappointed {
+    background-image: url('../img/1f61e.svg');
+}
+.emoji.emoji-angry {
+    background-image: url('../img/1f620.svg');
+}
+.emoji.emoji-screaming {
+    background-image: url('../img/1f631.svg');
+}
+
 .form-group {
     padding-top: 5px;
     padding-bottom: 10px;
