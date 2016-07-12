@@ -190,28 +190,24 @@ $(function() {
         return deferred.promise();
     }
 
+    function solveUrlParameter() {
+        var params = {};
 
-    function getUrlParameter(sParam) {
-        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-            sURLVariables = sPageURL.split('&'),
-            sParameterName,
-            i;
+        $.each(window.location.search.substring(1).split("&"), function(i, item) {
+            var param = decodeURIComponent(item).split('=');
 
-        for (i = 0; i < sURLVariables.length; i++) {
-            sParameterName = sURLVariables[i].split('=');
+            params[param[0]] = param[1] ? param[1] : true;
+        });
 
-            if (sParameterName[0] === sParam) {
-                return sParameterName[1] === undefined ? true : sParameterName[1];
-            }
-        }
+        return params;
     }
 
-    var query = getUrlParameter("job_title");
-    if (query !== undefined && query !== '') {
+    var query = solveUrlParameter().job_title;
+    if (query && query !== '') {
         $("#query").val(query);
         $("#job-title").text(query);
-        View.job_title = query;
-        loadPage(0);        
+
+        loadSearch(query);
     }
 
 });
