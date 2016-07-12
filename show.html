@@ -129,12 +129,12 @@
         <div class="row data-section-row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>最新工時資訊</h2>
-                <table id="newest-data-table" class="table table-hover">
-                    <thead>
-                        <tr><th class="text-center">公司名稱</th><th class="text-center">職稱</th><th class="text-center">平均每週工時</th></tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 text-left">公司名稱</div>
+                    <div class="col-xs-offset-2 col-xs-6 col-sm-offset-0 col-sm-3 text-left">職稱</div>
+                    <div class="col-xs-4 col-sm-3">平均每週工時</div>
+                </div>
+                <div id="newest-workings-list"></div>
                 <div class="alert alert-warning hidden" role="alert" id="newest-view-alert"></div>
                 <nav>
                     <ul class="pagination" id="newest-pagination">
