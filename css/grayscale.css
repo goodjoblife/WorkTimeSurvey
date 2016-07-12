@@ -520,6 +520,13 @@ a.knowMoreBtn {
     vertical-align: middle;
 }
 
+@media(min-width:767px) {
+    .emoji{
+        width: 22px;
+        height: 22px;
+    }
+}
+
 .emoji.emoji-smile {
     background-image: url('../img/1f603.svg');
 }
