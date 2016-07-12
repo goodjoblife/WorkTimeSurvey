@@ -456,13 +456,9 @@ ol.content-list {
     #form .control-label {
         padding-right: 5px;
         padding-left: 5px;
-        font-size: 16px;
     }
 
-    #form .form-control,
-    #form .help-block,
-    #form .btn-default,
-    #form .input-group-addon {
+    #form *{
         font-size: 16px;
     }
 }
