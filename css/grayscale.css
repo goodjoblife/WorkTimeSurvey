@@ -568,3 +568,8 @@ a.knowMoreBtn {
     opacity: 0.3;
     background: url(../img/background_1920-1080.png) no-repeat bottom center scroll;
 }
+
+.qa-section{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
