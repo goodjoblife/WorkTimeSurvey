@@ -458,7 +458,7 @@ ol.content-list {
         padding-left: 5px;
     }
 
-    #form *{
+    #form form *{
         font-size: 16px;
     }
 }
