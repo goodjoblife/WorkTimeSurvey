@@ -573,3 +573,27 @@ a.knowMoreBtn {
     padding-top: 50px;
     padding-bottom: 50px;
 }
+
+#newest-workings .row {
+    padding-bottom: 10px;
+}
+
+#newest-workings-list .row {
+    padding-top: 10px;
+        border-top: 1px solid #ccc;
+}
+
+#newest-workings .row.head {
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+}
+
+@media (max-width: 767px) {
+    #newest-workings .row .company {
+        font-size: 16px;
+    }
+
+    #newest-workings-list .row .company {
+        font-weight: bold;
+    }
+}

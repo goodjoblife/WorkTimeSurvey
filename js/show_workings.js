@@ -32,10 +32,11 @@
         // A view convert working to view
         make: function(w) {
             return $("<div>").addClass("row")
-                .append($("<div>").addClass("col-xs-12 col-sm-6 text-left").css("font-weight", "bold").text(w.company ? w.company.name : ""))
-                .append($("<div>").addClass("col-xs-offset-2 col-xs-6 col-sm-offset-0 col-sm-3 text-left").text(w.job_title))
-                .append($("<div>").addClass("col-xs-4 col-sm-3").text(w.week_work_time))
-                .css("border-bottom", "1px solid black");
+                .append(
+                    $("<div>").addClass("col-xs-12 col-sm-6 text-left company").text(w.company ? w.company.name : "")
+                )
+                .append($("<div>").addClass("col-xs-offset-2 col-xs-6 col-sm-offset-0 col-sm-3 text-left job-title").text(w.job_title))
+                .append($("<div>").addClass("col-xs-4 col-sm-3 week-work-time").text(w.week_work_time))
         },
     };
 
