@@ -117,7 +117,7 @@
     </section>
 
     <section id="form" class="content-section text-center">
-        <div class="form-section">
+        <div class="form-section content-section-bg">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2 class="h2-smaller-in-xs">匿名參與工時透明化運動</h2>
@@ -179,16 +179,16 @@
                             <label for="overtime_frequency" class="col-sm-2 control-label">加班頻率</label>
                             <div id="overtime-freq-btn-group" class="btn-group col-xs-12 col-sm-10" data-toggle="buttons">
                                 <label class="btn btn-default col-xs-3">
-                                    <input type="radio" name="frequency" value="0" required><span class="emoji">😀</span>幾乎不<span class="hidden-xs">加班</span>
+                                    <input type="radio" name="frequency" value="0" required><span class="emoji emoji-smile"></span>幾乎不<span class="hidden-xs">加班</span>
                                 </label>
                                 <label class="btn btn-default col-xs-3">
-                                    <input type="radio" name="frequency" value="1" required><span class="emoji">😦</span>偶而<span class="hidden-xs">加班</span>
+                                    <input type="radio" name="frequency" value="1" required><span class="emoji emoji-disappointed"></span>偶而<span class="hidden-xs">加班</span>
                                 </label>
                                 <label class="btn btn-default col-xs-3">
-                                    <input type="radio" name="frequency" value="2" required><span class="emoji">😠</span>經常<span class="hidden-xs">加班</span>
+                                    <input type="radio" name="frequency" value="2" required><span class="emoji emoji-angry"></span>經常<span class="hidden-xs">加班</span>
                                 </label>
                                 <label class="btn btn-default col-xs-3">
-                                    <input type="radio" name="frequency" value="3" required><span class="emoji">😱</span>幾乎每天<span class="hidden-xs">加班</span>
+                                    <input type="radio" name="frequency" value="3" required><span class="emoji emoji-screaming"></span>幾乎每天<span class="hidden-xs">加班</span>
                                 </label>
                             </div>
 
@@ -227,7 +227,14 @@
             </div>
         </div>
     </section>
-
+    <section id="share" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>分享此活動</h2>
+                <p><a class="btn btn-default btn-lg fb-share"><i class="fa fa-facebook fa-fw"></i>認同請分享</a></p>
+            </div>
+        </div>
+    </section>
     <section id="result" class="container content-section text-center hidden">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
@@ -239,12 +246,14 @@
         <div class="row" style="padding-top: 60px;">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>最新工時資訊</h2>
-                <table id="newest-data-table" class="table table-hover">
-                    <thead>
-                        <tr><th>公司名稱</th><th>職稱</th><th>平均每週工時</th></tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+                <div id="newest-workings">
+                    <div class="row head">
+                        <div class="col-xs-12 col-sm-6 text-left company">公司名稱</div>
+                        <div class="col-xs-offset-2 col-xs-6 col-sm-offset-0 col-sm-3 text-left job-title">職稱</div>
+                        <div class="col-xs-4 col-sm-3 week-work-time">平均每週工時</div>
+                    </div>
+                    <div id="newest-workings-list"></div>
+                </div>
                 <div class="alert alert-warning hidden" role="alert" id="newest-view-alert"></div>
                 <nav>
                     <ul class="pagination" id="newest-pagination">
@@ -270,27 +279,32 @@
             </div>
         </div>
     </section>
-    <section id="qa" class="container content-section text-left">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2 class="text-center">常見問答</h2>
-                <ol class="content-list">
-                    <li><strong id="qa1">這個網站是匿名的嗎？</strong><br>
-                    是的，這個網站是匿名的。您所分享的所有資訊也會是匿名的。綁定 Facebook 登入是為了避免惡意使用者大量輸入假資訊。<br><br>
-                    </li>
-                    
-                    <li><strong id="qa2">我提供的資料會如何被使用？</strong><br>
-                    您的資料將會被運用於本網站，供其他使用者查詢。<br><br>
-                    </li>
-
-                    <li><strong id="qa3">請問你們是誰？</strong></li>
-                    詳情請見<a href="about_us.html">關於我們</a>。<br><br>
-                    </li>
-
-                    <li><strong id="qa4">如果我的工作型態，是屬於排班制或其他較為彈性的形式，我要如何計算平均每週工時？</strong><br>
-                    若您為每月排班，您可以考慮將整個月個工時加總，除上該月天數，再乘上七估算。<br><br>
-                    </li>
-                </ol>
+    <section id="qa" class="content-section text-left" style="padding-top:50px">
+        <div class="qa-section content-section-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <h2 class="text-center">常見問答</h2>
+                        <ol class="content-list">
+                            <li>
+                                <strong id="qa1">這個網站是匿名的嗎？ 為什麼匿名還需要登入Facebook？</strong>
+                                <div>是的，這個網站是匿名的，您的Facebook資訊不會於任何地方被顯示、揭露或分享。綁定 Facebook 帳戶是為了避免惡意使用者大量輸入假資訊。</div>
+                            </li>
+                            <li>
+                                <strong id="qa2">我提供的資料會如何被使用？</strong>
+                                <div>您的資料將會被運用於GoodJob團隊之服務中，供其他使用者查詢。未來也可能與其他工作資訊透明化專案合作，共享真實的工作資訊；但您的Facebook資訊並不會被共享。</div>
+                            </li>
+                            <li>
+                                <strong id="qa3">請問你們是誰？</strong>
+                                <div>詳情請見<a href="about_us.html">關於我們</a>。</div>
+                            </li>
+                            <li>
+                                <strong id="qa4">如果我的工作型態，是屬於排班制或其他較為彈性的形式，我要如何填寫最近一週工時？</strong>
+                                <div>若您為每月排班，您可以考慮將整個月個工時加總，除上該月天數，再乘上七估算。</div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -314,6 +328,7 @@
             <p>Copyright &copy; <a href="https://www.facebook.com/goodjob.life">GoodJob.life</a> team 2016</p>
             <p><a href="term.html">使用者條款</a><p>
             <p>Theme <a href="http://startbootstrap.com/template-overviews/grayscale/">Grayscale</a></p>
+            <p><small>Emoji provided free by <a href="http://emojione.com">EmojiOne</a></small></p>
         </div>
     </footer>
     <script src="js/jquery.js"></script>

@@ -236,7 +236,10 @@ function submitForm() {
         submitting = false;
 
         //hide form 
-        $("#form").addClass("hidden");
+        $("#submit").addClass("hidden");
+
+        //hide original share section
+        $("#share").addClass("hidden");
 
         //remove hidden class and scroll to that div
         $("#result").removeClass("hidden");

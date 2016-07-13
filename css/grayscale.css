@@ -315,11 +315,25 @@ a:focus {
     width: 100%;
     padding: 50px 0;
     color: #000;
-    background-color: #fff;
+    background-color: transparent;
+    position: relative;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
+}
+
+.form-section:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.3;
+    background: url(../img/background_1920-1080.png) no-repeat bottom center scroll;
 }
 
 
@@ -387,6 +401,10 @@ ol.content-list {
     font-size: 18px;
 }
 
+#qa ol.content-list li + li {
+    padding-top: 30px;
+}
+
 @media(max-width:1199px) {
     ul.banner-social-buttons {
         margin-top: 15px;
@@ -443,6 +461,10 @@ ol.content-list {
         padding-right: 5px;
         padding-left: 5px;
     }
+
+    #form form *{
+        font-size: 16px;
+    }
 }
 
 footer {
@@ -492,7 +514,34 @@ a.knowMoreBtn {
 }
 
 .emoji {
-    padding-right: 3px;
+    margin-right: 3px;
+}
+
+.emoji {
+    width: 18px;
+    display: inline-block;
+    height: 18px;
+    vertical-align: middle;
+}
+
+@media(min-width:767px) {
+    .emoji{
+        width: 22px;
+        height: 22px;
+    }
+}
+
+.emoji.emoji-smile {
+    background-image: url('../img/1f603.svg');
+}
+.emoji.emoji-disappointed {
+    background-image: url('../img/1f61e.svg');
+}
+.emoji.emoji-angry {
+    background-image: url('../img/1f620.svg');
+}
+.emoji.emoji-screaming {
+    background-image: url('../img/1f631.svg');
 }
 
 .form-group {
@@ -503,5 +552,52 @@ a.knowMoreBtn {
 @media (max-width: 767px) {
     .h2-smaller-in-xs{
         font-size: 24px;
+    }
+}
+
+.content-section-bg {
+    position: relative;
+    background-color: transparent;
+}
+
+.content-section-bg:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.3;
+    background: url(../img/background_1920-1080.png) no-repeat bottom center scroll;
+}
+
+.qa-section{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#newest-workings .row {
+    padding-bottom: 10px;
+}
+
+#newest-workings-list .row {
+    padding-top: 10px;
+        border-top: 1px solid #ccc;
+}
+
+#newest-workings .row.head {
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+}
+
+@media (max-width: 767px) {
+    #newest-workings .row .company {
+        font-size: 16px;
+    }
+
+    #newest-workings-list .row .company {
+        font-weight: bold;
     }
 }
