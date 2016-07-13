@@ -551,19 +551,12 @@ a.knowMoreBtn {
     }
 }
 
-#qa {
-    width: 100%;
-    padding: 50px 0;
-    color: #000;
-    background-color: transparent;
+.content-section-bg {
     position: relative;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
+    background-color: transparent;
 }
 
-#qa:before{
+.content-section-bg:before {
     content: ' ';
     display: block;
     position: absolute;
