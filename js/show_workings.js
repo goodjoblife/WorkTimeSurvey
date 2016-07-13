@@ -31,10 +31,12 @@
         },
         // A view convert working to view
         make: function(w) {
-            return $("<tr>")
-                .append($("<td>").text(w.company ? w.company.name : ""))
-                .append($("<td>").text(w.job_title))
-                .append($("<td>").text(w.week_work_time));
+            return $("<div>").addClass("row")
+                .append(
+                    $("<div>").addClass("col-xs-12 col-sm-6 text-left company").text(w.company ? w.company.name : "")
+                )
+                .append($("<div>").addClass("col-xs-offset-2 col-xs-6 col-sm-offset-0 col-sm-3 text-left job-title").text(w.job_title))
+                .append($("<div>").addClass("col-xs-4 col-sm-3 week-work-time").text(w.week_work_time))
         },
     };
 
@@ -57,7 +59,7 @@
     function init(callback) {
         View.$page = $("#newest-view-page");
         View.$alert = $("#newest-view-alert");
-        View.$container = $("#newest-data-table tbody");
+        View.$container = $("#newest-workings-list");
         View.$previous = $("#newest-view-previous");
         View.$next = $("#newest-view-next");
 
