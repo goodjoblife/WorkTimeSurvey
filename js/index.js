@@ -10,10 +10,6 @@ $(function() {
         $("#knowMore").modal("show");
     });
 
-    window.WorkingLoader.init(function() {
-        window.WorkingLoader.View.limit = 10;
-    });
-
     $("#fb-login-modal").modal({
         show: false
     });
@@ -249,7 +245,7 @@ function submitForm() {
             }, 2000);    
         }, 2500)
         
-        window.WorkingLoader.loadPage(0);
+        vue.loadPage(0)
     }).fail(function(jqXHR, textStatus, errorThrown) {
         spinner.fadeOut(2000, function() {
             spinner.remove();

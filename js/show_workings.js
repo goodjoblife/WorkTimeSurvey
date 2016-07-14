@@ -1,144 +1,89 @@
-(function() {
-    var View = {
+var vue = new Vue({
+    el: '#workings-latest-section',
+    data: {
         page: 0,
-        limit: 25,
+        total: 0,
+        limit: 10,
         workings: [],
-        $page: undefined,
-        $alert: undefined,
-        $container: undefined,
-        $previous: undefined,
-        $next: undefined,
-    };
+        isAlertShown: false,
+        message: '',
+        isLoading: false,
+    },
+    methods: {
+        loadPage: function(page) {
+            this.isLoading = true;
 
-    var Method = {
-        update: function() {
-            View.$container.empty();
-            $.map(View.workings, Method.make).forEach(function($html) {
-                $html.appendTo(View.$container);
+            if (page < 0) {
+                this.showAlert('第一頁');
+                this.isLoading = false;
+
+                return;
+            }
+
+            this.getWorkings(page).then(function(res) {
+                this.isLoading = false;
+                if (res.data.workings.length === 0) {
+                    this.showAlert('最後一頁');
+                } else {
+                    this.workings = res.data.workings;
+                    this.total = res.data.total;
+                    this.page = page;
+                }
+            }, function(res) {
+                this.isLoading = false;
+                this.showAlert('存取錯誤');
             });
-
-            View.$page.html(View.page + 1);
         },
-        addSpinner: function() {
-            View.$page.html($("<i class=\"fa fa-spinner fa-spin fa-fw\"></i>"));
+        getWorkings: function(page) {
+            var opt = {
+                params: {
+                    page: page,
+                    limit: this.limit
+                }
+            };
+            return this.$http.get('https://tranquil-fortress-92731.herokuapp.com/workings/latest', opt);
+        },
+        previousPage: function() {
+            this.loadPage(this.page - 1);
+        },
+        nextPage: function() {
+            this.loadPage(this.page + 1);
+        },
+        switchPage: function(index) {
+            this.loadPage(this.pager_offset + index);
         },
         showAlert: function(message) {
-            View.$alert.html(message).removeClass("hidden");
+            this.isAlertShown = true;
+            this.message = message;
 
+            var me = this;
             setTimeout(function() {
-                View.$alert.addClass("hidden");
-            }, 3000);
-        },
-        // A view convert working to view
-        make: function(w) {
-            return $("<div>").addClass("row")
-                .append(
-                    $("<div>").addClass("col-xs-12 col-sm-6 text-left company").text(w.company ? w.company.name : "")
-                )
-                .append($("<div>").addClass("col-xs-offset-2 col-xs-6 col-sm-offset-0 col-sm-3 text-left job-title").text(w.job_title))
-                .append($("<div>").addClass("col-xs-4 col-sm-3 week-work-time").text(w.week_work_time))
-        },
-    };
-
-    /*
-     * query a specific page workings
-     */
-    function queryWorkings(page, limit) {
-        limit = limit || 25;
-        return $.ajax({
-            url: 'https://tranquil-fortress-92731.herokuapp.com/workings/latest',
-            data: {
-                page: page,
-                limit: limit,
-            },
-            method: 'GET',
-            dataType: 'json',
-        });
-    }
-
-    function init(callback) {
-        View.$page = $("#newest-view-page");
-        View.$alert = $("#newest-view-alert");
-        View.$container = $("#newest-workings-list");
-        View.$previous = $("#newest-view-previous");
-        View.$next = $("#newest-view-next");
-
-        callback && callback();
-        
-        View.$previous.on('click', function(e) {
-            e.preventDefault();
-            loadPage(View.page - 1);
-        });
-
-        View.$next.on('click', function(e) {
-            e.preventDefault();
-            loadPage(View.page + 1);
-        });
-
-    }
-
-    var loading = false;
-    function loadPage(page) {
-        if (loading) {
-            return;
+                me.isAlertShown = false;
+            }, 2000);
         }
-        loading = true;
-        Method.addSpinner();
+    },
+    computed: {
+        total_page: function() {
+            return Math.ceil(this.total / this.limit);
+        },
+        pager_offset: function() {
+            if (this.total_page <= 5) {
+                return 0;
+            }
 
-        console.log("begin");
+            if (this.page - 2 < 0) {
+                return 0;
+            }
 
-        __loadPage(page).then(function(d) {
-            loading = false;
+            if (this.page + 2 >= this.total_page) {
+                return this.total_page - 5;
+            }
 
-            View.page = d.page;
-            View.workings = d.workings;
-            Method.update();
-
-            console.log("resolved!");
-        }, function(e) {
-            loading = false;
-
-            Method.update();
-            Method.showAlert(e.message);
-
-            console.log("rejected!");
-        });
-    }
-
-    function __loadPage(page) {
-        var deferred = $.Deferred();
-
-        if (page < 0) {
-
-            deferred.reject(new Error("第一頁！"));
-        } else {
-            queryWorkings(page, View.limit).then(function(data) {
-                var workings = data.workings;
-                var total = data.total;
-
-                if (workings.length == 0) {
-                    deferred.reject(new Error("最後一頁"));
-                    return;
-                }
-
-                deferred.resolve({
-                    page: page,
-                    workings: workings,
-                    total: total,
-                });
-            }, function() {
-                deferred.reject(new Error("存取錯誤"));
-            });
+            return this.page - 2;
         }
-
-        return deferred.promise();
     }
+});
 
-    window.WorkingLoader = {
-        View: View,
-        Method: Method,
-        loadPage: loadPage,
-        init: init,
-    };
-})();
-
+vue.$on('hey', function() {
+    console.log(hey);
+});
