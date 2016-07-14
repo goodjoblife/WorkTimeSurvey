@@ -19,6 +19,13 @@ $(document).ready(function(){
                 response([]);
             });
         },
+        search: function(event, ui){
+            $("#job_title_spinner").removeClass("hidden");
+        },
+        response: function(event, ui){
+            $("#job_title_spinner").addClass("hidden");
+        },
+
     });
 
     $("#company_query").autocomplete({
@@ -42,6 +49,13 @@ $(document).ready(function(){
         minLength: 2,
         select: function(event, ui){ 
             $("#company_id").val(ui['item']['company_id']);
-        }
+        },
+        search: function(event, ui){
+            $("#company_query_spinner").removeClass("hidden");
+        },
+        response: function(event, ui){
+            $("#company_query_spinner").addClass("hidden");
+        },
+
     });
 });
