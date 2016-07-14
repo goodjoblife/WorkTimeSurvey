@@ -1,5 +1,7 @@
 (function() {
     var View = {
+        total: 0,
+        total_page: 0,
         page: 0,
         limit: 25,
         workings: [],
@@ -16,6 +18,8 @@
             $.map(View.workings, Method.make).forEach(function($html) {
                 $html.appendTo(View.$container);
             });
+
+            View.total_page = Math.ceil(View.total / limit);
 
             View.$page.html(View.page + 1);
         },
@@ -92,6 +96,7 @@
 
             View.page = d.page;
             View.workings = d.workings;
+            View.total = d.total;
             Method.update();
 
             console.log("resolved!");
