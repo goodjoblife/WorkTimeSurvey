@@ -112,7 +112,10 @@
 
             deferred.reject(new Error("第一頁！"));
         } else {
-            queryWorkings(page, View.limit).then(function(workings) {
+            queryWorkings(page, View.limit).then(function(data) {
+                var workings = data.workings;
+                var total = data.total;
+
                 if (workings.length == 0) {
                     deferred.reject(new Error("最後一頁"));
                     return;
@@ -121,6 +124,7 @@
                 deferred.resolve({
                     page: page,
                     workings: workings,
+                    total: total,
                 });
             }, function() {
                 deferred.reject(new Error("存取錯誤"));
