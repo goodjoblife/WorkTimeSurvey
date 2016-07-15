@@ -1,9 +1,12 @@
 (function() {
     var View = {
+        total: 0,
+        total_page: 0,
         page: 0,
         limit: 25,
         workings: [],
         $page: undefined,
+        $pages: undefined,
         $alert: undefined,
         $container: undefined,
         $previous: undefined,
@@ -17,10 +20,48 @@
                 $html.appendTo(View.$container);
             });
 
-            View.$page.html(View.page + 1);
+            View.total_page = Math.ceil(View.total / View.limit);
+
+            View.$pages.removeClass('hidden active');
+
+            if (View.total_page <= View.$pages.length) {
+                var i;
+                for (i = 0; i < View.total_page; i++) {
+                    View.$pages.eq(i).find("a").text(i + 1);
+                }
+                for (i = View.total_page; i < View.$pages.length; i++) {
+                    View.$pages.eq(i).addClass('hidden');
+                }
+
+                View.$pages.eq(View.page).addClass('active');
+            } else {
+                var L, R, i;
+                if (View.page - 2 < 0) {
+                    L = 0; R = 5;
+                    for (i = 0; i < 4; i++) {
+                        View.$pages.eq(i).find("a").text(L + i + 1);
+                    }
+                    View.$pages.eq(4).find("a").text("..");
+                } else if (View.page + 2 >= View.total_page) {
+                    R = View.total_page; L = R - 5;
+                    for (i = 1; i < 5; i++) {
+                        View.$pages.eq(i).find("a").text(L + i + 1);
+                    }
+                    View.$pages.eq(0).find("a").text("..");
+                } else {
+                    L = View.page - 2;
+                    R = L + 5;
+                    for (i = 1; i < 4; i++) {
+                        View.$pages.eq(i).find("a").text(L + i + 1);
+                    }
+                    View.$pages.eq(0).find("a").text("..");
+                    View.$pages.eq(4).find("a").text("..");
+                }
+                View.$pages.eq(View.page - L).addClass('active');
+            }
         },
         addSpinner: function() {
-            View.$page.html($("<i class=\"fa fa-spinner fa-spin fa-fw\"></i>"));
+            View.$page.find("a").html($("<i class=\"fa fa-spinner fa-spin fa-fw\"></i>"));
         },
         showAlert: function(message) {
             View.$alert.html(message).removeClass("hidden");
@@ -57,7 +98,8 @@
     }
 
     function init(callback) {
-        View.$page = $("#newest-view-page");
+        View.$pages = $("#newest-view-page-0, #newest-view-page-1, #newest-view-page-2, #newest-view-page-3, #newest-view-page-4");
+        View.$page = $("#newest-view-page-2");
         View.$alert = $("#newest-view-alert");
         View.$container = $("#newest-workings-list");
         View.$previous = $("#newest-view-previous");
@@ -75,6 +117,15 @@
             loadPage(View.page + 1);
         });
 
+        View.$pages.on('click', function(e) {
+            e.preventDefault();
+            var t = $(this).find("a").eq(0).text();
+
+            if (t === '..') {
+                return;
+            }
+            loadPage(parseInt(t) - 1);
+        })
     }
 
     var loading = false;
@@ -92,6 +143,7 @@
 
             View.page = d.page;
             View.workings = d.workings;
+            View.total = d.total;
             Method.update();
 
             console.log("resolved!");
