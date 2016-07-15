@@ -3,7 +3,7 @@ var vue = new Vue({
     data: {
         page: 0,
         total: 0,
-        per_page: 5,
+        pager_count: 7,
         limit: 10,
         workings: [],
         isAlertShown: false,
@@ -80,22 +80,26 @@ var vue = new Vue({
          *
          */
         pager_offset: function() {
-            if (this.total_page <= 5) {
+            // The size remaining to left or right
+            // middleOffset . 1 . middleOffset
+            var middleOffset = Math.floor(this.pager_count / 2);
+
+            if (this.total_page <= this.pager_count) {
                 return 0;
             }
 
             // 左寬度不夠
-            if (this.page - 2 < 0) {
+            if (this.page - middleOffset < 0) {
                 return 0;
             }
 
             // 右寬度不夠
-            if (this.page + 2 > this.total_page - 1) {
-                return this.total_page - 5;
+            if (this.page + middleOffset > this.total_page - 1) {
+                return this.total_page - this.pager_count;
             }
 
             // 左右寬度足夠
-            return this.page - 2;
+            return this.page - middleOffset;
         }
     }
 });
