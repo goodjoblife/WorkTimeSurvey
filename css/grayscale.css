@@ -601,3 +601,7 @@ a.knowMoreBtn {
         font-weight: bold;
     }
 }
+
+.ui-autocomplete-loading {
+    background: white url('../img/spinner.gif') no-repeat 99% center;
+}
