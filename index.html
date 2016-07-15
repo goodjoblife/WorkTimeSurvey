@@ -273,7 +273,7 @@
                         </li>
                         <li v-for="n in 5" v-show="n + pager_offset < total_page" v-bind:class="{ 'active': (pager_offset + n === page)}">
                             <a v-on:click.stop="switchPage($index)">
-                            <span v-if="(n === 0 && pager_offset === 2) || (n === 4 && pager_offset + n === total_page)">..</span>
+                            <span v-if="(n === 0 && pager_offset > 0) || (n === 4 && pager_offset + 4 < total_page - 1)">..</span>
                             <span v-else>{{ pager_offset + n + 1 }}</span>
                             </a>
                         </li>
