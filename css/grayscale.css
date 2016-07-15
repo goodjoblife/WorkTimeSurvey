@@ -605,3 +605,11 @@ a.knowMoreBtn {
 .ui-autocomplete-loading {
     background: white url('../img/spinner.gif') no-repeat 99% center;
 }
+
+h3.tight {
+    margin-bottom: 10px;
+}
+
+#privacy-term-section h3 {
+    margin-top: 35px;
+}
