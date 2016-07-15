@@ -237,6 +237,8 @@ function submitForm() {
         });
         $("#submit").attr("disabled", false);
         submitting = false;
+        //hide form button
+        $("#submit").addClass("hidden");  
         //hide original share section
         $("#share").addClass("hidden");
 
@@ -244,8 +246,7 @@ function submitForm() {
         $("#result").removeClass("hidden");
         
         setTimeout(function(){
-            //hide form button
-            $("#submit").addClass("hidden");    
+              
             $('html, body').animate({
                 scrollTop: $("#result").offset().top
             }, 2000);    
