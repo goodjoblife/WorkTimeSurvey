@@ -84,6 +84,3 @@ var vue = new Vue({
     }
 });
 
-vue.$on('hey', function() {
-    console.log(hey);
-});

@@ -578,6 +578,10 @@ a.knowMoreBtn {
     padding-bottom: 50px;
 }
 
+#newest-workings {
+    position: relative;
+}
+
 #newest-workings .row {
     padding-bottom: 10px;
 }
