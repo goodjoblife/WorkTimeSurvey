@@ -602,7 +602,11 @@ a.knowMoreBtn {
     }
 }
 
-.term-section-title{
+h3.tight {
     margin-bottom: 10px;
+}
+
+#privacy-term-section h3 {
     margin-top: 35px;
 }
+
