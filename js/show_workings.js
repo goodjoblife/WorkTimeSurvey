@@ -3,6 +3,7 @@ var vue = new Vue({
     data: {
         page: 0,
         total: 0,
+        per_page: 5,
         limit: 10,
         workings: [],
         isAlertShown: false,
@@ -66,19 +67,34 @@ var vue = new Vue({
         total_page: function() {
             return Math.ceil(this.total / this.limit);
         },
+        /*
+         * pager_offset: the page of 0th pager
+         *
+         * 0  1  2  3  4  5  ...  ...  t-1  t
+         * <----------->
+         *         <----------->
+         *                   <----------->
+         * 由於頁數太多，不可能把頁碼都印出來，勢必有個 window 要取，顯示出起始～結束的頁碼
+         *
+         * 另一方面，又希望目前的頁碼在正中間。
+         *
+         */
         pager_offset: function() {
             if (this.total_page <= 5) {
                 return 0;
             }
 
+            // 左寬度不夠
             if (this.page - 2 < 0) {
                 return 0;
             }
 
-            if (this.page + 2 >= this.total_page) {
+            // 右寬度不夠
+            if (this.page + 2 > this.total_page - 1) {
                 return this.total_page - 5;
             }
 
+            // 左右寬度足夠
             return this.page - 2;
         }
     }
