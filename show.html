@@ -132,7 +132,7 @@
         <div class="row data-section-row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>最新工時資訊</h2>
-                <div id="newest-workings" style="position: relative;">
+                <div id="newest-workings" style="position: relative;" v-bind:class="{ 'opacity': isLoading }">
                     <div class="row head">
                         <div class="col-xs-12 col-sm-6 text-left company">公司名稱</div>
                         <div class="col-xs-offset-2 col-xs-6 col-sm-offset-0 col-sm-3 text-left job-title">職稱</div>

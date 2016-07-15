@@ -602,6 +602,10 @@ a.knowMoreBtn {
     }
 }
 
+#newest-workings.opacity {
+    opacity: 0.3;
+}
+
 .ui-autocomplete-loading {
     background: white url('../img/spinner.gif') no-repeat 99% center;
 }
