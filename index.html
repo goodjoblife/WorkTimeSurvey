@@ -124,14 +124,16 @@
                     <form class="form-horizontal text-left">
                         <div class="form-group">
                             <label for="company_name" class="col-xs-12 col-sm-2 control-label">公司/單位</label>
-                            <div class="col-xs-12 col-sm-10">
+                            <div class="col-xs-12 col-sm-10 right-inner-addon">
+                                <i id="company_query_spinner" class="fa fa-spinner fa-spin hidden"></i>
                                 <input type="text" class="form-control" id="company_query" placeholder="公司/單位名稱 或 統一編號" >
                                 <input type="hidden" class="form-control" id="company_id" placeholder="公司統編" >
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="job_title" class="col-xs-12 col-sm-2 control-label">職稱</label>
-                            <div class="col-xs-12 col-sm-10">
+                            <div class="col-xs-12 col-sm-10  right-inner-addon">
+                                <i id="job_title_spinner" class="fa fa-spinner fa-spin hidden"></i>
                                 <input type="text" class="form-control" id="job_title" placeholder="職稱" required>
                             </div>
                         </div>
