@@ -230,7 +230,7 @@ function submitForm() {
         console.log(res);
         var count = res.queries_count;
         var res = 5 - count;
-        showAlert(`上傳成功！ 您已經上傳${count}次，還有${res}可以上傳。`);
+        showAlert("上傳成功！ 您已經上傳" + count + "次，還有" + res + "次可以上傳。");
 
         spinner.fadeOut(2500, function() {
             spinner.remove();
