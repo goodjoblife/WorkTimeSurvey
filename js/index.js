@@ -230,7 +230,7 @@ function submitForm() {
         console.log(res);
         var count = res.queries_count;
         var rest = 5 - count;
-        showAlert("上傳成功！ 您已經上傳" + count + "次，還有" + rest + "次可以上傳。");
+        showSuccess("上傳成功！ 您已經上傳" + count + "次，還有" + rest + "次可以上傳。");
 
         spinner.fadeOut(2500, function() {
             spinner.remove();
@@ -279,5 +279,11 @@ function showAlert(message) {
             $alert.remove();
         });
     }, 5000);
+}
+
+function showSuccess(message) {
+    var $alert = $("<div class=\"alert alert-success\" role=\"alert\"></div>");
+    $alert.text(message).appendTo($("#submit-alerts"));
+    //we don't need to remove successful message
 }
 
