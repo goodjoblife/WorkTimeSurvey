@@ -1,9 +1,9 @@
 var vue = new Vue({
     el: '#workings-latest-section',
     data: {
-        page: 0,
-        total: 0,
-        pager_count: 7,
+        page: 0, //current page number (目前頁碼)
+        total: 0, //number of total data
+        pager_count: 7, // << 5 6 7 8 9 >> if like this, then pager_count is 7
         limit: 10,
         workings: [],
         isAlertShown: false,
@@ -68,8 +68,9 @@ var vue = new Vue({
             return Math.ceil(this.total / this.limit);
         },
         /*
-         * pager_offset: the page of 0th pager
-         *
+         * pager_offset: the page of 0th pager (第0個頁簽的頁碼)
+         *               << 5 6 7 8 9 >> 像這樣的話，pager_offset = 4 
+         *                
          * 0  1  2  3  4  5  ...  ...  t-1  t
          * <----------->
          *         <----------->
