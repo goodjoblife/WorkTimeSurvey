@@ -12,6 +12,11 @@ var vue = new Vue({
     },
     methods: {
         loadPage: function(page) {
+            // prevent another loading
+            if (this.isLoading) {
+                return;
+            }
+
             this.isLoading = true;
 
             if (page < 0) {
