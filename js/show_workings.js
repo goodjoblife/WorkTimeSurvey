@@ -17,6 +17,8 @@ var vue = new Vue({
                 return;
             }
 
+            this.$emit('page-loading', page);
+
             this.isLoading = true;
 
             if (page < 0) {
