@@ -235,10 +235,7 @@ function submitForm() {
         spinner.fadeOut(2500, function() {
             spinner.remove();
         });
-        $("#submit").attr("disabled", false);
         submitting = false;
-        //hide form button
-        $("#submit").addClass("hidden");  
         //hide original share section
         $("#share").addClass("hidden");
 
