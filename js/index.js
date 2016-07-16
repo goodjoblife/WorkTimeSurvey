@@ -228,25 +228,30 @@ function submitForm() {
         dataType: 'json',
     }).then(function(res) {
         console.log(res);
+        var count = res.queries_count;
+        var rest = 5 - count;
+        showSuccess("上傳成功！ 您已經上傳" + count + "次，還有" + rest + "次可以上傳。");
 
-        spinner.fadeOut(2000, function() {
+        spinner.fadeOut(2500, function() {
             spinner.remove();
         });
         $("#submit").attr("disabled", false);
         submitting = false;
-
-        //hide form 
-        $("#submit").addClass("hidden");
-
+        //hide form button
+        $("#submit").addClass("hidden");  
         //hide original share section
         $("#share").addClass("hidden");
 
         //remove hidden class and scroll to that div
         $("#result").removeClass("hidden");
-        $('html, body').animate({
-            scrollTop: $("#result").offset().top
-        }, 2000);
-
+        
+        setTimeout(function(){
+              
+            $('html, body').animate({
+                scrollTop: $("#result").offset().top
+            }, 2000);    
+        }, 2500)
+        
         window.WorkingLoader.loadPage(0);
     }).fail(function(jqXHR, textStatus, errorThrown) {
         spinner.fadeOut(2000, function() {
@@ -274,5 +279,11 @@ function showAlert(message) {
             $alert.remove();
         });
     }, 5000);
+}
+
+function showSuccess(message) {
+    var $alert = $("<div class=\"alert alert-success\" role=\"alert\"></div>");
+    $alert.text(message).appendTo($("#submit-alerts"));
+    //we don't need to remove successful message
 }
 
