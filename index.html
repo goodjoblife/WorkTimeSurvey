@@ -47,22 +47,22 @@
                 <ul class="nav navbar-nav">
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
-                        <a href="#page-top"></a>
+                        <a href="#page-top" data-logAction="click-nav-page-top" ></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">關於工時透明化運動</a>
+                        <a class="page-scroll" href="#about" data-logAction="click-nav-about" >關於工時透明化運動</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#form">開始參與</a>
+                        <a class="page-scroll" href="#form" data-logAction="click-nav-form" >開始參與</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#qa">常見問答</a>
+                        <a class="page-scroll" href="#qa" data-logAction="click-nav-fag" >常見問答</a>
                     </li>
                     <li>
-                        <a href="about_us.html">關於我們</a>
+                        <a href="about_us.html" data-logAction="click-nav-about-us" >關於我們</a>
                     </li>
                     <li>
-                        <a href="show.html">查看工時</a>
+                        <a href="show.html" data-logAction="click-nav-show" >查看工時</a>
                     </li>
                 </ul>
             </div>
@@ -75,7 +75,7 @@
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">工時透明化運動</h1>
                         <p class="intro-text">分享你的真實工時資訊，讓我們一起改善工時不透明的現況！</p>
-                        <a href="#about" class="btn btn-circle page-scroll">
+                        <a href="#about" class="btn btn-circle page-scroll" data-logAction="click-landing-to-about" >
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
                     </div>
@@ -361,6 +361,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/grayscale.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/index-i13n.js"></script>
     <script src="js/show_workings.js"></script>
     <script src="js/formUtility.js"></script>
     <!-- font CSS -->
