@@ -1,10 +1,13 @@
 var vue = new Vue({
     el: '#workings-latest-section',
     data: {
-        page: 0, //current page number (目前頁碼)
-        total: 0, //number of total data
-        pager_count: 7, // << 5 6 7 8 9 >> if like this, then pager_count is 7
-        limit: 10,
+        //current page number (目前頁碼)
+        page: 0, 
+        //number of total data
+        total: 0, 
+        // << 5 6 7 8 9 10 11 >> if like this, then pager_count is 7
+        pager_count: 7, 
+        limit: 1,
         workings: [],
         isAlertShown: false,
         message: '',
@@ -76,7 +79,7 @@ var vue = new Vue({
         },
         /*
          * pager_offset: the page of 0th pager (第0個頁簽的頁碼)
-         *               << 5 6 7 8 9 >> 像這樣的話，pager_offset = 4 
+         *   << 5 6 7 8 9 10 11 >> 像這樣的話，pager_offset = 5(使用者看到的) - 1 = 4
          *                
          * 0  1  2  3  4  5  ...  ...  t-1  t
          * <----------->
