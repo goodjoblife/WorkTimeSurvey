@@ -223,6 +223,11 @@ function submitForm() {
         },
         dataType: 'json',
     }).then(function(res) {
+        //GA tracking if upload successfully
+        if(ga){
+            ga('send', 'event', "LANDING_PAGE", "upload-success");
+        }
+
         console.log(res);
         var count = res.queries_count;
         var rest = 5 - count;
@@ -247,6 +252,11 @@ function submitForm() {
         
         vue.loadPage(0)
     }).fail(function(jqXHR, textStatus, errorThrown) {
+        // GA tracking if upload failed
+        if(ga){
+            ga('send', 'event', "LANDING_PAGE", "upload-fail");
+        }
+        
         spinner.fadeOut(2000, function() {
             spinner.remove();
         });
