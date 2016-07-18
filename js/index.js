@@ -37,6 +37,10 @@ $("#submit").click(function(e) {
     try {
         checkForm();
     } catch (err) {
+        // GA tracking when form is invalid
+        if(ga){
+            ga('send', 'event', "LANDING_PAGE", "check-form-fail", err.message);
+        }
         showAlert(err.message);
         return;
     } 
@@ -256,7 +260,7 @@ function submitForm() {
         if(ga){
             ga('send', 'event', "LANDING_PAGE", "upload-fail");
         }
-        
+
         spinner.fadeOut(2000, function() {
             spinner.remove();
         });
