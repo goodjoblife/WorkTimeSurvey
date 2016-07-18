@@ -578,13 +578,17 @@ a.knowMoreBtn {
     padding-bottom: 50px;
 }
 
+#newest-workings {
+    position: relative;
+}
+
 #newest-workings .row {
     padding-bottom: 10px;
 }
 
-#newest-workings-list .row {
+#newest-workings .row.body {
     padding-top: 10px;
-        border-top: 1px solid #ccc;
+    border-top: 1px solid #ccc;
 }
 
 #newest-workings .row.head {
@@ -597,9 +601,13 @@ a.knowMoreBtn {
         font-size: 16px;
     }
 
-    #newest-workings-list .row .company {
+    #newest-workings .row.body .company {
         font-weight: bold;
     }
+}
+
+#newest-workings.opacity {
+    opacity: 0.3;
 }
 
 .ui-autocomplete-loading {

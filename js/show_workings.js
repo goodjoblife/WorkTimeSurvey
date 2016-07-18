@@ -1,144 +1,117 @@
-(function() {
-    var View = {
-        page: 0,
-        limit: 25,
+var vue = new Vue({
+    el: '#workings-latest-section',
+    data: {
+        //current page number (目前頁碼)
+        page: 0, 
+        //number of total data
+        total: 0, 
+        // << 5 6 7 8 9 10 11 >> if like this, then pager_count is 7
+        pager_count: 7, 
+        limit: 1,
         workings: [],
-        $page: undefined,
-        $alert: undefined,
-        $container: undefined,
-        $previous: undefined,
-        $next: undefined,
-    };
+        isAlertShown: false,
+        message: '',
+        isLoading: false,
+    },
+    methods: {
+        loadPage: function(page) {
+            // prevent another loading
+            if (this.isLoading) {
+                return;
+            }
 
-    var Method = {
-        update: function() {
-            View.$container.empty();
-            $.map(View.workings, Method.make).forEach(function($html) {
-                $html.appendTo(View.$container);
+            this.$emit('page-loading', page);
+
+            this.isLoading = true;
+
+            if (page < 0) {
+                this.showAlert('第一頁');
+                this.isLoading = false;
+
+                return;
+            }
+
+            this.getWorkings(page).then(function(res) {
+                this.isLoading = false;
+                if (res.data.workings.length === 0) {
+                    this.showAlert('最後一頁');
+                } else {
+                    this.workings = res.data.workings;
+                    this.total = res.data.total;
+                    this.page = page;
+                }
+            }, function(res) {
+                this.isLoading = false;
+                this.showAlert('存取錯誤');
             });
-
-            View.$page.html(View.page + 1);
         },
-        addSpinner: function() {
-            View.$page.html($("<i class=\"fa fa-spinner fa-spin fa-fw\"></i>"));
+        getWorkings: function(page) {
+            var opt = {
+                params: {
+                    page: page,
+                    limit: this.limit
+                }
+            };
+            return this.$http.get('https://tranquil-fortress-92731.herokuapp.com/workings/latest', opt);
+        },
+        previousPage: function() {
+            this.loadPage(this.page - 1);
+        },
+        nextPage: function() {
+            this.loadPage(this.page + 1);
+        },
+        switchPage: function(index) {
+            this.loadPage(this.pager_offset + index);
         },
         showAlert: function(message) {
-            View.$alert.html(message).removeClass("hidden");
+            this.isAlertShown = true;
+            this.message = message;
 
+            var me = this;
             setTimeout(function() {
-                View.$alert.addClass("hidden");
-            }, 3000);
-        },
-        // A view convert working to view
-        make: function(w) {
-            return $("<div>").addClass("row")
-                .append(
-                    $("<div>").addClass("col-xs-12 col-sm-6 text-left company").text(w.company ? w.company.name : "")
-                )
-                .append($("<div>").addClass("col-xs-offset-2 col-xs-6 col-sm-offset-0 col-sm-3 text-left job-title").text(w.job_title))
-                .append($("<div>").addClass("col-xs-4 col-sm-3 week-work-time").text(w.week_work_time))
-        },
-    };
-
-    /*
-     * query a specific page workings
-     */
-    function queryWorkings(page, limit) {
-        limit = limit || 25;
-        return $.ajax({
-            url: 'https://tranquil-fortress-92731.herokuapp.com/workings/latest',
-            data: {
-                page: page,
-                limit: limit,
-            },
-            method: 'GET',
-            dataType: 'json',
-        });
-    }
-
-    function init(callback) {
-        View.$page = $("#newest-view-page");
-        View.$alert = $("#newest-view-alert");
-        View.$container = $("#newest-workings-list");
-        View.$previous = $("#newest-view-previous");
-        View.$next = $("#newest-view-next");
-
-        callback && callback();
-        
-        View.$previous.on('click', function(e) {
-            e.preventDefault();
-            loadPage(View.page - 1);
-        });
-
-        View.$next.on('click', function(e) {
-            e.preventDefault();
-            loadPage(View.page + 1);
-        });
-
-    }
-
-    var loading = false;
-    function loadPage(page) {
-        if (loading) {
-            return;
+                me.isAlertShown = false;
+            }, 2000);
         }
-        loading = true;
-        Method.addSpinner();
+    },
+    computed: {
+        total_page: function() {
+            return Math.ceil(this.total / this.limit);
+        },
+        /*
+         * pager_offset: the page of 0th pager (第0個頁簽的頁碼)
+         *   << 5 6 7 8 9 10 11 >> 像這樣的話，pager_offset = 5(使用者看到的) - 1 = 4
+         *                
+         * 0  1  2  3  4  5  ...  ...  t-1  t
+         * <----------->
+         *         <----------->
+         *                   <----------->
+         * 由於頁數太多，不可能把頁碼都印出來，勢必有個 window 要取，顯示出起始～結束的頁碼
+         *
+         * 另一方面，又希望目前的頁碼在正中間。
+         *
+         */
+        pager_offset: function() {
+            // The size remaining to left or right
+            // middleOffset . 1 . middleOffset
+            var middleOffset = Math.floor(this.pager_count / 2);
 
-        console.log("begin");
+            if (this.total_page <= this.pager_count) {
+                return 0;
+            }
 
-        __loadPage(page).then(function(d) {
-            loading = false;
+            // 左寬度不夠
+            if (this.page - middleOffset < 0) {
+                return 0;
+            }
 
-            View.page = d.page;
-            View.workings = d.workings;
-            Method.update();
+            // 右寬度不夠
+            if (this.page + middleOffset > this.total_page - 1) {
+                return this.total_page - this.pager_count;
+            }
 
-            console.log("resolved!");
-        }, function(e) {
-            loading = false;
-
-            Method.update();
-            Method.showAlert(e.message);
-
-            console.log("rejected!");
-        });
-    }
-
-    function __loadPage(page) {
-        var deferred = $.Deferred();
-
-        if (page < 0) {
-
-            deferred.reject(new Error("第一頁！"));
-        } else {
-            queryWorkings(page, View.limit).then(function(data) {
-                var workings = data.workings;
-                var total = data.total;
-
-                if (workings.length == 0) {
-                    deferred.reject(new Error("最後一頁"));
-                    return;
-                }
-
-                deferred.resolve({
-                    page: page,
-                    workings: workings,
-                    total: total,
-                });
-            }, function() {
-                deferred.reject(new Error("存取錯誤"));
-            });
+            // 左右寬度足夠
+            return this.page - middleOffset;
         }
-
-        return deferred.promise();
     }
-
-    window.WorkingLoader = {
-        View: View,
-        Method: Method,
-        loadPage: loadPage,
-        init: init,
-    };
-})();
+});
 
