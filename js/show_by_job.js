@@ -109,6 +109,9 @@ $(function() {
         if (loading) {
             return;
         }
+        if(ga){
+            ga('send', 'event', 'QUERY_PAGE', 'search-by-job-title', job_title);
+        }
         loading = true;
         View.method.addSpinner();
 
