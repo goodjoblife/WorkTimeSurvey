@@ -48,8 +48,14 @@ $(function() {
     })();
 });
 
+var isSubmitEnable = true;
+
 $("#submit").click(function(e) {
     e.preventDefault();
+    if (! isSubmitEnable) {
+        return;
+    }
+
     try {
         checkForm();
     } catch (err) {
@@ -262,6 +268,8 @@ function submitForm() {
 
         //remove hidden class and scroll to that div
         $("#result").removeClass("hidden");
+
+        isSubmitEnable = false;
         
         setTimeout(function(){
               
