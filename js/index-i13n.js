@@ -22,7 +22,7 @@ $(function(){
 
     form.one('beginWriting', function(e) {
         formBeginTime = performance.now();
-        ga('send', 'timing', 'LANDING_PAGE', 'form-begin-writing', formBeginTime);
+        ga('send', 'timing', category, 'form-begin-writing', formBeginTime);
     });
 
     form.one('submitted', function(e) {
@@ -30,7 +30,7 @@ $(function(){
 
         var elapsedTime = formSubmittedTime - formBeginTime;
 
-        ga('send', 'timing', 'LANDING_PAGE', 'form-submitted', formSubmittedTime);
-        ga('send', 'timing', 'LANDING_PAGE', 'form-writing', elapsedTime);
+        ga('send', 'timing', category, 'form-submitted', formSubmittedTime);
+        ga('send', 'timing', category, 'form-writing', elapsedTime);
     });
 });
