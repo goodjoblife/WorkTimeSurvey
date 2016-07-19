@@ -30,6 +30,22 @@ $(function() {
             scope: 'public_profile,email'
         });
     });
+
+    // a way to trigger the form is starting
+    (function() {
+        var isCalled = false;
+        function callback(e) {
+            if (isCalled) {
+                return;
+            }
+            isCalled = true;
+            $('#form').trigger('beginWriting');
+        }
+
+        $('#form input').on('focus', callback);
+        $('#form input').on('click', callback);
+        $('#form input[type=radio]').on('change', callback);
+    })();
 });
 
 $("#submit").click(function(e) {
@@ -255,6 +271,8 @@ function submitForm() {
         }, 2500)
         
         vue.loadPage(0)
+
+        $('#form').trigger('submitted');
     }).fail(function(jqXHR, textStatus, errorThrown) {
         // GA tracking if upload failed
         if(ga){

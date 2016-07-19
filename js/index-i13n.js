@@ -15,4 +15,22 @@ $(function(){
             ga('send', 'event', category, logAction);
         }
     });
+
+    var form = $("#form");
+    var formBeginTime = null;
+    var formSubmittedTime = null;
+
+    form.one('beginWriting', function(e) {
+        formBeginTime = performance.now();
+        ga('send', 'timing', 'LANDING_PAGE', 'form-begin-writing', formBeginTime);
+    });
+
+    form.one('submitted', function(e) {
+        formSubmittedTime = performance.now();
+
+        var elapsedTime = formSubmittedTime - formBeginTime;
+
+        ga('send', 'timing', 'LANDING_PAGE', 'form-submitted', formSubmittedTime);
+        ga('send', 'timing', 'LANDING_PAGE', 'form-writing', elapsedTime);
+    });
 });
