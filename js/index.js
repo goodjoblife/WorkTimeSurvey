@@ -30,6 +30,22 @@ $(function() {
             scope: 'public_profile,email'
         });
     });
+
+    // a way to trigger the form is starting
+    (function() {
+        var isCalled = false;
+        function callback(e) {
+            if (isCalled) {
+                return;
+            }
+            isCalled = true;
+            $('#form').trigger('beginWriting');
+        }
+
+        $('#form input').on('focus', callback);
+        $('#form input').on('click', callback);
+        $('#form input[type=radio]').on('change', callback);
+    })();
 });
 
 $("#submit").click(function(e) {
@@ -37,6 +53,10 @@ $("#submit").click(function(e) {
     try {
         checkForm();
     } catch (err) {
+        // GA tracking when form is invalid
+        if(ga){
+            ga('send', 'event', "LANDING_PAGE", "check-form-fail", err.message);
+        }
         showAlert(err.message);
         return;
     } 
@@ -223,6 +243,11 @@ function submitForm() {
         },
         dataType: 'json',
     }).then(function(res) {
+        //GA tracking if upload successfully
+        if(ga){
+            ga('send', 'event', "LANDING_PAGE", "upload-success");
+        }
+
         console.log(res);
         var count = res.queries_count;
         var rest = 5 - count;
@@ -246,7 +271,14 @@ function submitForm() {
         }, 2500)
         
         vue.loadPage(0)
+
+        $('#form').trigger('submitted');
     }).fail(function(jqXHR, textStatus, errorThrown) {
+        // GA tracking if upload failed
+        if(ga){
+            ga('send', 'event', "LANDING_PAGE", "upload-fail");
+        }
+
         spinner.fadeOut(2000, function() {
             spinner.remove();
         });

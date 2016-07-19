@@ -1,6 +1,9 @@
 $(document).ready(function(){
     $("#job_title").autocomplete({
         source: function (request, response) {
+            if(ga){
+                ga('send', 'event', 'LANDING_PAGE', 'job-title-autocomplete', request.term);
+            }
             $.ajax({
                 url: "https://tranquil-fortress-92731.herokuapp.com/jobs/search",
                 data: {
@@ -23,6 +26,9 @@ $(document).ready(function(){
 
     $("#company_query").autocomplete({
         source: function (request, response) {
+            if(ga){
+                ga('send', 'event', 'LANDING_PAGE', 'company-query-autocomplete', request.term);
+            }
             $.ajax({
                 url: "https://tranquil-fortress-92731.herokuapp.com/companies/search",
                 data: { key : request['term'] },

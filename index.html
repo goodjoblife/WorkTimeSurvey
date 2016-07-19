@@ -47,22 +47,22 @@
                 <ul class="nav navbar-nav">
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
-                        <a href="#page-top"></a>
+                        <a href="#page-top" data-logAction="click-nav-page-top" ></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">關於工時透明化運動</a>
+                        <a class="page-scroll" href="#about" data-logAction="click-nav-about" >關於工時透明化運動</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#form">開始參與</a>
+                        <a class="page-scroll" href="#form" data-logAction="click-nav-form" >開始參與</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#qa">常見問答</a>
+                        <a class="page-scroll" href="#qa" data-logAction="click-nav-fag" >常見問答</a>
                     </li>
                     <li>
-                        <a href="about_us.html">關於我們</a>
+                        <a href="about_us.html" data-logAction="click-nav-about-us" >關於我們</a>
                     </li>
                     <li>
-                        <a href="show.html">查看工時</a>
+                        <a href="show.html" data-logAction="click-nav-show" >查看工時</a>
                     </li>
                 </ul>
             </div>
@@ -75,7 +75,7 @@
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">工時透明化運動</h1>
                         <p class="intro-text">分享你的真實工時資訊，讓我們一起改善工時不透明的現況！</p>
-                        <a href="#about" class="btn btn-circle page-scroll">
+                        <a href="#about" class="btn btn-circle page-scroll" data-logAction="click-landing-to-about" >
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
                     </div>
@@ -96,7 +96,7 @@
             <p>我們誠摯地邀請你，一起改善工時不透明的現況！</p>
             </div>
         </div>
-        <a id="fb-login" class="btn btn-default btn-lg"><span id="fb-login-word-at-login">以<i class="fa fa-facebook fa-fw"></i>登入</span>開始參與</a>
+        <a id="fb-login" class="btn btn-default btn-lg" data-logAction="click-fb-login-in-about-section"><span id="fb-login-word-at-login">以<i class="fa fa-facebook fa-fw"></i>登入</span>開始參與</a>
         <div class="know-more-about-fb-sign-in">
             <i><a class="knowMoreBtn">了解為什麼需要以 Facebook 登入？</a></i>
         </div>
@@ -208,7 +208,7 @@
                         </div>
                         <div id="submit-alerts"></div>
                         <div class="text-center">
-                            <a id="submit" class="btn btn-default btn-lg"><span id="fb-login-word">以<i class="fa fa-facebook fa-fw"></i>登入並</span>送出資料</a>
+                            <a id="submit" class="btn btn-default btn-lg" data-logAction="click-submit"><span id="fb-login-word">以<i class="fa fa-facebook fa-fw"></i>登入並</span>送出資料</a>
                             <div class="know-more-about-fb-sign-in">
                                 <i><a class="knowMoreBtn">了解為何需以 Facebook 登入方能送出資料？</a></i>
                             </div>
@@ -229,7 +229,7 @@
                         而目前每一帳戶目前僅能上傳5次工時資訊。
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-lg" id="fb-login-modal-login-button">以 <i class="fa fa-facebook fa-fw"></i> 登入並送出資料</button>
+                        <a type="button" class="btn btn-default btn-lg" id="fb-login-modal-login-button" data-logAction="click-fb-login-in-modal">以 <i class="fa fa-facebook fa-fw"></i> 登入並送出資料</a>
                     </div>
                 </div>
             </div>
@@ -239,7 +239,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>分享此活動</h2>
-                <p><a class="btn btn-default btn-lg fb-share"><i class="fa fa-facebook fa-fw"></i>認同請分享</a></p>
+                <p><a class="btn btn-default btn-lg fb-share" data-logAction="click-fb-share-before-submit"><i class="fa fa-facebook fa-fw"></i>認同請分享</a></p>
             </div>
         </div>
     </section>
@@ -248,7 +248,7 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>非常感謝您的分享</h2>
                 <p class="text-left">您的分享將有助於工時資訊的透明化，讓未來的求職者在求職時能有更完整的資訊，進而做出更好的選擇。</p>
-                <p><a class="btn btn-default btn-lg fb-share"><i class="fa fa-facebook fa-fw"></i>認同請分享</a></p>
+                <p><a class="btn btn-default btn-lg fb-share" data-logAction="click-fb-share-after-submit"><i class="fa fa-facebook fa-fw"></i>認同請分享</a></p>
             </div>
         </div>
         <div class="row" style="padding-top: 60px;">
@@ -364,6 +364,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/grayscale.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/index-i13n.js"></script>
     <script src="js/show_workings.js"></script>
     <script src="js/formUtility.js"></script>
     <!-- font CSS -->
