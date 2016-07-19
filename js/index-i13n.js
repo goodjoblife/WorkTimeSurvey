@@ -9,13 +9,6 @@ $(function(){
         }
     });
 
-    $("#form input").focus(function(e){
-    	if(this.dataset['logaction'] && ga) {
-            var logAction = this.dataset['logaction'];
-            ga('send', 'event', category, logAction);
-        }
-    });
-
     var form = $("#form");
     var formBeginTime = null;
     var formSubmittedTime = null;
@@ -33,4 +26,5 @@ $(function(){
         ga('send', 'timing', category, 'form-submitted', formSubmittedTime);
         ga('send', 'timing', category, 'form-writing', elapsedTime);
     });
+
 });
