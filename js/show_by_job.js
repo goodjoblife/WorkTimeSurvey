@@ -84,6 +84,9 @@ $(function() {
 
     $("#query").autocomplete({
         source: function (request, response) {
+            if(ga){
+                ga('send', 'event', 'QUERY_PAGE', 'query-autocomplete', request.term);
+            }
             $.ajax({
                 url: "https://tranquil-fortress-92731.herokuapp.com/jobs/search",
                 data: {
@@ -108,6 +111,9 @@ $(function() {
     function loadSearch(job_title) {
         if (loading) {
             return;
+        }
+        if(ga){
+            ga('send', 'event', 'QUERY_PAGE', 'search-by-job-title', job_title);
         }
         loading = true;
         View.method.addSpinner();
