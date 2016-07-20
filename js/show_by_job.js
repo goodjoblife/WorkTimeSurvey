@@ -105,6 +105,11 @@ $(function() {
                 response([]);
             });
         },
+        select: function(event, ui){ 
+            if(ga){
+                ga('send', 'event', 'LANDING_PAGE', 'query-autocomplete-select', ui['item']['label']);
+            }
+        }
     });
 
     var loading = false;
