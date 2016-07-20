@@ -53,7 +53,7 @@ $(document).ready(function(){
         minLength: 2,
         select: function(event, ui){ 
             if(ga){
-                ga('send', 'event', 'LANDING_PAGE', 'company-query-autocomplete-select', ui['item']['label']);
+                ga('send', 'event', 'LANDING_PAGE', 'company-query-autocomplete-select', ui['item']['company_id']);
             }
             $("#company_id").val(ui['item']['company_id']);
         }
