@@ -22,6 +22,11 @@ $(document).ready(function(){
                 response([]);
             });
         },
+        select: function(event, ui){ 
+            if(ga){
+                ga('send', 'event', 'LANDING_PAGE', 'job-title-autocomplete-select', ui['item']['label']);
+            }
+        }
     });
 
     $("#company_query").autocomplete({
@@ -47,6 +52,9 @@ $(document).ready(function(){
         },
         minLength: 2,
         select: function(event, ui){ 
+            if(ga){
+                ga('send', 'event', 'LANDING_PAGE', 'company-query-autocomplete-select', ui['item']['label']);
+            }
             $("#company_id").val(ui['item']['company_id']);
         }
     });
