@@ -166,7 +166,6 @@ function checkForm () {
     var job_title = $("#job_title").val();
     var week_work_time = $("#week_work_time").val();
     var overtime_frequency = $("#overtime_frequency_input input[name='frequency']:checked").val();
-    var email = $("#email").val();
     var day_promised_work_time = $("#day_promised_work_time").val();
     var day_real_work_time = $("#day_real_work_time").val();
 
@@ -215,7 +214,6 @@ function checkForm () {
         day_promised_work_time: day_promised_work_time,
         day_real_work_time    : day_real_work_time,
         overtime_frequency    : overtime_frequency,
-        email                 : email,
     };
 }
 
@@ -245,7 +243,6 @@ function submitForm() {
             day_promised_work_time: $("#day_promised_work_time").val(),
             day_real_work_time: $("#day_real_work_time").val(),
             overtime_frequency: $("#overtime_frequency_input input[name='frequency']:checked").val(),
-            email: $("#email").val(),
         },
         dataType: 'json',
     }).then(function(res) {
