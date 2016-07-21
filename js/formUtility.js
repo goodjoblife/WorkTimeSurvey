@@ -2,7 +2,7 @@ $(document).ready(function(){
     $("#job_title").autocomplete({
         source: function (request, response) {
             if(ga){
-                ga('send', 'event', 'LANDING_PAGE', 'job-title-autocomplete', request.term);
+                ga('send', 'event', 'LANDING_PAGE', 'job-title-autocomplete-search', request.term);
             }
             $.ajax({
                 url: "https://tranquil-fortress-92731.herokuapp.com/jobs/search",
@@ -22,12 +22,17 @@ $(document).ready(function(){
                 response([]);
             });
         },
+        select: function(event, ui){ 
+            if(ga){
+                ga('send', 'event', 'LANDING_PAGE', 'job-title-autocomplete-select', ui['item']['label']);
+            }
+        }
     });
 
     $("#company_query").autocomplete({
         source: function (request, response) {
             if(ga){
-                ga('send', 'event', 'LANDING_PAGE', 'company-query-autocomplete', request.term);
+                ga('send', 'event', 'LANDING_PAGE', 'company-query-autocomplete-search', request.term);
             }
             $.ajax({
                 url: "https://tranquil-fortress-92731.herokuapp.com/companies/search",
@@ -47,6 +52,9 @@ $(document).ready(function(){
         },
         minLength: 2,
         select: function(event, ui){ 
+            if(ga){
+                ga('send', 'event', 'LANDING_PAGE', 'company-query-autocomplete-select', ui['item']['company_id']);
+            }
             $("#company_id").val(ui['item']['company_id']);
         }
     });
