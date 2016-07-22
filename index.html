@@ -206,6 +206,79 @@
                                 <input type="email" class="form-control" id="email" placeholder="有新消息時將通知您(選填)" >
                             </div>
                         </div>
+
+                        <p class="text-center">
+                            <a class="btn" role="button" data-toggle="collapse" href="#more_info" aria-expanded="false" aria-controls="more_info">+我願意填更多+</a>
+                        </p>
+
+                        <div class="collapse" id="more_info">
+                            <div class="form-group">
+                                <label for="area" class="col-xs-4 col-sm-2 control-label">公司地區</label>
+                                <div class="col-xs-8 col-sm-3">
+                                    <select name="area" id="area" class="form-control">
+                                        <option value="" disabled selected>選填</option>
+                                        <option value="基隆市">基隆市</option>
+                                        <option value="臺北市">臺北市</option>
+                                        <option value="新北市">新北市</option>
+                                        <option value="桃園市">桃園市</option>
+                                        <option value="新竹市">新竹市</option>
+                                        <option value="新竹縣">新竹縣</option>
+                                        <option value="苗栗縣">苗栗縣</option>
+                                        <option value="臺中市">臺中市</option>
+                                        <option value="彰化縣">彰化縣</option>
+                                        <option value="南投縣">南投縣</option>
+                                        <option value="雲林縣">雲林縣</option>
+                                        <option value="嘉義市">嘉義市</option>
+                                        <option value="嘉義縣">嘉義縣</option>
+                                        <option value="臺南市">臺南市</option>
+                                        <option value="高雄市">高雄市</option>
+                                        <option value="屏東縣">屏東縣</option>
+                                        <option value="臺東縣">臺東縣</option>
+                                        <option value="花蓮縣">花蓮縣</option>
+                                        <option value="宜蘭縣">宜蘭縣</option>
+                                        <option value="澎湖縣">澎湖縣</option>
+                                        <option value="金門縣">金門縣</option>
+                                        <option value="連江縣">連江縣</option>
+                                    </select>
+                                </div>
+                                <div class="visible-xs-block clearfix"></div>
+                                <label for="sector" class="col-xs-4 col-sm-2 control-label">部門/門市/分廠</label>
+                                <div class="col-xs-8 col-sm-5">
+                                    <input type="text" class="form-control" id="sector" placeholder="選填">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="has_overtime_salary" class="col-xs-3 col-sm-2 control-label">有無加班費</label>
+                                <div class="col-xs-9 col-sm-10">
+                                    <select name="has_overtime_salary" id="has_overtime_salary" class="form-control">
+                                        <option value="" disabled selected>選填</option>
+                                        <option value="yes_and_obey">有，且優於或符合勞基法</option>
+                                        <option value="yes_but_disobey">有，但不符合勞基法</option>
+                                        <option value="yes_but_dont_know">有，但不清楚合不合法</option>
+                                        <option value="no_but_has_complement">沒有加班費，但會以其他形式給予</option>
+                                        <option value="no">完全沒有加班費</option>
+                                        <option value="dont_know">不知道有沒有加班費</option>
+                                        <option value="">我不想填</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="has_compensatory_dayoff" class="col-sm-2 control-label">加班有無補修</label>
+                                <div id="has-compensatory-dayoff-btn-group" class="btn-group col-xs-12 col-sm-10" data-toggle="buttons">
+                                    <label class="btn btn-default col-xs-4">
+                                        <input type="radio" name="has_compensatory_dayoff" value="1"><span class="emoji emoji-smirking"></span>有
+                                    </label>
+                                    <label class="btn btn-default col-xs-4">
+                                        <input type="radio" name="has_compensatory_dayoff" value="0"><span class="emoji emoji-halo"></span>沒有
+                                    </label>
+                                    <label class="btn btn-default col-xs-4">
+                                        <input type="radio" name="has_compensatory_dayoff" value=""><span class="emoji emoji-neutral"></span>不回答
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div id="submit-alerts"></div>
                         <div class="text-center">
                             <a id="submit" class="btn btn-default btn-lg" data-logAction="click-submit"><span id="fb-login-word">以<i class="fa fa-facebook fa-fw"></i>登入並</span>送出資料</a>
