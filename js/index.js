@@ -246,6 +246,10 @@ function submitForm() {
             day_real_work_time: $("#day_real_work_time").val(),
             overtime_frequency: $("#overtime_frequency_input input[name='frequency']:checked").val(),
             email: $("#email").val(),
+            area: $("#area").val(),
+            sector: $("#sector").val(),
+            has_overtime_salary: $("#has_overtime_salary").val(),
+            has_compensatory_dayoff: $("#has_compensatory_dayoff_input input[name='has_compensatory_dayoff']:checked").val(), 
         },
         dataType: 'json',
     }).then(function(res) {
