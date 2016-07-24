@@ -65,7 +65,7 @@ $("#submit").click(function(e) {
         }
         showAlert(err.message);
         return;
-    } 
+    }
 
     if (isFacebookSignedIn) {
         submitForm();
@@ -128,7 +128,7 @@ window.fbAsyncInit = function() {
         e.preventDefault();
         FB.ui({
             method: 'share',
-            href: 'https://worktime.goodjob.life/'
+            href: WTS.constants.siteURL
         }, function(response){
         });
     });
@@ -137,7 +137,7 @@ window.fbAsyncInit = function() {
         var q = $("#job_title").val();
         var url = 'show.html';
         if (q !== undefined && q !== '') {
-            url += '?job_title=' + encodeURIComponent(q);   
+            url += '?job_title=' + encodeURIComponent(q);
         }
         window.location.href = url;
     });
@@ -234,7 +234,7 @@ function submitForm() {
     submitting = true;
 
     $.ajax({
-        url: 'https://tranquil-fortress-92731.herokuapp.com/workings',
+        url: WTS.constants.backendURL + 'workings',
         method: 'POST',
         data: {
             access_token: FB.getAccessToken(),
@@ -270,14 +270,14 @@ function submitForm() {
         $("#result").removeClass("hidden");
 
         isSubmitEnable = false;
-        
+
         setTimeout(function(){
-              
+
             $('html, body').animate({
                 scrollTop: $("#result").offset().top
-            }, 2000);    
+            }, 2000);
         }, 2500)
-        
+
         vue.loadPage(0)
 
         $('#form').trigger('submitted');
