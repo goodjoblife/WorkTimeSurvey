@@ -5,7 +5,7 @@ $(document).ready(function(){
                 ga('send', 'event', 'LANDING_PAGE', 'job-title-autocomplete-search', request.term);
             }
             $.ajax({
-                url: "https://tranquil-fortress-92731.herokuapp.com/jobs/search",
+                url: WTS.constants.backendURL + 'jobs/search',
                 data: {
                     key : request.term,
                 },
@@ -22,7 +22,7 @@ $(document).ready(function(){
                 response([]);
             });
         },
-        select: function(event, ui){ 
+        select: function(event, ui){
             if(ga){
                 ga('send', 'event', 'LANDING_PAGE', 'job-title-autocomplete-select', ui['item']['label']);
             }
@@ -35,11 +35,11 @@ $(document).ready(function(){
                 ga('send', 'event', 'LANDING_PAGE', 'company-query-autocomplete-search', request.term);
             }
             $.ajax({
-                url: "https://tranquil-fortress-92731.herokuapp.com/companies/search",
+                url: WTS.constants.backendURL + 'companies/search',
                 data: { key : request['term'] },
                 dataType: "json",
             }).done(function( res ) {
-                nameList = new Array(); 
+                nameList = new Array();
                 console.log(res);
 
                 res.forEach(function(item, i) {
@@ -51,7 +51,7 @@ $(document).ready(function(){
             });
         },
         minLength: 2,
-        select: function(event, ui){ 
+        select: function(event, ui){
             if(ga){
                 ga('send', 'event', 'LANDING_PAGE', 'company-query-autocomplete-select', ui['item']['company_id']);
             }
