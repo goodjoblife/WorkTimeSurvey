@@ -1,3 +1,27 @@
+Vue.component('pager', {
+    template: '#pagination',
+    data: function() {
+        return {
+            page: 0,
+            pager_offset: 0,
+            pager_count: 0,
+            total_page: 0
+        };
+    },
+    props: ['page', 'pager_offset', 'pager_count', 'total_page'],
+    methods: {
+        previousPage: function() {
+            this.$dispatch('pager-switch', this.page - 1);
+        },
+        nextPage: function() {
+            this.$dispatch('pager-switch', this.page + 1);
+        },
+        switchPage: function(index) {
+            this.$dispatch('pager-switch', this.pager_offset + index);
+        }
+    }
+});
+
 var vue = new Vue({
     el: '#workings-latest-section',
     data: {
@@ -6,7 +30,6 @@ var vue = new Vue({
         //number of total data
         total: 0, 
         // << 5 6 7 8 9 10 11 >> if like this, then pager_count is 7
-        pager_count: 7, 
         limit: 10,
         workings: [],
         isAlertShown: false,
@@ -54,14 +77,8 @@ var vue = new Vue({
             };
             return this.$http.get('https://tranquil-fortress-92731.herokuapp.com/workings/latest', opt);
         },
-        previousPage: function() {
-            this.loadPage(this.page - 1);
-        },
-        nextPage: function() {
-            this.loadPage(this.page + 1);
-        },
-        switchPage: function(index) {
-            this.loadPage(this.pager_offset + index);
+        switchPage: function(page) {
+            this.loadPage(page);
         },
         showAlert: function(message) {
             this.isAlertShown = true;
