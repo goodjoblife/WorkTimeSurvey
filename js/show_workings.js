@@ -2,11 +2,11 @@ var vue = new Vue({
     el: '#workings-latest-section',
     data: {
         //current page number (目前頁碼)
-        page: 0, 
+        page: 0,
         //number of total data
-        total: 0, 
+        total: 0,
         // << 5 6 7 8 9 10 11 >> if like this, then pager_count is 7
-        pager_count: 7, 
+        pager_count: 7,
         limit: 10,
         workings: [],
         isAlertShown: false,
@@ -52,7 +52,7 @@ var vue = new Vue({
                     limit: this.limit
                 }
             };
-            return this.$http.get('https://tranquil-fortress-92731.herokuapp.com/workings/latest', opt);
+            return this.$http.get(WTS.constants.backendURL + 'workings/latest', opt);
         },
         previousPage: function() {
             this.loadPage(this.page - 1);
@@ -88,7 +88,7 @@ var vue = new Vue({
         /*
          * pager_offset: the page of 0th pager (第0個頁簽的頁碼)
          *   << 5 6 7 8 9 10 11 >> 像這樣的話，pager_offset = 5(使用者看到的) - 1 = 4
-         *                
+         *
          * 0  1  2  3  4  5  ...  ...  t-1  t
          * <----------->
          *         <----------->
