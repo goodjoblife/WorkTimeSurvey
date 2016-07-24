@@ -30,6 +30,7 @@ var vue = new Vue({
         //number of total data
         total: 0, 
         // << 5 6 7 8 9 10 11 >> if like this, then pager_count is 7
+        pager_count: 7,
         limit: 10,
         workings: [],
         isAlertShown: false,
