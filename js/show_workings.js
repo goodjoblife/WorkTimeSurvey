@@ -22,6 +22,34 @@ Vue.component('pager', {
     }
 });
 
+var jobStatisticsVue = new Vue({
+    el: '#data-section',
+    data: {
+        job: '',
+        companies: [],
+        isLoading: false,
+    },
+    methods: {
+        searchJob: function(job) {
+            this.isLoading = true;
+
+            ga && ga('send', 'event', 'QUERY_PAGE', 'search-by-job-title', job);
+
+            this.getStatistics(job).then(function(res) {
+                this.job = job;
+                this.companies = res.data;
+                this.isLoading = false;
+            }, function(res) {
+                this.isLoading = false;
+                this.companies = [];
+            });
+        },
+        getStatistics: function(job, page) {
+            return this.$http.get('https://tranquil-fortress-92731.herokuapp.com/jobs/' + encodeURIComponent(job) + '/statistics');
+        },
+    }
+});
+
 var vue = new Vue({
     el: '#workings-latest-section',
     data: {
