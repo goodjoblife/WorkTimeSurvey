@@ -132,7 +132,7 @@ var app = new Vue({
                 }
             };
             this.isLoading = true;
-            return this.$http.get('https://tranquil-fortress-92731.herokuapp.com/workings/statistics/by-company', opt)
+            return this.$http.get(WTS.constants.backendURL + 'workings/statistics/by-company', opt)
                 .then(function(res) {
                     this.companies = res.data;
                     this.isLoading = false;
