@@ -171,20 +171,20 @@ function checkForm () {
     var day_real_work_time = $("#day_real_work_time").val();
 
     if (company_query === '') {
-        throw new Error("需填公司/單位名稱或統一編號");
+        throw new Error("需填寫公司/單位");
     }
 
     //allow other type of job title
     if (job_title === '') {
-        throw new Error("需填職稱");
+        throw new Error("需填寫職稱");
     }
 
     if (week_work_time === undefined || week_work_time === '') {
-        throw new Error("需填平均每週工時");
+        throw new Error("需填寫一週總工時");
     }
     week_work_time = parseInt(week_work_time);
     if (week_work_time < 0 || week_work_time > 168) {
-        throw new Error("最近一週工時範圍為0~168小時");
+        throw new Error("一週總工時範圍為0~168小時");
     }
 
     if (day_promised_work_time === undefined || day_promised_work_time === '') {
