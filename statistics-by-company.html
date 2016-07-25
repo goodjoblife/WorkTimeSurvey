@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="分享你的真實工時資訊，讓我們一起改善工時不透明的現況！">
+    <meta name="author" content="">
+    <meta property="og:title" content="工時透明化運動 - 查看工時">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://worktime.goodjob.life/img/og-image_1200-630.png">
+    <meta property="og:url" content="https://worktime.goodjob.life/statistics-by-company.html">
+    <meta property="og:description" content="分享你的真實工時資訊，讓我們一起改善工時不透明的現況！">
+    <title>工時透明化運動 - 查看工時</title>
+    <link rel="canonical" href="https://worktime.goodjob.life/statistics-by-company.html">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/grayscale.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-79990667-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.7&appId=1750216878594984";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="index.html" data-logAction="click-nav-header-index">
+                    GoodJob
+                </a>
+            </div>
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="hidden">
+                        <a href="#page-top" data-logAction="click-nav-top"></a>
+                    </li>
+                    <li>
+                        <a href="index.html" data-logAction="click-nav-index">工時透明化運動</a>
+                    </li>
+                    <li>
+                        <a href="about_us.html" data-logAction="click-nav-about-us">關於我們</a>
+                    </li>
+                    <li class="active">
+                        <a href="show.html">查看工時</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section id="section" class="container content-section">
+        <ul class="nav nav-tabs">
+            <li role="presentation" :class="{active: currentView === 'latestWorkings'}"><a href="#/latest">最新工時資訊</a></li>
+            <li role="presentation" :class="{active: currentView === 'company'}"><a href="#/company">搜尋公司</a></li>
+            <li role="presentation" :class="{active: currentView === 'job'}"><a href="#/job_title">搜尋職稱</a></li>
+        </ul>
+        <component :is="currentView" keep-alive></component>
+    </section>
+    <template id="by-company">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <form id="form" class="form-inline" v-on:submit.prevent="onSubmit">
+                    <input id="query" type="text" class="form-control" required v-model="company_query">
+                    <button class="btn btn-default" type="submit">搜尋</button>
+                </form>
+            </div>
+        </div>
+        <div class="row" style="position: relative;">
+            <div class="col-md-12" v-for="company in companies">
+                <h3><a :href="'#/company/' + company._id.name">{{ company._id.name }}</a></h3>
+                <table class="table">
+                    <tr>
+                        <th>職稱</th>
+                        <th>平均週工時</th>
+                        <th>資料數量</th>
+                    </tr>
+                    <tr v-for="jobs in company.job_titles">
+                        <td>{{ jobs._id }}</td>
+                        <td>{{ jobs.average_week_work_time }}</td>
+                        <td>{{ jobs.count }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div style="position: absolute; top: 0; left: 0; width: 100%;" class="text-center" v-show="isLoading">
+                <i class="fa fa-spinner fa-spin fa-fw fa-3x"></i>
+            </div>
+        </div>
+    </template>
+    <template id="by-job">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <form id="form" class="form-inline" v-on:submit.prevent="onSubmit">
+                    <input type="text" class="form-control" required v-model="job_query_input" placeholder="輸入職稱，搜尋工時資訊">
+                    <button class="btn btn-default" type="submit">搜尋</button>
+                </form>
+            </div>
+        </div>
+        <div class="row data-section-row" style="position: relative;">
+            <div class="col-lg-6 col-lg-offset-3" v-show="job_query !== '' && companies.length !== 0">
+                <h2 id="search-result-title">{{ job_query }}的工時資訊</h2>
+                <table id="search-data-table" class="table table-hover">
+                    <thead>
+                        <tr><th class="text-center">公司名稱</th><th class="text-center">平均每週工時</th><th class="text-center">資料數</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="w in companies">
+                            <td>{{ w._id ? w._id.name : "" }}</td>
+                            <td>{{ w.average_week_work_time }}</td>
+                            <td>{{ w.count }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="position: absolute; top: 0; left: 0; width: 100%;" class="text-center" v-show="isLoading">
+                <i class="fa fa-spinner fa-spin fa-fw fa-3x"></i>
+            </div>
+        </div>
+    </template>
+    <template id="latest-workings">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>最新工時資訊</h2>
+                <div id="newest-workings" v-bind:class="{ 'opacity': isLoading }">
+                    <div class="row head">
+                        <div class="col-xs-12 col-sm-6 text-left company">公司名稱</div>
+                        <div class="col-xs-offset-2 col-xs-6 col-sm-offset-0 col-sm-3 text-left job-title">職稱</div>
+                        <div class="col-xs-4 col-sm-3 week-work-time">最近一週總工時</div>
+                    </div>
+                    <div class="row body" v-for="w in workings">
+                        <div class="col-xs-12 col-sm-6 text-left company">{{ w.company ? w.company.name : "" }}</div>
+                        <div class="col-xs-offset-2 col-xs-6 col-sm-offset-0 col-sm-3 text-left job-title">
+                            <a v-on:click.stop="searchTitle(w.job_title)">{{ w.job_title }}</a>
+                        </div>
+                        <div class="col-xs-4 col-sm-3 week-work-time">{{ w.week_work_time }}</div>
+                    </div>
+                    <div style="position: absolute; top: 0; left: 0; width: 100%;" v-show="isLoading">
+                        <i class="fa fa-spinner fa-spin fa-fw fa-3x"></i>
+                    </div>
+                </div>
+                <nav class="text-center">
+                    <ul class="pagination" id="newest-pagination">
+                        <li>
+                            <a aria-label="Previous" v-on:click="previousPage">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li v-for="n in pager_count" v-show="n + pager_offset < total_page" v-bind:class="{ 'active': (pager_offset + n === page)}">
+                            <a v-on:click.stop="switchPage($index)">
+                                <span v-if="(n === 0 && pager_offset > 0) || (n === pager_count - 1 && pager_offset + pager_count < total_page)">..</span>
+                                <span v-else>{{ pager_offset + n + 1 }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a aria-label="Next" v-on:click="nextPage">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div v-show="isAlertShown" class="alert alert-warning" role="alert">{{ message }}</div>
+            </div>
+        </div>
+    </template>
+    <footer>
+        <div class="container text-center">
+            <p>Copyright &copy; <a href="https://www.facebook.com/goodjob.life">GoodJob.life</a> team 2016</p>
+            <p><a href="user_term.html">使用者條款</a>&amp;<a href="privacy_policy.html">隱私權政策</a><p>
+            <p>Theme <a href="http://startbootstrap.com/template-overviews/grayscale/">Grayscale</a></p>
+        </div>
+    </footer>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/jquery.easing/js/jquery.easing.min.js"></script>
+    <script src="js/constant.js"></script>
+    <script src="js/grayscale.js"></script>
+    <link href="css/font.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.9.3/vue-resource.min.js"></script>
+    <script src="https://rawgit.com/flatiron/director/master/build/director.min.js"></script>
+    <script src="js/statistics.js"></script>
+</body>
+</html>
