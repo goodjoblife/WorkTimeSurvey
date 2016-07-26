@@ -86,6 +86,7 @@ var job = Vue.extend({
                 });
             },
             select: function(event, ui){
+                vue.job_query_input = ui.item.label;
                 vue.$dispatch('job-query-autocomplete-select', ui.item.label);
             }
         });
