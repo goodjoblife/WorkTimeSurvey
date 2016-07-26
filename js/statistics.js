@@ -60,6 +60,37 @@ var job = Vue.extend({
             }
         }
     },
+    ready: function() {
+        var $input = $(this.$el).find("form input");
+        var vue = this;
+
+        $input.autocomplete({
+            source: function (request, response) {
+                vue.$dispatch('job-query-autocomplete-search', request.term);
+                $.ajax({
+                    url: WTS.constants.backendURL + "jobs/search",
+                    data: {
+                        key : request.term,
+                    },
+                    dataType: "json",
+                }).done(function(res) {
+                    var nameList = $.map(res, function(item, i) {
+                        return {
+                            value: item.des,
+                            id: item._id,
+                        };
+                    });
+                    response(nameList);
+                }).fail(function( jqXHR, textStatus ) {
+                    response([]);
+                });
+            },
+            select: function(event, ui){
+                vue.$dispatch('job-query-autocomplete-select', ui.item.label);
+            }
+        });
+
+    },
     methods: {
         searchJob: function(job) {
             this.isLoading = true;
