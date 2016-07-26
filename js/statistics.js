@@ -307,13 +307,13 @@ var router = Router({
     '/job_title/(.*)': function(name) {
         app.currentView = "job";
         Vue.nextTick(function() {
-            app.$broadcast('change_job_query', name);
+            app.$broadcast('change_job_query', decodeURIComponent(name));
         });
     },
     '/company/(.*)': function(name) {
         app.currentView = "company";
         Vue.nextTick(function() {
-            app.$broadcast('change_company_query', name);
+            app.$broadcast('change_company_query', decodeURIComponent(name));
         });
     }
 }).configure({
