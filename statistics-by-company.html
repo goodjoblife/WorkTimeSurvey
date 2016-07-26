@@ -149,9 +149,11 @@
                         <div class="col-xs-4 col-sm-3 week-work-time">最近一週總工時</div>
                     </div>
                     <div class="row body" v-for="w in workings">
-                        <div class="col-xs-12 col-sm-6 text-left company">{{ w.company ? w.company.name : "" }}</div>
+                        <div class="col-xs-12 col-sm-6 text-left company">
+                            <a :href="'#/company/' + ( w.company ? w.company.name : '' )">{{ w.company ? w.company.name : "" }}</a>
+                        </div>
                         <div class="col-xs-offset-2 col-xs-6 col-sm-offset-0 col-sm-3 text-left job-title">
-                            <a v-on:click.stop="searchTitle(w.job_title)">{{ w.job_title }}</a>
+                            <a :href="'#/job_title/' + w.job_title">{{ w.job_title }}</a>
                         </div>
                         <div class="col-xs-4 col-sm-3 week-work-time">{{ w.week_work_time }}</div>
                     </div>
