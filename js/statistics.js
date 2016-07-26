@@ -4,7 +4,8 @@ var company = Vue.extend({
         return {
             company_query: '',
             companies: [],
-            isLoading: false
+            isLoading: false,
+            error: false
         }
     },
     events: {
@@ -14,6 +15,7 @@ var company = Vue.extend({
             if (query !== '') {
                 this.doQuery(query);
             } else {
+                this.error = false;
                 this.companies = [];
             }
         }
@@ -29,7 +31,16 @@ var company = Vue.extend({
             return this.$http.get(WTS.constants.backendURL + 'workings/statistics/by-company', opt)
                 .then(function(res) {
                     this.companies = res.data;
+                    if (this.companies.length === 0) {
+                        this.error = true;
+                    } else {
+                        this.error = false;
+                    }
                     this.isLoading = false;
+                }, function(res) {
+                    this.isLoading = false;
+                    this.error = true;
+                    this.companies = [];
                 });
         },
         onSubmit: function() {
@@ -46,6 +57,7 @@ var job = Vue.extend({
             job_query_input: '',
             companies: [],
             isLoading: false,
+            error: false
         };
     },
     events: {
@@ -56,6 +68,7 @@ var job = Vue.extend({
             if (query !== '') {
                 this.searchJob(query);
             } else {
+                this.error = false;
                 this.companies = [];
             }
         }
@@ -101,9 +114,15 @@ var job = Vue.extend({
             this.getStatistics(job).then(function(res) {
                 this.job_query = job;
                 this.companies = res.data;
+                if (this.companies.length === 0) {
+                    this.error = true;
+                } else {
+                    this.error = false;
+                }
                 this.isLoading = false;
             }, function(res) {
                 this.isLoading = false;
+                this.error = true;
                 this.companies = [];
             });
         },
