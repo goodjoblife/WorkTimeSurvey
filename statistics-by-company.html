@@ -75,6 +75,12 @@
             <li role="presentation" :class="{active: currentView === 'job'}"><a href="#/job_title">搜尋職稱</a></li>
         </ul>
         <component :is="currentView" keep-alive></component>
+        <div class="row text-center">
+            <div class="col-md-12 fan-page-like">
+                <p style="display:inline"><a href="https://www.facebook.com/goodjob.life/">粉絲頁</a>按讚，隨時取得最新消息</p>
+                <div class="fb-like" data-href="https://www.facebook.com/goodjob.life/" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div>
+            </div>
+        </div>
     </section>
     <template id="by-company">
         <div class="row">
