@@ -42,7 +42,7 @@ $(function() {
             View.$searchBarAlert.html(message).removeClass("hidden");
             setTimeout(function() {
                 View.$searchBarAlert.addClass("hidden");
-            }, 3000);    
+            }, 3000);
         },
         // A view convert working to view
         make: function(w) {
@@ -58,7 +58,7 @@ $(function() {
      */
     function queryWorkings(job_title, page) {
         return $.ajax({
-            url: 'https://tranquil-fortress-92731.herokuapp.com/jobs/' + encodeURIComponent(job_title) + '/statistics',
+            url: WTS.constants.backendURL + 'jobs/' + encodeURIComponent(job_title) + '/statistics',
             data: {
                 page: page,
             },
@@ -88,7 +88,7 @@ $(function() {
                 ga('send', 'event', 'QUERY_PAGE', 'query-autocomplete-search', request.term);
             }
             $.ajax({
-                url: "https://tranquil-fortress-92731.herokuapp.com/jobs/search",
+                url: WTS.constants.backendURL + "jobs/search",
                 data: {
                     key : request.term,
                 },
@@ -105,7 +105,7 @@ $(function() {
                 response([]);
             });
         },
-        select: function(event, ui){ 
+        select: function(event, ui){
             if(ga){
                 ga('send', 'event', 'LANDING_PAGE', 'query-autocomplete-select', ui['item']['label']);
             }
@@ -129,7 +129,7 @@ $(function() {
 
         queryWorkings(job_title, 0).then(function(workings) {
             loading = false;
-            
+
             View.currentPage = 0;
             View.currentWorkings = workings;
             if (workings.length == 0) {

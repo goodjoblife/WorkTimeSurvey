@@ -65,7 +65,7 @@ $("#submit").click(function(e) {
         }
         showAlert(err.message);
         return;
-    } 
+    }
 
     if (isFacebookSignedIn) {
         submitForm();
@@ -128,7 +128,7 @@ window.fbAsyncInit = function() {
         e.preventDefault();
         FB.ui({
             method: 'share',
-            href: 'https://worktime.goodjob.life/'
+            href: WTS.constants.siteURL
         }, function(response){
         });
     });
@@ -137,7 +137,7 @@ window.fbAsyncInit = function() {
         var q = $("#job_title").val();
         var url = 'show.html';
         if (q !== undefined && q !== '') {
-            url += '?job_title=' + encodeURIComponent(q);   
+            url += '?job_title=' + encodeURIComponent(q);
         }
         window.location.href = url;
     });
@@ -171,20 +171,20 @@ function checkForm () {
     var day_real_work_time = $("#day_real_work_time").val();
 
     if (company_query === '') {
-        throw new Error("需填公司/單位名稱或統一編號");
+        throw new Error("需填寫公司/單位");
     }
 
     //allow other type of job title
     if (job_title === '') {
-        throw new Error("需填職稱");
+        throw new Error("需填寫職稱");
     }
 
     if (week_work_time === undefined || week_work_time === '') {
-        throw new Error("需填平均每週工時");
+        throw new Error("需填寫一週總工時");
     }
     week_work_time = parseInt(week_work_time);
     if (week_work_time < 0 || week_work_time > 168) {
-        throw new Error("最近一週工時範圍為0~168小時");
+        throw new Error("一週總工時範圍為0~168小時");
     }
 
     if (day_promised_work_time === undefined || day_promised_work_time === '') {
@@ -234,7 +234,7 @@ function submitForm() {
     submitting = true;
 
     $.ajax({
-        url: 'https://tranquil-fortress-92731.herokuapp.com/workings',
+        url: WTS.constants.backendURL + 'workings',
         method: 'POST',
         data: {
             access_token: FB.getAccessToken(),
@@ -270,14 +270,14 @@ function submitForm() {
         $("#result").removeClass("hidden");
 
         isSubmitEnable = false;
-        
+
         setTimeout(function(){
-              
+
             $('html, body').animate({
                 scrollTop: $("#result").offset().top
-            }, 2000);    
+            }, 2000);
         }, 2500)
-        
+
         vue.loadPage(0)
 
         $('#form').trigger('submitted');

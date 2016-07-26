@@ -49,7 +49,16 @@
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
+    <!--fb like button-->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.7&appId=1750216878594984";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
@@ -136,7 +145,7 @@
                     <div class="row head">
                         <div class="col-xs-12 col-sm-6 text-left company">公司名稱</div>
                         <div class="col-xs-offset-2 col-xs-6 col-sm-offset-0 col-sm-3 text-left job-title">職稱</div>
-                        <div class="col-xs-4 col-sm-3 week-work-time">平均每週工時</div>
+                        <div class="col-xs-4 col-sm-3 week-work-time">最近一週總工時</div>
                     </div>
                     <div class="row body" v-for="w in workings">
                         <div class="col-xs-12 col-sm-6 text-left company">{{ w.company ? w.company.name : "" }}</div>
@@ -170,6 +179,10 @@
                     </ul>
                 </nav>
                 <div v-show="isAlertShown" class="alert alert-warning" role="alert">{{ message }}</div>
+                <div class="fan-page-like">
+                    <p style="display:inline"><a href="https://www.facebook.com/goodjob.life/">粉絲頁</a>按讚，隨時取得最新消息</p>
+                    <div class="fb-like" data-href="https://www.facebook.com/goodjob.life/" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -184,20 +197,21 @@
     </footer>
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- jQuery UI -->
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="js/jquery.easing.min.js"></script>
+    <script src="bower_components/jquery.easing/js/jquery.easing.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="js/grayscale.js"></script>
+    <script src="js/constant.js"></script>
     <script src="js/show-i13n.js"></script>
     <script src="js/show_workings.js"></script>
     <script src="js/show_by_job.js"></script>
