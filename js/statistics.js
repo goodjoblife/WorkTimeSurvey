@@ -388,6 +388,14 @@ app.$on('job-query-autocomplete-select', function(q) {
     ga('send', 'event', category, 'job-title-query-autocomplete-select', q);
 });
 
+app.$on('company-query-autocomplete-search', function(q) {
+    ga('send', 'event', category, 'company-query-autocomplete-search', q);
+});
+
+app.$on('company-query-autocomplete-select', function(q) {
+    ga('send', 'event', category, 'company-query-autocomplete-select', q);
+});
+
 app.$on('company-form-submit', function(company) {
     ga('send', 'event', category, 'search-by-company', company);
 });
