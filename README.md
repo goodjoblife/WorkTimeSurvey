@@ -18,4 +18,23 @@
 * 使用者介面設計(UI)
 * 使用者經驗設計(UX)
 
+## 如何開始
+
+我們使用 [Bower](https://bower.io/) 做套件管理，詳細的套件請看 [bower.json](bower.json) 。
+
+### 安裝
+
+```
+bower install
+```
+
+### 測試
+
+你可以使用 python3 來開一個 local 的 http 伺服器
+
+```
+python3 -m http.server
+```
+
+打開你的瀏覽器 http://localhost:8000 ，就可以了
 
