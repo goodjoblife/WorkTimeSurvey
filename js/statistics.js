@@ -109,8 +109,6 @@ var job = Vue.extend({
         searchJob: function(job) {
             this.isLoading = true;
 
-            //ga && ga('send', 'event', 'QUERY_PAGE', 'search-by-job-title', job);
-
             this.getStatistics(job).then(function(res) {
                 this.job_query = job;
                 this.companies = res.data;
@@ -279,11 +277,16 @@ var app = new Vue({
     }
 });
 
+// for ga use
+var category = "QUERY_PAGE";
+
 var router = Router({
     '/latest': function() {
         app.currentView = "latestWorkings";
         Vue.nextTick(function() {
             app.$broadcast('open_latest', 0);
+
+            ga('send', 'event', category, 'visit-latest');
         });
     },
     '/latest/:page': function(page) {
@@ -296,24 +299,32 @@ var router = Router({
         app.currentView = "company";
         Vue.nextTick(function() {
             app.$broadcast('change_company_query', '');
+
+            ga('send', 'event', category, 'visit-company');
         });
     },
     '/job_title': function() {
         app.currentView = "job";
         Vue.nextTick(function() {
             app.$broadcast('change_job_query', '');
+
+            ga('send', 'event', category, 'visit-job-title');
         });
     },
     '/job_title/(.*)': function(name) {
         app.currentView = "job";
         Vue.nextTick(function() {
             app.$broadcast('change_job_query', decodeURIComponent(name));
+
+            ga('send', 'event', category, 'visit-job-title', decodeURIComponent(name));
         });
     },
     '/company/(.*)': function(name) {
         app.currentView = "company";
         Vue.nextTick(function() {
             app.$broadcast('change_company_query', decodeURIComponent(name));
+
+            ga('send', 'event', category, 'visit-company', decodeURIComponent(name));
         });
     }
 }).configure({
@@ -331,3 +342,31 @@ app.$on('job-form-submit', function(job_title) {
 });
 
 router.init();
+
+//*************************************************
+//
+//  Begin of GA part
+//
+//*************************************************
+
+app.$on('job-query-autocomplete-search', function(q) {
+    ga('send', 'event', category, 'job-title-query-autocomplete-search', q);
+});
+
+app.$on('job-query-autocomplete-select', function(q) {
+    ga('send', 'event', category, 'job-title-query-autocomplete-select', q);
+});
+
+app.$on('company-form-submit', function(company) {
+    ga('send', 'event', category, 'search-by-company', company);
+});
+
+app.$on('job-form-submit', function(job_title) {
+    ga('send', 'event', category, 'search-by-job-title', company);
+});
+
+//*************************************************
+//
+//  End of GA part
+//
+//*************************************************
