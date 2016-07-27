@@ -130,7 +130,7 @@ var job = Vue.extend({
             return this.$http.get(WTS.constants.backendURL + 'jobs/' + encodeURIComponent(job) + '/statistics');
         },
         onSubmit: function() {
-            router.setRoute('/job_title/' + this.job_query_input);
+            this.$dispatch('job-form-submit', this.job_query_input);
         }
     }
 });
@@ -324,6 +324,10 @@ var router = Router({
 
 app.$on('company-form-submit', function(q) {
     router.setRoute('/company/' + q);
+});
+
+app.$on('job-form-submit', function(job_title) {
+    router.setRoute('/job_title/' + job_title);
 });
 
 router.init();
