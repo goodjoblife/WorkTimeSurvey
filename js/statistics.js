@@ -44,7 +44,7 @@ var company = Vue.extend({
                 });
         },
         onSubmit: function() {
-            router.setRoute('/company/' + this.company_query);
+            this.$dispatch('company-form-submit', this.company_query);
         }
     }
 });
@@ -320,6 +320,10 @@ var router = Router({
     'notfound': function() {
         router.setRoute('/latest');
     }
+});
+
+app.$on('company-form-submit', function(q) {
+    router.setRoute('/company/' + q);
 });
 
 router.init();
