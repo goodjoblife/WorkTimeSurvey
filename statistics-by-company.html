@@ -71,8 +71,8 @@
     <section id="section" class="container content-section">
         <ul class="nav nav-tabs">
             <li role="presentation" :class="{active: currentView === 'latestWorkings'}"><a href="#/latest">最新工時資訊</a></li>
-            <li role="presentation" :class="{active: currentView === 'company'}"><a href="#/company">搜尋公司</a></li>
-            <li role="presentation" :class="{active: currentView === 'job'}"><a href="#/job_title">搜尋職稱</a></li>
+            <li role="presentation" :class="{active: currentView === 'company'}"><a href="#/company">以公司搜尋</a></li>
+            <li role="presentation" :class="{active: currentView === 'job'}"><a href="#/job_title">以職稱蒐尋</a></li>
         </ul>
         <component :is="currentView" keep-alive></component>
         <div class="row text-center">
