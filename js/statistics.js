@@ -81,7 +81,7 @@ var job = Vue.extend({
             source: function (request, response) {
                 vue.$dispatch('job-query-autocomplete-search', request.term);
                 $.ajax({
-                    url: WTS.constants.backendURL + "jobs/search",
+                    url: WTS.constants.backendURL + "workings/jobs/search",
                     data: {
                         key : request.term,
                     },
@@ -89,7 +89,7 @@ var job = Vue.extend({
                 }).done(function(res) {
                     var nameList = $.map(res, function(item, i) {
                         return {
-                            value: item.des,
+                            value: item._id,
                             id: item._id,
                         };
                     });
