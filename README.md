@@ -36,5 +36,5 @@ bower install
 python3 -m http.server
 ```
 
-打開你的瀏覽器，就可以了
+打開你的瀏覽器 http://localhost:8000 ，就可以了
 
