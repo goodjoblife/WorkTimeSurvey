@@ -87,8 +87,12 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <form id="form" class="form-inline" v-on:submit.prevent="onSubmit">
-                    <input id="query" type="text" class="form-control" required v-model="company_query" placeholder="輸入公司/單位名稱，搜尋工時資訊">
-                    <button class="btn btn-default" type="submit">搜尋</button>
+                    <div class="input-group">
+                        <input id="query" type="text" class="form-control" required v-model="company_query" placeholder="輸入公司/單位名稱，搜尋工時資訊">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">搜尋</button>
+                        </span>
+                    </div>
                 </form>
             </div>
         </div>
@@ -124,8 +128,12 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <form id="form" class="form-inline" v-on:submit.prevent="onSubmit">
-                    <input type="text" class="form-control" required v-model="job_query_input" placeholder="輸入職稱，搜尋工時資訊">
-                    <button class="btn btn-default" type="submit">搜尋</button>
+                    <div class="input-group">
+                        <input type="text" class="form-control" required v-model="job_query_input" placeholder="輸入職稱，搜尋工時資訊">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">搜尋</button>
+                        </span>
+                    </div>
                 </form>
             </div>
         </div>
