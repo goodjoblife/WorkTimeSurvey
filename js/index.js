@@ -31,6 +31,18 @@ $(function() {
         });
     });
 
+    $("input.warn-if-empty").each(function(){
+        $(this).focusout(function(){
+            if($(this).val() === ''){
+                $(this).parent().addClass("has-error");
+                $(this).attr("placeholder", "本欄必填");
+            }
+            else{
+                $(this).parent().removeClass("has-error");
+            }
+        });
+    });
+
     // a way to trigger the form is starting
     (function() {
         var isCalled = false;
