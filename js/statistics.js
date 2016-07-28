@@ -13,7 +13,7 @@ var company = Vue.extend({
             this.company_query = query;
 
             if (query !== '') {
-                this.doQuery(query);
+                this.queryStatistics(query);
             } else {
                 this.error = false;
                 this.companies = [];
@@ -52,14 +52,9 @@ var company = Vue.extend({
         });
     },
     methods: {
-        doQuery: function(query) {
-            var opt = {
-                params: {
-                    company: query
-                }
-            };
+        queryStatistics: function(query) {
             this.isLoading = true;
-            return this.$http.get(WTS.constants.backendURL + 'workings/statistics/by-company', opt)
+            this.getStatistics(query)
                 .then(function(res) {
                     this.companies = res.data;
                     if (this.companies.length === 0) {
@@ -73,6 +68,14 @@ var company = Vue.extend({
                     this.error = true;
                     this.companies = [];
                 });
+        },
+        getStatistics: function(company) {
+            var opt = {
+                params: {
+                    company: company,
+                }
+            };
+            return this.$http.get(WTS.constants.backendURL + 'workings/statistics/by-company', opt);
         },
         onSubmit: function() {
             this.$dispatch('company-form-submit', this.company_query);
@@ -97,7 +100,7 @@ var job = Vue.extend({
             this.job_query_input = query;
 
             if (query !== '') {
-                this.searchJob(query);
+                this.queryStatistics(query);
             } else {
                 this.error = false;
                 this.companies = [];
@@ -137,7 +140,7 @@ var job = Vue.extend({
 
     },
     methods: {
-        searchJob: function(job) {
+        queryStatistics: function(job) {
             this.isLoading = true;
 
             this.getStatistics(job).then(function(res) {
@@ -155,7 +158,7 @@ var job = Vue.extend({
                 this.companies = [];
             });
         },
-        getStatistics: function(job, page) {
+        getStatistics: function(job) {
             return this.$http.get(WTS.constants.backendURL + 'jobs/' + encodeURIComponent(job) + '/statistics');
         },
         onSubmit: function() {
