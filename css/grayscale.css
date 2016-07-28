@@ -544,6 +544,16 @@ a.knowMoreBtn {
 .emoji.emoji-screaming {
     background-image: url('../img/1f631.svg');
 }
+.emoji.emoji-smirking {
+    background-image: url('../img/1f60f.svg');
+}
+.emoji.emoji-halo {
+    background-image: url('../img/1f607.svg');
+}
+.emoji.emoji-neutral {
+    background-image: url('../img/1f610.svg');
+}
+
 
 .form-group {
     padding-top: 5px;
@@ -621,4 +631,8 @@ h3.tight {
 
 #privacy-term-section h3 {
     margin-top: 35px;
+}
+
+#form select{
+    padding-top: 3px;
 }
