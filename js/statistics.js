@@ -367,7 +367,7 @@ app.$on('job-form-submit', function(job_title) {
     router.setRoute('/job_title/' + job_title);
 });
 
-router.init();
+router.init(['/']);
 
 //*************************************************
 //
