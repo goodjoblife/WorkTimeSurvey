@@ -248,14 +248,6 @@ var latestWorkings = Vue.extend({
                 me.isAlertShown = false;
             }, 2000);
         },
-        searchTitle: function(keyword) {
-            var q = $('#query'),
-                form = $('#search-form');
-            if (q.length !== 0) {
-                q.val(keyword);
-                form.submit();
-            }
-        }
     },
     computed: {
         total_page: function() {
