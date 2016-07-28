@@ -83,7 +83,7 @@
         </div>
     </section>
     <template id="by-company">
-        <div>
+        <div class="content-tab">
         <div class="row">
             <div class="col-md-12 text-center">
                 <form id="form" class="form-inline" v-on:submit.prevent="onSubmit">
@@ -120,7 +120,7 @@
         </div>
     </template>
     <template id="by-job">
-        <div>
+        <div class="content-tab">
         <div class="row">
             <div class="col-md-12 text-center">
                 <form id="form" class="form-inline" v-on:submit.prevent="onSubmit">
@@ -157,6 +157,7 @@
         </div>
     </template>
     <template id="latest-workings">
+        <div class="content-tab"> 
         <div class="row">
             <div class="col-md-12">
                 <h2>最新工時資訊</h2>
@@ -201,6 +202,7 @@
                 </nav>
                 <div v-show="isAlertShown" class="alert alert-warning" role="alert">{{ message }}</div>
             </div>
+        </div>
         </div>
     </template>
     <footer>
