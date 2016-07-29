@@ -35,7 +35,7 @@ $(function() {
         $(this).focusout(function(){
             if($(this).val() === ''){
                 $(this).parent().addClass("has-error");
-                if($(this).hasClass('can-autocomplete')){
+                if($(this).hasClass('ui-autocomplete-input')){
                     $(this).attr("title", "本欄必填(可自動完成)")
                             .tooltip({'trigger': 'manual'})
                             .tooltip("show");    
