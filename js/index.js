@@ -35,10 +35,19 @@ $(function() {
         $(this).focusout(function(){
             if($(this).val() === ''){
                 $(this).parent().addClass("has-error");
-                $(this).attr("placeholder", "本欄必填");
+                if($(this).hasClass('can-autocomplete')){
+                    $(this).attr("title", "本欄必填(可自動完成)")
+                            .tooltip({'trigger': 'manual'})
+                            .tooltip("show");    
+                }else{
+                    $(this).attr("data-original-title", "本欄必填")
+                        .tooltip({'trigger': 'manual'})
+                        .tooltip("show");    
+                }
             }
             else{
                 $(this).parent().removeClass("has-error");
+                $(this).tooltip("hide");
             }
         });
     });
