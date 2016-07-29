@@ -192,39 +192,48 @@ function checkForm () {
     var day_real_work_time = $("#day_real_work_time").val();
 
     if (company_query === '') {
+        showTooltipAndScroll($("#company_query"), "需填寫公司/單位");
         throw new Error("需填寫公司/單位");
     }
 
     //allow other type of job title
     if (job_title === '') {
+        showTooltipAndScroll($("#job_title"), "需填寫職稱");
         throw new Error("需填寫職稱");
     }
 
     if (week_work_time === undefined || week_work_time === '') {
+        showTooltipAndScroll($("#week_work_time"), "需填寫一週總工時");
         throw new Error("需填寫一週總工時");
     }
     week_work_time = parseInt(week_work_time);
     if (week_work_time < 0 || week_work_time > 168) {
+        showTooltipAndScroll($("#week_work_time"), "一週總工時範圍為0~168小時");
         throw new Error("一週總工時範圍為0~168小時");
     }
 
     if (day_promised_work_time === undefined || day_promised_work_time === '') {
+        showTooltipAndScroll($("#day_promised_work_time"), "需填寫工作日表定工作時間");
         throw new Error("需填寫工作日表定工作時間");
     }
     day_promised_work_time = parseInt(day_promised_work_time);
     if (day_promised_work_time < 0 || day_promised_work_time > 24) {
+        showTooltipAndScroll($("#day_promised_work_time"), "工作日表定工作時間範圍為0~24小時");
         throw new Error("工作日表定工作時間範圍為0~24小時");
     }
 
     if (day_real_work_time === undefined || day_real_work_time === '') {
+        showTooltipAndScroll($("#day_real_work_time"), "需填寫工作日實際工作時間");
         throw new Error("需填寫工作日實際工作時間");
     }
     day_real_work_time = parseInt(day_real_work_time);
     if (day_real_work_time < 0 || day_real_work_time > 24) {
+        showTooltipAndScroll($("#day_real_work_time"), "工作日實際工作時間範圍為0~24小時");
         throw new Error("工作日實際工作時間範圍為0~24小時");
     }
 
     if (overtime_frequency === undefined || overtime_frequency === '') {
+        showTooltipAndScroll($("#overtime_frequency_input"), "需填寫加班頻率");
         throw new Error("需填寫加班頻率");
     }
 
@@ -238,6 +247,30 @@ function checkForm () {
         overtime_frequency    : overtime_frequency,
         email                 : email,
     };
+}
+
+function showTooltipAndScroll($selector, message){
+    $selector.parent().addClass("has-error");
+    $selector.attr("title", message)
+            .attr("data-original-title", message)
+            .tooltip({'trigger': 'manual'})
+            .tooltip("show");
+    scrollToCenter($selector);
+}
+
+function scrollToCenter($selector){
+    var elHeight = $selector.height();
+    var elOffset = $selector.offset().top;
+    var windowHeight = $(window).height();
+    if (elHeight < windowHeight) {
+        offset = elOffset - ((windowHeight / 2) - (elHeight / 2));
+    }
+    else {
+        offset = elOffset;
+    }
+    $('html, body').animate({
+        scrollTop: offset
+    }, 2000);
 }
 
 /* Indicating whether the form is submiting or not
