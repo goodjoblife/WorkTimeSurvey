@@ -181,7 +181,7 @@ function getUserInfo() {
 }
 
 function checkForm () {
-    console.log("check!");
+    console.log("checking form...");
     var company_id = $("#company_id").val();
     var company_query = $("#company_query").val();
     var job_title = $("#job_title").val();
