@@ -31,24 +31,22 @@ $(function() {
         });
     });
 
-    $("input.warn-if-empty").each(function(){
-        $(this).focusout(function(){
-            if($(this).val() === ''){
-                $(this).parent().addClass("has-error");
-                if($(this).hasClass('ui-autocomplete-input')){
-                    $(this).attr("data-original-title", "本欄必填(可自動完成)")
-                            .tooltip({'trigger': 'manual'})
-                            .tooltip("show");    
-                } else {
-                    $(this).attr("data-original-title", "本欄必填")
+    $("input.warn-if-empty").focusout(function(){
+        if($(this).val() === ''){
+            $(this).parent().addClass("has-error");
+            if($(this).hasClass('ui-autocomplete-input')){
+                $(this).attr("data-original-title", "本欄必填(可自動完成)")
                         .tooltip({'trigger': 'manual'})
                         .tooltip("show");    
-                }
             } else {
-                $(this).parent().removeClass("has-error");
-                $(this).tooltip("hide");
+                $(this).attr("data-original-title", "本欄必填")
+                        .tooltip({'trigger': 'manual'})
+                        .tooltip("show");    
             }
-        });
+        } else {
+            $(this).parent().removeClass("has-error");
+            $(this).tooltip("hide");
+        }
     });
 
     // a way to trigger the form is starting
