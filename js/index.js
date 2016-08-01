@@ -36,7 +36,7 @@ $(function() {
             if($(this).val() === ''){
                 $(this).parent().addClass("has-error");
                 if($(this).hasClass('ui-autocomplete-input')){
-                    $(this).attr("title", "本欄必填(可自動完成)")
+                    $(this).attr("data-original-title", "本欄必填(可自動完成)")
                             .tooltip({'trigger': 'manual'})
                             .tooltip("show");    
                 }else{
@@ -251,25 +251,11 @@ function checkForm () {
 
 function showTooltipAndScroll($selector, message){
     $selector.parent().addClass("has-error");
-    $selector.attr("title", message)
-            .attr("data-original-title", message)
+    $selector.attr("data-original-title", message)
             .tooltip({'trigger': 'manual'})
             .tooltip("show");
-    scrollToCenter($selector);
-}
-
-function scrollToCenter($selector){
-    var elHeight = $selector.height();
-    var elOffset = $selector.offset().top;
-    var windowHeight = $(window).height();
-    if (elHeight < windowHeight) {
-        offset = elOffset - ((windowHeight / 2) - (elHeight / 2));
-    }
-    else {
-        offset = elOffset;
-    }
     $('html, body').animate({
-        scrollTop: offset
+        scrollTop: $selector.offset().top - 150 
     }, 2000);
 }
 
