@@ -360,11 +360,11 @@ var router = Router({
 });
 
 app.$on('company-form-submit', function(q) {
-    router.setRoute('/company/' + q);
+    router.setRoute('/company/' + encodeURIComponent(q));
 });
 
 app.$on('job-form-submit', function(job_title) {
-    router.setRoute('/job_title/' + job_title);
+    router.setRoute('/job_title/' + encodeURIComponent(job_title));
 });
 
 router.init(['/']);
