@@ -622,3 +622,9 @@ h3.tight {
 #privacy-term-section h3 {
     margin-top: 35px;
 }
+
+@media (max-width: 400px) {
+    .input-group-addon{
+        padding: 6px 6px;
+    }
+}
