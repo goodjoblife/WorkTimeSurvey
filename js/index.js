@@ -39,13 +39,12 @@ $(function() {
                     $(this).attr("data-original-title", "本欄必填(可自動完成)")
                             .tooltip({'trigger': 'manual'})
                             .tooltip("show");    
-                }else{
+                } else {
                     $(this).attr("data-original-title", "本欄必填")
                         .tooltip({'trigger': 'manual'})
                         .tooltip("show");    
                 }
-            }
-            else{
+            } else {
                 $(this).parent().removeClass("has-error");
                 $(this).tooltip("hide");
             }
