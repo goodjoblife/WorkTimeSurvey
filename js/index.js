@@ -81,7 +81,6 @@ $("#submit").click(function(e) {
         if(ga){
             ga('send', 'event', "LANDING_PAGE", "check-form-fail", err.message);
         }
-        showAlert(err.message);
         return;
     }
 
