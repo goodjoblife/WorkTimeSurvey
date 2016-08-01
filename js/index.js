@@ -202,7 +202,11 @@ function checkForm () {
         showTooltipAndScroll($("#day_promised_work_time"), "需填寫工作日表定工作時間");
         throw new Error("需填寫工作日表定工作時間");
     }
-    day_promised_work_time = parseInt(day_promised_work_time);
+    day_promised_work_time = parseFloat(day_promised_work_time);
+    if(isNaN(day_promised_work_time)){
+        showTooltipAndScroll($("#day_promised_work_time"), "工作日表定工作時間並非數字");
+        throw new Error("工作日表定工作時間並非數字");
+    }
     if (day_promised_work_time < 0 || day_promised_work_time > 24) {
         showTooltipAndScroll($("#day_promised_work_time"), "工作日表定工作時間範圍為0~24小時");
         throw new Error("工作日表定工作時間範圍為0~24小時");
@@ -212,7 +216,11 @@ function checkForm () {
         showTooltipAndScroll($("#day_real_work_time"), "需填寫工作日實際工作時間");
         throw new Error("需填寫工作日實際工作時間");
     }
-    day_real_work_time = parseInt(day_real_work_time);
+    day_real_work_time = parseFloat(day_real_work_time);
+    if(isNaN(day_real_work_time)){
+        showTooltipAndScroll($("#day_real_work_time"), "工作日實際工作時間並非數字");
+        throw new Error("工作日實際工作時間並非數字");
+    }
     if (day_real_work_time < 0 || day_real_work_time > 24) {
         showTooltipAndScroll($("#day_real_work_time"), "工作日實際工作時間範圍為0~24小時");
         throw new Error("工作日實際工作時間範圍為0~24小時");
@@ -222,7 +230,11 @@ function checkForm () {
         showTooltipAndScroll($("#week_work_time"), "需填寫一週總工時");
         throw new Error("需填寫一週總工時");
     }
-    week_work_time = parseInt(week_work_time);
+    week_work_time = parseFloat(week_work_time);
+    if(isNaN(week_work_time)){
+        showTooltipAndScroll($("#week_work_time"), "一週總工時並非數字");
+        throw new Error("一週總工時並非數字");
+    }
     if (week_work_time < 0 || week_work_time > 168) {
         showTooltipAndScroll($("#week_work_time"), "一週總工時範圍為0~168小時", false);
         throw new Error("一週總工時範圍為0~168小時");
