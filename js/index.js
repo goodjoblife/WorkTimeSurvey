@@ -202,16 +202,6 @@ function checkForm () {
         throw new Error("需填寫職稱");
     }
 
-    if (week_work_time === undefined || week_work_time === '') {
-        showTooltipAndScroll($("#week_work_time"), "需填寫一週總工時");
-        throw new Error("需填寫一週總工時");
-    }
-    week_work_time = parseInt(week_work_time);
-    if (week_work_time < 0 || week_work_time > 168) {
-        showTooltipAndScroll($("#week_work_time"), "一週總工時範圍為0~168小時");
-        throw new Error("一週總工時範圍為0~168小時");
-    }
-
     if (day_promised_work_time === undefined || day_promised_work_time === '') {
         showTooltipAndScroll($("#day_promised_work_time"), "需填寫工作日表定工作時間");
         throw new Error("需填寫工作日表定工作時間");
@@ -232,8 +222,18 @@ function checkForm () {
         throw new Error("工作日實際工作時間範圍為0~24小時");
     }
 
+    if (week_work_time === undefined || week_work_time === '') {
+        showTooltipAndScroll($("#week_work_time"), "需填寫一週總工時");
+        throw new Error("需填寫一週總工時");
+    }
+    week_work_time = parseInt(week_work_time);
+    if (week_work_time < 0 || week_work_time > 168) {
+        showTooltipAndScroll($("#week_work_time"), "一週總工時範圍為0~168小時", false);
+        throw new Error("一週總工時範圍為0~168小時");
+    }
+
     if (overtime_frequency === undefined || overtime_frequency === '') {
-        showTooltipAndScroll($("#overtime_frequency_input"), "需填寫加班頻率");
+        showTooltipAndScroll($("#overtime_frequency_input"), "需填寫加班頻率", false);
         throw new Error("需填寫加班頻率");
     }
 
@@ -249,8 +249,13 @@ function checkForm () {
     };
 }
 
-function showTooltipAndScroll($selector, message){
-    $selector.parent().addClass("has-error");
+function showTooltipAndScroll($selector, message, addHasErrorClass){
+    if(addHasErrorClass === undefined){
+        addHasErrorClass = false;
+    }
+    if(addHasErrorClass){
+        $selector.parent().addClass("has-error");    
+    }
     $selector.attr("data-original-title", message)
             .tooltip({'trigger': 'manual'})
             .tooltip("show");
