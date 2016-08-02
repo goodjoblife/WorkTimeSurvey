@@ -189,7 +189,7 @@ a:focus {
     padding: 100px 0;
     text-align: center;
     color: #fff;
-    background: url(../img/background_1920-1080.png) no-repeat bottom center scroll;
+    background: url(../img/background_1920-1080.png) repeat bottom center scroll;
     background-color: #fff;
     -webkit-background-size: cover;
     -moz-background-size: cover;
