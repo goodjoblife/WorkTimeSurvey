@@ -316,27 +316,11 @@ a:focus {
     width: 100%;
     padding: 50px 0;
     color: #000;
-    background-color: transparent;
-    position: relative;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
 }
-
-.form-section:before {
-    content: ' ';
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    opacity: 0.3;
-    background: url(../img/background_1920-1080.png) no-repeat bottom center scroll;
-}
-
 
 @media(min-width:767px) {
     .content-section {
