@@ -101,17 +101,17 @@
                 <h3 style="margin-bottom:10px"><a :href="'#/company/' + company._id.name">{{ company._id.name }}</a></h3>
                 <table class="table">
                     <thead>
-                        <tr>
-                            <th>職稱</th>
-                            <th>平均週工時</th>
-                            <th>資料數量</th>
+                        <tr class="row">
+                            <th class="col-xs-5">職稱</th>
+                            <th class="col-xs-4">平均週工時</th>
+                            <th class="col-xs-3">資料數量</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="jobs in company.job_titles">
-                            <td>{{ jobs._id }}</td>
-                            <td>{{ jobs.average_week_work_time }}</td>
-                            <td>{{ jobs.count }}</td>
+                        <tr v-for="jobs in company.job_titles" class="row">
+                            <td class="col-xs-5">{{ jobs._id }}</td>
+                            <td class="col-xs-4">{{ jobs.average_week_work_time }}</td>
+                            <td class="col-xs-3">{{ jobs.count }}</td>
                         </tr>
                     </tbody>
                 </table>
