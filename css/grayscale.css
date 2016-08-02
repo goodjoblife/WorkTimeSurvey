@@ -571,7 +571,7 @@ a.knowMoreBtn {
     height: 100%;
     z-index: -1;
     opacity: 0.3;
-    background: url(../img/background_1920-1080.png) no-repeat bottom center scroll;
+    background: url(../img/background_1920-1080.png) repeat bottom center scroll;
 }
 
 .qa-section{
