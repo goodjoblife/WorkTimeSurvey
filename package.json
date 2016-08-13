@@ -1,0 +1,17 @@
+{
+  "name": "work-time-survey",
+  "version": "1.0.0",
+  "description": "工時透明化運動網站專案。",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goodjoblife/WorkTimeSurvey.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/goodjoblife/WorkTimeSurvey/issues"
+  },
+  "homepage": "https://worktime.goodjob.life/"
+}
