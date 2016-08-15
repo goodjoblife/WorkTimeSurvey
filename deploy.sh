@@ -3,7 +3,7 @@
 REV=`git describe --always`
 
 rm -rf public
-git clone git@github.com:goodjoblife/WorkTimeSurvey.git public -b dev-gh-pages --depth 1
+git clone git@github.com:goodjoblife/WorkTimeSurvey.git public -b gh-pages --depth 1
 
 # Remove all the old build files
 
@@ -19,4 +19,4 @@ cp -r bower_components css font-awesome fonts img js *.html public
 cd public
 git add -A .
 git commit -m "regen for $REV"
-git push origin dev-gh-pages
+git push origin gh-pages
