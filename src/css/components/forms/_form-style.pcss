@@ -1,0 +1,60 @@
+input,
+textarea,
+select {
+	display: block;
+	width: 100%;
+	color: $gray-dark;
+	padding: 0 10px;
+	line-height: 26px;
+	border: 1px solid #ccc;
+	font-size: .95em;
+	transition: border-color .25s, box-shadow .25s;
+	border-radius: $radius;
+	&:focus {
+		border-color: $primary-color;
+	}
+	&.error {
+		border-color: $red;
+	}
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+	cursor: pointer;
+}
+
+button:disabled,
+.disabled {
+	pointer-events: none;
+	opacity: .5;
+}
+
+textarea {
+	resize: vertical;
+	min-height: 200px;
+	&.error {
+		border-color: red;
+	}
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+	text-transform: uppercase;
+	font-size: .9em;
+	color: gray;
+}
+
+$placeholder-color: #bbb;
+::-webkit-input-placeholder {
+	color: $placeholder-color;
+}
+:-moz-placeholder {
+	color: $placeholder-color;
+}
+::-moz-placeholder {
+	color: $placeholder-color;
+}
+:-ms-input-placeholder {
+	color: $placeholder-color;
+}

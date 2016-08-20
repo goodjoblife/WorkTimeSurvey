@@ -1,0 +1,42 @@
+{
+  "name": "node-front",
+  "version": "1.0.0",
+  "description": "denden wordpress theme",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp clean && gulp",
+    "build": "gulp clean && gulp build"
+  },
+  "author": "tenten",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^6.4.0",
+    "babel-preset-es2015": "^6.13.2",
+    "browser-sync": "^2.14.0",
+    "del": "^2.2.1",
+    "fs": "0.0.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-changed": "^1.3.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-foreach": "^0.1.0",
+    "gulp-inject": "^4.1.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^6.1.1",
+    "gulp-pug": "^3.0.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-sort": "^2.0.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "lost": "^7.0.3",
+    "node-minify": "^1.3.9",
+    "path": "^0.12.7",
+    "postcss-color-alpha": "^1.0.3",
+    "postcss-color-function": "^2.0.1",
+    "precss": "^1.4.0",
+    "run-sequence": "^1.2.2"
+  }
+}

@@ -1,0 +1,40 @@
+@define-mixin heading-style {
+	font-size: 2.3em;
+	line-height: 1.1em;
+	@media (max-width: $below-small) {
+		font-size: 2em;
+	}
+}
+
+@define-mixin heading-style-s {
+	font-size: 1.2em;
+	line-height: 1.2em;
+	font-weight: 400;
+	@media (max-width: $below-small) {
+		font-size: 1.1em;
+	}
+}
+
+@define-mixin subheading-style {
+	font-size: 1.34em;
+	line-height: 1.6em;
+	@media (max-width: $below-small) {
+		font-size: 1.2em;
+		line-height: 1.6em;
+	}
+}
+
+@define-mixin font-p-m {
+	font-size: 1.4em;
+	line-height: 1.4em;
+}
+
+@define-mixin font-p {
+	font-size: 1.25em;
+	line-height: 1.3em;
+}
+
+@define-mixin font-p-s {
+	font-size: .95em;
+	line-height: 1.6em;
+}

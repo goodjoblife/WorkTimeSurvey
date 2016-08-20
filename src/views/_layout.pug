@@ -1,0 +1,39 @@
+- var bodyClass = "";
+- var site_name = "工時透明化運動"
+- var page_title = "page title";
+- var site_description = "分享你的真實工時資訊，讓我們一起改善工時不透明的現況";
+- var page_url = "";
+- var page_img = "og:image";
+block vars
+
+doctype html
+html(lang="zh")
+	head
+		meta(charset="utf-8")
+		meta(http-eqiv="X-UA-Compatible" content="IE=edge,chrome=1")
+		title #{page_title} | 工時透明化運動
+		meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no")
+		link(rel="icon" type="image/png" href="/assets/img/common/favicon.png")
+		link(rel="stylesheet" href="/assets/css/style.css")
+
+		link(rel="canonical" href="#{page_url}")
+		meta(name="description" content="#{site_description}")
+		meta(property="og:locale" content="zh_TW")
+		meta(property="og:title" content="#{page_title} | 工時透明化運動")
+		meta(property="og:description" content="#{site_description}")
+		meta(property="og:url" content="#{page_url}")
+		meta(property="og:site_name" content="#{site_name}")
+		meta(property="og:image" content="#{page_img}")
+		meta(property="fb:app_id" content="1596668030659173")
+
+	body(class="site #{bodyClass}")
+		include ./partials/_header.pug
+		main(class="site-main")
+			block content
+		include ./partials/_footer.pug
+	script(src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js")
+	script(src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.9.3/vue-resource.min.js")
+	script(src='/assets/js/main.js')
+
+	script(type='text/javascript').
+		//vue.loadPage(0);
