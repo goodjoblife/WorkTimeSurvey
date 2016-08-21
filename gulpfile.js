@@ -144,8 +144,8 @@ gulp.task('make:plugins', function() {
 gulp.task('make:scripts', function() {
 	return gulp.src([
 		src.js + 'order/init.js',
-		src.js + 'global/*',
-		src.js + 'main/*'
+		src.js + 'order/matchmedia.js',
+		src.js + 'main/**/*.js'
 	])
 	.pipe(sourcemaps.init())
 	.pipe(plumber({
@@ -200,9 +200,9 @@ gulp.task('watch:img', ['move:img'], reload);
  */
 
 gulp.task('default', function() {
-	runSequence('compile:scripts', ['make:postcss', 'make:pages'], 'browser-sync');
+	runSequence('compile:scripts', ['make:postcss', 'make:pages', 'move:img'], 'browser-sync');
 });
 
 gulp.task('build', function() {
-	runSequence('compile:scripts', ['make:postcss', 'make:pages'], 'minify');
+	runSequence('compile:scripts', ['make:postcss', 'make:pages', 'move:img'], 'minify');
 });
