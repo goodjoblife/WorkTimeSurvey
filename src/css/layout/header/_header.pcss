@@ -1,18 +1,47 @@
 .header {
-	background-color: $primary-color;
+	position: fixed;
+	width: 100%;
+	left: 0;
+	top: 0;
+	height: $nav-height-l;
+	&.is-fixed {
+		background-color: $primary-color;
+		.header__wrapper {
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+		.header__logo {
+			svg {
+				transform: scale(0.8);
+				transform-origin: 0% 50%;
+				fill: #000;
+			}
+		}
+		.site-menu {
+			>li {
+				> a {
+					color: #000;
+				}
+			}
+		}
+	}
 }
 .header__wrapper {
 	@mixin clear;
-	padding-top: 22px;
-	padding-bottom: 22px;
+	padding-top: 15px;
+	padding-bottom: 20px;
 }
 .header__logo {
 	float: left;
 	> a {
 		display: block;
 	}
+	svg {
+		transition: transform .25s, fill .1s;
+		fill: #fff;
+	}
 }
 .header__nav {
 	float: right;
-	height: 37px;
+	height: 47px;
 }
