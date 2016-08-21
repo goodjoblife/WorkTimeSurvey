@@ -1,17 +1,9 @@
 extends ./_layout.pug
 block vars
-	- var bodyClass = "";
-	- var page_url = "should be page url";
+	- var bodyClass = "body-index";
+	- var page_url = "index.html";
 	- var page_title = "首頁";
-	- var site_description = "page description";
-	- var page_img = "og:image";
 
 block content
 	div(class="home-banner")
-		h1 test heading 1
-	div(id="app")
-		input(v-model="newTodo" v-on:keyup.enter="addTodo")
-		ul
-			li(v-for="todo in todos")
-				span {{ todo.text }}
-				button(v-on:click="removeTodo($index)") X
+		
