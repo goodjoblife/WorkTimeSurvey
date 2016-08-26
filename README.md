@@ -11,4 +11,6 @@ npm run build
 ```
 npm run start
 ```
-open your static site on `localhost:3010`
+then see your static site on `localhost:3010`
+
+*if you havn't use gulp before, install it globally: `npm install --global gulp-cli`
