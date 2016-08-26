@@ -1,13 +1,12 @@
 .section {
 	padding-top: $block-gutter-l;
 	padding-bottom: $block-gutter-l;
+	@media (max-width: $below-small) {
+		padding-top: $block-gutter-m;
+		padding-bottom: $block-gutter-m;
+	}
 }
 
-.section_bg_1 {
-	background-color: #fff;
-}
-
-.section_bg_black {
-	background-color: $primary-color;
-	color: #fff;
+.section--yellow {
+	background-color: $yellow-light;
 }

@@ -1,14 +1,16 @@
 header(class="header" id="header")
   div(class="wrapper-l header__wrapper")
+    div(class="m-header-button" id="header-button")
+      span
     div(class="header__logo")
       a(href="/")
         include ./_logo.pug
-    nav(class="header__nav")
+    nav(class="header__nav" id="header-nav")
       ul(class="site-menu")
         li(class="site-menu__item")
-          a(href="/") 關於
+          a(href="/about.html") 關於
         li(class="site-menu__item")
-          a(href="/") 開始參與
+          a(href="#section-form" class="js-scrollpage") 開始參與
         li(class="site-menu__item")
           a(href="/") 常見問答
         li(class="site-menu__item")

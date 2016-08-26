@@ -1,4 +1,4 @@
-var breakpoint = {
+const breakpoint = {
 	above_desktop: window.matchMedia("(min-width: 1025px)"),
 	below_desktop: window.matchMedia("(max-width: 1024px)"),
 	above_small: window.matchMedia("(min-width: 851px)"),

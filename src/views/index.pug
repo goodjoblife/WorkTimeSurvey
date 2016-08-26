@@ -13,22 +13,27 @@ block content
 				div
 					h1(class="home-banner__main-heading") 工時透明化運動
 					h3(class="home-banner__subheading") 分享你的真實工時資訊，讓我們一起改善工時不透明的現況
-	section(class="section")
+	section(class="section" id="section-about")
 		div(class="wrapper-m")
 			div(class="heading")
 				div(class="heading__icon")
 					include ./partials/_icon-light
 				h2(class="heading__heading") 關於工時透明化
-				p(class="paragraph")
-					| 你是否和我們有一樣的經驗？
-					br
-					br
-					| 在求職網站上看到的上下班時間總是只寫著「日班」或「依公司規定」；面試時談的工作時間和實際上的總是不同。如果一開始就能知道真正的工時，我們是不是可以做出更好的選擇？
-					br
-					br
-					| 「工時透明化運動」希望藉由每個人匿名分享最近一週的實際工時，讓不同公司、不同職位的工時能夠更公開透明。
-					br
-					br
-					| 我們誠摯地邀請你，一起改善工時不透明的現況！
-				div(class="btn-scroll-down")
-					include ./partials/_icon-arrow
+			p(class="paragraph")
+				| 你是否和我們有一樣的經驗？
+				br
+				br
+				| 在求職網站上看到的上下班時間總是只寫著「日班」或「依公司規定」；面試時談的工作時間和實際上的總是不同。如果一開始就能知道真正的工時，我們是不是可以做出更好的選擇？
+				br
+				br
+				| 「工時透明化運動」希望藉由<strong>每個人匿名分享最近一週的實際工時</strong>，讓不同公司、不同職位的工時能夠更公開透明。
+				br
+				br
+				| 我們誠摯地邀請你，一起改善工時不透明的現況！
+			div(class="btn-scroll-down" id="scroll-to-form")
+				include ./partials/_icon-arrow
+	section(class="section section--yellow" id="section-form")
+		div(class="wrapper-s")
+			div(class="heading")
+				h2(class="heading__heading") 匿名參與工時透明化運動
+				p(class="heading__description") 請您留下<strong>「最近一週」</strong>的資訊

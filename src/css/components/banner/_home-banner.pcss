@@ -1,8 +1,16 @@
 .home-banner {
 	background-color: $primary-color;
 	height: 400px;
+	@media (min-width: $above-desktop) {
+		background-image: url("../img/icons/timer.svg");
+		background-repeat: no-repeat;
+		background-position: 90% 50%;
+		background-size: 310px auto;
+	}
 	@media (max-width: $below-medium) {
 		height: 340px;
+		background-position: 100% 50%;
+		background-size: 260px auto;
 	}
 	@media (max-width: $below-small) {
 		height: auto;
@@ -12,6 +20,7 @@
 		padding-top: 60px;
 		@media (max-width: $below-small) {
 			display: flex;
+			padding-top: $nav-height-s;
 		}
 		@media (max-width: $below-mobile) {
 			flex-direction: column;
@@ -64,6 +73,7 @@
 	@media (max-width: $below-small) {
 		float: none;
 		height: auto;
+		padding-top: 20px;
 	}
 	@media (max-width: $below-mobile) {
 		width: 100%;

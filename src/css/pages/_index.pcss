@@ -1,4 +1,5 @@
 .btn-scroll-down {
+  display: block;
   width: 31px;
   height: 31px;
   margin: 0 auto;
@@ -7,7 +8,7 @@
   svg {
     fill: $primary-color;
     transition: fill .3s, transform .3s;
-    animation: bounce 3s infinite;
+    //animation: bounce 3s infinite;
   }
   @media (min-width: $above-desktop) {
     &:hover {
@@ -15,6 +16,9 @@
         fill: #000;
       }
     }
+  }
+  &.hide {
+    visibility: hidden;
   }
 }
 
