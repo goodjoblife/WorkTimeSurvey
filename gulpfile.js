@@ -81,7 +81,8 @@ gulp.task('browser-sync', function() {
       baseDir: basePath.static
     },
     port: 3010,
-    open: false
+    open: false,
+		notify: false
 	});
 
 	gulp.watch(src.css + '{,**/}*.pcss', ['make:postcss']);
@@ -147,14 +148,14 @@ gulp.task('make:scripts', function() {
 		src.js + 'order/matchmedia.js',
 		src.js + 'main/**/*.js'
 	])
-	.pipe(sourcemaps.init())
-	.pipe(plumber({
-		errorHandler: onError
-	}))
-	.pipe(babel())
-	.pipe(concat('main.concat.js'))
-	.pipe(sourcemaps.write())
-	.pipe(gulp.dest(dest.js));
+		.pipe(sourcemaps.init())
+		.pipe(plumber({
+			errorHandler: onError
+		}))
+		.pipe(babel())
+		.pipe(concat('main.concat.js'))
+		.pipe(sourcemaps.write())
+		.pipe(gulp.dest(dest.js));
 });
 
 gulp.task('compile:scripts', ['make:scripts', 'make:plugins'], function() {
