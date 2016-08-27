@@ -3,7 +3,6 @@ textarea,
 select {
 	display: block;
 	width: 100%;
-	color: $gray-dark;
 	padding: 0 10px;
 	line-height: $input-height;
 	border: 1px solid $primary-color;
@@ -11,6 +10,23 @@ select {
 	transition: border-color .25s, box-shadow .25s;
 	&:focus {
 		border-color: #000;
+	}
+}
+
+.input-unit {
+	position: relative;
+	.unit {
+		position: absolute;
+		right: 0;
+		top: 0;
+		display: block;
+		height: 100%;
+		width: 50px;
+		border-left: 1px solid $primary-color;
+		line-height: 42px;
+		line-height: calc($input-height + 2px);
+		font-size: 0.9em;
+		text-align: center;
 	}
 }
 

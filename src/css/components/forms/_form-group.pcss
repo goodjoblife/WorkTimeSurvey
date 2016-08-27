@@ -3,9 +3,12 @@ $form-gutter-s: 30px;
 
 .form-group {
 	position: relative;
-	&.error {
+	&.has-error {
 		input,
 		select {
+			border-color: $warning;
+		}
+		.input-unit span {
 			border-color: $warning;
 		}
 	}
@@ -36,12 +39,13 @@ $form-gutter-s: 30px;
 .form-error-message {
 	background: rgba(0,0,0,.7);
 	color: #fff;
-	padding: 8px 15px;
+	padding: 8px 10px;
 	position: absolute;
-	left: 15%;
+	left: 45%;
 	bottom: 54px;
-	font-size: .95em;
+	font-size: .85em;
 	font-weight: 400;
+	line-height: 1.3em;
 	&:before {
 		position: absolute;
 		bottom: -14px;
@@ -63,20 +67,5 @@ $form-gutter-s: 30px;
 	margin-top: 12px;
 	p {
 		@mixin font-p-s;
-	}
-}
-
-.input-unit {
-	position: relative;
-	.unit {
-		position: absolute;
-		right: 0;
-		top: 0;
-		display: block;
-		width: 50px;
-		border-left: 1px solid $primary-color;
-		line-height: calc($input-height + 2px);
-		font-size: 0.9em;
-		text-align: center;
 	}
 }
