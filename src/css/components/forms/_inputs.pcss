@@ -1,7 +1,3 @@
-#section-form {
-	min-height: 1000px;
-}
-
 input,
 textarea,
 select {
@@ -9,22 +5,13 @@ select {
 	width: 100%;
 	color: $gray-dark;
 	padding: 0 10px;
-	line-height: 26px;
-	border: 1px solid #ccc;
+	line-height: $input-height;
+	border: 1px solid $primary-color;
 	font-size: .95em;
 	transition: border-color .25s, box-shadow .25s;
-	border-radius: $radius;
 	&:focus {
-		border-color: $primary-color;
+		border-color: #000;
 	}
-	&.error {
-		border-color: $red;
-	}
-}
-
-input[type="radio"],
-input[type="checkbox"] {
-	cursor: pointer;
 }
 
 button:disabled,
@@ -36,17 +23,40 @@ button:disabled,
 textarea {
 	resize: vertical;
 	min-height: 200px;
-	&.error {
-		border-color: red;
-	}
 }
 
 label {
 	display: block;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 	text-transform: uppercase;
-	font-size: .9em;
-	color: gray;
+	letter-spacing: 0.05em;
+	font-size: 0.95em;
+	font-weight: 700;
+	color: #000;
+	span {
+		color: $warning;
+	}
+	&.is-required {
+		&:after {
+			content: "*";
+			color: $warning;
+			display: inline-block;
+			padding-left: 5px;
+		}
+	}
+}
+
+button,
+input[type="reset"],
+input[type="button"],
+input[type="submit"] {
+	cursor: pointer;
+	border: 0;
+	display: inline-block;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
 }
 
 $placeholder-color: #bbb;

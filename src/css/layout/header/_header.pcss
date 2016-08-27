@@ -10,23 +10,48 @@
 	}
 	&.is-fixed {
 		background-color: $primary-color;
-		height: auto;
+		height: $nav-height-m;
 		box-shadow: 0 0 8px rgba(0,0,0,.15);
 		.header__wrapper {
-			padding-top: 5px;
-			padding-bottom: 5px;
+			padding-top: 0px;
+			padding-bottom: 0px;
+			height: 100%;
 		}
 		.header__logo {
 			svg {
-				transform: scale(0.8);
+				transform: scale(0.8) translateY(6px);
 				transform-origin: 0% 50%;
 				fill: #000;
 			}
 		}
+		.header__nav {
+			height: 100%;
+		}
 		.site-menu {
 			>li {
+				line-height: $nav-height-m;
+				position: relative;
+				&:after {
+					position: absolute;
+					left: 0;
+					bottom: 0;
+					content: "";
+					height: 0px;
+					width: 100%;
+					background-color: #000;
+					transition: height .3s;
+				}
+				&:hover {
+					&:after {
+						height: 3px;
+					}
+				}
 				> a {
+					display: block;
 					color: #000;
+					height: 100%;
+					padding-top: 0;
+					padding-bottom: 0;
 				}
 			}
 		}

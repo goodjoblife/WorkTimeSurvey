@@ -1,0 +1,40 @@
+input[type="radio"] {
+	display: none;
+}
+
+input[type="radio"] + label {
+	position: relative;
+	z-index: 1;
+	.radio-input {
+		display: inline-block;
+		vertical-align: middle;
+		width: 18px;
+		height: 18px;
+		border-radius: 100%;
+		border: 1px solid $primary-color;
+		position: relative;
+		&:before {
+			content: "";
+			position: absolute;
+			width: 8px;
+			height: 8px;
+			border-radius: 100%;
+			background-color: $primary-color;
+			top: 4px;
+			left: 4px;
+			transition: transform .3s;
+			transform: scale(0);
+		}
+	}
+	.radio-text {
+		display: inline-block;
+		vertical-align: middle;
+		text-transform: capitalize;
+	}
+}
+
+input[type="radio"]:checked + label {
+	.radio-input:before {
+		transform: scale(1);
+	}
+}
