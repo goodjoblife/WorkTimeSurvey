@@ -2,7 +2,9 @@ input[type="radio"] {
 	display: none;
 }
 
-input[type="radio"] + label {
+.select-form__label {
+	font-weight: 200;
+	font-size: 1em;
 	position: relative;
 	z-index: 1;
 	.radio-input {
@@ -11,7 +13,7 @@ input[type="radio"] + label {
 		width: 18px;
 		height: 18px;
 		border-radius: 100%;
-		border: 1px solid $primary-color;
+		border: 1px solid #000;
 		position: relative;
 		&:before {
 			content: "";
@@ -19,7 +21,7 @@ input[type="radio"] + label {
 			width: 8px;
 			height: 8px;
 			border-radius: 100%;
-			background-color: $primary-color;
+			background-color: #000;
 			top: 4px;
 			left: 4px;
 			transition: transform .3s;
@@ -30,10 +32,11 @@ input[type="radio"] + label {
 		display: inline-block;
 		vertical-align: middle;
 		text-transform: capitalize;
+		padding-left: 10px;
 	}
 }
 
-input[type="radio"]:checked + label {
+input[type="radio"]:checked + .select-form__label {
 	.radio-input:before {
 		transform: scale(1);
 	}

@@ -1,0 +1,81 @@
+.radio-button {
+	@mixin clear;
+	&__item {
+		lost-column: 1/4;
+	}
+}
+
+.btn-frequency {
+	border: 1px solid $primary-color;
+	background-color: #fff;
+	padding: 15px 10px;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	transition: border .3s;
+	&:after {
+		content: "";
+		position: absolute;
+		left: -5px;
+		top: -5px;
+		bottom: -5px;
+		right: -5px;
+		border: 3px solid transparent;
+		transition: border .2s;
+	}
+	&:before {
+		content: "";
+		width: 32px;
+		height: 32px;
+		background: url("../img/icons/checked.svg") 0 0 no-repeat;
+		background-size: 100%;
+		position: absolute;
+		top: -15px;
+		right: -15px;
+		transform: scale(0);
+		transition: transform .3s;
+		z-index: 2;
+	}
+	@media (min-width: $above-desktop) {
+		&:hover {
+			border-color: #000;
+		}
+	}
+}
+
+.btn-frequency__icon {
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	width: 45px;
+	height: 45px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+.btn-frequency__text {
+	font-size: 1em;
+	font-weight: 400;
+}
+
+.emoji-0 {
+	background-image: url("../img/icons/emoji-0.svg");
+}
+.emoji-1 {
+	background-image: url("../img/icons/emoji-1.svg");
+}
+.emoji-2 {
+	background-image: url("../img/icons/emoji-2.svg");
+}
+.emoji-3 {
+	background-image: url("../img/icons/emoji-3.svg");
+}
+
+input[type="radio"]:checked + .btn-frequency {
+	&:after {
+		border: 5px solid #000;
+	}
+	&:before {
+		transform: scale(1);
+	}
+}

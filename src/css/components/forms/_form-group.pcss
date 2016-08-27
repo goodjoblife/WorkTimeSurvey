@@ -1,5 +1,5 @@
 $form-gutter: 40px;
-$form-gutter-s: 30px;
+$form-gutter-s: 25px;
 
 .form-group {
 	position: relative;
@@ -65,6 +65,9 @@ $form-gutter-s: 30px;
 	background-color: $yellow-bg;
 	padding: 10px 20px;
 	margin-top: 12px;
+	@media (max-width: $below-mobile) {
+		padding: 5px 10px;
+	}
 	p {
 		@mixin font-p-s;
 	}
