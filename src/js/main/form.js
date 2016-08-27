@@ -41,3 +41,40 @@ $form_input.on('blur', function() {
     removeTooltip($(this));
   }
 });
+
+
+/* radio button */
+const has_fee_option = document.getElementById('has-fee-option');
+const clear_has_fee = () => {
+  has_fee_option.classList.remove('is-active');
+  let item = has_fee_option.childNodes;
+  for (let j = 0; j < item.length; j++) {
+    for (let k = 0; k < item[j].childNodes.length; k++) {
+      if (item[j].childNodes[k].nodeName === 'INPUT') {
+        item[j].childNodes[k].checked = false;
+      }
+    }
+  }
+}
+$('#select-fee :input[type="radio"]').on('change', function() {
+  if (document.getElementById('fee_yes').checked) {
+    has_fee_option.classList.add('is-active');
+  } else {
+    clear_has_fee();
+  }
+});
+
+const clear_radio_btn = document.querySelectorAll('.btn-radio-clear');
+for (let i = 0; i < clear_radio_btn.length; i++) {
+  clear_radio_btn[i].addEventListener('click', function() {
+    clear_has_fee();
+    let item = this.parentNode.parentNode.childNodes;
+    for (let j = 0; j < item.length; j++) {
+      for (let k = 0; k < item[j].childNodes.length; k++) {
+        if (item[j].childNodes[k].nodeName === 'INPUT') {
+          item[j].childNodes[k].checked = false;
+        }
+      }
+    }
+  })
+}

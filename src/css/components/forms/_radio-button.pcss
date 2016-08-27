@@ -1,14 +1,15 @@
 .radio-button {
 	@mixin clear;
+	margin-top: 15px;
 	&__item {
 		lost-column: 1/4;
 	}
 }
 
-.btn-frequency {
+.radio-square {
 	border: 1px solid $primary-color;
 	background-color: #fff;
-	padding: 15px 10px;
+	padding: 20px 10px;
 	text-align: center;
 	cursor: pointer;
 	position: relative;
@@ -43,7 +44,7 @@
 	}
 }
 
-.btn-frequency__icon {
+.radio-square__icon {
 	display: block;
 	margin: 0 auto;
 	margin-bottom: 10px;
@@ -53,7 +54,7 @@
 	background-repeat: no-repeat;
 }
 
-.btn-frequency__text {
+.radio-square__text {
 	font-size: 1em;
 	font-weight: 400;
 }
@@ -71,7 +72,7 @@
 	background-image: url("../img/icons/emoji-3.svg");
 }
 
-input[type="radio"]:checked + .btn-frequency {
+input[type="radio"]:checked + .radio-square {
 	&:after {
 		border: 5px solid #000;
 	}

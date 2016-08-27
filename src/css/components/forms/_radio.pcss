@@ -7,6 +7,12 @@ input[type="radio"] {
 	font-size: 1em;
 	position: relative;
 	z-index: 1;
+	cursor: pointer;
+	@media (min-width: $above-desktop) {
+		&:hover {
+			color: $gray-dark;
+		}
+	}
 	.radio-input {
 		display: inline-block;
 		vertical-align: middle;
@@ -39,5 +45,18 @@ input[type="radio"] {
 input[type="radio"]:checked + .select-form__label {
 	.radio-input:before {
 		transform: scale(1);
+	}
+}
+
+.select-form {
+	margin-top: 10px;
+}
+
+#has-fee-option {
+	height: 0;
+	overflow: hidden;
+	transition: height .4s;
+	&.is-active {
+		height: 100px;
 	}
 }

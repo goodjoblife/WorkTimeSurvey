@@ -16,3 +16,26 @@ $btn-height: 40px;
 	border-bottom: 4px solid $gray-dark;
 	@mixin hover-bg-color #333, #fff;
 }
+
+.btn-radio-clear {
+	height: 100%;
+	padding: 20px 10px;
+	border: 1px solid transaprent;
+	text-align: center;
+	color: $gray;
+	cursor: pointer;
+	transition: color .25s;
+	svg {
+		fill: $gray;
+		margin-right: 5px;
+		transition: fill .25s;
+	}
+	@media (min-width: $above-desktop) {
+		&:hover {
+			color: #000;
+			svg {
+				fill: #000;
+			}
+		}
+	}
+}
