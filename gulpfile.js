@@ -33,6 +33,10 @@ const babel           = require('gulp-babel');
 /** views **/
 var pug = require('gulp-pug');
 
+/** svg **/
+const svgSymbols = require('gulp-svg-symbols');
+const svgmin     = require('gulp-svgmin');
+
 
 /**
  * SETTINGS
@@ -57,7 +61,9 @@ const src  = {
 	libs : basePath.src + 'js/libs/',
 	js   : basePath.src + 'js/',
 	css  : basePath.src + 'css/',
-	views : basePath.src + 'views/'
+	views : basePath.src + 'views/',
+	svg : basePath.src + 'svg/',
+	svgmin: basePath.src + 'svg/min/'
 }
 
 const dest = {
@@ -187,13 +193,43 @@ gulp.task('make:pages', function buildHTML() {
 
 gulp.task('watch:pages', ['make:pages'], reload);
 
-//move img to public when folder change
+/* move img to public when folder change */
 gulp.task('move:img', function() {
   return gulp.src(src.img + '**/*')
     .pipe(gulp.dest(dest.img));
 });
 
 gulp.task('watch:img', ['move:img'], reload);
+
+/* svg */
+
+gulp.task('clean:svgmin', function() {
+	return del(src.svgmin);
+});
+
+gulp.task('minify:svg', function() {
+	return gulp.src(src.svg + '*.svg')
+		.pipe(svgmin())
+		.pipe(gulp.dest(src.svgmin));
+});
+
+gulp.task('make:sprites', function() {
+	return gulp.src(src.svgmin + '*.svg')
+		.pipe(svgSymbols({
+			svgClassname: 'svg-icon-lib',
+			templates: [
+    		'default-svg',
+				'default-css'
+  		]
+		}))
+		.pipe(gulp.dest(src.views + 'partials/'))
+		.pipe(rename({ basename: '_' + 'sprites', extname: '.pcss'}))
+		.pipe(gulp.dest(src.css + 'base/'));
+});
+
+gulp.task('build:sprites', function() {
+	runSequence('clean:svgmin', 'minify:svg', 'make:sprites');
+});
 
 
 /**
