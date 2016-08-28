@@ -39,6 +39,16 @@
 	line-height: 1.6em;
 }
 
+@define-mixin font-radio {
+	font-size: 1em;
+	font-weight: 400;
+	@media (max-width: $below-mobile) {
+		font-size: .95em;
+	}
+	@media (max-width: $below-little) {
+		font-size: .86em;
+	}
+}
 strong {
 	font-weight: 700;
 }

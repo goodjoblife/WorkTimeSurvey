@@ -1,5 +1,3 @@
-$btn-height: 40px;
-
 .btn-black-icon {
 	display: block;
 	position: relative;
@@ -17,21 +15,30 @@ $btn-height: 40px;
 	@mixin hover-bg-color #333, #fff;
 }
 
-.btn-radio-clear {
-	height: 100%;
-	padding: 20px 10px;
-	border: 1px solid transaprent;
+@define-mixin btn-l {
+	display: block;
+	height: 50px;
+	line-height: 50px;
+	min-width: 200px;
+	padding: 0 10px;
 	text-align: center;
-	color: $gray;
-	cursor: pointer;
-	transition: color .25s;
+	font-size: .95em;
+	letter-spacing: 0.05em;
+	margin: 0 auto;
+	transition: background .3s, color .3s;
+}
+
+.btn-black {
+	@mixin btn-l;
+	background-color: #000;
+	color: #fff;
 	svg {
-		fill: $gray;
-		margin-right: 5px;
-		transition: fill .25s;
+		fill: #fff;
+		transition: fill .3s;
 	}
 	@media (min-width: $above-desktop) {
 		&:hover {
+			background-color: $primary-color;
 			color: #000;
 			svg {
 				fill: #000;

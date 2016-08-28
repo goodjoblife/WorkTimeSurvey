@@ -45,7 +45,7 @@ $form_input.on('blur', function() {
 
 /* radio button */
 const has_fee_option = document.getElementById('has-fee-option');
-const clear_has_fee = () => {
+const clearHasFee = () => {
   has_fee_option.classList.remove('is-active');
   let item = has_fee_option.childNodes;
   for (let j = 0; j < item.length; j++) {
@@ -60,14 +60,13 @@ $('#select-fee :input[type="radio"]').on('change', function() {
   if (document.getElementById('fee_yes').checked) {
     has_fee_option.classList.add('is-active');
   } else {
-    clear_has_fee();
+    clearHasFee();
   }
 });
 
 const clear_radio_btn = document.querySelectorAll('.btn-radio-clear');
 for (let i = 0; i < clear_radio_btn.length; i++) {
   clear_radio_btn[i].addEventListener('click', function() {
-    clear_has_fee();
     let item = this.parentNode.parentNode.childNodes;
     for (let j = 0; j < item.length; j++) {
       for (let k = 0; k < item[j].childNodes.length; k++) {
@@ -75,6 +74,9 @@ for (let i = 0; i < clear_radio_btn.length; i++) {
           item[j].childNodes[k].checked = false;
         }
       }
+    }
+    if (this.parentNode.parentNode.id === 'select-fee') {
+      clearHasFee();
     }
   })
 }
