@@ -33,3 +33,19 @@
     transform: translateY(-10px);
   }
 }
+
+.like-fb-word {
+  @mixin font-p;
+  text-align: center;
+  margin-top: $block-gutter-m;
+  font-weight: 400;
+}
+
+.icon-github, .icon-messenger {
+  transition: fill .3s;
+  @media (min-width: $above-desktop) {
+    &:hover {
+      fill: $gray-dark;
+    }
+  }
+}

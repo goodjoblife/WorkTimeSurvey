@@ -138,6 +138,7 @@ src/sass/*.scss
 !src/sass/ie.scss
 !src/sass/_reset.scss
 src/js/plugins.concat.js
+src/views/partials/svg-symbols.*
 
 ### Ignore .env file ###
 .env.js

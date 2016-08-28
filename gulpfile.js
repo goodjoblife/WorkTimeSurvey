@@ -237,9 +237,9 @@ gulp.task('build:sprites', function() {
  */
 
 gulp.task('default', function() {
-	runSequence('compile:scripts', ['make:postcss', 'make:pages', 'move:img'], 'browser-sync');
+	runSequence('compile:scripts', ['make:postcss', 'make:pages', 'move:img', 'build:sprites'], 'browser-sync');
 });
 
 gulp.task('build', function() {
-	runSequence('compile:scripts', ['make:postcss', 'make:pages', 'move:img'], 'minify');
+	runSequence('compile:scripts', ['make:postcss', 'make:pages', 'move:img', 'build:sprites'], 'minify');
 });

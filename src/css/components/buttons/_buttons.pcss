@@ -15,7 +15,7 @@
 	@mixin hover-bg-color #333, #fff;
 }
 
-@define-mixin btn-l {
+.btn-l {
 	display: block;
 	height: 50px;
 	line-height: 50px;
@@ -23,18 +23,35 @@
 	padding: 0 10px;
 	text-align: center;
 	font-size: .95em;
+	font-weight: 400;
 	letter-spacing: 0.05em;
 	margin: 0 auto;
-	transition: background .3s, color .3s;
+	cursor: pointer;
+	transition: background .3s, color .3s, border .3s;
+}
+
+.btn-m {
+	display: block;
+	height: 45px;
+	line-height: 45px;
+	min-width: 170px;
+	padding: 0 10px;
+	text-align: center;
+	font-size: .95em;
+	font-weight: 400;
+	letter-spacing: 0.05em;
+	margin: 0 auto;
+	cursor: pointer;
+	transition: background .3s, color .3s, border .3s;
 }
 
 .btn-black {
-	@mixin btn-l;
 	background-color: #000;
 	color: #fff;
 	svg {
 		fill: #fff;
 		transition: fill .3s;
+		margin: 0 4px 4px 4px;
 	}
 	@media (min-width: $above-desktop) {
 		&:hover {
@@ -43,6 +60,15 @@
 			svg {
 				fill: #000;
 			}
+		}
+	}
+}
+
+.btn-white {
+	background-color: #fff;
+	@media (min-width: $above-desktop) {
+		&:hover {
+			background-color: $gray-light;
 		}
 	}
 }

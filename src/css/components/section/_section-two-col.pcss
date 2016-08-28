@@ -1,0 +1,12 @@
+.section-two-col {
+	@mixin clear;
+	background-color: $primary-color;
+}
+
+.section-two-col__item {
+	lost-column: 1/2 2 0;
+	padding: $block-gutter-l 0;
+	&:first-child {
+		border-right: 1px solid #000;
+	}
+}

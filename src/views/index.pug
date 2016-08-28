@@ -158,7 +158,27 @@ block content
 						div
 							input(type="email" placeholder="example@email.com" id="email" name="email")
 				div(class="form-section")
-					button(type="submit" id="submit" class="btn-black" )
+					button(type="submit" id="submit" class="btn-black btn-l" )
 						span(class="fb-login-word")
-							| 以<svg xmlns="http://www.w3.org/2000/svg" class="icon-facebook"><path d="M14.563 6.424h-3.12V4.378c0-.769.51-.948.868-.948h2.202V.05L11.48.039c-3.366 0-4.132 2.52-4.132 4.133v2.252H5.4v3.482h1.947v9.852h4.095V9.906h2.763l.357-3.482z" /></svg>驗證並
+							| 以<svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg>驗證並
 						| 送出資料
+
+	section(class="section-two-col")
+		div(class="section-two-col__item")
+			div
+				div(class="heading")
+					h2(class="heading__heading") 分享此活動
+				div(class="share-buttons")
+					span(onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A//worktime.goodjob.life/', 'newwindow', 'width=555, height=630'); return false;" class="share-buttons__item btn-white btn-m") <svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg> facebook
+					span(onclick="window.open('https://twitter.com/home?status=https%3A//worktime.goodjob.life/', 'newwindow', 'width=555, height=630'); return false;" class="share-buttons__item btn-white btn-m") <svg role="img" class="icon-twitter"><use xlink:href="#icon-twitter"></use></svg> twitter
+				div(class="like-fb-word")
+					span 按讚，隨時取得最新消息
+					span(class="fb-like" data-href="https://www.facebook.com/goodjob.life/" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="false")
+
+		div(class="section-two-col__item")
+			div
+				div(class="heading")
+					h2(class="heading__heading") 與我們聯繫
+				div(class="share-buttons")
+					a(href="https://github.com/goodjoblife" class="share-buttons__item") <svg role="img" class="icon-github"><use xlink:href="#icon-github"></use></svg>
+					a(href="https://www.facebook.com/goodjob.life/" class="share-buttons__item") <svg role="img" class="icon-messenger"><use xlink:href="#icon-messenger"></use></svg>
