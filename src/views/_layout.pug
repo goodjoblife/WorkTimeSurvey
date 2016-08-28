@@ -42,8 +42,8 @@ html(lang="zh")
 					js.src = "//connect.facebook.net/zh_TW/sdk.js";
 					fjs.parentNode.insertBefore(js, fjs);
 			})(document, 'script', 'facebook-jssdk');
-
-		include ./partials/svg-symbols.svg
+		div(style="display:none")
+			include ./partials/svg-symbols.svg
 		include ./partials/_header.pug
 		main(class="site-main")
 			block content
