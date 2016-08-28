@@ -1,3 +1,26 @@
-footer {
-  height: 30px;
+.footer {
+  background-color: $primary-color;
+  @mixin clear;
+  padding: 12px 0;
+  &__logo {
+    float: left;
+    width: 140px;
+    svg {
+      width: 120px;
+    }
+    @media (max-width: $below-mobile) {
+      float: none;
+      width: 100%;
+    }
+  }
+  &__content {
+    float: left;
+    width: calc(100% - 140px);
+    font-size: .9em;
+    line-height: 1.4em;
+    @media (max-width: $below-mobile) {
+      float: none;
+      width: 100%;
+    }
+  }
 }
