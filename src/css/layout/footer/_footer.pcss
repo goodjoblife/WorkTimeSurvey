@@ -1,6 +1,9 @@
 .footer {
   background-color: $primary-color;
   @mixin clear;
+  @media (min-width: $above-desktop) {
+    height: $footer-height;
+  }
   padding: 12px 0;
   &__logo {
     float: left;

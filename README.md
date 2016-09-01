@@ -7,10 +7,10 @@ npm install
 npm run build
 ```
 
-### watch filte
+### watch files
 ```
 npm run start
 ```
 then see your static site on `localhost:3010`
 
-*if you havn't use gulp before, install it globally: `npm install --global gulp-cli`
+*if you haven't use gulp before, install it globally: `npm install --global gulp-cli`

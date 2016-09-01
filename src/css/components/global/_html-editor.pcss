@@ -10,4 +10,15 @@
       }
     }
   }
+  p {
+    @mixin font-p;
+    margin-bottom: 1em;
+  }
+  ul {
+    margin-left: 1.5em;
+    > li {
+      list-style: disc;
+      @mixin font-p;
+    }
+  }
 }
