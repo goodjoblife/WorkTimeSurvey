@@ -1,14 +1,14 @@
 {
-  "name": "node-front",
+  "name": "goodjob.wroktime",
   "version": "1.0.0",
-  "description": "denden wordpress theme",
+  "description": "goodjob",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "gulp clean && gulp",
     "build": "gulp clean && gulp build"
   },
-  "author": "tenten",
+  "author": "goodjob",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^6.4.0",

@@ -9,27 +9,37 @@
 }
 
 @define-mixin hover-color $color {
-	&:hover {
-		color: $color;
-	}
 	transition: color .2s;
+	@media (min-width: $above-desktop) {
+		&:hover {
+			color: $color;
+		}
+	}
 }
 
-@define-mixin hover-color-darken $color, $percentage{
-	&:hover {
-		color: color($color blackness($percentage));
+@define-mixin hover-color-darken $color, $percentage {
+	@media (min-width: $above-desktop) {
+		&:hover {
+			color: color($color blackness($percentage));
+		}
 	}
 }
 
 @define-mixin hover-bg-color $bgcolor, $color {
-	&:hover {
-		background-color: $bgcolor;
-		color: $color;
-	}
 	transition: background-color .2s, color .2s;
+	@media (min-width: $above-desktop) {
+		&:hover {
+			background-color: $bgcolor;
+			color: $color;
+		}
+	}
 }
 
-@define-extend bg-cover {
-	background-size: cover;
-	background-position: 50% 50%;
+@define-mixin hover-fill $color {
+	transition: fill .2s;
+	@media (min-width: $above-desktop) {
+		&:hover {
+			fill: $color;
+		}
+	}
 }
