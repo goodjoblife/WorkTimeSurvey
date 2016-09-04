@@ -1,0 +1,149 @@
+.radio-button {
+	margin-top: 15px;
+	@mixin clear;
+	&__item {
+		@media (min-width: $above-mobile) {
+			lost-column: 1/4;
+		}
+		@media (max-width: $below-mobile) {
+			lost-column: 1/4 4 12px
+		}
+		@media (max-width: $below-little) {
+			lost-column: 1/4 4 5px;
+		}
+	}
+}
+
+.radio-button--icon {
+	.radio-square {
+		padding: 15px 10px;
+		@media (max-width: $below-mobile) {
+			padding: 10px 3px;
+		}
+	}
+}
+
+.radio-square {
+	border: 1px solid $primary-color;
+	background-color: #fff;
+	padding: 30px 10px;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	transition: border .3s;
+	@media (min-width: $above-desktop) {
+		&:hover {
+			border-color: #000;
+		}
+	}
+	@media (max-width: $below-mobile) {
+		padding: 20px 5px;
+	}
+	&:after {
+		content: "";
+		position: absolute;
+		left: -5px;
+		top: -5px;
+		bottom: -5px;
+		right: -5px;
+		border: 3px solid transparent;
+		transition: border .2s;
+		@media (max-width: $below-mobile) {
+			left: -2px;
+			top: -2px;
+			right: -2px;
+			bottom: -2px;
+		}
+	}
+	&:before {
+		content: "";
+		width: 32px;
+		height: 32px;
+		background: url("../img/icons/checked.svg") 0 0 no-repeat;
+		background-size: 100%;
+		position: absolute;
+		top: -15px;
+		right: -15px;
+		transform: scale(0);
+		transition: transform .3s;
+		z-index: 2;
+		@media (max-width: $below-mobile) {
+			width: 20px;
+			height: 20px;
+			top: -10px;
+			right: -10px;
+		}
+	}
+}
+
+input[type="radio"]:checked + .radio-square {
+	&:after {
+		border: 5px solid #000;
+		@media (max-width: $below-mobile) {
+			border: 3px solid #000;
+		}
+	}
+	&:before {
+		transform: scale(1);
+	}
+}
+
+.radio-square__icon {
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	width: 45px;
+	height: 45px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	@media (max-width: $below-mobile) {
+		width: 30px;
+		height: 30px;
+		margin-bottom: 5px;
+	}
+}
+
+.radio-square__text {
+	@mixin font-radio;
+}
+
+.btn-radio-clear {
+	height: 100%;
+	padding: 30px 10px;
+	border: 1px solid transaprent;
+	text-align: center;
+	color: $gray;
+	cursor: pointer;
+	transition: color .25s, background .25s;
+	@mixin font-radio;
+	svg {
+		fill: $gray;
+		margin-right: 5px;
+		transition: fill .25s;
+	}
+	@media (min-width: $above-desktop) {
+		&:hover {
+			background-color: rgba(255,255,255,.7);
+			color: $warning;
+			svg {
+				fill: $warning;
+			}
+		}
+	}
+	@media (max-width: $below-mobile) {
+		padding: 20px 10px;
+	}
+}
+
+.emoji-0 {
+	background-image: url("../img/icons/emoji-0.svg");
+}
+.emoji-1 {
+	background-image: url("../img/icons/emoji-1.svg");
+}
+.emoji-2 {
+	background-image: url("../img/icons/emoji-2.svg");
+}
+.emoji-3 {
+	background-image: url("../img/icons/emoji-3.svg");
+}

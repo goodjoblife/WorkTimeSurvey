@@ -1,0 +1,87 @@
+input,
+textarea,
+select {
+	display: block;
+	width: 100%;
+	padding: 0 10px;
+	line-height: $input-height;
+	border: 1px solid $primary-color;
+	font-size: .95em;
+	transition: border-color .25s, box-shadow .25s;
+	&:focus {
+		border-color: #000;
+	}
+}
+
+.input-unit {
+	position: relative;
+	.unit {
+		position: absolute;
+		right: 0;
+		top: 0;
+		display: block;
+		height: 100%;
+		width: 50px;
+		border-left: 1px solid $primary-color;
+		line-height: 42px;
+		line-height: calc($input-height + 2px);
+		font-size: 0.9em;
+		text-align: center;
+	}
+}
+
+button:disabled,
+.disabled {
+	pointer-events: none;
+	opacity: .5;
+}
+
+textarea {
+	resize: vertical;
+	min-height: 200px;
+}
+
+label {
+	display: block;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	font-size: 0.95em;
+	font-weight: 700;
+	color: #000;
+	&.is-required {
+		&:after {
+			content: "*";
+			color: $warning;
+			display: inline-block;
+			padding-left: 5px;
+		}
+	}
+}
+
+button,
+input[type="reset"],
+input[type="button"],
+input[type="submit"] {
+	cursor: pointer;
+	border: 0;
+	display: inline-block;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
+}
+
+$placeholder-color: #bbb;
+::-webkit-input-placeholder {
+	color: $placeholder-color;
+}
+:-moz-placeholder {
+	color: $placeholder-color;
+}
+::-moz-placeholder {
+	color: $placeholder-color;
+}
+:-ms-input-placeholder {
+	color: $placeholder-color;
+}

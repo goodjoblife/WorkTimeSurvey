@@ -1,0 +1,32 @@
+.heading {
+  margin-bottom: $block-gutter-l;
+  @media (max-width: $below-small) {
+    margin-bottom: $block-gutter-m;
+  }
+}
+
+.heading__heading {
+  @mixin heading-style;
+  font-weight: 400;
+  text-align: center;
+}
+
+.heading__description {
+  @mixin font-p;
+  text-align: center;
+  margin-top: $block-gutter-s;
+}
+
+.heading__icon {
+  margin-bottom: $block-gutter-m;
+  @media (max-width: $below-small) {
+    margin-bottom: $block-gutter-s;
+  }
+  svg {
+    display: block;
+    margin: 0 auto;
+    @media (max-width: $below-small) {
+      width: 60px;
+    }
+  }
+}

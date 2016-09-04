@@ -1,0 +1,29 @@
+.html-editor {
+  a {
+    color: $blue;
+    border-bottom: 1px solid transparent;
+    transition: border .3s;
+    padding-bottom: 2px;
+    @media (min-width: $above-desktop) {
+      &:hover {
+        border-bottom: 1px solid $blue;
+      }
+    }
+  }
+  h2 {
+    font-size: 1.8em;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+  p {
+    @mixin font-p;
+    margin-bottom: 1em;
+  }
+  ul {
+    margin-left: 1.5em;
+    > li {
+      list-style: disc;
+      @mixin font-p;
+    }
+  }
+}

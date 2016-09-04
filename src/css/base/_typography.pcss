@@ -1,0 +1,68 @@
+@define-mixin heading-style {
+	font-size: 2.2em;
+	line-height: 1.1em;
+	letter-spacing: 0.03em;
+	@media (max-width: $below-small) {
+		font-size: 1.8em;
+	}
+}
+
+@define-mixin heading-style-l {
+	font-size: 2.3em;
+	line-height: 1.1em;
+	letter-spacing: 0.05em;
+	font-weight: 400;
+	@media (max-width: $below-small) {
+		font-size: 2em;
+	}
+}
+
+@define-mixin heading-style-s {
+	font-size: 1.2em;
+	line-height: 1.2em;
+	font-weight: 400;
+	@media (max-width: $below-small) {
+		font-size: 1.1em;
+	}
+}
+
+@define-mixin subheading-style {
+	font-size: 1.34em;
+	line-height: 1.6em;
+	@media (max-width: $below-small) {
+		font-size: 1.2em;
+		line-height: 1.6em;
+	}
+}
+
+@define-mixin font-p {
+	font-size: 1.13em;
+	line-height: 1.5em;
+	color: #333;
+	@media (max-width: $below-small) {
+		font-size: 1em;
+	}
+}
+
+@define-mixin font-p-s {
+	font-size: .9em;
+	line-height: 1.6em;
+}
+
+@define-mixin font-radio {
+	font-size: 1em;
+	font-weight: 400;
+	@media (max-width: $below-mobile) {
+		font-size: .95em;
+	}
+	@media (max-width: $below-little) {
+		font-size: .86em;
+	}
+}
+strong {
+	font-weight: 700;
+}
+
+p {
+	@mixin font-p;
+}

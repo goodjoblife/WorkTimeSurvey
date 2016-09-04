@@ -1,0 +1,210 @@
+extends ./_layout.pug
+block vars
+	- var bodyClass = "body-index";
+	- var page_url = "index.html";
+	- var page_title = "首頁";
+
+block content
+	section(class="home-banner")
+		div(class="wrapper-l")
+			div(class="home-banner__img")
+				img(src="/assets/img/home-banner.png")
+			div(class="home-banner__heading")
+				div
+					h1(class="home-banner__main-heading") 工時透明化運動
+					h3(class="home-banner__subheading") 分享你的真實工時資訊，讓我們一起改善工時不透明的現況
+	section(class="section" id="section-about")
+		div(class="wrapper-m")
+			div(class="heading")
+				div(class="heading__icon")
+					include ./partials/_icon-light
+				h2(class="heading__heading") 關於工時透明化
+			p(class="paragraph")
+				| 你是否和我們有一樣的經驗？
+				br
+				br
+				| 在求職網站上看到的上下班時間總是只寫著「日班」或「依公司規定」；面試時談的工作時間和實際上的總是不同。如果一開始就能知道真正的工時，我們是不是可以做出更好的選擇？
+				br
+				br
+				| 「工時透明化運動」希望藉由<strong>每個人匿名分享最近一週的實際工時</strong>，讓不同公司、不同職位的工時能夠更公開透明。
+				br
+				br
+				| 我們誠摯地邀請你，一起改善工時不透明的現況！
+			div(class="btn-scroll-down js-scrollToForm")
+				include ./partials/_icon-arrow
+	section(class="section section--yellow" id="section-form")
+		div(class="wrapper-s")
+			div(class="heading")
+				h2(class="heading__heading") 匿名參與工時透明化運動
+				p(class="heading__description") 請您留下<strong>「最近一週」</strong>的資訊
+			form(id="work-form" action="")
+				div(class="form-section")
+					div(class="form-group")
+						label(for="company_query" class="is-required") 公司/單位 或 統一編號
+						div
+							input(type="text" placeholder="〇〇股份有限公司" id="company_query" name="company_query" class="is-required ui-autocomplete-input")
+							input(type="hidden" placeholder="公司統編" id="company_id")
+				div(class="form-section")
+					div(class="form-group--two")
+						div(class="form-group")
+							label(for="job_title" class="is-required") 職稱
+							input(type="text" placeholder="硬體工程師" id="job_title" name="job_title" class="is-required ui-autocomplete-input")
+						div(class="form-group")
+							label(for="") 廠區/門市/分公司
+							div
+								input(type="text" placeholder="楠梓廠區  研發部" id="" name="")
+				div(class="form-section")
+					div(class="form-group--two")
+						div(class="form-group")
+							label(for="day_promised_work_time" class="is-required") 工作日表訂工時
+							div(class="input-unit")
+								span(class="unit") 小時
+								input(type="text" placeholder="8" id="day_promised_work_time" name="day_promised_work_time" class="is-required")
+						div(class="form-group")
+							label(for="day_real_work_time" class="is-required") 實際平均工時
+							div(class="input-unit")
+								span(class="unit") 小時
+								input(type="text" placeholder="10.5" id="day_real_work_time" name="day_real_work_time" class="is-required")
+					div(class="form-info")
+						| <p><strong>工作日</strong>指與雇主約定的上班日，或是排班排定的日子。</p>
+						| <p><strong>實際平均工時</strong>包含在家工作、待命的時間。</p>
+				div(class="form-section")
+					div(class="form-group")
+						label(for="week_work_time" class="is-required") 一週總工時
+						div(class="input-unit")
+							span(class="unit") 小時
+							input(type="text" placeholder="40" id="week_work_time" name="week_work_time" class="is-required")
+					div(class="form-info")
+						p 請您留下最近一週的「實際工作時數（不含休息時間，如：午休）」。
+				div(class="form-section")
+					div(class="form-group")
+						label(class="is-required") 加班頻率
+						div(class="radio-button radio-button--icon")
+							div(class="radio-button__item")
+								input(type="radio" value="" name="frequency" id="feq0" required)
+								label(class="radio-square" for="feq0")
+									i(class="radio-square__icon emoji-0")
+									span(class="radio-square__text") 幾乎不<span class="hide-m">加班</span>
+							div(class="radio-button__item")
+								input(type="radio" value="" name="frequency" id="feq1" required)
+								label(class="radio-square" for="feq1")
+									i(class="radio-square__icon emoji-1")
+									span(class="radio-square__text") 偶爾<span class="hide-m">加班</span>
+							div(class="radio-button__item")
+								input(type="radio" value="" name="frequency" id="feq2" required)
+								label(class="radio-square" for="feq2")
+									i(class="radio-square__icon emoji-2")
+									span(class="radio-square__text") 經常<span class="hide-m">加班</span>
+							div(class="radio-button__item")
+								input(type="radio" value="" name="frequency" id="feq3" required)
+								label(class="radio-square" for="feq3")
+									i(class="radio-square__icon emoji-3")
+									span(class="radio-square__text") 幾乎每天<span class="hide-m">加班</span>
+				div(class="form-section")
+					div(class="form-group")
+						label 加班有無加班費
+						div(class="radio-button" id="select-fee")
+							div(class="radio-button__item")
+								input(type="radio" value="" name="fee" id="fee_yes")
+								label(class="radio-square" for="fee_yes")
+									span(class="radio-square__text") 有
+							div(class="radio-button__item")
+								input(type="radio" value="" name="fee" id="fee_no")
+								label(class="radio-square" for="fee_no")
+									span(class="radio-square__text") 沒有
+							div(class="radio-button__item")
+								input(type="radio" value="" name="fee" id="fee_unknown")
+								label(class="radio-square" for="fee_unknown")
+									span(class="radio-square__text") 不知道
+							div(class="radio-button__item")
+								div(class="btn-radio-clear")
+									include ./partials/_icon-x.pug
+									| 重設
+					div(class="form-group" id="has-fee-option")
+						div(class="select-form")
+							input(type="radio" value="" id="pay1" name="has_pay")
+							label(for="pay1" class="select-form__label")
+								span(class="radio-input")
+								span(class="radio-text") 有，優於或符合勞基法
+						div(class="select-form")
+							input(type="radio" value="" id="pay2" name="has_pay")
+							label(for="pay2" class="select-form__label")
+								span(class="radio-input")
+								span(class="radio-text") 有，不符合勞基法
+						div(class="select-form")
+							input(type="radio" value="" id="pay3" name="has_pay")
+							label(for="pay3" class="select-form__label")
+								span(class="radio-input")
+								span(class="radio-text") 有，不清楚是否符合勞基法
+				div(class="form-section")
+					div(class="form-group")
+						label 加班有無補修
+						div(class="radio-button")
+							div(class="radio-button__item")
+								input(type="radio" value="" name="time_off" id="off_yes")
+								label(class="radio-square" for="off_yes")
+									span(class="radio-square__text") 有
+							div(class="radio-button__item")
+								input(type="radio" value="" name="time_off" id="off_no")
+								label(class="radio-square" for="off_no")
+									span(class="radio-square__text") 沒有
+							div(class="radio-button__item")
+								input(type="radio" value="" name="time_off" id="off_unknown")
+								label(class="radio-square" for="off_unknown")
+									span(class="radio-square__text") 不知道
+							div(class="radio-button__item")
+								div(class="btn-radio-clear")
+									include ./partials/_icon-x.pug
+									| 重設
+				div(class="form-section")
+					div(class="form-group")
+						label(for="email") 電子郵件 - 有消息時將通知您
+						div
+							input(type="email" placeholder="example@email.com" id="email" name="email")
+				div(class="form-section")
+					button(type="submit" id="submit" class="btn-black btn-l" )
+						span(class="fb-login-word")
+							| 以<svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg>驗證並
+						| 送出資料
+					div(class="btn-why-facebook-login") 為什麼需要 Facebook 帳戶驗證？
+	section(class="section-two-col")
+		div(class="section-two-col__item")
+			div
+				div(class="heading")
+					h2(class="heading__heading") 分享此活動
+				div(class="share-buttons")
+					span(onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A//worktime.goodjob.life/', 'newwindow', 'width=555, height=630'); return false;" class="share-buttons__item btn-white btn-m") <svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg> facebook
+					span(onclick="window.open('https://twitter.com/home?status=https%3A//worktime.goodjob.life/', 'newwindow', 'width=555, height=630'); return false;" class="share-buttons__item btn-white btn-m") <svg role="img" class="icon-twitter"><use xlink:href="#icon-twitter"></use></svg> twitter
+				div(class="like-fb-word")
+					span <a href="https://www.facebook.com/goodjob.life/">粉絲頁</a>按讚，隨時取得最新消息
+					span(class="fb-like" data-href="https://www.facebook.com/goodjob.life/" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="false")
+
+		div(class="section-two-col__item")
+			div
+				div(class="heading")
+					h2(class="heading__heading") 與我們聯繫
+				div(class="share-buttons")
+					a(href="https://github.com/goodjoblife" class="share-buttons__item") <svg role="img" class="icon-github"><use xlink:href="#icon-github"></use></svg>
+					a(href="https://www.facebook.com/goodjob.life/" class="share-buttons__item") <svg role="img" class="icon-messenger"><use xlink:href="#icon-messenger"></use></svg>
+	section(class="section" id="section-faq")
+		div(class="wrapper-m")
+			div(class="heading")
+				div(class="heading__icon")
+					include ./partials/_icon-question
+				h2(class="heading__heading") 常見問答
+			ol(class="faq")
+				li(class="faq__item")
+					div(class="question") 這個網站是匿名的嗎？ 為什麼匿名還需要以 Facebook 帳戶驗證？
+					div(class="answer html-editor") 是的，這個網站是匿名的，您的 Facebook 帳戶資訊不會於任何地方被顯示、揭露或分享。Facebook 帳戶驗證是為了避免惡意使用者大量輸入假資訊。目前設定每一個 Facebook 帳戶僅可以上傳 5 筆工時資訊，未來將視情況做調整。
+				li(class="faq__item")
+					div(class="question") 我提供的資料會如何被使用？
+					div(class="answer html-editor") 您的資料將會被運用於 GoodJob 團隊之服務中，供其他使用者查詢。未來也可能與其他工作資訊透明化專案合作，共享真實的工作資訊；但您的Facebook帳戶資訊並不會被共享。
+				li(class="faq__item")
+					div(class="question") 哪裡可以查詢到工時的資訊?
+					div(class="answer html-editor") 您可以在導覽列中，找到「查看工時」的連結。或者是點<a href="/show.html">這裡</a>。
+				li(class="faq__item")
+					div(class="question") 請問你們是誰？
+					div(class="answer html-editor") 詳情請見<a href="/about.html">關於我們</a>。
+				li(class="faq__item")
+					div(class="question") 如果我對這個專案很有興趣，想要一起貢獻心力或洽談合作，該怎麼做?
+					div(class="answer html-editor") 這是一個開源專案，若您是網頁前後端開發者、使用者介面/使用者經驗設計師，或是任何個人或團體想要參與或合作，請用 <a href="https://www.facebook.com/goodjob.life">Facebook</a> 聯絡我們。
