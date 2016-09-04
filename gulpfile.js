@@ -92,7 +92,7 @@ gulp.task('browser-sync', function() {
 	});
 
 	gulp.watch(src.css + '{,**/}*.pcss', ['make:postcss']);
-	gulp.watch([src.js + '**/*.js', '!src/js/plugins.concat.js'], ['compile:scripts']);
+	gulp.watch([src.js + '**/*.js', '!src/js/dependencies.concat.js'], ['compile:scripts']);
 	gulp.watch(src.views + '{,**/}*.pug', ['watch:pages']);
   gulp.watch(src.img + '**/*', ['watch:img']);
 });
@@ -140,11 +140,11 @@ gulp.task('make:postcss', ['make:import'], function() {
 		.pipe(browserSync.stream());
 });
 
-gulp.task('make:plugins', function() {
+gulp.task('make:dependencies', function() {
 	return gulp.src([
 		src.libs + '**/*.js'
 	])
-	.pipe(concat('plugins.concat.js'))
+	.pipe(concat('dependencies.concat.js'))
 	.pipe(gulp.dest(dest.js));
 });
 
@@ -164,9 +164,9 @@ gulp.task('make:scripts', function() {
 		.pipe(gulp.dest(dest.js));
 });
 
-gulp.task('compile:scripts', ['make:scripts', 'make:plugins'], function() {
+gulp.task('compile:scripts', ['make:scripts', 'make:dependencies'], function() {
 	return gulp.src([
-  		dest.js + 'plugins.concat.js',
+  		dest.js + 'dependencies.concat.js',
   		dest.js + 'main.concat.js'
   	])
   	.pipe(concat('main.js'))
