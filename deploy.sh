@@ -3,7 +3,7 @@
 REV=`git describe --always`
 
 rm -rf public
-git clone git@github.com:goodjoblife/WorkTimeSurvey.git public -b gh-pages --depth 1
+git clone git@github.com:goodjoblife/WorkTimeSurvey.git public -b gh-pages-from-front-end --depth 1
 
 # Remove all the old build files
 
@@ -12,11 +12,12 @@ cp CNAME public/
 
 # Build the page into public
 
-cp -r bower_components css font-awesome fonts img js *.html public
+npm install
+npm run build
 
 # Build done, now commit it
 
 cd public
 git add -A .
 git commit -m "regen for $REV"
-git push origin gh-pages
+git push origin gh-pages-from-front-end
