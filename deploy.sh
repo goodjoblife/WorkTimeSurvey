@@ -3,7 +3,7 @@
 REV=`git describe --always`
 
 rm -rf public
-git clone git@github.com:goodjoblife/WorkTimeSurvey.git public -b gh-pages-from-front-end --depth 1
+git clone git@github.com:goodjoblife/WorkTimeSurvey.git public -b gh-pages --depth 1
 
 # Remove all the old build files
 
@@ -20,4 +20,4 @@ npm run build
 cd public
 git add -A .
 git commit -m "regen for $REV"
-git push origin gh-pages-from-front-end
+git push origin gh-pages
