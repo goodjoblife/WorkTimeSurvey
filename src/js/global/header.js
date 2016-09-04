@@ -1,5 +1,4 @@
 const header = document.getElementById('header');
-
 if (breakpoint.above_small.matches) {
   window.addEventListener('scroll', () => {
     if (document.documentElement && document.documentElement.scrollTop || document.body.scrollTop > 100) {
@@ -17,7 +16,7 @@ header_button.addEventListener('click', function() {
   header_nav.classList.toggle('is-open');
   if (document.querySelector('.btn-scroll-down')) {
     document.querySelector('.btn-scroll-down').classList.toggle('hide');
-  }  
+  }
 });
 
 const nav_scroll = document.querySelectorAll('.js-scrollpage');

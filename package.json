@@ -5,8 +5,8 @@
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Oops, we don't have test\" && exit 0",
-    "start": "gulp clean && gulp",
-    "build": "gulp clean && gulp build"
+    "start": "gulp clean && gulp build:sprites && gulp",
+    "build": "gulp clean && gulp build:sprites && gulp build"
   },
   "author": "goodjob",
   "license": "ISC",

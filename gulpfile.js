@@ -92,7 +92,9 @@ gulp.task('browser-sync', function() {
 	});
 
 	gulp.watch(src.css + '{,**/}*.pcss', ['make:postcss']);
-	gulp.watch([src.js + '**/*.js', '!src/js/dependencies.concat.js'], ['compile:scripts']);
+	gulp.watch(src.js + 'main/**/*.js', ['make:main-scripts']);
+	gulp.watch(src.js + 'global/**/*.js', ['make:global-scripts']);
+	gulp.watch(src.js + 'libs/**/*.js', ['make:dependencies']);
 	gulp.watch(src.views + '{,**/}*.pug', ['watch:pages']);
   gulp.watch(src.img + '**/*', ['watch:img']);
 });
@@ -144,14 +146,30 @@ gulp.task('make:dependencies', function() {
 	return gulp.src([
 		src.libs + '**/*.js'
 	])
-	.pipe(concat('dependencies.concat.js'))
-	.pipe(gulp.dest(dest.js));
+	.pipe(concat('dependencies.js'))
+	.pipe(gulp.dest(dest.js))
+	.pipe(browserSync.stream());
 });
 
-gulp.task('make:scripts', function() {
+gulp.task('make:global-scripts', function() {
 	return gulp.src([
 		src.js + 'order/init.js',
 		src.js + 'order/matchmedia.js',
+		src.js + 'global/**/*.js'
+	])
+		.pipe(sourcemaps.init())
+		.pipe(plumber({
+			errorHandler: onError
+		}))
+		.pipe(babel())
+		.pipe(concat('global.js'))
+		.pipe(sourcemaps.write())
+		.pipe(gulp.dest(dest.js))
+		.pipe(browserSync.stream());
+});
+
+gulp.task('make:main-scripts', function() {
+	return gulp.src([
 		src.js + 'main/**/*.js'
 	])
 		.pipe(sourcemaps.init())
@@ -159,19 +177,9 @@ gulp.task('make:scripts', function() {
 			errorHandler: onError
 		}))
 		.pipe(babel())
-		.pipe(concat('main.concat.js'))
 		.pipe(sourcemaps.write())
-		.pipe(gulp.dest(dest.js));
-});
-
-gulp.task('compile:scripts', ['make:scripts', 'make:dependencies'], function() {
-	return gulp.src([
-  		dest.js + 'dependencies.concat.js',
-  		dest.js + 'main.concat.js'
-  	])
-  	.pipe(concat('main.js'))
-  	.pipe(gulp.dest(dest.js))
-  	.pipe(browserSync.stream());
+		.pipe(gulp.dest(dest.js))
+		.pipe(browserSync.stream());
 });
 
 gulp.task('minify', function() {
@@ -236,10 +244,15 @@ gulp.task('build:sprites', function() {
  * MAIN TASKS
  */
 
+
+gulp.task('compile:scripts', function() {
+	runSequence('make:main-scripts', 'make:global-scripts', 'make:dependencies');
+});
+
 gulp.task('default', function() {
 	runSequence('compile:scripts', ['make:postcss', 'make:pages', 'move:img', 'build:sprites'], 'browser-sync');
 });
 
 gulp.task('build', function() {
-	runSequence('compile:scripts', ['make:postcss', 'make:pages', 'move:img', 'build:sprites'], 'minify');
+	runSequence('compile:scripts', ['make:postcss', 'make:pages', 'move:img', ], 'minify');
 });
