@@ -11,4 +11,7 @@ env:
     global:
         - secure: KKHrHs0MVcLNYt1V4BoUdiPrZeFYN1qruMAR2XX6F3+t4rAVbXWE7UZ5mC0gzzWblgnSiNntQX5Sp04nfDYQ8skzXcoNRSw9WMS4OiZkrkEB9mxIlKreTfHAI05NLrj4xkcrcKfpTWs6IDPVcdJpj6m6O7sHE0ypOo1NaXjI80/4tdKOgunA+1khoeADytRmsmmyQEXIVfXQWoFMMD6WDhUPIueo5vCtup2VH+4SU+4VvbwfkZ9pU/lFp9c45Hoqt/Yfit1mRx/Iw3IRaXGlgoUJn0U4dyj4Tk+EVlJB7P6wMHHWs8v05S50u6+aDX6aW3gVX9JnsC+t24QW5yt4L39N5iM3kG8IYwSkD7N0xpUIm4JgtjCz/7Ei5FXidkSOmYIoHfauGjcaxt7ThU5uAfaJPEwNe0nW8P+5X0mL56F/B6KlP2iYc9W/BenM/3Y/WD7zvzd+4dq1/ttSVxitB/z5dvA8KYV6zOcI1PkfkRqWzapr9N1kvvrpG1d45up7mCfh+q4+gjr9l+jS6DpkwYAhjwVvfjruEFM4rXALVzez9ctMJqYnfhfoIYB13tcAnJxD6upwbwuguIRbrm1PiQzxB4xzkr/3jIyvM0WLmKEvTgW8mu3SIC8Hsbr8k0tvUlJbyenKkt7ofOcaa8HP9dhquyck9pfYk2RDyHdrybA=
 
+script:
+    - npm run build
+
 after_success: ".travis/after_success.sh"

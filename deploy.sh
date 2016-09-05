@@ -9,11 +9,6 @@ git clone git@github.com:goodjoblife/WorkTimeSurvey.git _public -b gh-pages --de
 
 rm -rf _public/*
 
-# Build the page into public
-
-npm install
-npm run build
-
 # Build done, now commit it
 
 cp -r public/* _public
