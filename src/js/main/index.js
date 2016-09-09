@@ -315,14 +315,14 @@ $(document).ready(function(){
                 },
                 dataType: "json",
             }).done(function(res) {
-                var nameList = $.map(res, function(item, i) {
+                let nameList = $.map(res, (item, i) => {
                     return {
                         value: item.des,
                         id: item._id,
                     };
                 });
                 response(nameList);
-            }).fail(function( jqXHR, textStatus ) {
+            }).fail((jqXHR, textStatus) => {
                 response([]);
             });
         },
@@ -343,14 +343,14 @@ $(document).ready(function(){
                 data: { key : request['term'] },
                 dataType: "json",
             }).done(function( res ) {
-                nameList = new Array();
+                let nameList = new Array();
                 console.log(res);
 
-                res.forEach(function(item, i) {
+                res.forEach((item, i) => {
                     nameList.push({"value": item['name'], "company_id": item.id});
                 });
                 response(nameList);
-            }).fail(function( jqXHR, textStatus ) {
+            }).fail((jqXHR, textStatus) => {
                 response([]);
             });
         },
