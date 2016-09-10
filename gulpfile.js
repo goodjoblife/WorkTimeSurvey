@@ -86,7 +86,7 @@ gulp.task('browser-sync', function() {
     server: {
       baseDir: basePath.static
     },
-    port: 3010,
+    port: 8080,
     open: false,
 		notify: false
 	});
