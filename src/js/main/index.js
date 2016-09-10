@@ -343,11 +343,10 @@ $(document).ready(function(){
                 data: { key : request['term'] },
                 dataType: "json",
             }).done(function( res ) {
-                let nameList = new Array();
-                console.log(res);
+                let nameList = [];
 
                 res.forEach((item, i) => {
-                    nameList.push({"value": item['name'], "company_id": item.id});
+                    nameList.push({"value": item.name, "company_id": item.id});
                 });
                 response(nameList);
             }).fail((jqXHR, textStatus) => {
