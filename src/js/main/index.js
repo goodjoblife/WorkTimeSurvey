@@ -75,6 +75,8 @@ for (let i = 0; i < clear_radio_btn.length; i++) {
 /*
  * Form Submit Controller
  */
+let isFacebookSignedIn = false;
+
 const $work_form = $("#work-form");
 
 class ValidationError extends Error {
@@ -155,6 +157,7 @@ const checkFormField = () => {
 const sendFormData = () => {
   const data = domToData();
 
+  data.access_token = FB.getAccessToken();
   data.company = data.company_query;
   delete data.company_query;
   data.day_promised_work_time = parseFloat(data.day_promised_work_time);
@@ -162,7 +165,7 @@ const sendFormData = () => {
   data.week_work_time = parseFloat(data.week_work_time);
 
   $.ajax({
-    url: 'http://localhost:12000/workings', //'https://tranquil-fortress-92731.herokuapp.com/workings',
+    url: 'http://localhost:12000/workings', //'https://tranquil-fortress-92731.herokuapp.com/workings' TODO,
     method: 'POST',
     data: data,
     dataType: 'json',
@@ -209,32 +212,75 @@ $work_form.on('submit', function(e) {
     return;
   }
 
-  // TODO include FB script to check whether FB is signed in
-  sendFormData();
+  if (isFacebookSignedIn) {
+    sendFormData();
+  } else {
+    FB.login((response) => {
+      statusChangeCallback(response);
+      if (response.status === 'connected') {
+        sendFormData();
+      } else {
+        $work_form.trigger('submitted', {
+          error: new Error('未登入FB，取消送出資料'),
+          type: 'AuthError',
+        });
+      }
+    }, {
+      scope: 'public_profile,email'
+    });
+  }
 });
 
 $work_form.on('submitting', (e) => {});
 
 $work_form.on('submitted', (e, result) => {
   if (result.error) {
+    if (result.type === 'ValidationError') {
+      showTooltipAndScroll(result.error.target, result.error.message);
+    } else if (result.type === 'AuthError') {
+      // TODO result.error.message;
+    } else if (result.type === 'SendError') {
+      // TODO some send problem
+      /*if (jqXHR.readyState === 0) {
+        showAlert("目前網路有些問題，稍後再試");
+      } else if (jqXHR.readyState === 4) {
+        showAlert(jqXHR.responseJSON.message);
+      } else {
+        showAlert("Oops 有些錯誤發生");
+      }*/
+    }
     return;
   }
+
+  // TODO: when submit success
+  console.log(result);
 });
 
-$work_form.on('submitted', (e, result) => {
-  // ValidationError ???
-  if (result.error) {
-    console.log(result.error.target);
-    showTooltipAndScroll(result.error.target, result.error.message);
-  }
-});
-
+/*
+ * Facebook related
+ */
 window.fbAsyncInit = () => {
   const appId = (window.location.hostname === "localhost") ? '1750608541889151' : '1750216878594984';
   FB.init({
-    appId   : appId,
-    cookie  : true,
-    xfbml   : true,
-    version : 'v2.6'
+    appId: appId,
+    cookie: true,
+    xfbml: true,
+    version: 'v2.6'
   });
+
+  FB.getLoginStatus((response) => {
+    statusChangeCallback(response);
+  });
+};
+
+const statusChangeCallback = (response) => {
+  if (response.status == 'connected') {
+    isFacebookSignedIn = true;
+    document.querySelector('.fb-login-word').style.display = 'none';
+    document.querySelector('.btn-why-facebook-login').style.display = 'none';
+  } else {
+    isFacebookSignedIn = false;
+    document.querySelector('.fb-login-word').style.display = '';
+    document.querySelector('.btn-why-facebook-login').style.display = '';
+  }
 };
