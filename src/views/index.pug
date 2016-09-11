@@ -33,6 +33,15 @@ block content
 			div(class="btn-scroll-down js-scrollToForm")
 				include ./partials/_icon-arrow
 	section(class="section section--yellow" id="section-form")
+		div(class="modal is-open")
+			div(class="modal__inner")
+				div(class="modal__close wrapper-s") <svg role="img"><use xlink:href="#x"></use></svg>
+				div(class="modal__container wrapper-s")
+					div(class="modal-content")
+						div(class="modal-content__icon") <svg role="img"><use xlink:href="#form-checked"></use></svg>
+						h5(class="modal-content__heading") 上傳成功
+						h6(class="modal-content__paragraph") 感謝你的填寫，你已填寫 3 次，還剩下 2 次。
+						div(class="modal-content__btn btn-black btn-m") 查看最新工時
 		div(class="wrapper-s")
 			div(class="heading")
 				h2(class="heading__heading") 匿名參與工時透明化運動
