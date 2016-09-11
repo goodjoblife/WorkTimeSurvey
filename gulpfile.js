@@ -145,9 +145,11 @@ gulp.task('make:postcss', ['make:import'], function() {
 
 gulp.task('make:dependencies', function() {
 	return gulp.src([
+		src.libs + 'blazy.min.js',
 		src.libs + 'jquery.min.js',
 		src.libs + 'jquery-ui.min.js',
-		src.libs + '**/*.js'
+		src.libs + 'vue.min.js',
+		src.libs + 'vue-resource.min.js'
 	])
 	.pipe(concat('dependencies.js'))
 	.pipe(gulp.dest(dest.js))
