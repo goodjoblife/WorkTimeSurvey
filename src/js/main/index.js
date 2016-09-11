@@ -165,7 +165,7 @@ const sendFormData = () => {
   data.week_work_time = parseFloat(data.week_work_time);
 
   $.ajax({
-    url: 'http://localhost:12000/workings', //'https://tranquil-fortress-92731.herokuapp.com/workings' TODO,
+    url: 'https://tranquil-fortress-92731.herokuapp.com/workings',
     method: 'POST',
     data: data,
     dataType: 'json',
