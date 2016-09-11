@@ -97,6 +97,7 @@ gulp.task('browser-sync', function() {
 	gulp.watch(src.js + 'libs/**/*.js', ['make:dependencies']);
 	gulp.watch(src.views + '{,**/}*.pug', ['watch:pages']);
   gulp.watch(src.img + '**/*', ['watch:img']);
+	gulp.watch(src.svg + '*.svg', ['watch:svg']);
 });
 
 gulp.task('make:import', function() {
@@ -107,7 +108,7 @@ gulp.task('make:import', function() {
 				.pipe(inject(gulp.src(src.css + text +'/**/_*.pcss', {read: false}).pipe(sort()), {
 					relative: true,
 					starttag: '/* inject:pcss */',
-		            endtag: '/* endinject */',
+		      endtag: '/* endinject */',
 					transform: function(filepath, file) {
 						return '@import "' + filepath + '";';
 					}
@@ -210,7 +211,6 @@ gulp.task('move:img', function() {
 gulp.task('watch:img', ['move:img'], reload);
 
 /* svg */
-
 gulp.task('clean:svgmin', function() {
 	return del(src.svgmin);
 });
@@ -239,11 +239,12 @@ gulp.task('build:sprites', function() {
 	runSequence('clean:svgmin', 'minify:svg', 'make:sprites');
 });
 
+gulp.task('watch:svg', ['build:sprites'], reload);
+
 
 /**
  * MAIN TASKS
  */
-
 
 gulp.task('compile:scripts', function() {
 	runSequence('make:main-scripts', 'make:global-scripts', 'make:dependencies');

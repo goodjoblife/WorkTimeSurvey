@@ -133,11 +133,7 @@ Session.vim
 
 
 ### Ignore JS & CSS files ###
-src/sass/*.scss
-!src/sass/main.scss
-!src/sass/ie.scss
-!src/sass/_reset.scss
-src/js/plugins.concat.js
+src/css/base/_sprites.pcss
 src/views/partials/svg-symbols.*
 
 ### Ignore .env file ###
@@ -145,3 +141,5 @@ src/views/partials/svg-symbols.*
 !.env.js.example
 
 public
+
+src/svg/min
