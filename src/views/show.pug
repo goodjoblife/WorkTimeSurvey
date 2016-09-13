@@ -1,10 +1,38 @@
 extends ./_layout.pug
 block vars
-	- var bodyClass = "body-show";
+	- var bodyClass = "body-show body-gray";
 	- var page_url = "show.html";
 	- var page_title = "查看工時";
 
 block content
-
-block scripts
-	
+	section(class="page-banner")
+		div(class="wrapper-l page-banner__container")
+			h1(class="page-banner__heading") 查看工時
+			button(class="btn-s btn-yellow-line" id="btn-latest") <svg role="img" class="star"><use xlink:href="#star"></use></svg>最新
+			img(src="/assets/img/workers.jpg" class="img-show-banner")
+	div(class="wrapper-l")
+		section(class="section time-searchbar")
+			| search-bar
+		section(class="search-result")
+			h2(class="section__heading") 關於工時透明化
+			div(class="search-result__table")
+				table(class="rwd-table latest-table")
+					thead
+						tr
+							th(class="") 公司名稱
+							th(class="")
+								span 職稱
+								span 廠區/門市/分公司
+							th(class="") 一週總工時（小時）
+							th(class="") 加班頻率
+					tbody
+						tr
+							td(class="") 勤業眾信聯合會計師事務所
+							td(class="")
+								span 副組長
+								span -
+							td(class="")
+								span(class="time-bar") 90
+							td(class="")
+								span(class="frequency-circle")
+								| 經常

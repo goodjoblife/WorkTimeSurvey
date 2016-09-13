@@ -21,10 +21,10 @@ const showAlert = (type, message1, message2, button_type) => {
   }
   let to_be_append = `
   <div class="modal__inner">
-    <div class="modal__close wrapper-s"><svg role="img"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#x"></use></svg></div>
+    <div class="modal__close wrapper-s"><svg role="img"><use xlink:href="#x"></use></svg></div>
     <div class="modal__container wrapper-s">
       <div class="modal-content">
-        <div class="modal-content__icon"><svg role="img"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#${icon}"></use></svg></div>
+        <div class="modal-content__icon"><svg role="img"><use xlink:href="#${icon}"></use></svg></div>
         <h5 class="modal-content__heading">${message1}</h5>
         <h6 class="modal-content__paragraph">${message2}</h6>
         ${button}
