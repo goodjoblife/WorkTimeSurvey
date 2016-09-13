@@ -19,20 +19,25 @@ block content
 				table(class="rwd-table latest-table")
 					thead
 						tr
-							th(class="") 公司名稱
-							th(class="")
+							th(class="col-company") 公司名稱
+							th(class="col-position")
 								span 職稱
-								span 廠區/門市/分公司
-							th(class="") 一週總工時（小時）
-							th(class="") 加班頻率
+								span(class="table-sector") 廠區/門市/分公司
+							th(class="col-time") 一週總工時（小時）
+							th(class="col-frequency") 加班頻率
 					tbody
 						tr
-							td(class="") 勤業眾信聯合會計師事務所
-							td(class="")
-								span 副組長
-								span -
-							td(class="")
-								span(class="time-bar") 90
-							td(class="")
-								span(class="frequency-circle")
-								| 經常
+							td(data-th="公司名稱" class="col-company")
+								span(class="rwd-td")
+									a(href="#") 勤業眾信聯合會計師事務所
+							td(data-th="職稱 (廠區/門市/分公司)" class="col-position")
+								span(class="rwd-td")
+									span 副組長
+									span(class="table-sector") -
+							td(data-th="一週總工時" class="col-time")
+								span(class="rwd-td")
+									span(class="table-time-bar") 90
+							td(data-th="加班頻率" class="col-frequency")
+								span(class="rwd-td")
+									span(class="table-frequency-circle")
+									| 經常
