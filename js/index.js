@@ -68,9 +68,11 @@ $(function() {
     $('#has-overtime-salary-btn-group input[type=radio]').on('change', function(){
         if($(this).attr("value") == 'yes' && $(this).is(":checked")){
             $("#is_overtime_salary_legal_input").collapse("show");
+            $("#has_overtime_salary_input").addClass("form-group-with-sub-problem");
         }
         else{
             $("#is_overtime_salary_legal_input").collapse("hide");
+            $("#has_overtime_salary_input").removeClass("form-group-with-sub-problem");
         }
     });
 
@@ -79,6 +81,7 @@ $(function() {
         $("#has-overtime-salary-btn-group label").removeClass("active");
         $("#is-overtime-salary-legal-radio-group input[type=radio]:checked").prop("checked", false);
         $("#is_overtime_salary_legal_input").collapse("hide");
+        $("#has_overtime_salary_input").removeClass("form-group-with-sub-problem");
     });
     $("#reset-has-compensatory-dayoff").on('click', function(){
         $("#has-compensatory-dayoff-btn-group input[type=radio]:checked").prop("checked", false);

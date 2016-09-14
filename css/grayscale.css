@@ -624,3 +624,8 @@ h3.tight {
 .data-section-row{
     padding-top: 35px;
 }
+
+.form-group-with-sub-problem{
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
