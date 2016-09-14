@@ -1,12 +1,11 @@
 .search-result__table {
-  min-height: 1000px;
   background-color: #fff;
   padding: 30px 0;
+  margin-bottom: $block-gutter-l;
 }
 
 .table-time-bar {
   background-color: $yellow-bar;
-  width: 100%;
   display: block;
   max-width: 80%;
   padding: 6px;
@@ -19,4 +18,13 @@
   height: 9px;
   background-color: $white-light;
   margin-right: 10px;
+  &[data-frequency="1"] {
+    background-color: #9B9B9B;
+  }
+  &[data-frequency="2"] {
+    background-color: #F5A623;
+  }
+  &[data-frequency="3"] {
+    background-color: #D0021B;
+  }
 }
