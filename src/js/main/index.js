@@ -124,7 +124,7 @@ const checkFormField = () => {
     throw new ValidationError("工作日表定工作時間並非數字", $("#form-day-promised-work-time"));
   }
   if (data.day_promised_work_time < 0 || data.day_promised_work_time > 24) {
-    throw new ValidationError("工作日表定工作時間並非數字", $("#form-day-promised-work-time"));
+    throw new ValidationError("工作日表定工作時間範圍為0~24小時", $("#form-day-promised-work-time"));
   }
 
   if (data.day_real_work_time === '') {
