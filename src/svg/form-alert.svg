@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="81px" height="76px" viewBox="0 0 81 76" enable-background="new 0 0 81 76" xml:space="preserve">
+<title>warning</title>
+<desc>Created with Sketch.</desc>
+<g>
+	<circle fill="#FCD406" cx="40.478" cy="60.733" r="2.846"/>
+	<path fill="#FCD406" d="M37.947,29.03v21.835c0,1.396,1.131,2.529,2.53,2.529c1.399,0,2.53-1.131,2.53-2.529V29.03
+		c0-1.396-1.131-2.53-2.53-2.53C39.079,26.5,37.947,27.633,37.947,29.03z"/>
+	<path fill="#FCD406" d="M80.443,72.203L42.711,1.365c-0.879-1.65-3.588-1.65-4.466,0L0.514,72.203
+		c-0.418,0.785-0.394,1.73,0.064,2.491c0.457,0.763,1.281,1.229,2.17,1.229h75.46c0.89,0,1.712-0.465,2.171-1.229
+		C80.834,73.934,80.859,72.988,80.443,72.203z M6.962,70.863L40.478,7.937l33.517,62.927H6.962z"/>
+</g>
+</svg>
