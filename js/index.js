@@ -64,6 +64,31 @@ $(function() {
         $('#form input').on('click', callback);
         $('#form input[type=radio]').on('change', callback);
     })();
+
+    $('#has-overtime-salary-btn-group input[type=radio]').on('change', function(){
+        if($(this).attr("value") == 'yes'){
+            if($(this).is(":checked")){
+                $("#is-overtime-salary-legal-radio-group").collapse("show");
+            }
+            else{
+                $("#is-overtime-salary-legal-radio-group").collapse("hide");   
+            }
+        }
+        else{
+            $("#is-overtime-salary-legal-radio-group").collapse("hide");
+        }
+    });
+
+    $("#reset-has-overtime-salary").on('click', function(){
+        $("#has-overtime-salary-btn-group input[type=radio]:checked").prop("checked", false);
+        $("#has-overtime-salary-btn-group label").removeClass("active");
+        $("#is-overtime-salary-legal-radio-group").collapse("hide");
+    });
+    $("#reset-has-compensatory-dayoff").on('click', function(){
+        $("#has-compensatory-dayoff-btn-group input[type=radio]:checked").prop("checked", false);
+        $("#has-compensatory-dayoff-btn-group label").removeClass("active");
+    });
+
 });
 
 var isSubmitEnable = true;
