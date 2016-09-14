@@ -66,23 +66,19 @@ $(function() {
     })();
 
     $('#has-overtime-salary-btn-group input[type=radio]').on('change', function(){
-        if($(this).attr("value") == 'yes'){
-            if($(this).is(":checked")){
-                $("#is-overtime-salary-legal-radio-group").collapse("show");
-            }
-            else{
-                $("#is-overtime-salary-legal-radio-group").collapse("hide");   
-            }
+        if($(this).attr("value") == 'yes' && $(this).is(":checked")){
+            $("#is_overtime_salary_legal_input").collapse("show");
         }
         else{
-            $("#is-overtime-salary-legal-radio-group").collapse("hide");
+            $("#is_overtime_salary_legal_input").collapse("hide");
         }
     });
 
     $("#reset-has-overtime-salary").on('click', function(){
         $("#has-overtime-salary-btn-group input[type=radio]:checked").prop("checked", false);
         $("#has-overtime-salary-btn-group label").removeClass("active");
-        $("#is-overtime-salary-legal-radio-group").collapse("hide");
+        $("#is-overtime-salary-legal-radio-group input[type=radio]:checked").prop("checked", false);
+        $("#is_overtime_salary_legal_input").collapse("hide");
     });
     $("#reset-has-compensatory-dayoff").on('click', function(){
         $("#has-compensatory-dayoff-btn-group input[type=radio]:checked").prop("checked", false);
@@ -324,7 +320,7 @@ function submitForm() {
             day_real_work_time: $("#day_real_work_time").val(),
             overtime_frequency: $("#overtime_frequency_input input[name='frequency']:checked").val(),
             email: $("#email").val(),
-        },
+      },
         dataType: 'json',
     }).then(function(res) {
         //GA tracking if upload successfully
