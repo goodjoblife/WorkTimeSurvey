@@ -107,10 +107,13 @@ const domToData = () => {
 const checkFormField = () => {
   const data = domToData();
 
+  // TODO {String}.trim() can be a better solution, but here use $.trim() for IE8.
+  data.company_query = $.trim(data.company_query);
   if (data.company_query === "") {
     throw new ValidationError("需填寫公司/單位", $("#form-company-query"));
   }
 
+  data.job_title = $.trim(data.job_title);
   if (data.job_title === "") {
     throw new ValidationError("需填寫職稱", $("#form-job-title"));
   }
