@@ -78,6 +78,7 @@ for (let i = 0; i < clear_radio_btn.length; i++) {
 let isFacebookSignedIn = false;
 
 const $work_form = $("#work-form");
+const $work_form_submit_button = $("#submit");
 
 class ValidationError extends Error {
   constructor(message, target) {
@@ -172,6 +173,8 @@ const sendFormData = () => {
     data: data,
     dataType: "json",
   }).then(res => {
+    // disable the form still
+
     $work_form.trigger("sended", {
       data: res,
     });
@@ -179,6 +182,9 @@ const sendFormData = () => {
       data: res,
     });
   }).fail((jqXHR, textStatus, errorThrown) => {
+    // enable the form
+    $work_form_submit_button.prop("disabled", false);
+
     $work_form.trigger("sended", {
       error: new Error(),
       type: "SendError",
@@ -198,15 +204,19 @@ const sendFormData = () => {
 
 $work_form.on("submit", function(e) {
   e.preventDefault();
-  $work_form.trigger("submitting");
 
-  // TODO disable the form
+  // disable the form
+  $work_form_submit_button.prop("disabled", true);
+
+  $work_form.trigger("submitting");
 
   // Check things
   try {
     checkFormField();
   } catch (error) {
-    // TODO enable the form
+    // enable the form
+    $work_form_submit_button.prop("disabled", false);
+
     $work_form.trigger("submitted", {
       error: error,
       type: "ValidationError",
@@ -222,6 +232,9 @@ $work_form.on("submit", function(e) {
       if (response.status === "connected") {
         sendFormData();
       } else {
+        // enable the form
+        $work_form_submit_button.prop("disabled", false);
+
         $work_form.trigger("submitted", {
           error: new Error("未登入FB，取消送出資料"),
           type: "AuthError",
