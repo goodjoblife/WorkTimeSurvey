@@ -87,7 +87,6 @@ class ValidationError extends Error {
 }
 
 const domToData = () => {
-  // TODO need to check the id in html
   return {
     company_id: $("#form-company-id").val(),
     company_query: $("#form-company-query").val(),
@@ -101,22 +100,22 @@ const domToData = () => {
     is_overtime_salary_legal: $("#has-fee-option input[name='has_pay']:checked").val(),
     has_compensatory_dayoff: $("#form-has-compensatory-dayoff input[name='time_off']:checked").val(),
     email: $("#form-email").val(),
-  }
+  };
 };
 
 /* check form before submit */
 const checkFormField = () => {
   const data = domToData();
 
-  if (data.company_query === '') {
+  if (data.company_query === "") {
     throw new ValidationError("需填寫公司/單位", $("#form-company-query"));
   }
 
-  if (data.job_title === '') {
+  if (data.job_title === "") {
     throw new ValidationError("需填寫職稱", $("#form-job-title"));
   }
 
-  if (data.day_promised_work_time === '') {
+  if (data.day_promised_work_time === "") {
     throw new ValidationError("需填寫工作日表定工作時間", $("#form-day-promised-work-time"));
   }
   data.day_promised_work_time = parseFloat(data.day_promised_work_time);
@@ -127,7 +126,7 @@ const checkFormField = () => {
     throw new ValidationError("工作日表定工作時間範圍為0~24小時", $("#form-day-promised-work-time"));
   }
 
-  if (data.day_real_work_time === '') {
+  if (data.day_real_work_time === "") {
     throw new ValidationError("需填寫工作日實際工作時間", $("#form-day-real-work-time"));
   }
   data.day_real_work_time = parseFloat(data.day_real_work_time);
@@ -138,7 +137,7 @@ const checkFormField = () => {
     throw new ValidationError("工作日實際工作時間範圍為0~24小時", $("#form-day-real-work-time"));
   }
 
-  if (data.week_work_time === '') {
+  if (data.week_work_time === "") {
     throw new ValidationError("需填寫一週總工時", $("#form-week-work-time"));
   }
   data.week_work_time = parseFloat(data.week_work_time);
@@ -149,7 +148,7 @@ const checkFormField = () => {
     throw new ValidationError("一週總工時範圍為0~168小時", $("#form-week-work-time"));
   }
 
-  if (!data.overtime_frequency || data.overtime_frequency === '') {
+  if (!data.overtime_frequency || data.overtime_frequency === "") {
     throw new ValidationError("需填寫加班頻率", $("#form-overtime-frequency"));
   }
 };
@@ -165,28 +164,28 @@ const sendFormData = () => {
   data.week_work_time = parseFloat(data.week_work_time);
 
   $.ajax({
-    url: 'https://tranquil-fortress-92731.herokuapp.com/workings',
-    method: 'POST',
+    url: "https://tranquil-fortress-92731.herokuapp.com/workings",
+    method: "POST",
     data: data,
-    dataType: 'json',
+    dataType: "json",
   }).then(res => {
-    $work_form.trigger('sended', {
-      data: res
-    })
-    $work_form.trigger('submitted', {
-      data: res
-    })
+    $work_form.trigger("sended", {
+      data: res,
+    });
+    $work_form.trigger("submitted", {
+      data: res,
+    });
   }).fail((jqXHR, textStatus, errorThrown) => {
-    $work_form.trigger('sended', {
+    $work_form.trigger("sended", {
       error: new Error(),
-      type: 'SendError',
+      type: "SendError",
       jqXHR: jqXHR,
       textStatus: textStatus,
       errorThrown: errorThrown,
     });
-    $work_form.trigger('submitted', {
+    $work_form.trigger("submitted", {
       error: new Error(),
-      type: 'SendError',
+      type: "SendError",
       jqXHR: jqXHR,
       textStatus: textStatus,
       errorThrown: errorThrown,
@@ -194,9 +193,9 @@ const sendFormData = () => {
   });
 };
 
-$work_form.on('submit', function(e) {
+$work_form.on("submit", function(e) {
   e.preventDefault();
-  $work_form.trigger('submitting');
+  $work_form.trigger("submitting");
 
   // TODO disable the form
 
@@ -205,9 +204,9 @@ $work_form.on('submit', function(e) {
     checkFormField();
   } catch (error) {
     // TODO enable the form
-    $work_form.trigger('submitted', {
+    $work_form.trigger("submitted", {
       error: error,
-      type: 'ValidationError',
+      type: "ValidationError",
     });
     return;
   }
@@ -217,25 +216,25 @@ $work_form.on('submit', function(e) {
   } else {
     FB.login((response) => {
       statusChangeCallback(response);
-      if (response.status === 'connected') {
+      if (response.status === "connected") {
         sendFormData();
       } else {
-        $work_form.trigger('submitted', {
-          error: new Error('未登入FB，取消送出資料'),
-          type: 'AuthError',
+        $work_form.trigger("submitted", {
+          error: new Error("未登入FB，取消送出資料"),
+          type: "AuthError",
         });
       }
     }, {
-      scope: 'public_profile,email'
+      scope: "public_profile,email",
     });
   }
 });
 
-$work_form.on('submitting', (e) => {});
+$work_form.on("submitting", (e) => {});
 
-$work_form.on('submitted', (e, result) => {
+$work_form.on("submitted", (e, result) => {
   if (result.error) {
-    if (result.type === 'ValidationError') {
+    if (result.type === "ValidationError") {
       showTooltipAndScroll(result.error.target, result.error.message);
     } else if (result.type === "AuthError") {
       showAlert('alert', 'Facebook 登入失敗', '為了避免使用者大量輸入假資訊，我們會以您的 Facebook 帳戶做驗證。但別擔心！您的帳戶資訊不會以任何形式被揭露、顯示。每一帳戶目前僅能上傳 5 次工時資訊。', 'go-fb-login');
@@ -262,12 +261,12 @@ $work_form.on('submitted', (e, result) => {
  * Facebook related
  */
 window.fbAsyncInit = () => {
-  const appId = (window.location.hostname === "localhost") ? '1750608541889151' : '1750216878594984';
+  const appId = (window.location.hostname === "localhost") ? "1750608541889151" : "1750216878594984";
   FB.init({
     appId: appId,
     cookie: true,
     xfbml: true,
-    version: 'v2.6'
+    version: "v2.6",
   });
 
   FB.getLoginStatus((response) => {
@@ -276,13 +275,13 @@ window.fbAsyncInit = () => {
 };
 
 const statusChangeCallback = (response) => {
-  if (response.status == 'connected') {
+  if (response.status == "connected") {
     isFacebookSignedIn = true;
-    document.querySelector('.fb-login-word').style.display = 'none';
-    document.querySelector('.btn-why-facebook-login').style.display = 'none';
+    document.querySelector(".fb-login-word").style.display = "none";
+    document.querySelector(".btn-why-facebook-login").style.display = "none";
   } else {
     isFacebookSignedIn = false;
-    document.querySelector('.fb-login-word').style.display = '';
-    document.querySelector('.btn-why-facebook-login').style.display = '';
+    document.querySelector(".fb-login-word").style.display = "";
+    document.querySelector(".btn-why-facebook-login").style.display = "";
   }
 };

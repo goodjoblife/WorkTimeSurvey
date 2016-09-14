@@ -54,12 +54,3 @@ $('body').on('click', '.modal', (event) => {
     closeModal();
   }
 });
-
-
-
-//example
-let count = 2;
-let rest = 3;
-//showAlert('success', '上傳成功', `您已經上傳 ${count} 次，還有 ${rest} 次可以上傳。`, 'go-to-show');
-//showAlert('alert', 'Oops 有些錯誤發生', '請查看你的網路連線再試一次！', 'go-to-form');
-//showAlert('alert', 'Facebook 登入失敗', '為了避免使用者大量輸入假資訊，我們會以您的 Facebook 帳戶做驗證。但別擔心！您的帳戶資訊不會以任何形式被揭露、顯示。每一帳戶目前僅能上傳 5 次工時資訊。', 'go-fb-login');
