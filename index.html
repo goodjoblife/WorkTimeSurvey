@@ -206,6 +206,67 @@
                                 <input type="email" class="form-control" id="email" placeholder="有新消息時將通知您(選填)" >
                             </div>
                         </div>
+                        <p class="text-center">
+                            <a class="btn" role="button" data-toggle="collapse" href="#more_info" aria-expanded="false" aria-controls="more_info">+我願意填更多+</a>
+                        </p>
+                        <div class="collapse" id="more_info">
+                            <div class="form-group">
+                                <label for="sector" class="col-xs-5 col-sm-2 control-label" style="font-size:15px">廠區/門市/分公司</label>
+                                <div class="col-xs-7 col-sm-10">
+                                    <input type="text" class="form-control" id="sector" placeholder="選填">
+                                </div>
+                            </div>
+
+                            <div id="has_overtime_salary_input" class="form-group">
+                                <label for="has_overtime_salary" class="col-sm-2 control-label">有無加班費</label>
+                                <div id="has-overtime-salary-btn-group" class="btn-group col-xs-12 col-sm-8" data-toggle="buttons">
+                                    <label class="btn btn-default col-xs-4">
+                                        <input type="radio" name="has_overtime_salary" value="yes"><span class="emoji emoji-smirking"></span>有
+                                    </label>
+                                    <label class="btn btn-default col-xs-4">
+                                        <input type="radio" name="has_overtime_salary" value="no"><span class="emoji emoji-halo"></span>沒有
+                                    </label>
+                                    <label class="btn btn-default col-xs-4">
+                                        <input type="radio" name="has_overtime_salary" value="don't know"><span class="emoji emoji-neutral"></span>不知道
+                                    </label>
+                                </div>
+                                <label class="control-label"><a id="reset-has-overtime-salary">x 重設</a></label>
+                            </div>
+                            <div class="form-group collapse" id="is_overtime_salary_legal_input" style="margin-bottom:20px">
+                                <div id="is-overtime-salary-legal-radio-group" class="col-xs-offset-2 col-xs-10">
+                                    <div class="radio row">
+                                        <label class="col-xs-12">
+                                            <input type="radio" name="is_overtime_salary_legal" value="yes">有，優於或符合勞基法
+                                        </label>
+                                    </div>
+                                    <div class="radio row">
+                                        <label class="col-xs-12">
+                                            <input type="radio" name="is_overtime_salary_legal" value="no">有，但不符合勞基法
+                                        </label>
+                                    </div>
+                                    <div class="radio row">
+                                        <label class="col-xs-12">
+                                            <input type="radio" name="is_overtime_salary_legal" value="don't know">有，不清楚是否符合勞基法
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="has_compensatory_dayoff_input" class="form-group">
+                                <label for="has_compensatory_dayoff" class="col-sm-2 control-label">加班有無補修</label>
+                                <div id="has-compensatory-dayoff-btn-group" class="btn-group col-xs-12 col-sm-8" data-toggle="buttons">
+                                    <label class="btn btn-default col-xs-4">
+                                        <input type="radio" name="has_compensatory_dayoff" value="yes"><span class="emoji emoji-smirking"></span>有
+                                    </label>
+                                    <label class="btn btn-default col-xs-4">
+                                        <input type="radio" name="has_compensatory_dayoff" value="no"><span class="emoji emoji-halo"></span>沒有
+                                    </label>
+                                    <label class="btn btn-default col-xs-4">
+                                        <input type="radio" name="has_compensatory_dayoff" value="don't know"><span class="emoji emoji-neutral"></span>不知道
+                                    </label>
+                                </div>
+                                <label class="control-label"><a id="reset-has-compensatory-dayoff">x 重設</a></label>
+                            </div>
+                        </div>
                         <div id="submit-alerts"></div>
                         <div class="text-center">
                             <a id="submit" class="btn btn-default btn-lg" data-logAction="click-submit"><span id="fb-login-word">以<i class="fa fa-facebook fa-fw"></i>驗證並</span>送出資料</a>
