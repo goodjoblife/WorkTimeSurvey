@@ -10,3 +10,35 @@
   vertical-align: bottom;
   margin-left: 30px;
 }
+
+.show-searchbar {
+  @mixin clear;
+}
+
+.show-searchbar__type {
+  float: left;
+  width: calc(100% - 440px);
+  padding-left: 40px;
+  @media (max-width: $below-small) {
+    width: 40%;
+    padding-left: 0;
+  }
+  @media (max-width: $below-mobile) {
+    float: none;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}
+
+.show-searchbar__form {
+  float: left;
+  width: 440px;
+  @media (max-width: $below-small) {
+    width: 60%;
+  }
+  @media (max-width: $below-mobile) {
+    float: none;
+    width: 100%;
+  }
+}
