@@ -31,18 +31,23 @@ $table-gutter: 50px;
     padding-left: 5px;
     padding-right: 5px;
 		@extend %paragraph--s;
-    &:before {
-			@media (max-width: $below-small) {
-				content: attr(data-th);
-        width: 100px;
-        margin-right: 10px;
-        @mixin table-th;
-			}
-    }
     @media (max-width: $below-small) {
       display: flex;
       width: 100%;
       padding: 10px 20px;
+    }
+    &:before {
+			@media (max-width: $below-small) {
+				content: attr(data-th);
+        flex: 0 0 100px;
+        margin-right: 10px;
+        @mixin table-th;
+			}
+    }
+    &:last-child {
+      @media (max-width: $below-small) {
+        border-bottom: 4px solid $gray-light;
+      }
     }
     a {
       @mixin table-link;

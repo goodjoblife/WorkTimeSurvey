@@ -1,7 +1,7 @@
 .page-banner {
 	background-color: #fff;
 	margin-top: $nav-height-l;
-	border-bottom: 1px solid $white-light;
+	border-bottom: 1px solid $gray-light;
 	position: relative;
 	@media (max-width: $below-small) {
 		margin-top: $nav-height-s;
@@ -10,6 +10,11 @@
 
 .page-banner__container {
 	height: 185px;
+	@media (max-width: $below-mobile) {
+		height: auto;
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
 }
 .page-banner__heading {
 	display: inline-block;
@@ -17,4 +22,24 @@
 	letter-spacing: 0.05em;
 	padding-top: 40px;
 	vertical-align: bottom;
+	@media (max-width: $below-mobile) {
+		padding-top: 0px;
+	}
+}
+
+.page-banner__image {
+	position: absolute;
+  right: 10%;
+  bottom: 0;
+  width: 430px;
+	@media (max-width: $below-desktop) {
+		width: 380px;
+	}
+	@media (max-width: $below-small) {
+		width: 240px;
+		right: 10px;
+	}
+	@media (max-width: $below-mobile) {
+		display: none;
+	}
 }
