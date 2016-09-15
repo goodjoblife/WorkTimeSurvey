@@ -528,6 +528,15 @@ a.knowMoreBtn {
 .emoji.emoji-screaming {
     background-image: url('../img/1f631.svg');
 }
+.emoji.emoji-smirking {
+    background-image: url('../img/1f60f.svg');
+}
+.emoji.emoji-halo {
+    background-image: url('../img/1f607.svg');
+}
+.emoji.emoji-neutral {
+    background-image: url('../img/1f610.svg');
+}
 
 .form-group {
     padding-top: 5px;
@@ -614,4 +623,9 @@ h3.tight {
 
 .data-section-row{
     padding-top: 35px;
+}
+
+.form-group-with-sub-problem{
+    margin-bottom: 0px;
+    padding-bottom: 0px;
 }
