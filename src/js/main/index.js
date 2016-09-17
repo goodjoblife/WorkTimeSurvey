@@ -303,7 +303,7 @@ const statusChangeCallback = (response) => {
 };
 
 $(document).ready(function(){
-    $("#job_title").autocomplete({
+    $("#form-job-title").autocomplete({
         source: function (request, response) {
             if(ga){
                 ga('send', 'event', 'LANDING_PAGE', 'job-title-autocomplete-search', request.term);
@@ -333,7 +333,7 @@ $(document).ready(function(){
         }
     });
 
-    $("#company_query").autocomplete({
+    $("#form-company-query").autocomplete({
         source: function (request, response) {
             if(ga){
                 ga('send', 'event', 'LANDING_PAGE', 'company-query-autocomplete-search', request.term);
