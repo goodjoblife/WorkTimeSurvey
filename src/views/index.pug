@@ -41,63 +41,63 @@ block content
 			form(id="work-form" action="")
 				div(class="form-section")
 					div(class="form-group")
-						label(for="company_query" class="is-required") 公司/單位 或 統一編號
+						label(for="form-company-query" class="is-required") 公司/單位 或 統一編號
 						div
-							input(type="text" placeholder="〇〇股份有限公司" id="company_query" name="company_query" class="is-required ui-autocomplete-input")
-							input(type="hidden" placeholder="公司統編" id="company_id")
+							input(type="text" placeholder="〇〇股份有限公司" id="form-company-query" name="company_query" class="is-required ui-autocomplete-input")
+							input(type="hidden" placeholder="公司統編" id="form-company-id")
 				div(class="form-section")
 					div(class="form-group--two")
 						div(class="form-group")
-							label(for="job_title" class="is-required") 職稱
-							input(type="text" placeholder="硬體工程師" id="job_title" name="job_title" class="is-required ui-autocomplete-input")
+							label(for="form-job-title" class="is-required") 職稱
+							input(type="text" placeholder="硬體工程師" id="form-job-title" name="job_title" class="is-required ui-autocomplete-input")
 						div(class="form-group")
-							label(for="") 廠區/門市/分公司
+							label(for="form-sector") 廠區/門市/分公司
 							div
-								input(type="text" placeholder="楠梓廠區  研發部" id="" name="")
+								input(type="text" placeholder="楠梓廠區  研發部" id="form-sector" name="sector")
 				div(class="form-section")
 					div(class="form-group--two")
 						div(class="form-group")
-							label(for="day_promised_work_time" class="is-required") 工作日表訂工時
+							label(for="form-day-promised-work-time" class="is-required") 工作日表訂工時
 							div(class="input-unit")
 								span(class="unit") 小時
-								input(type="text" placeholder="8" id="day_promised_work_time" name="day_promised_work_time" class="is-required")
+								input(type="text" placeholder="8" id="form-day-promised-work-time" name="day_promised_work_time" class="is-required")
 						div(class="form-group")
-							label(for="day_real_work_time" class="is-required") 實際平均工時
+							label(for="form-day-real-work-time" class="is-required") 實際平均工時
 							div(class="input-unit")
 								span(class="unit") 小時
-								input(type="text" placeholder="10.5" id="day_real_work_time" name="day_real_work_time" class="is-required")
+								input(type="text" placeholder="10.5" id="form-day-real-work-time" name="day_real_work_time" class="is-required")
 					div(class="form-info")
 						| <p><strong>工作日</strong>指與雇主約定的上班日，或是排班排定的日子。</p>
 						| <p><strong>實際平均工時</strong>包含在家工作、待命的時間。</p>
 				div(class="form-section")
 					div(class="form-group")
-						label(for="week_work_time" class="is-required") 一週總工時
+						label(for="form-week-work-time" class="is-required") 一週總工時
 						div(class="input-unit")
 							span(class="unit") 小時
-							input(type="text" placeholder="40" id="week_work_time" name="week_work_time" class="is-required")
+							input(type="text" placeholder="40" id="form-week-work-time" name="week_work_time" class="is-required")
 					div(class="form-info")
 						p 請您留下最近一週的「實際工作時數（不含休息時間，如：午休）」。
 				div(class="form-section")
 					div(class="form-group")
 						label(class="is-required") 加班頻率
-						div(class="radio-button radio-button--icon")
+						div(class="radio-button radio-button--icon" id="form-overtime-frequency")
 							div(class="radio-button__item")
-								input(type="radio" value="" name="frequency" id="feq0" required)
+								input(type="radio" value="0" name="frequency" id="feq0")
 								label(class="radio-square" for="feq0")
 									i(class="radio-square__icon emoji-0")
 									span(class="radio-square__text") 幾乎不<span class="hide-m">加班</span>
 							div(class="radio-button__item")
-								input(type="radio" value="" name="frequency" id="feq1" required)
+								input(type="radio" value="1" name="frequency" id="feq1")
 								label(class="radio-square" for="feq1")
 									i(class="radio-square__icon emoji-1")
 									span(class="radio-square__text") 偶爾<span class="hide-m">加班</span>
 							div(class="radio-button__item")
-								input(type="radio" value="" name="frequency" id="feq2" required)
+								input(type="radio" value="2" name="frequency" id="feq2")
 								label(class="radio-square" for="feq2")
 									i(class="radio-square__icon emoji-2")
 									span(class="radio-square__text") 經常<span class="hide-m">加班</span>
 							div(class="radio-button__item")
-								input(type="radio" value="" name="frequency" id="feq3" required)
+								input(type="radio" value="3" name="frequency" id="feq3")
 								label(class="radio-square" for="feq3")
 									i(class="radio-square__icon emoji-3")
 									span(class="radio-square__text") 幾乎每天<span class="hide-m">加班</span>
@@ -106,15 +106,15 @@ block content
 						label 加班有無加班費
 						div(class="radio-button" id="select-fee")
 							div(class="radio-button__item")
-								input(type="radio" value="" name="fee" id="fee_yes")
+								input(type="radio" value="yes" name="fee" id="fee_yes")
 								label(class="radio-square" for="fee_yes")
 									span(class="radio-square__text") 有
 							div(class="radio-button__item")
-								input(type="radio" value="" name="fee" id="fee_no")
+								input(type="radio" value="no" name="fee" id="fee_no")
 								label(class="radio-square" for="fee_no")
 									span(class="radio-square__text") 沒有
 							div(class="radio-button__item")
-								input(type="radio" value="" name="fee" id="fee_unknown")
+								input(type="radio" value="don't know" name="fee" id="fee_unknown")
 								label(class="radio-square" for="fee_unknown")
 									span(class="radio-square__text") 不知道
 							div(class="radio-button__item")
@@ -123,34 +123,34 @@ block content
 									| 重設
 					div(class="form-group" id="has-fee-option")
 						div(class="select-form")
-							input(type="radio" value="" id="pay1" name="has_pay")
+							input(type="radio" value="yes" id="pay1" name="has_pay")
 							label(for="pay1" class="select-form__label")
 								span(class="radio-input")
 								span(class="radio-text") 有，優於或符合勞基法
 						div(class="select-form")
-							input(type="radio" value="" id="pay2" name="has_pay")
+							input(type="radio" value="no" id="pay2" name="has_pay")
 							label(for="pay2" class="select-form__label")
 								span(class="radio-input")
 								span(class="radio-text") 有，不符合勞基法
 						div(class="select-form")
-							input(type="radio" value="" id="pay3" name="has_pay")
+							input(type="radio" value="don't know" id="pay3" name="has_pay")
 							label(for="pay3" class="select-form__label")
 								span(class="radio-input")
 								span(class="radio-text") 有，不清楚是否符合勞基法
 				div(class="form-section")
 					div(class="form-group")
 						label 加班有無補修
-						div(class="radio-button")
+						div(class="radio-button" id="form-has-compensatory-dayoff")
 							div(class="radio-button__item")
-								input(type="radio" value="" name="time_off" id="off_yes")
+								input(type="radio" value="yes" name="time_off" id="off_yes")
 								label(class="radio-square" for="off_yes")
 									span(class="radio-square__text") 有
 							div(class="radio-button__item")
-								input(type="radio" value="" name="time_off" id="off_no")
+								input(type="radio" value="no" name="time_off" id="off_no")
 								label(class="radio-square" for="off_no")
 									span(class="radio-square__text") 沒有
 							div(class="radio-button__item")
-								input(type="radio" value="" name="time_off" id="off_unknown")
+								input(type="radio" value="don't know" name="time_off" id="off_unknown")
 								label(class="radio-square" for="off_unknown")
 									span(class="radio-square__text") 不知道
 							div(class="radio-button__item")
@@ -159,9 +159,9 @@ block content
 									| 重設
 				div(class="form-section")
 					div(class="form-group")
-						label(for="email") 電子郵件 - 有消息時將通知您
+						label(for="form-email") 電子郵件 - 有消息時將通知您
 						div
-							input(type="email" placeholder="example@email.com" id="email" name="email")
+							input(type="email" placeholder="example@email.com" id="form-email" name="email")
 				div(class="form-section")
 					button(type="submit" id="submit" class="btn-black btn-l" )
 						span(class="fb-login-word")
