@@ -11,15 +11,29 @@
     border: 1px solid $border-gray;
     border-radius: 100%;
     background-color: #fff;
+    transition: transform .4s;
   }
   &.is-active {
+    .search-result-list__heading {
+      transform: translateY(0px);
+    }
+    .accordion__icon {
+      transform: translateY(0px);
+    }
+  }
+}
 
+.accordion__item {
+  .search-result-list__heading {
+    transform: translateY(0px);
   }
 }
 
 .search-result-list__heading {
   @mixin subheading-style;
   padding: 10px $block-gutter-m;
+  transform: translateY(8px);
+  transition: transform .4s;
   @media (max-width: $below-desktop) {
     padding: 10px $block-gutter-s;
   }
