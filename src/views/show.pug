@@ -11,7 +11,7 @@ block content
 			button(class="btn-s btn-yellow-line" id="btn-latest") <svg role="img" class="star"><use xlink:href="#star"></use></svg>最新
 			img(src="/assets/img/workers.jpg" class="page-banner__image")
 	div(class="wrapper-m")
-		section(class="section show-searchbar")
+		section(class="section show-searchbar" id="section-search")
 			div(class="show-searchbar__type")
 				div(class="form-group form-group--inline")
 					div(class="select-form")
@@ -152,6 +152,6 @@ block content
 				div(class="search-result-status")
 					div(class="status-loading hide")
 					div(class="status-no-result hide") 找不到結果
-
+	button(class="back-to-search") <svg><use xlink:href="#icon-magnifying"></use></svg>
 block scripts
 	script(src="/assets/js/show.js")

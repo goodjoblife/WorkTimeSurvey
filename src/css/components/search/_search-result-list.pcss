@@ -2,6 +2,7 @@
   background-color: #fff;
   margin-bottom: 15px;
   position: relative;
+  padding-bottom: 10px;
   .accordion__icon {
     position: absolute;
     top: 7px;
@@ -12,6 +13,14 @@
     border-radius: 100%;
     background-color: #fff;
     transition: transform .4s;
+    @media (max-width: $below-small) {
+      width: 30px;
+      height: 30px;
+      background-size: 15px;
+      right: -9px;
+      top: 9px;
+      border-color: $gray;
+    }
   }
   &.is-active {
     .search-result-list__heading {
@@ -26,6 +35,9 @@
 .accordion__item {
   .search-result-list__heading {
     transform: translateY(0px);
+  }
+  &.search-result-list__item {
+    padding-bottom: 0;
   }
 }
 

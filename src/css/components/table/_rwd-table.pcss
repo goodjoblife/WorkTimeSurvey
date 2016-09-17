@@ -14,6 +14,8 @@
 .rwd-table {
   width: 100%;
 	table-layout: fixed;
+  background-color: #fff;
+  margin-bottom: 10px;
   th {
     @mixin table-th;
     padding-top: 30px;
@@ -75,7 +77,14 @@
   tr {
     &:last-child {
       td {
-        border: 0;
+        @media (min-width: $above-small) {
+          border: 0;
+        }
+        &:last-child {
+          @media (max-width: $below-small) {
+            border-bottom: 0;
+          }
+        }
       }
     }
   }
