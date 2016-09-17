@@ -301,3 +301,64 @@ const statusChangeCallback = (response) => {
     document.querySelector(".btn-why-facebook-login").style.display = "";
   }
 };
+
+$(document).ready(function(){
+    $("#form-job-title").autocomplete({
+        source: function (request, response) {
+            if(ga){
+                ga('send', 'event', 'LANDING_PAGE', 'job-title-autocomplete-search', request.term);
+            }
+            $.ajax({
+                url: WTS.constants.backendURL + 'jobs/search',
+                data: {
+                    key : request.term,
+                },
+                dataType: "json",
+            }).done(function(res) {
+                let nameList = $.map(res, (item, i) => {
+                    return {
+                        value: item.des,
+                        id: item._id,
+                    };
+                });
+                response(nameList);
+            }).fail((jqXHR, textStatus) => {
+                response([]);
+            });
+        },
+        select: function(event, ui){
+            if(ga){
+                ga('send', 'event', 'LANDING_PAGE', 'job-title-autocomplete-select', ui['item']['label']);
+            }
+        }
+    });
+
+    $("#form-company-query").autocomplete({
+        source: function (request, response) {
+            if(ga){
+                ga('send', 'event', 'LANDING_PAGE', 'company-query-autocomplete-search', request.term);
+            }
+            $.ajax({
+                url: WTS.constants.backendURL + 'companies/search',
+                data: { key : request['term'] },
+                dataType: "json",
+            }).done(function( res ) {
+                let nameList = [];
+
+                res.forEach((item, i) => {
+                    nameList.push({"value": item.name, "company_id": item.id});
+                });
+                response(nameList);
+            }).fail((jqXHR, textStatus) => {
+                response([]);
+            });
+        },
+        minLength: 2,
+        select: function(event, ui){
+            if(ga){
+                ga('send', 'event', 'LANDING_PAGE', 'company-query-autocomplete-select', ui['item']['company_id']);
+            }
+            $("#company_id").val(ui['item']['company_id']);
+        }
+    });
+});
