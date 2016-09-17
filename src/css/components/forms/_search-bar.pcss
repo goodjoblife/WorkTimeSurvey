@@ -1,0 +1,20 @@
+.search-bar {
+  display: flex;
+}
+
+.search-bar__input {
+  border-color: #000;
+}
+
+.search-bar__button {
+  flex: 1 0 135px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  font-size: 0.95em;
+  @media (max-width: $below-small) {
+    flex: 1 0 90px;
+  }
+  @media (max-width: $below-mobile) {
+    flex: 1 0 33%;
+  }
+}

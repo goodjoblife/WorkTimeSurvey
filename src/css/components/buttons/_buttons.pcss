@@ -45,6 +45,25 @@
 	transition: background .3s, color .3s, border .3s;
 }
 
+.btn-s {
+	display: inline-block;
+	height: 32px;
+	line-height: 32px;
+	padding: 0 20px;
+	text-align: center;
+	font-size: .9em;
+	font-weight: 400;
+	letter-spacing: 0.1em;
+	margin: 0 auto;
+	cursor: pointer;
+	transition: background .3s, color .3s, border .3s;
+	svg {
+		margin-top: -3px;
+    margin-right: 5px;
+	}
+}
+
+
 .btn-black {
 	background-color: #000;
 	color: #fff;
@@ -71,6 +90,12 @@
 			background-color: $gray-light;
 		}
 	}
+}
+
+.btn-yellow-line {
+	background-color: #fff;
+	border: 1px solid $primary-color;
+	@mixin hover-bg-color $gray-light;
 }
 
 .btn-why-facebook-login {

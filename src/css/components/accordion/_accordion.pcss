@@ -1,0 +1,24 @@
+.accordion {
+}
+
+.accordion__content {
+  display: none;
+}
+
+.accordion__trigger {
+  width: 100%;
+  cursor: pointer;
+  @mixin hover-color $primary-color;
+}
+
+.accordion__icon {
+  background-repeat: no-repeat;
+  background-size: 18px;
+  background-position: 50% 50%;
+  &.icon-plus {
+    background-image: url("/assets/img/common/plus.svg");
+  }
+  &.icon-minus {
+    background-image: url("/assets/img/common/minus.svg");
+  }
+}

@@ -10,3 +10,12 @@
 .section--yellow {
 	background-color: $yellow-light;
 }
+
+.section__heading {
+	@mixin heading-style;
+	text-align: center;
+	margin-bottom: $block-gutter-m;
+	@media (max-width: $below-mobile) {
+		margin-bottom: $block-gutter-s;
+	}
+}
