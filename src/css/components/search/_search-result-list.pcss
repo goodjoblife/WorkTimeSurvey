@@ -1,0 +1,38 @@
+.search-reault-list {
+
+}
+
+.search-result-list__item {
+  background-color: #fff;
+  margin-bottom: $block-gutter-m;
+  position: relative;
+  .accordion__icon {
+    position: absolute;
+    top: 10px;
+    right: -20px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid $border-gray;
+    border-radius: 100%;
+    background-color: #fff;
+    transition: transform .3s;
+  }
+  &.is-active {
+    .search-result-list__heading {
+      transform: translateY(8px);
+    }
+    .accordion__icon {
+      transform: translateY(8px);
+    }
+  }
+}
+
+.search-result-list__heading {
+  @mixin subheading-style;
+  padding: 10px $block-gutter-m;
+  transition: transform .3s;
+}
+
+.search-result-list__content {
+  padding: $block-gutter-m;
+}

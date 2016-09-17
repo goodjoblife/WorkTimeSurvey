@@ -34,9 +34,45 @@ block content
 					button(class="btn-black search-bar__button" type="submit") 搜尋
 	div(class="wrapper-l")
 		section(class="search-result")
-			h2(class="section__heading") 最新工時資訊
-			div(class="search-result__table")
-				table(class="rwd-table latest-table")
+			h2(class="section__heading" id="search-result-heading") 搜尋 “<span class="search-query">醫院</span>” 的工時結果
+			div(class="search-result__result search-result-list accordion")
+				div(class="accordion__item search-result-list__item")
+					button(class="accordion__trigger")
+						h3(class="search-result-list__heading") 彰化基督教兒童醫院
+						span(class="accordion__icon icon-plus")
+					div(class="accordion__content")
+						div(class="search-result-list__content")
+							| content
+							| content
+						table(class="rwd-table company-table")
+							thead
+								tr
+									th(class="col-position")
+										span 職稱
+										span(class="table-sector") 廠區/門市/分公司
+									th(class="col-day-promise") 日表訂工時
+									th(class="col-day-real") 日實際平均工時
+									th(class="col-week-time") 一週總工時（小時）
+									th(class="col-frequency") 加班頻率
+							tbody
+								tr
+									td(data-th="職稱 (廠區/門市/分公司)")
+										span(class="rwd-td")
+											span 副組長
+											span(class="table-sector") -
+									td(data-th="日表訂工時")
+										span(class="rwd-td") 8
+									td(data-th="日實際平均工時")
+										span(class="rwd-td") 8
+									td(data-th="一週總工時")
+										span(class="rwd-td")
+											span(class="table-time-bar") 90
+									td(data-th="加班頻率")
+										span(class="rwd-td")
+											span(class="table-frequency-circle")
+											| 經常
+
+				table(class="rwd-table latest-table hide")
 					thead
 						tr
 							th(class="col-company") 公司名稱
@@ -46,7 +82,7 @@ block content
 							th(class="col-time") 一週總工時（小時）
 							th(class="col-frequency") 加班頻率
 					tbody(id="tbody-latest-data")
-				div(class="search-result__status")
+				div(class="search-result-status")
 					div(class="status-loading hide")
 
 block scripts

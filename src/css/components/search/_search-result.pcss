@@ -1,13 +1,20 @@
-.search-result__table {
-  background-color: #fff;
+.search-result {
+  min-height: 880px;
+}
+
+.search-result__result {
   padding: 30px 0;
   margin-bottom: $block-gutter-l;
   @media (max-width: $below-mobile) {
     padding: 10px 0;
   }
+  .table-sector {
+    color: $gray;
+    padding-left: 10px;
+  }
 }
 
-.search-result__status {
+.search-result-status {
   .status-loading {
     width: 32px;
     height: 32px;
@@ -18,6 +25,7 @@
 
 .table-time-bar {
   background-color: $yellow-bar;
+  width: 0;
   display: block;
   max-width: 80%;
   padding: 6px;
