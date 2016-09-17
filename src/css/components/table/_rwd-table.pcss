@@ -16,6 +16,7 @@
 	table-layout: fixed;
   th {
     @mixin table-th;
+    padding-top: 30px;
     padding-bottom: 10px;
     border-bottom: 2px solid $border-gray;
 		@media (max-width: $below-small) {
@@ -29,7 +30,6 @@
     padding-bottom: 12px;
     padding-left: 5px;
     padding-right: 5px;
-		@extend %paragraph--s;
     @media (max-width: $below-small) {
       display: flex;
       width: 100%;
@@ -57,10 +57,10 @@
     text-align: left;
     @media (min-width: $above-small) {
       &:first-child {
-        padding-left: 20px;
+        padding-left: $block-gutter-s;
       }
       &:last-child {
-        padding-right: 20px;
+        padding-right: $block-gutter-s;
       }
     }
     @media (min-width: $above-desktop) {
@@ -69,6 +69,13 @@
       }
       &:last-child {
         padding-right: $block-gutter-m;
+      }
+    }
+  }
+  tr {
+    &:last-child {
+      td {
+        border: 0;
       }
     }
   }
