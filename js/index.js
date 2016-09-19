@@ -64,30 +64,6 @@ $(function() {
         $('#form input').on('click', callback);
         $('#form input[type=radio]').on('change', callback);
     })();
-
-    $('#has-overtime-salary-btn-group input[type=radio]').on('change', function(){
-        if($(this).attr("value") == 'yes' && $(this).is(":checked")){
-            $("#is_overtime_salary_legal_input").collapse("show");
-            $("#has_overtime_salary_input").addClass("form-group-with-sub-problem");
-        }
-        else{
-            $("#is_overtime_salary_legal_input").collapse("hide");
-            $("#has_overtime_salary_input").removeClass("form-group-with-sub-problem");
-        }
-    });
-
-    $("#reset-has-overtime-salary").on('click', function(){
-        $("#has-overtime-salary-btn-group input[type=radio]:checked").prop("checked", false);
-        $("#has-overtime-salary-btn-group label").removeClass("active");
-        $("#is-overtime-salary-legal-radio-group input[type=radio]:checked").prop("checked", false);
-        $("#is_overtime_salary_legal_input").collapse("hide");
-        $("#has_overtime_salary_input").removeClass("form-group-with-sub-problem");
-    });
-    $("#reset-has-compensatory-dayoff").on('click', function(){
-        $("#has-compensatory-dayoff-btn-group input[type=radio]:checked").prop("checked", false);
-        $("#has-compensatory-dayoff-btn-group label").removeClass("active");
-    });
-
 });
 
 var isSubmitEnable = true;
@@ -323,11 +299,7 @@ function submitForm() {
             day_real_work_time: $("#day_real_work_time").val(),
             overtime_frequency: $("#overtime_frequency_input input[name='frequency']:checked").val(),
             email: $("#email").val(),
-            sector: $("#sector").val(),
-            has_overtime_salary:$("#has_overtime_salary_input input[name='has_overtime_salary']:checked").val(),
-            is_overtime_salary_legal: $("#is_overtime_salary_legal_input input[name='is_overtime_salary_legal']:checked").val(),
-            has_compensatory_dayoff:$("#has_compensatory_dayoff_input input[name='has_compensatory_dayoff']:checked").val(),
-      },
+        },
         dataType: 'json',
     }).then(function(res) {
         //GA tracking if upload successfully
