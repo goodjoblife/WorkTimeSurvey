@@ -357,7 +357,7 @@ $(function(){
         minLength: 2,
         select: function(event, ui){
             $company_query.trigger('autocomplete-select', ui.item.company_id);
-            $("#ompany_id").val(ui.item.company_id);
+            $("#company_id").val(ui.item.company_id);
         },
     });
 });
@@ -380,7 +380,7 @@ $company_query.on('autocomplete-search', (query) => {
     ga && ga('send', 'event', 'LANDING_PAGE', 'company-query-autocomplete-search', query);
 });
 
-$company_query.on('autocomplete-search', (query) => {
+$company_query.on('autocomplete-search', (selected) => {
     ga && ga('send', 'event', 'LANDING_PAGE', 'company-query-autocomplete-select', selected);
 });
 
