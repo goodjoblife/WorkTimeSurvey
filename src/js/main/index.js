@@ -357,7 +357,7 @@ $(function(){
         minLength: 2,
         select: function(event, ui){
             $company_query.trigger('autocomplete-select', ui.item.company_id);
-            $("#company_id").val(ui.item.company_id);
+            $("#form-company-id").val(ui.item.company_id);
         },
     });
 });
