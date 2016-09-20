@@ -1,0 +1,28 @@
+section(class="search-result")
+	div(class="search-result__result")
+		table(class="rwd-table latest-table")
+			thead
+				tr
+					th(class="col-company") 公司名稱
+					th(class="col-position")
+						span 職稱
+						span(class="table-sector") 廠區/門市/分公司
+					th(class="col-time") 一週總工時（小時）
+					th(class="col-frequency") 加班頻率
+			tbody(id="tbody-latest-data")
+				tr(v-for="w in workings")
+					td(data-th="公司名稱")
+						span(class="rwd-td")
+							//- TODO
+							a(href="#") {{w.company ? w.company.name : ""}}
+					td(data-th="職稱 (廠區/門市/分公司)")
+						span(class="rwd-td")
+							span {{w.job_title}}
+							span(class="table-sector") ooxx
+					td(data-th="一週總工時")
+						span(class="rwd-td")
+							span(class="table-time-bar" data-time="{{w.week_work_time}}" v-bind:style="{ width: w.week_work_time * 2 + 'px' }") {{w.week_work_time}}
+					td(data-th="加班頻率")
+						span(class="rwd-td")
+							span(class="table-frequency-circle" data-frequency="{{w.overtime_frequency}}")
+							| {{w.overtime_frequency}}

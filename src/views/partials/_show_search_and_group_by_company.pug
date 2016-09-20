@@ -1,0 +1,80 @@
+section(class="search-result")
+	h2(class="section__heading" id="search-result-heading") 搜尋 “<span class="search-query">醫院</span>” 的工時結果
+	div(class="search-result__result")
+		div(class="search-result-list accordion")
+			div(class="accordion__item search-result-list__item")
+				button(class="accordion__trigger")
+					h3(class="search-result-list__heading") 彰化基督教兒童醫院
+					span(class="accordion__icon icon-plus")
+				div(class="accordion__content")
+					div(class="search-result-list__content")
+						div(class="result-fee-off")
+							div(class="result-fee-off__item")
+								h4(class="result-fee-off__heading") <svg><use xlink:href="#icon-coin"></use></svg> 加班有無加班費
+								div(class="result-fee-off__contnet")
+									div(class="result-fee-off__yes")
+										div
+											div(class="result-fee-off-name") 有
+											ul(class="yes-extra")
+												li
+													span(class="yes-extra__heading") 優於或符合勞基法
+													span(class="yes-extra__number result-fee-off-num") 10
+												li
+													span(class="yes-extra__heading") 不符合勞基法
+													span(class="yes-extra__number result-fee-off-num") -
+												li
+													span(class="yes-extra__heading") 不清楚是否符合勞基法
+													span(class="yes-extra__number result-fee-off-num") -
+									div(class="result-fee-off__no")
+										div
+											div(class="no-extra")
+												span(class="result-fee-off-name") 沒有
+												span(class="result-fee-off-num") 13
+											div(class="no-extra")
+												span(class="result-fee-off-name") 不知道
+												span(class="result-fee-off-num") 6
+							div(class="result-fee-off__item")
+								h4(class="result-fee-off__heading") <svg><use xlink:href="#icon-clock"></use></svg> 加班有無補修
+								div(class="result-fee-off__contnet")
+									div(class="result-fee-off__yes")
+										div
+											div(class="result-fee-off-name") 有
+											div(class="result-fee-off-num") 10
+									div(class="result-fee-off__no")
+										div
+											div(class="no-extra")
+												span(class="result-fee-off-name") 沒有
+												span(class="result-fee-off-num") 13
+											div(class="no-extra")
+												span(class="result-fee-off-name") 不知道
+												span(class="result-fee-off-num") 6
+					table(class="rwd-table company-table")
+						thead
+							tr
+								th(class="col-position")
+									span 職稱
+									span(class="table-sector") 廠區/門市/分公司
+								th(class="col-day-promise") 日表訂工時
+								th(class="col-day-real") 日實際平均工時
+								th(class="col-week-time") 一週總工時（小時）
+								th(class="col-frequency") 加班頻率
+						tbody
+							tr
+								td(data-th="職稱 (廠區/門市/分公司)")
+									span(class="rwd-td")
+										span 副組長
+										span(class="table-sector") -
+								td(data-th="日表訂工時")
+									span(class="rwd-td") 8
+								td(data-th="日實際平均工時")
+									span(class="rwd-td") 8
+								td(data-th="一週總工時")
+									span(class="rwd-td")
+										span(class="table-time-bar") 90
+								td(data-th="加班頻率")
+									span(class="rwd-td")
+										span(class="table-frequency-circle")
+										| 經常
+	div(class="search-result-status")
+		div(class="status-loading hide")
+		div(class="status-no-result hide") 找不到結果
