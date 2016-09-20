@@ -34,6 +34,16 @@ block content
 				include ./partials/_icon-arrow
 	section(class="section section--yellow" id="section-form")
 		div(class="modal" id="modal-alert")
+		div(class="modal" data-modal="why-facebook")
+			div(class="modal__inner")
+				div(class="modal__close wrapper-s js-close-modal") <svg role="img"><use xlink:href="#x"></use></svg>
+				div(class="modal__container wrapper-s")
+					div(class="modal-content")
+						div(class="modal-content__icon") <svg role="img"><use xlink:href="#icon-question"></use></svg>
+						h5(class="modal-content__heading") 為何需要 FB 帳戶驗證？
+						p(class="modal-content__paragraph")
+							| 為了避免使用者大量輸入假資訊，我們會以您的 Facebook 帳戶做驗證。但別擔心！您的帳戶資訊不會以任何形式被揭露、顯示。每一帳戶目前僅能上傳 5 次工時資訊。
+						button(class="modal-content__btn btn-black btn-m js-close-modal") 好，我知道了
 		div(class="wrapper-s")
 			div(class="heading")
 				h2(class="heading__heading") 匿名參與工時透明化運動
@@ -167,7 +177,8 @@ block content
 						span(class="fb-login-word")
 							| 以<svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg>驗證並
 						| 送出資料
-					div(class="btn-why-facebook-login") 為什麼需要 Facebook 帳戶驗證？
+					div(class="text-center")
+						sapn(class="btn-why-facebook-login" data-modal-id="why-facebook") 為什麼需要 Facebook 帳戶驗證？
 	section(class="section-two-col")
 		div(class="section-two-col__item")
 			div

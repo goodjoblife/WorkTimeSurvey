@@ -1,8 +1,8 @@
-const modal = document.getElementById('modal-alert');
-const closeModal = () => {
-  $('.modal').removeClass('is-open');
+const form_modal = document.getElementById('modal-alert');
+const closeFormModal = () => {
+  form_modal.classList.remove('is-open');
   $('body, html').removeClass('is-fixed');
-  modal.innerHTML = '';
+  form_modal.innerHTML = '';
 }
 const showAlert = (type, message1, message2, button_type) => {
   let button;
@@ -21,7 +21,7 @@ const showAlert = (type, message1, message2, button_type) => {
   }
   let to_be_append = `
   <div class="modal__inner">
-    <div class="modal__close wrapper-s"><svg role="img"><use xlink:href="#x"></use></svg></div>
+    <div class="modal__close wrapper-s js-close-modal"><svg role="img"><use xlink:href="#x"></use></svg></div>
     <div class="modal__container wrapper-s">
       <div class="modal-content">
         <div class="modal-content__icon"><svg role="img"><use xlink:href="#${icon}"></use></svg></div>
@@ -32,25 +32,25 @@ const showAlert = (type, message1, message2, button_type) => {
     </div>
   </div>
   `
-  modal.innerHTML = to_be_append;
-  modal.classList.add('is-open');
+  form_modal.innerHTML = to_be_append;
+  form_modal.classList.add('is-open');
   document.querySelector('html').classList.add('is-fixed');
   document.querySelector('body').classList.add('is-fixed');
 }
 $('body').on('click', '#modal-scroll-to-form', (e) => {
   let form_position = section_form.offsetTop - 58;
   e.preventDefault();
-  closeModal();
+  closeFormModal();
   $('html, body').animate({
     scrollTop: form_position
   }, 600);
 });
 
 $('body').on('click', '.modal__close', () => {
-  closeModal();
+  closeFormModal();
 });
 $('body').on('click', '.modal', (event) => {
   if (!$(event.target).closest('.modal__container').length) {
-    closeModal();
+    closeFormModal();
   }
 });
