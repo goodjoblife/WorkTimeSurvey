@@ -30,10 +30,44 @@ const latestWorkings = Vue.extend({
   },
 });
 
+const searchAndGroupByJobTitle = Vue.extend({
+  template: "#app-search-and-group-by-job-title",
+  data: function() {
+    return {
+      job_title_keyword: null,
+      data: [],
+    };
+  },
+  events: {
+    load_job_title: function(job_title_keyword) {
+      this.loadData(job_title_keyword);
+    },
+  },
+  methods: {
+    loadData: function(job_title_keyword) {
+      this.getData(job_title_keyword).then((res) => {
+        this.job_title_keyword = job_title_keyword;
+        this.data = res.data;
+      }, (err) => {
+        // TODO
+      });
+    },
+    getData: function(job_title_keyword) {
+      const opt = {
+        params: {
+          job_title: job_title_keyword,
+        }
+      };
+      return this.$http.get(`${WTS.constants.backendURL}workings/search-and-group/by-job-title`, opt);
+    }
+  },
+});
+
 const app = new Vue({
   el: "#app",
   components: {
     'latestWorkings': latestWorkings,
+    "searchAndGroupByJobTitle": searchAndGroupByJobTitle,
   },
   data: {
     currentView: null,
@@ -45,8 +79,12 @@ const router = Router({
     app.currentView = "latestWorkings";
     Vue.nextTick(function() {
       app.$broadcast("load_latest_workings", 0);
-
-      //ga('send', 'event', category, 'visit-latest');
+    });
+  },
+  "/search-and-group/by-job-title/(.*)": function(name) {
+    app.currentView = "searchAndGroupByJobTitle";
+    Vue.nextTick(function() {
+      app.$broadcast("load_job_title", decodeURIComponent(name));
     });
   },
 }).configure({
