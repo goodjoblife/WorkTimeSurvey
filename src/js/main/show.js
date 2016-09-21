@@ -139,3 +139,22 @@ const router = Router({
 });
 
 router.init(["/"]);
+
+const searchBarApp = new Vue({
+  el: "#section-search",
+  data: {
+    search_type: "by-company",
+    keyword: "",
+  },
+  methods: {
+    onSubmit: function() {
+      if (this.search_type === "by-company") {
+        router.setRoute(`/search-and-group/by-company/${encodeURIComponent(this.keyword)}`);
+      } else if (this.search_type === "by-job-title") {
+        router.setRoute(`/search-and-group/by-job-title/${encodeURIComponent(this.keyword)}`);
+      } else {
+        router.setRoute("/latest");
+      }
+    }
+  },
+});
