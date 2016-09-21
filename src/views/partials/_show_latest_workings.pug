@@ -26,3 +26,6 @@ section(class="search-result")
 						span(class="rwd-td")
 							span(class="table-frequency-circle" data-frequency="{{w.overtime_frequency}}")
 							| {{w.overtime_frequency}}
+	div(class="search-result-status")
+		div(class="status-loading" v-bind:class="{hide: is_loading === false}")
+		div(class="status-no-result" v-bind:class="{hide: (workings.length != 0)}") 找不到結果

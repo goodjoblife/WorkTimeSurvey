@@ -2,26 +2,55 @@ const latestWorkings = Vue.extend({
   template: "#app-latest-workings",
   data: function () {
     return {
+      // current page loaded
+      current_page: 0,
       workings: [],
+      is_loading: false,
+      scroll_delay_lock: false,
     };
   },
+  created: function() {
+    this.loadLatestWorkings(0);
+  },
   events: {
-    load_latest_workings: function() {
-      this.loadLatestWorkings();
-    },
+    scroll_bottom_reach: function() {
+      // we don't want the two loading
+      if (this.is_loading) {
+        return;
+      }
+
+      // let the scroll main handler wait a little to happen
+      if (this.scroll_delay_lock === false) {
+        this.scroll_delay_lock = true;
+
+        window.setTimeout(() => {
+          this.scroll_delay_lock = false;
+          // we don't want the two loading
+          if (! this.is_loading) {
+            this.loadMorePage();
+          }
+        }, 750);
+      }
+    }
   },
   methods: {
-    loadLatestWorkings: function() {
-      this.getLatestWorkings().then((res) => {
-        this.workings = res.data.workings;
+    loadMorePage: function() {
+      this.current_page += 1;
+      this.loadLatestWorkings(this.current_page);
+    },
+    loadLatestWorkings: function(page) {
+      this.is_loading = true;
+      this.getLatestWorkings(page).then((res) => {
+        this.workings = this.workings.concat(res.data.workings);
+        this.is_loading = false;
       }, (err) => {
-        // TODO
+        this.is_loading = false;
       });
     },
-    getLatestWorkings: function() {
+    getLatestWorkings: function(page) {
       const opt = {
         params: {
-          page: 0,
+          page: page,
           limit: 20,
         }
       };
@@ -118,9 +147,6 @@ const app = new Vue({
 const router = Router({
   "/latest": function() {
     app.currentView = "latestWorkings";
-    Vue.nextTick(function() {
-      app.$broadcast("load_latest_workings", 0);
-    });
   },
   "/search-and-group/by-job-title/(.*)": function(name) {
     app.currentView = "searchAndGroupByJobTitle";
@@ -159,4 +185,12 @@ const searchBarApp = new Vue({
       }
     }
   },
+});
+
+$(window).on('scroll', function() {
+  if ($(window).scrollTop() + window.innerHeight >= $(document).height() - 100) {
+    if (app.currentView === "latestWorkings") {
+      app.$broadcast("scroll_bottom_reach");
+    }
+  }
 });
