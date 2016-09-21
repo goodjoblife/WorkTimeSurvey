@@ -49,7 +49,8 @@ const searchAndGroupByJobTitle = Vue.extend({
         this.job_title_keyword = job_title_keyword;
         this.data = res.data;
       }, (err) => {
-        // TODO
+        this.job_title_keyword = null;
+        this.data = [];
       });
     },
     getData: function(job_title_keyword) {
@@ -83,7 +84,8 @@ const searchAndGroupByCompany = Vue.extend({
         this.company_keyword = company_keyword;
         this.data = res.data;
       }, (err) => {
-        // TODO
+        this.company_keyword = null;
+        this.data = [];
       });
     },
     getData: function(company_keyword) {
