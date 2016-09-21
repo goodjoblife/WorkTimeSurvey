@@ -63,11 +63,50 @@ const searchAndGroupByJobTitle = Vue.extend({
   },
 });
 
+const searchAndGroupByCompany = Vue.extend({
+  template: "#app-search-and-group-by-company",
+  data: function() {
+    return {
+      company_keyword: null,
+      data: [],
+    };
+  },
+  events: {
+    load_company: function(company_keyword) {
+      this.loadData(company_keyword);
+    },
+  },
+  methods: {
+    loadData: function(company_keyword) {
+      this.getData(company_keyword).then((res) => {
+        console.log(res.data);
+        this.company_keyword = company_keyword;
+        this.data = res.data;
+      }, (err) => {
+        // TODO
+      });
+    },
+    getData: function(company_keyword) {
+      const opt = {
+        params: {
+          company: company_keyword,
+        }
+      };
+      return this.$http.get(`${WTS.constants.backendURL}workings/search-and-group/by-company`, opt);
+    }
+  },
+});
+
+Vue.filter('num', function (value) {
+  return value ? value : "-";
+})
+
 const app = new Vue({
   el: "#app",
   components: {
     'latestWorkings': latestWorkings,
     "searchAndGroupByJobTitle": searchAndGroupByJobTitle,
+    "searchAndGroupByCompany": searchAndGroupByCompany,
   },
   data: {
     currentView: null,
@@ -85,6 +124,12 @@ const router = Router({
     app.currentView = "searchAndGroupByJobTitle";
     Vue.nextTick(function() {
       app.$broadcast("load_job_title", decodeURIComponent(name));
+    });
+  },
+  "/search-and-group/by-company/(.*)": function(name) {
+    app.currentView = "searchAndGroupByCompany";
+    Vue.nextTick(function() {
+      app.$broadcast("load_company", decodeURIComponent(name));
     });
   },
 }).configure({
