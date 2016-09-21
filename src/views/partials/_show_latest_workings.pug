@@ -13,11 +13,11 @@ section(class="search-result")
 				tr(v-for="w in workings")
 					td(data-th="公司名稱")
 						span(class="rwd-td")
-							//- TODO
-							a(href="#") {{w.company ? w.company.name : ""}}
+							a(href="#/search-and-group/by-company/{{encodeURIComponent(w.company ? w.company.name : '')}}") {{w.company ? w.company.name : ""}}
 					td(data-th="職稱 (廠區/門市/分公司)")
 						span(class="rwd-td")
-							span {{w.job_title}}
+							span
+								a(href="#/search-and-group/by-job-title/{{encodeURIComponent(w.job_title)}}") {{w.job_title}}
 							span(class="table-sector") ooxx
 					td(data-th="一週總工時")
 						span(class="rwd-td")
