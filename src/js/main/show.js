@@ -65,10 +65,11 @@ const searchAndGroupByJobTitle = Vue.extend({
     return {
       job_title_keyword: null,
       data: [],
+      is_loading: false,
     };
   },
   events: {
-    load_job_title: function(job_title_keyword) {
+    load_search_and_group_by_job_title: function(job_title_keyword) {
       this.loadData(job_title_keyword);
     },
   },
@@ -99,17 +100,17 @@ const searchAndGroupByCompany = Vue.extend({
     return {
       company_keyword: null,
       data: [],
+      is_loading: false,
     };
   },
   events: {
-    load_company: function(company_keyword) {
+    load_search_and_group_by_company: function(company_keyword) {
       this.loadData(company_keyword);
     },
   },
   methods: {
     loadData: function(company_keyword) {
       this.getData(company_keyword).then((res) => {
-        console.log(res.data);
         this.company_keyword = company_keyword;
         this.data = res.data;
       }, (err) => {
@@ -151,13 +152,13 @@ const router = Router({
   "/search-and-group/by-job-title/(.*)": function(name) {
     app.currentView = "searchAndGroupByJobTitle";
     Vue.nextTick(function() {
-      app.$broadcast("load_job_title", decodeURIComponent(name));
+      app.$broadcast("load_search_and_group_by_job_title", decodeURIComponent(name));
     });
   },
   "/search-and-group/by-company/(.*)": function(name) {
     app.currentView = "searchAndGroupByCompany";
     Vue.nextTick(function() {
-      app.$broadcast("load_company", decodeURIComponent(name));
+      app.$broadcast("load_search_and_group_by_company", decodeURIComponent(name));
     });
   },
 }).configure({
