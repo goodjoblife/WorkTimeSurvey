@@ -6,7 +6,6 @@ const latestWorkings = Vue.extend({
       current_page: 0,
       workings: [],
       is_loading: false,
-      scroll_delay_lock: false,
     };
   },
   created: function() {
@@ -19,18 +18,7 @@ const latestWorkings = Vue.extend({
         return;
       }
 
-      // let the scroll main handler wait a little to happen
-      if (this.scroll_delay_lock === false) {
-        this.scroll_delay_lock = true;
-
-        window.setTimeout(() => {
-          this.scroll_delay_lock = false;
-          // we don't want the two loading
-          if (! this.is_loading) {
-            this.loadMorePage();
-          }
-        }, 750);
-      }
+      this.loadMorePage();
     }
   },
   methods: {
