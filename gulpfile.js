@@ -149,7 +149,8 @@ gulp.task('make:dependencies', function() {
 		src.libs + 'jquery.min.js',
 		src.libs + 'jquery-ui.min.js',
 		src.libs + 'vue.min.js',
-		src.libs + 'vue-resource.min.js'
+		src.libs + 'vue-resource.min.js',
+		src.libs + 'director.min.js'
 	])
 	.pipe(concat('dependencies.js'))
 	.pipe(gulp.dest(dest.js))
