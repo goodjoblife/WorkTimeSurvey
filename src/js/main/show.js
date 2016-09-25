@@ -60,6 +60,12 @@ const searchAndGroupByJobTitle = Vue.extend({
     load_search_and_group_by_job_title: function(job_title_keyword) {
       this.loadData(job_title_keyword);
     },
+    data_loaded: function() {
+      if (this.data.length === 1) {
+        let button = this.$el.querySelector(".accordion__trigger");
+        $(button).trigger("click");
+      }
+    },
   },
   methods: {
     loadData: function(job_title_keyword) {
@@ -72,6 +78,7 @@ const searchAndGroupByJobTitle = Vue.extend({
         this.data = [];
       }).then(() => {
         this.is_loading = false;
+        this.$emit('data_loaded');
       });
     },
     getData: function(job_title_keyword) {
@@ -98,6 +105,12 @@ const searchAndGroupByCompany = Vue.extend({
     load_search_and_group_by_company: function(company_keyword) {
       this.loadData(company_keyword);
     },
+    data_loaded: function() {
+      if (this.data.length === 1) {
+        let button = this.$el.querySelector(".accordion__trigger");
+        $(button).trigger("click");
+      }
+    },
   },
   methods: {
     loadData: function(company_keyword) {
@@ -110,6 +123,8 @@ const searchAndGroupByCompany = Vue.extend({
         this.data = [];
       }).then(() => {
         this.is_loading = false;
+        // the promise let the event occur after the dom update
+        this.$emit('data_loaded');
       });
     },
     getData: function(company_keyword) {
