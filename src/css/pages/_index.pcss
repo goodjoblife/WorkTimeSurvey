@@ -1,3 +1,27 @@
+.body-index {
+  .site-menu > li > a {
+    color: #fff;
+  }
+  .site-menu > li {
+    &:hover {
+      > a {
+        color: $gray-dark;
+      }
+    }
+  }
+  .header.is-fixed {  
+    .site-menu > li > a {
+      color: #000;
+    }
+    .site-menu > li {
+      &:hover {
+        > a {
+          color: $gray-dark;
+        }
+      }
+    }
+  }
+}
 .btn-scroll-down {
   display: block;
   width: 31px;
