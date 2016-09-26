@@ -1,22 +1,24 @@
 .body-index {
-  .site-menu > li > a {
-    color: #fff;
-  }
-  .site-menu > li {
-    &:hover {
-      > a {
-        color: $gray-dark;
-      }
-    }
-  }
-  .header.is-fixed {  
+  @media (min-width: $above-small) {
     .site-menu > li > a {
-      color: #000;
+      color: #fff;
     }
     .site-menu > li {
       &:hover {
         > a {
           color: $gray-dark;
+        }
+      }
+    }
+    .header.is-fixed {
+      .site-menu > li > a {
+        color: #000;
+      }
+      .site-menu > li {
+        &:hover {
+          > a {
+            color: $gray-dark;
+          }
         }
       }
     }
