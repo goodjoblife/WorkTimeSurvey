@@ -5,7 +5,7 @@ section(class="search-result")
 			div(class="accordion__item search-result-list__item" v-for="g in data")
 				button(class="accordion__trigger")
 					h3(class="search-result-list__heading") {{g._id.name}}
-					span(class="accordion__icon icon-plus")
+					span(class="accordion__icon") <svg role="img"><use xlink:href="#icon-minus"></use></svg>
 				div(class="accordion__content")
 					div(class="search-result-list__content" v-show="g.count >= 5")
 						div(class="result-fee-off")
