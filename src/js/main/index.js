@@ -309,6 +309,7 @@ $(function(){
     const $job_title = $("#form-job-title");
     const $company_query = $("#form-company-query");
 
+    // default autocomplete:
     // fetch the newest job titles and company names
     var default_job_titles = [];
     var default_company_names = [];
@@ -318,13 +319,32 @@ $(function(){
     }).done(function(res){
         default_job_titles =
             Array.from(new Set(
-                $.map(res.workings, (item,i)=>{ return item.job_title; })
+                $.map(res.workings, (item,i)=>item.job_title)
             )).slice(0,8);
         default_company_names =
             Array.from(new Set(
-                $.map(res.workings, (item,i)=>{ return item.company.name; })
+                $.map(res.workings, (item,i)=>item.company.name)
             )).slice(0,8);
     });
+    var default_search = function() {
+        $(this).autocomplete("search",$(this).val());
+    };
+
+    // prevent disabled options from keyboard choosing
+    var focus_prevent_disabled_options = function(event, ui){
+        var $active_item = $(event.currentTarget).find('.ui-state-active');
+        if($active_item.parent().hasClass('ui-state-disabled')){
+            event.preventDefault();
+            $active_item.parent().siblings().first().children('div').mouseenter();  
+        }
+    }
+    // render each item in ui.content as a <li> element
+    var renderDisabledItem = function(ul,item){
+        var li = $("<li>").append($("<div>").text(item.label));
+        // put .ui-state-disabled on disabled items (e.g. 最近被填寫的公司)
+        if(item.disabled) li.addClass("ui-state-disabled");
+        return li.appendTo(ul);
+    };
 
     $job_title.autocomplete({
         source: function (request, response) {
@@ -360,22 +380,9 @@ $(function(){
         select: function(event, ui){
             $job_title.trigger('autocomplete-select', ui.item.label);
         },
+        focus: focus_prevent_disabled_options,
 
-        // prevent disabled options from keyboard choosing
-        focus: function(event, ui){
-            var curr = $(event.currentTarget).find('.ui-state-active');
-            if(curr.parent().hasClass('ui-state-disabled')){
-                event.preventDefault();
-                curr.parent().siblings().first().children('div').mouseenter();  
-            }
-        }
-    }).focus(function() {
-        $(this).autocomplete("search",$(this).val());
-    }).data("ui-autocomplete")._renderItem = function(ul,item){
-        var li = $("<li>").append($("<div>").text(item.label));
-        if(item.disabled) li.addClass("ui-state-disabled");
-        return li.appendTo(ul);
-    };
+    }).focus(default_search).data("ui-autocomplete")._renderItem = renderDisabledItem;
 
     $("#form-company-query").autocomplete({
         source: function (request, response) {
@@ -409,22 +416,9 @@ $(function(){
             $company_query.trigger('autocomplete-select', ui.item.company_id);
             $("#form-company-id").val(ui.item.company_id);
         },
-        
-        // prevent disabled options from keyboard choosing
-        focus: function(event, ui){
-            var curr = $(event.currentTarget).find('.ui-state-active');
-            if(curr.parent().hasClass('ui-state-disabled')){
-                event.preventDefault();
-                curr.parent().siblings().first().children('div').mouseenter();  
-            }
-        }
-    }).focus(function() {
-        $(this).autocomplete("search",$(this).val());
-    }).data("ui-autocomplete")._renderItem = function(ul,item){
-        var li = $("<li>").append($("<div>").text(item.label));
-        if(item.disabled) li.addClass("ui-state-disabled");
-        return li.appendTo(ul);
-    };
+        focus:focus_prevent_disabled_options,
+
+    }).focus(default_search).data("ui-autocomplete")._renderItem = renderDisabledItem;
 });
 
 /*
