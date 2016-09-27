@@ -24,6 +24,10 @@
   &.is-active {
     padding-top: 20px;
     padding-bottom: 20px;
+    @media (max-width: $below-small) {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
   }
 }
 
@@ -31,10 +35,10 @@
   @mixin subheading-style;
   padding: 10px $block-gutter-m;
   @media (max-width: $below-desktop) {
-    padding: 0 $block-gutter-s;
+    padding: 10px $block-gutter-s;
   }
   @media (max-width: $below-small) {
-    padding: 0 45px 0 $block-gutter-s;
+    padding: 10px 45px 10px $block-gutter-s;
   }
 }
 
