@@ -127,6 +127,20 @@ Vue.filter('num', function (value) {
   return value ? value : "-";
 })
 
+Vue.filter('overtime_frequency_string', function (value) {
+  if (value == "0") {
+    return "幾乎不";
+  } else if (value == "1") {
+    return "偶而";
+  } else if (value == "2") {
+    return "經常";
+  } else if (value == "3") {
+    return "幾乎每天";
+  }
+
+  throw new Error("invalid value");
+});
+
 const app = new Vue({
   el: "#app",
   components: {

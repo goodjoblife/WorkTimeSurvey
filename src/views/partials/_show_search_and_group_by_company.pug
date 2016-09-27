@@ -75,7 +75,7 @@ section(class="search-result")
 								td(data-th="加班頻率")
 									span(class="rwd-td")
 										span(class="table-frequency-circle" data-frequency="{{working.overtime_frequency}}")
-										| {{working.overtime_frequency}}
+										| {{working.overtime_frequency | overtime_frequency_string}}
 	div(class="search-result__status")
 		div(class="status-loading" v-show="is_loading")
 		div(class="status-no-result" v-show="data.length == 0 && is_loading === false") 找不到結果
