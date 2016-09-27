@@ -306,9 +306,6 @@ const statusChangeCallback = (response) => {
  * Autocomplete Part
  */
 $(function(){
-    const $job_title = $("#form-job-title");
-    const $company_query = $("#form-company-query");
-
     // default autocomplete:
     // fetch the newest job titles and company names
     var default_job_titles = [];
@@ -345,6 +342,10 @@ $(function(){
         if(item.disabled) li.addClass("ui-state-disabled");
         return li.appendTo(ul);
     };
+
+    // autocomplete
+    const $job_title = $("#form-job-title");
+    const $company_query = $("#form-company-query");
 
     $job_title.autocomplete({
         source: function (request, response) {
