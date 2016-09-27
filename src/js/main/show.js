@@ -142,6 +142,8 @@ const app = new Vue({
 const router = Router({
   "/latest": function() {
     app.currentView = "latestWorkings";
+    $('.search-bar__input').val('');
+    $('#btn-company').trigger('click');
   },
   "/search-and-group/by-job-title/(.*)": function(name) {
     app.currentView = "searchAndGroupByJobTitle";
@@ -171,6 +173,7 @@ const searchBarApp = new Vue({
   },
   methods: {
     onSubmit: function() {
+      console.log(this.search_type);
       if (this.search_type === "by-company") {
         router.setRoute(`/search-and-group/by-company/${encodeURIComponent(this.keyword)}`);
       } else if (this.search_type === "by-job-title") {
