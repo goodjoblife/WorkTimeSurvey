@@ -12,7 +12,7 @@
     border: 1px solid $gray;
     border-radius: 100%;
     background-color: #fff;
-    transition: transform .4s;
+    transition: border .4s;
     @media (max-width: $below-small) {
       width: 28px;
       height: 28px;
@@ -21,12 +21,34 @@
       border-color: $gray;
     }
   }
+  .accordion__trigger {
+    @media (min-width: $above-desktop) {
+      &:hover {
+        .accordion__icon {
+          border-color: #000;
+        }
+        svg {
+          fill: #000;
+          color: #000;
+        }
+      }
+    }
+  }
   &.is-active {
     padding-top: 20px;
     padding-bottom: 20px;
     @media (max-width: $below-small) {
       padding-top: 10px;
       padding-bottom: 10px;
+    }
+    .accordion__trigger {
+      @media (min-width: $above-desktop) {
+        &:hover {
+          svg {
+            color: transparent;
+          }
+        }
+      }
     }
   }
 }
