@@ -139,22 +139,52 @@ const app = new Vue({
   }
 });
 
+const searchBarApp = new Vue({
+  el: "#section-search",
+  data: {
+    search_type: "by-company",
+    keyword: "",
+  },
+  methods: {
+    onSubmit: function() {
+      if (this.search_type === "by-company") {
+        router.setRoute(`/search-and-group/by-company/${encodeURIComponent(this.keyword)}`);
+      } else if (this.search_type === "by-job-title") {
+        router.setRoute(`/search-and-group/by-job-title/${encodeURIComponent(this.keyword)}`);
+      } else {
+        router.setRoute("/latest");
+      }
+    },
+    setDefault: function() {
+      this.search_type = "by-company";
+      this.keyword = "";
+    },
+    setInputInfo: function(search_type, keyword) {
+      this.search_type = search_type;
+      this.keyword = keyword;
+    }
+  },
+});
+
 const router = Router({
   "/latest": function() {
     app.currentView = "latestWorkings";
-    $('.search-bar__input').val('');
-    $('#btn-company').trigger('click');
+    searchBarApp.setDefault();
   },
   "/search-and-group/by-job-title/(.*)": function(name) {
     app.currentView = "searchAndGroupByJobTitle";
+    let deCodeName = decodeURIComponent(name);
+    searchBarApp.setInputInfo("by-job-title", deCodeName);
     Vue.nextTick(function() {
-      app.$broadcast("load_search_and_group_by_job_title", decodeURIComponent(name));
+      app.$broadcast("load_search_and_group_by_job_title", deCodeName);
     });
   },
   "/search-and-group/by-company/(.*)": function(name) {
     app.currentView = "searchAndGroupByCompany";
+    let deCodeName = decodeURIComponent(name);
+    searchBarApp.setInputInfo("by-company", deCodeName);
     Vue.nextTick(function() {
-      app.$broadcast("load_search_and_group_by_company", decodeURIComponent(name));
+      app.$broadcast("load_search_and_group_by_company", deCodeName);
     });
   },
 }).configure({
@@ -164,26 +194,6 @@ const router = Router({
 });
 
 router.init(["/"]);
-
-const searchBarApp = new Vue({
-  el: "#section-search",
-  data: {
-    search_type: "by-company",
-    keyword: "",
-  },
-  methods: {
-    onSubmit: function() {
-      console.log(this.search_type);
-      if (this.search_type === "by-company") {
-        router.setRoute(`/search-and-group/by-company/${encodeURIComponent(this.keyword)}`);
-      } else if (this.search_type === "by-job-title") {
-        router.setRoute(`/search-and-group/by-job-title/${encodeURIComponent(this.keyword)}`);
-      } else {
-        router.setRoute("/latest");
-      }
-    }
-  },
-});
 
 $(window).on('scroll', function() {
   if ($(window).scrollTop() + window.innerHeight >= $(document).height() - 100) {
