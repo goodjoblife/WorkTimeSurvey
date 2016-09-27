@@ -318,11 +318,11 @@ $(function(){
     }).done(function(res){
         default_job_titles =
             Array.from(new Set(
-                $.map(res.workings, (item,i)=>{ return item.job_title; })
+                $.map(res.workings, (item,i)=>item.job_title)
             )).slice(0,8);
         default_company_names =
             Array.from(new Set(
-                $.map(res.workings, (item,i)=>{ return item.company.name; })
+                $.map(res.workings, (item,i)=>item.company.name)
             )).slice(0,8);
     });
 
@@ -363,10 +363,10 @@ $(function(){
 
         // prevent disabled options from keyboard choosing
         focus: function(event, ui){
-            var curr = $(event.currentTarget).find('.ui-state-active');
-            if(curr.parent().hasClass('ui-state-disabled')){
+            var $active_item = $(event.$active_itementTarget).find('.ui-state-active');
+            if($active_item.parent().hasClass('ui-state-disabled')){
                 event.preventDefault();
-                curr.parent().siblings().first().children('div').mouseenter();  
+                $active_item.parent().siblings().first().children('div').mouseenter();  
             }
         }
     }).focus(function() {
@@ -412,17 +412,22 @@ $(function(){
         
         // prevent disabled options from keyboard choosing
         focus: function(event, ui){
-            var curr = $(event.currentTarget).find('.ui-state-active');
-            if(curr.parent().hasClass('ui-state-disabled')){
+            var $active_item = $(event.$active_itementTarget).find('.ui-state-active');
+            if($active_item.parent().hasClass('ui-state-disabled')){
                 event.preventDefault();
-                curr.parent().siblings().first().children('div').mouseenter();  
+                $active_item.parent().siblings().first().children('div').mouseenter();  
             }
         }
     }).focus(function() {
+        // trigger auto-complete list on focus
         $(this).autocomplete("search",$(this).val());
     }).data("ui-autocomplete")._renderItem = function(ul,item){
+        // render each item in ui.content as a <li> element
         var li = $("<li>").append($("<div>").text(item.label));
+        
+        // put .ui-state-disabled on disabled items (e.g. 最近被填寫的公司)
         if(item.disabled) li.addClass("ui-state-disabled");
+        
         return li.appendTo(ul);
     };
 });
