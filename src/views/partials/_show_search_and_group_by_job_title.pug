@@ -4,28 +4,28 @@ section(class="search-result")
 		div(class="search-result-list__item" v-for="group in data")
 			h3(class="search-result-list__heading") {{group._id}}
 			table(class="rwd-table company-table")
-					thead
-						tr
-							th(class="col-company") 公司名稱
-							th(class="col-day-promise") 日表訂工時
-							th(class="col-day-real") 日實際平均工時
-							th(class="col-week-time") 一週總工時（小時）
-							th(class="col-frequency") 加班頻率
-					tbody
-						tr(v-for="working in group.workings")
-							td(data-th="公司名稱")
-								span(class="rwd-td") {{working.company.name}}
-							td(data-th="日表訂工時")
-								span(class="rwd-td") {{working.day_promised_work_time}}
-							td(data-th="日實際平均工時")
-								span(class="rwd-td") {{working.day_real_work_time}}
-							td(data-th="一週總工時")
-								span(class="rwd-td")
-									span(class="table-time-bar" data-time="{{working.week_work_time}}" v-bind:style="{ width: working.week_work_time * 2 + 'px' }") {{working.week_work_time}}
-							td(data-th="加班頻率")
-								span(class="rwd-td")
-									span(class="table-frequency-circle" data-frequency="{{working.overtime_frequency}}")
-									| {{working.overtime_frequency}}
+				thead
+					tr
+						th(class="col-company") 公司名稱
+						th(class="col-day-promise") 日表訂工時
+						th(class="col-day-real") 日實際平均工時
+						th(class="col-week-time") 一週總工時（小時）
+						th(class="col-frequency") 加班頻率
+				tbody
+					tr(v-for="working in group.workings")
+						td(data-th="公司名稱")
+							span(class="rwd-td") {{working.company.name}}
+						td(data-th="日表訂工時")
+							span(class="rwd-td") {{working.day_promised_work_time}}
+						td(data-th="日實際平均工時")
+							span(class="rwd-td") {{working.day_real_work_time}}
+						td(data-th="一週總工時")
+							span(class="rwd-td")
+								span(class="table-time-bar" data-time="{{working.week_work_time}}" v-bind:style="{ width: working.week_work_time * 2 + 'px' }") {{working.week_work_time}}
+						td(data-th="加班頻率")
+							span(class="rwd-td")
+								span(class="table-frequency-circle" data-frequency="{{working.overtime_frequency}}")
+								| {{working.overtime_frequency}}
 	div(class="search-result-status")
 		div(class="status-loading" v-show="is_loading")
 		div(class="status-no-result" v-show="data.length == 0 && is_loading === false") 找不到結果

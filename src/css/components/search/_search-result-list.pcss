@@ -2,7 +2,7 @@
   background-color: #fff;
   margin-bottom: 15px;
   position: relative;
-  padding-bottom: 10px;
+  transition: padding .3s;
   .accordion__icon {
     position: absolute;
     top: 7px;
@@ -21,11 +21,15 @@
       border-color: $gray;
     }
   }
+  &.is-active {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
 }
 
 .search-result-list__heading {
   @mixin subheading-style;
-  padding: 10px $block-gutter-m 0 $block-gutter-m;
+  padding: 10px $block-gutter-m;
   @media (max-width: $below-desktop) {
     padding: 0 $block-gutter-s;
   }
@@ -35,7 +39,7 @@
 }
 
 .search-result-list__content {
-  padding: 10px $block-gutter-m;
+  padding: 20px $block-gutter-m;
   @media (max-width: $below-desktop) {
     padding: $block-gutter-s;
   }
