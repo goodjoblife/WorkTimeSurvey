@@ -308,7 +308,10 @@ const statusChangeCallback = (response) => {
 $(function(){
     const $job_title = $("#form-job-title");
     const $company_query = $("#form-company-query");
+
+    // fetch the newest job titles and company names
     var default_job_titles = [];
+    var default_company_names = [];
     $.ajax({
         url: WTS.constants.backendURL + 'workings/latest',
         dataType:"json",
@@ -317,16 +320,24 @@ $(function(){
             Array.from(new Set(
                 $.map(res.workings, (item,i)=>{ return item.job_title; })
             )).slice(0,8);
+        default_company_names =
+            Array.from(new Set(
+                $.map(res.workings, (item,i)=>{ return item.company.name; })
+            )).slice(0,8);
     });
+
     $job_title.autocomplete({
         source: function (request, response) {
             $job_title.trigger('autocomplete-search', request.term);
+
+            // show some list when focusing on an empty input
             if(request.term.length==0){
-                response(default_job_titles);
+                response(["最近被填寫的職位"].concat(default_job_titles).map(function(v,i){
+                    return {"value":v, disabled:i==0};
+                }));
                 return;
             }
-            //var legend = {"id":"","value":"搜尋 '"+request.term+"'..."};
-            //response([legend]);
+
             $.ajax({
                 url: WTS.constants.backendURL + 'jobs/search',
                 data: {
@@ -340,48 +351,41 @@ $(function(){
                         id: item._id,
                     };
                 });
-                //nameList.splice(0,0,legend);
                 response(nameList);
             }).fail((jqXHR, textStatus) => {
                 response([]);
             });
         },
-        minLength:0,
+        minLength:0, // required for empty input
         select: function(event, ui){
             $job_title.trigger('autocomplete-select', ui.item.label);
         },
-        /*focus: function(event, ui){
+
+        // prevent disabled options from keyboard choosing
+        focus: function(event, ui){
             var curr = $(event.currentTarget).find('.ui-state-active');
             if(curr.parent().hasClass('ui-state-disabled')){
                 event.preventDefault();
                 curr.parent().siblings().first().children('div').mouseenter();  
             }
         }
-        */
     }).focus(function() {
         $(this).autocomplete("search",$(this).val());
-    })/*.data("ui-autocomplete")._renderItem = function(ul,item){
+    }).data("ui-autocomplete")._renderItem = function(ul,item){
         var li = $("<li>").append($("<div>").text(item.label));
-        if(item.id=="") li.addClass("ui-state-disabled");
+        if(item.disabled) li.addClass("ui-state-disabled");
         return li.appendTo(ul);
     };
-    */
 
-    var default_company_names = [];
-    $.ajax({
-        url: WTS.constants.backendURL + 'workings/latest',
-        dataType:"json",
-    }).done(function(res){
-        default_company_names =
-            Array.from(new Set(
-                $.map(res.workings, (item,i)=>{ return item.company.name; })
-            )).slice(0,8);
-    });
     $("#form-company-query").autocomplete({
         source: function (request, response) {
             $company_query.trigger('autocomplete-search', request.term);
+            
+            // show some list when focusing on an empty input
             if(request.term.length<2){
-                response(default_company_names);
+                response(["最近被填寫的公司"].concat(default_company_names).map(function(v,i){
+                    return {"value":v, disabled:i==0};
+                }));
                 return;
             }
 
@@ -400,14 +404,27 @@ $(function(){
                 response([]);
             });
         },
-        minLength: 0,
+        minLength:0, // required for empty input
         select: function(event, ui){
             $company_query.trigger('autocomplete-select', ui.item.company_id);
             $("#form-company-id").val(ui.item.company_id);
         },
+        
+        // prevent disabled options from keyboard choosing
+        focus: function(event, ui){
+            var curr = $(event.currentTarget).find('.ui-state-active');
+            if(curr.parent().hasClass('ui-state-disabled')){
+                event.preventDefault();
+                curr.parent().siblings().first().children('div').mouseenter();  
+            }
+        }
     }).focus(function() {
         $(this).autocomplete("search",$(this).val());
-    })
+    }).data("ui-autocomplete")._renderItem = function(ul,item){
+        var li = $("<li>").append($("<div>").text(item.label));
+        if(item.disabled) li.addClass("ui-state-disabled");
+        return li.appendTo(ul);
+    };
 });
 
 /*
