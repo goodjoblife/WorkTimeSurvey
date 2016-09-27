@@ -1,5 +1,5 @@
 section(class="search-result")
-	h2(class="section__heading" id="search-result-heading") 搜尋 “<span class="search-query">{{company_keyword}}</span>” 的工時結果
+	h2(class="section__heading") 搜尋 “<span class="search-query">{{company_keyword}}</span>” 的工時結果
 	div(class="search-result__result")
 		div(class="search-result-list accordion")
 			div(class="accordion__item search-result-list__item" v-for="g in data")
@@ -76,6 +76,6 @@ section(class="search-result")
 									span(class="rwd-td")
 										span(class="table-frequency-circle" data-frequency="{{working.overtime_frequency}}")
 										| {{working.overtime_frequency}}
-	div(class="search-result-status")
+	div(class="search-result__status")
 		div(class="status-loading" v-show="is_loading")
 		div(class="status-no-result" v-show="data.length == 0 && is_loading === false") 找不到結果
