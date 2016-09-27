@@ -1,3 +1,29 @@
+.body-index {
+  @media (min-width: $above-small) {
+    .site-menu > li > a {
+      color: #fff;
+    }
+    .site-menu > li {
+      &:hover {
+        > a {
+          color: $gray-dark;
+        }
+      }
+    }
+    .header.is-fixed {
+      .site-menu > li > a {
+        color: #000;
+      }
+      .site-menu > li {
+        &:hover {
+          > a {
+            color: $gray-dark;
+          }
+        }
+      }
+    }
+  }
+}
 .btn-scroll-down {
   display: block;
   width: 31px;
@@ -44,7 +70,7 @@
   }
 }
 
-.icon-github, .icon-messenger {
+.icon-github, .icon-facebook-circle {
   transition: fill .3s;
   @media (min-width: $above-desktop) {
     &:hover {

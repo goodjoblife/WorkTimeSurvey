@@ -1,11 +1,16 @@
-const section_search = document.getElementById('section-search');
+const btn_back_to_top  = document.getElementById('btn-back-to-top');
+if (btn_back_to_top) {
+  window.addEventListener('scroll', function() {
+    if ((document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop > 50) {
+      btn_back_to_top.classList.add('is-active');
+    } else {
+      btn_back_to_top.classList.remove('is-active');
+    }
+  });
 
-if (section_search) {
-  let search_position = section_search.offsetTop - 20;
-  document.querySelector('.back-to-search').addEventListener('click', (e)=> {
-    e.preventDefault();
+  btn_back_to_top.addEventListener('click', () => {
     $('html, body').animate({
-      scrollTop: search_position
+      scrollTop: 0
     }, 600);
   });
 }

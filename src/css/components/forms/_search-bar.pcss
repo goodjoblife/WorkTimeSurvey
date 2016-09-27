@@ -14,6 +14,10 @@
   text-align: center;
   letter-spacing: 0.1em;
   font-size: 0.95em;
+  background-color: #000;
+	color: #fff;
+	transition: background .3s, color .3s, border .3s;
+	@mixin hover-bg-color $gray-dark;
   @media (max-width: $below-small) {
     flex: 1 0 90px;
   }

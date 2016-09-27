@@ -123,7 +123,7 @@ gulp.task('make:postcss', ['make:import'], function() {
 			extension: 'pcss'
 		}),
 		autoprefixer({
-			browsers: 'last 3 iOS versions',
+			browsers: ["firefox >= 15", "ios >= 8", "android >= 4.0", "and_uc >= 9.9"],
 			cascade: false
 		}),
 		color_alpha(),

@@ -30,29 +30,6 @@
 		.site-menu {
 			>li {
 				line-height: $nav-height-m;
-				position: relative;
-				&:after {
-					position: absolute;
-					left: 0;
-					bottom: 0;
-					content: "";
-					height: 0px;
-					width: 100%;
-					background-color: #000;
-					transition: height .3s;
-				}
-				&:hover {
-					&:after {
-						height: 3px;
-					}
-				}
-				> a {
-					display: block;
-					color: #000;
-					height: 100%;
-					padding-top: 0;
-					padding-bottom: 0;
-				}
 			}
 		}
 	}

@@ -109,3 +109,33 @@
 	letter-spacing: 0.05em;
 	@mixin hover-color $gray-dark;
 }
+
+#btn-back-to-top {
+  opacity: 0;
+	visibility: hidden;
+  width: 40px;
+  height: 40px;
+  background-color: $gray;
+  color: #fff;
+  position: fixed;
+  bottom: 30px;
+  right: 10%;
+  z-index: 99;
+  border-radius: 100%;
+	transition: opacity .4s, visibility .4s;
+  svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+    margin: 0 auto;
+    fill: #fff;
+  }
+	&.is-active {
+		opacity: .8;
+		visibility: visible;
+	}
+	@media (max-width: $below-desktop) {
+		bottom: 15px;
+	  right: 15px;
+	}
+}

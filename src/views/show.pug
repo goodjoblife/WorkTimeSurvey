@@ -8,7 +8,7 @@ block content
 	section(class="page-banner")
 		div(class="wrapper-l page-banner__container")
 			h1(class="page-banner__heading") 查看工時
-			a(class="btn-s btn-yellow-line" id="btn-latest" href="#/latest") <svg role="img" class="star"><use xlink:href="#star"></use></svg>最新
+			a(class="btn-s btn-yellow-line" id="btn-latest" href="#/latest") <svg role="img" class="star"><use xlink:href="#star"></use></svg>最新資料
 			img(src="/assets/img/workers.jpg" class="page-banner__image")
 	div(class="wrapper-m")
 		section(class="section show-searchbar" id="section-search")
@@ -27,7 +27,7 @@ block content
 			div(class="show-searchbar__form")
 				form(class="search-bar" id="" v-on:submit.prevent="onSubmit")
 					input(type="text" placeholder="輸入公司 / 單位名稱" class="search-bar__input" id="" name="keyword" v-model="keyword")
-					button(class="btn-black search-bar__button" type="submit") 搜尋
+					button(class="search-bar__button" type="submit") 搜尋
 	div(class="wrapper-l" id="app")
 		component(:is="currentView" keep-alive)
 	template(id="app-search-and-group-by-company")
@@ -36,6 +36,6 @@ block content
 		include partials/_show_search_and_group_by_job_title.pug
 	template(id="app-latest-workings")
 		include partials/_show_latest_workings.pug
-	button(class="back-to-search") <svg><use xlink:href="#icon-magnifying"></use></svg>
+	button(id="btn-back-to-top") <svg><use xlink:href="#icon-arrow-up"></use></svg>
 block scripts
 	script(src="/assets/js/show.js")
