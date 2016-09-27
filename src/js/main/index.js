@@ -308,22 +308,21 @@ const statusChangeCallback = (response) => {
 $(function(){
     const $job_title = $("#form-job-title");
     const $company_query = $("#form-company-query");
-    var default_job_title = [];
-    var default_num = 8;
+    var default_job_titles = [];
     $.ajax({
         url: WTS.constants.backendURL + 'workings/latest',
         dataType:"json",
     }).done(function(res){
-        default_job_title =
+        default_job_titles =
             Array.from(new Set(
                 $.map(res.workings, (item,i)=>{ return item.job_title; })
-            )).slice(0,default_num);
+            )).slice(0,8);
     });
     $job_title.autocomplete({
         source: function (request, response) {
             $job_title.trigger('autocomplete-search', request.term);
-            if(request.term==""){
-                response(default_job_title);
+            if(request.term.length==0){
+                response(default_job_titles);
                 return;
             }
             //var legend = {"id":"","value":"搜尋 '"+request.term+"'..."};
@@ -361,17 +360,30 @@ $(function(){
         */
     }).focus(function() {
         $(this).autocomplete("search",$(this).val());
-    }).data("ui-autocomplete")._renderItem = function(ul,item){
+    })/*.data("ui-autocomplete")._renderItem = function(ul,item){
         var li = $("<li>").append($("<div>").text(item.label));
         if(item.id=="") li.addClass("ui-state-disabled");
         return li.appendTo(ul);
     };
+    */
 
-    var default_job_title = [];
-    var default_num = 8;
+    var default_company_names = [];
+    $.ajax({
+        url: WTS.constants.backendURL + 'workings/latest',
+        dataType:"json",
+    }).done(function(res){
+        default_company_names =
+            Array.from(new Set(
+                $.map(res.workings, (item,i)=>{ return item.company.name; })
+            )).slice(0,8);
+    });
     $("#form-company-query").autocomplete({
         source: function (request, response) {
             $company_query.trigger('autocomplete-search', request.term);
+            if(request.term.length<2){
+                response(default_company_names);
+                return;
+            }
 
             $.ajax({
                 url: WTS.constants.backendURL + 'companies/search',
@@ -388,12 +400,14 @@ $(function(){
                 response([]);
             });
         },
-        minLength: 2,
+        minLength: 0,
         select: function(event, ui){
             $company_query.trigger('autocomplete-select', ui.item.company_id);
             $("#form-company-id").val(ui.item.company_id);
         },
-    });
+    }).focus(function() {
+        $(this).autocomplete("search",$(this).val());
+    })
 });
 
 /*
