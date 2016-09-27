@@ -308,10 +308,26 @@ const statusChangeCallback = (response) => {
 $(function(){
     const $job_title = $("#form-job-title");
     const $company_query = $("#form-company-query");
+    var default_job_title = [];
+    var default_num = 8;
+    $.ajax({
+        url: WTS.constants.backendURL + 'workings/latest',
+        dataType:"json",
+    }).done(function(res){
+        default_job_title =
+            Array.from(new Set(
+                $.map(res.workings, (item,i)=>{ return item.job_title; })
+            )).slice(0,default_num);
+    });
     $job_title.autocomplete({
         source: function (request, response) {
             $job_title.trigger('autocomplete-search', request.term);
-
+            if(request.term==""){
+                response(default_job_title);
+                return;
+            }
+            //var legend = {"id":"","value":"搜尋 '"+request.term+"'..."};
+            //response([legend]);
             $.ajax({
                 url: WTS.constants.backendURL + 'jobs/search',
                 data: {
@@ -325,16 +341,34 @@ $(function(){
                         id: item._id,
                     };
                 });
+                //nameList.splice(0,0,legend);
                 response(nameList);
             }).fail((jqXHR, textStatus) => {
                 response([]);
             });
         },
+        minLength:0,
         select: function(event, ui){
             $job_title.trigger('autocomplete-select', ui.item.label);
         },
-    });
+        /*focus: function(event, ui){
+            var curr = $(event.currentTarget).find('.ui-state-active');
+            if(curr.parent().hasClass('ui-state-disabled')){
+                event.preventDefault();
+                curr.parent().siblings().first().children('div').mouseenter();  
+            }
+        }
+        */
+    }).focus(function() {
+        $(this).autocomplete("search",$(this).val());
+    }).data("ui-autocomplete")._renderItem = function(ul,item){
+        var li = $("<li>").append($("<div>").text(item.label));
+        if(item.id=="") li.addClass("ui-state-disabled");
+        return li.appendTo(ul);
+    };
 
+    var default_job_title = [];
+    var default_num = 8;
     $("#form-company-query").autocomplete({
         source: function (request, response) {
             $company_query.trigger('autocomplete-search', request.term);
