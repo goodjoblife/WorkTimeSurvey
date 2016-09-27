@@ -1,4 +1,11 @@
-.accordion {
+.accordion__item {
+  &.is-active {
+    .accordion__icon {
+      svg {
+        color: transparent;
+      }
+    }
+  }
 }
 
 .accordion__content {
@@ -12,13 +19,17 @@
 }
 
 .accordion__icon {
-  background-repeat: no-repeat;
-  background-size: 18px;
-  background-position: 50% 50%;
-  &.icon-plus {
-    background-image: url("/assets/img/common/plus.svg");
-  }
-  &.icon-minus {
-    background-image: url("/assets/img/common/minus.svg");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    color: $gray;
+    fill: $gray;
+    width: 18px;
+    height: 18px;
+    @media (max-width: $below-small) {
+      width: 12px;
+      height: 12px;
+    }
   }
 }

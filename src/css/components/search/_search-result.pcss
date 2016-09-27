@@ -1,5 +1,5 @@
 .search-result {
-
+  margin-bottom: $block-gutter-l;
 }
 
 .search-result__result {
@@ -13,7 +13,7 @@
   }
 }
 
-.search-result-status {
+.search-result__status {
   .status-loading {
     width: 32px;
     height: 32px;
@@ -58,26 +58,10 @@
   }
 }
 
-.back-to-search {
-  display: none;
-  width: 42px;
-  height: 42px;
-  background-color: $primary-color;
-  color: #fff;
-  position: fixed;
-  bottom: 15px;
-  right: 15px;
-  z-index: 99;
-  opacity: .8;
-  border-radius: 100%;
-  svg {
-    width: 20px;
-    height: 20px;
-    display: block;
-    margin: 0 auto;
-    fill: #fff;
-  }
-  @media (max-width: $below-small) {
-    display: block;
-  }
+.small-info-right {
+  color: $gray;
+  text-align: right;
+  font-size: .82em;
+  letter-spacing: 0.05em;
+  margin-top: 12px;
 }
