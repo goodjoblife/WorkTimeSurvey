@@ -38,7 +38,7 @@ if (section_form) {
     scroll_to_form[i].addEventListener('click', (e) => {
       e.preventDefault();
       $('html, body').animate({
-        scrollTop: form_position
+        scrollTop: form_position,
       }, 600);
     });
   }
@@ -50,8 +50,8 @@ if (section_faq) {
     scroll_to_faq[i].addEventListener('click', (e) => {
       e.preventDefault();
       $('html, body').animate({
-        scrollTop: faq_position
+        scrollTop: faq_position,
       }, 600);
-    })
+    });
   }
 }

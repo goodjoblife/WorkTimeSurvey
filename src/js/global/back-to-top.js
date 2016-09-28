@@ -10,7 +10,7 @@ if (btn_back_to_top) {
 
   btn_back_to_top.addEventListener('click', () => {
     $('html, body').animate({
-      scrollTop: 0
+      scrollTop: 0,
     }, 600);
   });
 }
