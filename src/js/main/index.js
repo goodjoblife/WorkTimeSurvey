@@ -306,11 +306,66 @@ const statusChangeCallback = (response) => {
  * Autocomplete Part
  */
 $(function(){
+    // default autocomplete:
+    // fetch the newest job titles and company names
+    let default_job_titles = [];
+    let default_company_names = [];
+    $.ajax({
+        url: WTS.constants.backendURL + 'workings/latest',
+        dataType:"json",
+    }).done(function(res){
+        default_job_titles =
+            Array.from(new Set(
+                $.map(res.workings, (item,i)=>({
+                    "value": item.job_title,
+                }))
+            )).slice(0,4);
+        default_company_names =
+            Array.from(new Set(
+                $.map(res.workings, (item,i)=>({
+                    "value": item.company.name,
+                    "company_id": item.company.id,
+                })).filter( item=>item.id!==undefined )
+            )).slice(0,4);
+    });
+    const default_search = function() {
+        $(this).autocomplete("search",$(this).val());
+    };
+
+    // prevent disabled options from keyboard choosing
+    const focus_prevent_disabled_options = function(event, ui){
+        let $active_item = $(event.currentTarget).find('.ui-state-active');
+        if($active_item.parent().hasClass('ui-state-disabled')){
+            event.preventDefault();
+            $active_item.parent().siblings().first().children('div').mouseenter();  
+        }
+    }
+    // render each item in ui.content as a <li> element
+    const renderDisabledItem = function(ul,item){
+        let li = $("<li>").append($("<div>").text(item.label));
+        // put .ui-state-disabled on disabled items (e.g. 最近被填寫的公司)
+        if(item.disabled) li.addClass("ui-state-disabled");
+        return li.appendTo(ul);
+    };
+
+    // autocomplete
     const $job_title = $("#form-job-title");
     const $company_query = $("#form-company-query");
+
     $job_title.autocomplete({
         source: function (request, response) {
             $job_title.trigger('autocomplete-search', request.term);
+
+            // show some list when focusing on an empty input
+            if(request.term.length==0){
+                response([{
+                    value:"最近被填寫的職位",
+                    disabled:true,
+                }].concat(
+                    default_job_titles.map(v=>{ v.disabled=false; return v; })
+                ));
+                return;
+            }
 
             $.ajax({
                 url: WTS.constants.backendURL + 'jobs/search',
@@ -330,14 +385,28 @@ $(function(){
                 response([]);
             });
         },
+        minLength:0, // required for empty input
         select: function(event, ui){
             $job_title.trigger('autocomplete-select', ui.item.label);
         },
-    });
+        focus: focus_prevent_disabled_options,
+
+    }).focus(default_search).data("ui-autocomplete")._renderItem = renderDisabledItem;
 
     $("#form-company-query").autocomplete({
         source: function (request, response) {
             $company_query.trigger('autocomplete-search', request.term);
+            
+            // show some list when focusing on an empty input
+            if(request.term.length<2){
+                response([{
+                    value:"最近被填寫的公司",
+                    disabled:true,
+                }].concat(
+                    default_company_names.map(v=>{ v.disabled = false; return v })
+                ));
+                return;
+            }
 
             $.ajax({
                 url: WTS.constants.backendURL + 'companies/search',
@@ -354,12 +423,14 @@ $(function(){
                 response([]);
             });
         },
-        minLength: 2,
+        minLength:0, // required for empty input
         select: function(event, ui){
             $company_query.trigger('autocomplete-select', ui.item.company_id);
             $("#form-company-id").val(ui.item.company_id);
         },
-    });
+        focus:focus_prevent_disabled_options,
+
+    }).focus(default_search).data("ui-autocomplete")._renderItem = renderDisabledItem;
 });
 
 /*
