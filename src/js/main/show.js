@@ -168,30 +168,6 @@ const app = new Vue({
   }
 });
 
-const router = Router({
-  "/latest": function() {
-    app.currentView = "latestWorkings";
-  },
-  "/search-and-group/by-job-title/(.*)": function(name) {
-    app.currentView = "searchAndGroupByJobTitle";
-    Vue.nextTick(function() {
-      app.$broadcast("load_search_and_group_by_job_title", decodeURIComponent(name));
-    });
-  },
-  "/search-and-group/by-company/(.*)": function(name) {
-    app.currentView = "searchAndGroupByCompany";
-    Vue.nextTick(function() {
-      app.$broadcast("load_search_and_group_by_company", decodeURIComponent(name));
-    });
-  },
-}).configure({
-  notfound: function() {
-    router.setRoute("/latest");
-  }
-});
-
-router.init(["/"]);
-
 const searchBarApp = new Vue({
   el: "#section-search",
   data: {
@@ -207,9 +183,42 @@ const searchBarApp = new Vue({
       } else {
         router.setRoute("/latest");
       }
+    },
+    setInputInfo: function(search_type = "by-company", keyword = "") {
+      this.search_type = search_type;
+      this.keyword = keyword;
     }
   },
 });
+
+const router = Router({
+  "/latest": function() {
+    app.currentView = "latestWorkings";
+    searchBarApp.setInputInfo();
+  },
+  "/search-and-group/by-job-title/(.*)": function(name) {
+    app.currentView = "searchAndGroupByJobTitle";
+    const decodedName = decodeURIComponent(name);
+    searchBarApp.setInputInfo("by-job-title", deCodeName);
+    Vue.nextTick(function() {
+      app.$broadcast("load_search_and_group_by_job_title", deCodeName);
+    });
+  },
+  "/search-and-group/by-company/(.*)": function(name) {
+    app.currentView = "searchAndGroupByCompany";
+    const decodedName = decodeURIComponent(name);
+    searchBarApp.setInputInfo("by-company", deCodeName);
+    Vue.nextTick(function() {
+      app.$broadcast("load_search_and_group_by_company", deCodeName);
+    });
+  },
+}).configure({
+  notfound: function() {
+    router.setRoute("/latest");
+  }
+});
+
+router.init(["/"]);
 
 $(window).on('scroll', function() {
   if ($(window).scrollTop() + window.innerHeight >= $(document).height() - 100) {
