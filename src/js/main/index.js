@@ -324,7 +324,7 @@ $(function(){
             Array.from(new Set(
                 $.map(res.workings, (item,i)=>({
                     "value": item.company.name,
-                    "id": item.company.id,
+                    "company_id": item.company.id,
                 })).filter( item=>item.id!==undefined )
             )).slice(0,4);
     });
