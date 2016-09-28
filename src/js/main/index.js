@@ -308,36 +308,41 @@ const statusChangeCallback = (response) => {
 $(function(){
     // default autocomplete:
     // fetch the newest job titles and company names
-    var default_job_titles = [];
-    var default_company_names = [];
+    let default_job_titles = [];
+    let default_company_names = [];
     $.ajax({
         url: WTS.constants.backendURL + 'workings/latest',
         dataType:"json",
     }).done(function(res){
         default_job_titles =
             Array.from(new Set(
-                $.map(res.workings, (item,i)=>item.job_title)
-            )).slice(0,8);
+                $.map(res.workings, (item,i)=>({
+                    "value": item.job_title,
+                }))
+            )).slice(0,4);
         default_company_names =
             Array.from(new Set(
-                $.map(res.workings, (item,i)=>item.company.name)
-            )).slice(0,8);
+                $.map(res.workings, (item,i)=>({
+                    "value": item.company.name,
+                    "id": item.company.id,
+                })).filter( item=>item.id!==undefined )
+            )).slice(0,4);
     });
-    var default_search = function() {
+    const default_search = function() {
         $(this).autocomplete("search",$(this).val());
     };
 
     // prevent disabled options from keyboard choosing
-    var focus_prevent_disabled_options = function(event, ui){
-        var $active_item = $(event.currentTarget).find('.ui-state-active');
+    const focus_prevent_disabled_options = function(event, ui){
+        let $active_item = $(event.currentTarget).find('.ui-state-active');
         if($active_item.parent().hasClass('ui-state-disabled')){
             event.preventDefault();
             $active_item.parent().siblings().first().children('div').mouseenter();  
         }
     }
     // render each item in ui.content as a <li> element
-    var renderDisabledItem = function(ul,item){
-        var li = $("<li>").append($("<div>").text(item.label));
+    const renderDisabledItem = function(ul,item){
+        let li = $("<li>").append($("<div>").text(item.label));
         // put .ui-state-disabled on disabled items (e.g. 最近被填寫的公司)
         if(item.disabled) li.addClass("ui-state-disabled");
         return li.appendTo(ul);
@@ -353,9 +358,12 @@ $(function(){
 
             // show some list when focusing on an empty input
             if(request.term.length==0){
-                response(["最近被填寫的職位"].concat(default_job_titles).map(function(v,i){
-                    return {"value":v, disabled:i==0};
-                }));
+                response([{
+                    value:"最近被填寫的職位",
+                    disabled:true,
+                }].concat(
+                    default_job_titles.map(v=>{ v.disabled=false; return v; })
+                ));
                 return;
             }
 
@@ -391,9 +399,12 @@ $(function(){
             
             // show some list when focusing on an empty input
             if(request.term.length<2){
-                response(["最近被填寫的公司"].concat(default_company_names).map(function(v,i){
-                    return {"value":v, disabled:i==0};
-                }));
+                response([{
+                    value:"最近被填寫的公司",
+                    disabled:true,
+                }].concat(
+                    default_company_names.map(v=>{ v.disabled = false; return v })
+                ));
                 return;
             }
 
