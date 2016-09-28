@@ -53,7 +53,8 @@ const onError = function(error) {
 const basePath = {
 	src: 'src/',
 	dest: 'public/assets/',
-  static: 'public/'
+  static: 'public/',
+	modules: 'node_modules/'
 };
 
 const src  = {
@@ -145,7 +146,7 @@ gulp.task('make:postcss', ['make:import'], function() {
 
 gulp.task('make:dependencies', function() {
 	return gulp.src([
-		src.libs + 'blazy.min.js',
+		basePath.modules + 'babel-polyfill/dist/polyfill.min.js',
 		src.libs + 'jquery.min.js',
 		src.libs + 'jquery-ui.min.js',
 		src.libs + 'vue.min.js',
