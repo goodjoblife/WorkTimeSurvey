@@ -169,7 +169,7 @@ const router = Router({
   },
   "/search-and-group/by-job-title/(.*)": function(name) {
     app.currentView = "searchAndGroupByJobTitle";
-    const deCodeName = decodeURIComponent(name);
+    const decodedName = decodeURIComponent(name);
     searchBarApp.setInputInfo("by-job-title", deCodeName);
     Vue.nextTick(function() {
       app.$broadcast("load_search_and_group_by_job_title", deCodeName);
@@ -177,7 +177,7 @@ const router = Router({
   },
   "/search-and-group/by-company/(.*)": function(name) {
     app.currentView = "searchAndGroupByCompany";
-    const deCodeName = decodeURIComponent(name);
+    const decodedName = decodeURIComponent(name);
     searchBarApp.setInputInfo("by-company", deCodeName);
     Vue.nextTick(function() {
       app.$broadcast("load_search_and_group_by_company", deCodeName);
