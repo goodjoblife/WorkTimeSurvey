@@ -233,8 +233,8 @@ $(window).on('scroll', function() {
  * Autocomplete Part
  */
 $(function(){
-  var $input = $(searchBarApp.$el).find("#search-input");
-  var vue = searchBarApp;
+  const $input = $(searchBarApp.$el).find("#search-input");
+  const vue = searchBarApp;
   $input.autocomplete({
     source: function (request, response) {
       if(vue.search_type === "by-company") {
@@ -245,7 +245,7 @@ $(function(){
           },
           dataType: "json",
         }).done(function(res) {
-          var nameList = $.map(res, (item, i) => ({
+          const nameList = $.map(res, (item, i) => ({
               value: item._id.name,
               id: item._id.name,
             })
@@ -263,7 +263,7 @@ $(function(){
           },
           dataType: "json",
         }).done(function(res) {
-            var nameList = $.map(res, (item, i) => ({
+            const nameList = $.map(res, (item, i) => ({
                 value: item._id,
                 id: item._id,
               })
