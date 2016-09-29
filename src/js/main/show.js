@@ -174,6 +174,53 @@ const searchBarApp = new Vue({
     search_type: "by-company",
     keyword: "",
   },
+  ready: function() {
+    var $input = $(this.$el).find("#search-input");
+    var vue = this;
+    $input.autocomplete({
+      source: function (request, response) {
+        if(vue.search_type === "by-company") {
+          $.ajax({
+            url: WTS.constants.backendURL + "workings/companies/search",
+            data: {
+              key : request.term,
+            },
+            dataType: "json",
+          }).done(function(res) {
+            var nameList = $.map(res, (item, i) => ({
+                value: item._id.name,
+                id: item._id.name,
+              })
+            );
+            response(nameList);
+          }).fail(function( jqXHR, textStatus ) {
+            response([]);
+          });
+        }
+        else if(vue.search_type === "by-job-title") {
+          $.ajax({
+            url: WTS.constants.backendURL + "workings/jobs/search",
+            data: {
+              key : request.term,
+            },
+            dataType: "json",
+          }).done(function(res) {
+              var nameList = $.map(res, (item, i) => ({
+                  value: item._id,
+                  id: item._id,
+                })
+              );
+              response(nameList);
+          }).fail(function(jqXHR, textStatus) {
+            response([]);
+          });  
+        }
+      },
+      select: function(event, ui){
+        vue.keyword = ui.item.label;
+      }
+    });
+  },
   methods: {
     onSubmit: function() {
       if (this.search_type === "by-company") {
