@@ -273,9 +273,6 @@ $(function(){
           response([]);
         });  
       }
-    },
-    select: function(event, ui){
-      vue.keyword = ui.item.label;
     }
   });
 });
