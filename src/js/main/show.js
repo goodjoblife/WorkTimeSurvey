@@ -178,8 +178,12 @@ const searchBarApp = new Vue({
     onSubmit: function() {
       if (this.search_type === "by-company") {
         router.setRoute(`/search-and-group/by-company/${encodeURIComponent(this.keyword)}`);
+
+        this.$emit("submit", this.search_type, this.keyword);
       } else if (this.search_type === "by-job-title") {
         router.setRoute(`/search-and-group/by-job-title/${encodeURIComponent(this.keyword)}`);
+
+        this.$emit("submit", this.search_type, this.keyword);
       } else {
         router.setRoute("/latest");
       }
@@ -276,3 +280,27 @@ $(function(){
     }
   });
 });
+
+//*************************************************
+//
+//  Begin of GA part
+//
+//*************************************************
+(($, searchBarApp) => {
+  const category = "QUERY_PAGE";
+
+  // form event
+  searchBarApp.$on("submit", (search_type, keyword) => {
+    if (search_type === "by-company") {
+      ga("send", "event", category, "company-form-submit", keyword);
+    } else if (search_type === "by-job-title") {
+      ga("send", "event", category, "job-title-form-submit", keyword);
+    }
+  });
+
+})(window.jQuery, searchBarApp);
+//*************************************************
+//
+//  End of GA part
+//
+//*************************************************
