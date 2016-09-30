@@ -222,8 +222,6 @@ const router = Router({
   }
 });
 
-router.init(["/"]);
-
 $(window).on('scroll', function() {
   if ($(window).scrollTop() + window.innerHeight >= $(document).height() - 100) {
     if (app.currentView === "latestWorkings") {
@@ -298,9 +296,28 @@ $(function(){
     }
   });
 
+  // router event
+  router.on("on", "/latest", () => {
+    ga("send", "event", category, "visit-latest");
+  });
+
+  router.on("on", "/search-and-group/by-job-title/(.*)", (name) => {
+    ga("send", "event", category, "visit-job-title", decodeURIComponent(name));
+  });
+
+  router.on("on", "/search-and-group/by-company/(.*)", (name) => {
+    ga("send", "event", category, "visit-company", decodeURIComponent(name));
+  });
 })(window.jQuery, searchBarApp);
 //*************************************************
 //
 //  End of GA part
 //
 //*************************************************
+
+/*
+ * Init Part
+ */
+
+// wait the event trigger done
+router.init(["/"]);
