@@ -490,6 +490,27 @@ $twitter_share_button.on('click', (e) => {
   ga && ga('send', 'event', 'LANDING_PAGE', 'click-twitter-share');
 });
 
+// tracking form validation and upload status
+$work_form.on("submitted", (e, result) => {
+  if (result.error) {
+    if (result.type === "ValidationError") {
+      ga && ga('send', 'event', 'LANDING_PAGE', 'check-form-fail', result.error.message);
+    } else if (result.type === "AuthError") {
+      ga && ga('send', 'event', 'LANDING_PAGE', 'upload-fail', result.error.message);
+    } else if (result.type === "SendError") {
+      if (result.jqXHR.readyState === 0) {
+        ga && ga('send', 'event', 'LANDING_PAGE', 'upload-fail', 'readyState:' + result.jqXHR.readyState);
+      } else if (result.jqXHR.readyState === 4) {
+        ga && ga('send', 'event', 'LANDING_PAGE', 'upload-fail', result.jqXHR.responseJSON.message);
+      } else {
+        ga && ga('send', 'event', 'LANDING_PAGE', 'upload-fail', result.error.message);
+      }
+    }
+  } else {
+    ga && ga('send', 'event', 'LANDING_PAGE', 'upload-success');
+  }
+});
+
 const $job_title = $("#form-job-title");
 const $company_query = $("#form-company-query");
 
