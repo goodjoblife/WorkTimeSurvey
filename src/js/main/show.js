@@ -240,6 +240,7 @@ $(function(){
   $input.autocomplete({
     source: function (request, response) {
       if(vue.search_type === "by-company") {
+        $input.trigger("company-query-autocomplete-search", request.term);
         $.ajax({
           url: WTS.constants.backendURL + "workings/companies/search",
           data: {
@@ -258,6 +259,7 @@ $(function(){
         });
       }
       else if(vue.search_type === "by-job-title") {
+        $input.trigger("jot-title-query-autocomplete-search", request.term);
         $.ajax({
           url: WTS.constants.backendURL + "workings/jobs/search",
           data: {
@@ -275,7 +277,14 @@ $(function(){
           response([]);
         });  
       }
-    }
+    },
+    select: function(event, ui) {
+      if (searchBarApp.search_type === "by-company") {
+        $input.trigger("company-query-autocomplete-select", ui.item.label);
+      } else if (searchBarApp.search_type === "by-job-title") {
+        $input.trigger("job-title-query-autocomplete-select", ui.item.label);
+      }
+    },
   });
 });
 
@@ -286,6 +295,25 @@ $(function(){
 //*************************************************
 (($, searchBarApp) => {
   const category = "QUERY_PAGE";
+
+  const $search_bar = $("#search-bar-input");
+
+  // autocomplete event
+  $search_bar.on("company-query-autocomplete-search", (e, q) => {
+    ga("send", "event", category, "company-query-autocomplete-search", q);
+  });
+
+  $search_bar.on("job-title-query-autocomplete-search", (e, q) => {
+    ga("send", "event", category, "job-title-query-autocomplete-search", q);
+  });
+
+  $search_bar.on("ompany-query-autocomplete-select", (e, q) => {
+    ga("send", "event", category, "ompany-query-autocomplete-select", q);
+  });
+
+  $search_bar.on("job-title-query-autocomplete-select", (e, q) => {
+    ga("send", "event", category, "job-title-query-autocomplete-select", q);
+  });
 
   // form event
   searchBarApp.$on("submit", (search_type, keyword) => {
