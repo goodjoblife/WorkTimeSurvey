@@ -474,6 +474,11 @@ $work_form.on('submited', (e, result) => {
   }
 });
 
+// tracking submit button clicking
+$work_form.on("submit", (e) => {
+  ga && ga('send', 'event', 'LANDING_PAGE', 'click-submit');
+});
+
 const $job_title = $("#form-job-title");
 const $company_query = $("#form-company-query");
 
