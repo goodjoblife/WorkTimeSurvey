@@ -233,7 +233,7 @@ $(window).on('scroll', function() {
  * Autocomplete Part
  */
 $(function(){
-  const $input = $(searchBarApp.$el).find("#search-input");
+  const $input = $(searchBarApp.$el).find("#search-bar-input");
   const vue = searchBarApp;
   $input.autocomplete({
     source: function (request, response) {
