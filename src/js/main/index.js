@@ -529,5 +529,3 @@ $company_query.on('autocomplete-search', (query) => {
 $company_query.on('autocomplete-search', (selected) => {
     ga && ga('send', 'event', 'LANDING_PAGE', 'company-query-autocomplete-select', selected);
 });
-
-
