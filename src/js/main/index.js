@@ -479,6 +479,17 @@ $work_form.on("submit", (e) => {
   ga && ga('send', 'event', 'LANDING_PAGE', 'click-submit');
 });
 
+// tracking sharing button clicking
+const $fb_share_button = $("#fb-share-button");
+const $twitter_share_button = $("#twitter-share-button");
+
+$fb_share_button.on('click', (e) => {
+  ga && ga('send', 'event', 'LANDING_PAGE', 'click-fb-share');
+});
+$twitter_share_button.on('click', (e) => {
+  ga && ga('send', 'event', 'LANDING_PAGE', 'click-twitter-share');
+});
+
 const $job_title = $("#form-job-title");
 const $company_query = $("#form-company-query");
 
@@ -498,13 +509,4 @@ $company_query.on('autocomplete-search', (selected) => {
     ga && ga('send', 'event', 'LANDING_PAGE', 'company-query-autocomplete-select', selected);
 });
 
-const $fb_share_button = $("#fb-share-button");
-const $twitter_share_button = $("#twitter-share-button");
-
-$fb_share_button.on('click', (e) => {
-  ga && ga('send', 'event', 'LANDING_PAGE', 'click-fb-share');
-});
-$twitter_share_button.on('click', (e) => {
-  ga && ga('send', 'event', 'LANDING_PAGE', 'click-twitter-share');
-});
 
