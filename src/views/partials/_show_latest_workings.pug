@@ -19,7 +19,7 @@ section(class="search-result")
 						span(class="rwd-td")
 							span
 								a(href="#/search-and-group/by-job-title/{{encodeURIComponent(w.job_title)}}") {{w.job_title}}
-							span(class="table-sector") ooxx
+							span(class="table-sector") {{w.sector}}
 					td(data-th="一週總工時")
 						span(class="rwd-td")
 							span(class="table-time-bar" data-time="{{w.week_work_time}}" v-bind:style="{ width: w.week_work_time * 2 + 'px' }") {{w.week_work_time}}
