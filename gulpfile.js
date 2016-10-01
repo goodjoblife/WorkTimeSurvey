@@ -123,10 +123,6 @@ gulp.task('make:postcss', ['make:import'], function() {
 		precss({
 			extension: 'pcss'
 		}),
-		autoprefixer({
-			browsers: ["firefox >= 15", "ios >= 8", "android >= 4.0", "and_uc >= 9.9"],
-			cascade: false
-		}),
 		color_alpha(),
 		color_function(),
 		lost(),
@@ -190,8 +186,12 @@ gulp.task('make:main-scripts', function() {
 });
 
 gulp.task('minify', function() {
-	gulp.src(dest.css + '*.css').pipe(cssnano()).pipe(gulp.dest(dest.css))
-	gulp.src(dest.js + '*.js').pipe(uglify()).pipe(gulp.dest(dest.js))
+	gulp.src(dest.css + '*.css')
+		.pipe(cssnano({
+			autoprefixer: { browsers: ['firefox >= 15', 'ios >= 8', 'android >= 4.0', 'and_uc >= 9.9'], add: true }
+		}))
+		.pipe(gulp.dest(dest.css));
+	gulp.src(dest.js + '*.js').pipe(uglify()).pipe(gulp.dest(dest.js));
 });
 
 gulp.task('make:pages', function buildHTML() {
