@@ -462,7 +462,7 @@ $work_form.one('beginWriting', (e) => {
   ga && ga('send', 'timing', 'LANDING_PAGE', 'form-begin-writing', formBeginTime);
 });
 
-$work_form.on('submited', (e, result) => {
+$work_form.on('submitted', (e, result) => {
   if(!result.error){
     if(!hasSendedFormWritingTime){
       formSubmittedTime = performance.now();
