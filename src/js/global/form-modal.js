@@ -3,21 +3,21 @@ const closeFormModal = () => {
   form_modal.classList.remove('is-open');
   $('body, html').removeClass('is-fixed');
   form_modal.innerHTML = '';
-}
+};
 const showAlert = (type, message1, message2, button_type) => {
   let button;
   let icon;
   if (button_type == 'go-to-show') {
-    button = '<a href="/show.html" class="modal-content__btn btn-black btn-m">查看最新工時</a>'
+    button = '<a href="/show.html" class="modal-content__btn btn-black btn-m">查看最新工時</a>';
   } else if (button_type == 'go-to-form') {
-    button = '<button class="modal-content__btn btn-black btn-m" id="modal-scroll-to-form">重新填寫</button>'
+    button = '<button class="modal-content__btn btn-black btn-m" id="modal-scroll-to-form">重新填寫</button>';
   } else if (button_type == 'go-fb-login') {
-    button = '<button id="fb-login-modal" class="modal-content__btn btn-black btn-m">以 fb 驗證並送出資料</button>'
+    button = '<button id="fb-login-modal" class="modal-content__btn btn-black btn-m">以 fb 驗證並送出資料</button>';
   }
   if (type == 'success') {
-    icon = 'form-checked'
+    icon = 'form-checked';
   } else if (type == 'alert') {
-    icon = 'form-alert'
+    icon = 'form-alert';
   }
   let to_be_append = `
   <div class="modal__inner">
@@ -31,18 +31,18 @@ const showAlert = (type, message1, message2, button_type) => {
       </div>
     </div>
   </div>
-  `
+  `;
   form_modal.innerHTML = to_be_append;
   form_modal.classList.add('is-open');
   document.querySelector('html').classList.add('is-fixed');
   document.querySelector('body').classList.add('is-fixed');
-}
+};
 $('body').on('click', '#modal-scroll-to-form', (e) => {
   let form_position = section_form.offsetTop - 58;
   e.preventDefault();
   closeFormModal();
   $('html, body').animate({
-    scrollTop: form_position
+    scrollTop: form_position,
   }, 600);
 });
 

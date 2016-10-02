@@ -19,7 +19,7 @@ const latestWorkings = Vue.extend({
       }
 
       this.loadMorePage();
-    }
+    },
   },
   methods: {
     loadMorePage: function() {
@@ -40,10 +40,10 @@ const latestWorkings = Vue.extend({
         params: {
           page: page,
           limit: 20,
-        }
+        },
       };
       return this.$http.get(`${WTS.constants.backendURL}workings/latest`, opt);
-    }
+    },
   },
 });
 
@@ -85,10 +85,10 @@ const searchAndGroupByJobTitle = Vue.extend({
       const opt = {
         params: {
           job_title: job_title_keyword,
-        }
+        },
       };
       return this.$http.get(`${WTS.constants.backendURL}workings/search-and-group/by-job-title`, opt);
-    }
+    },
   },
 });
 
@@ -131,16 +131,16 @@ const searchAndGroupByCompany = Vue.extend({
       const opt = {
         params: {
           company: company_keyword,
-        }
+        },
       };
       return this.$http.get(`${WTS.constants.backendURL}workings/search-and-group/by-company`, opt);
-    }
+    },
   },
 });
 
 Vue.filter('num', function (value) {
   return value ? value : "-";
-})
+});
 
 Vue.filter('overtime_frequency_string', function (value) {
   if (value == "0") {
@@ -165,7 +165,7 @@ const app = new Vue({
   },
   data: {
     currentView: null,
-  }
+  },
 });
 
 const searchBarApp = new Vue({
@@ -187,7 +187,7 @@ const searchBarApp = new Vue({
     setInputInfo: function(search_type = "by-company", keyword = "") {
       this.search_type = search_type;
       this.keyword = keyword;
-    }
+    },
   },
 });
 
@@ -215,7 +215,7 @@ const router = Router({
 }).configure({
   notfound: function() {
     router.setRoute("/latest");
-  }
+  },
 });
 
 router.init(["/"]);
