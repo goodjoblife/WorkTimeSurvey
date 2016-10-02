@@ -1,16 +1,18 @@
 .search-result {
   margin-bottom: $block-gutter-l;
+  .section__heading {
+    @media (max-width: $below-mobile) {
+      font-size: 1.2em;
+    }
+  }
 }
 
 .search-result__result {
-  margin-bottom: $block-gutter-l;
-  @media (max-width: $below-mobile) {
-    padding: 10px 0;
-  }
   .table-sector {
     color: $gray;
     padding-left: 10px;
   }
+
 }
 
 .search-result__status {
@@ -29,6 +31,9 @@
     font-size: 1.3em;
     color: $gray;
     letter-spacing: 0.1em;
+    @media (max-width: $below-mobile) {
+      min-height: 30vh;
+    }
   }
 }
 

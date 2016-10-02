@@ -199,17 +199,17 @@ const router = Router({
   "/search-and-group/by-job-title/(.*)": function(name) {
     app.currentView = "searchAndGroupByJobTitle";
     const decodedName = decodeURIComponent(name);
-    searchBarApp.setInputInfo("by-job-title", deCodeName);
+    searchBarApp.setInputInfo("by-job-title", decodedName);
     Vue.nextTick(function() {
-      app.$broadcast("load_search_and_group_by_job_title", deCodeName);
+      app.$broadcast("load_search_and_group_by_job_title", decodedName);
     });
   },
   "/search-and-group/by-company/(.*)": function(name) {
     app.currentView = "searchAndGroupByCompany";
     const decodedName = decodeURIComponent(name);
-    searchBarApp.setInputInfo("by-company", deCodeName);
+    searchBarApp.setInputInfo("by-company", decodedName);
     Vue.nextTick(function() {
-      app.$broadcast("load_search_and_group_by_company", deCodeName);
+      app.$broadcast("load_search_and_group_by_company", decodedName);
     });
   },
 }).configure({
@@ -226,4 +226,53 @@ $(window).on('scroll', function() {
       app.$broadcast("scroll_bottom_reach");
     }
   }
+});
+
+
+/*
+ * Autocomplete Part
+ */
+$(function(){
+  const $input = $(searchBarApp.$el).find("#search-bar-input");
+  const vue = searchBarApp;
+  $input.autocomplete({
+    source: function (request, response) {
+      if(vue.search_type === "by-company") {
+        $.ajax({
+          url: WTS.constants.backendURL + "workings/companies/search",
+          data: {
+            key : request.term,
+          },
+          dataType: "json",
+        }).done(function(res) {
+          const nameList = $.map(res, (item, i) => ({
+              value: item._id.name,
+              id: item._id.name,
+            })
+          );
+          response(nameList);
+        }).fail(function( jqXHR, textStatus ) {
+          response([]);
+        });
+      }
+      else if(vue.search_type === "by-job-title") {
+        $.ajax({
+          url: WTS.constants.backendURL + "workings/jobs/search",
+          data: {
+            key : request.term,
+          },
+          dataType: "json",
+        }).done(function(res) {
+            const nameList = $.map(res, (item, i) => ({
+                value: item._id,
+                id: item._id,
+              })
+            );
+            response(nameList);
+        }).fail(function(jqXHR, textStatus) {
+          response([]);
+        });  
+      }
+    }
+  });
 });
