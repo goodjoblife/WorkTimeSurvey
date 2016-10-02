@@ -436,6 +436,81 @@ $(function(){
 /*
  * GA part
  */
+// Calculating form writing time
+let formBeginTime = null;
+let formSubmittedTime = null;
+let hasSendedFormWritingTime = false;
+$(function() {
+  (function() {
+    var isCalled = false;
+    function callback(e) {
+      if (isCalled) {
+        return;
+      }
+      isCalled = true;
+      $('#work-form').trigger('beginWriting');
+    }
+
+    $('#work-form input').on('focus', callback);
+    $('#work-form input').on('click', callback);
+    $('#work-form input[type=radio]').on('change', callback);
+  })();
+});
+
+$work_form.one('beginWriting', (e) => {
+  formBeginTime = performance.now();
+  ga && ga('send', 'timing', 'LANDING_PAGE', 'form-begin-writing', formBeginTime);
+});
+
+$work_form.on('submitted', (e, result) => {
+  if(!result.error){
+    if(!hasSendedFormWritingTime){
+      formSubmittedTime = performance.now();
+      const elapsedTime = formSubmittedTime - formBeginTime;
+      ga && ga('send', 'timing', 'LANDING_PAGE', 'form-submitted', formSubmittedTime);
+      ga && ga('send', 'timing', 'LANDING_PAGE', 'form-writing', elapsedTime);
+      hasSendedFormWritingTime = true;
+    } 
+  }
+});
+
+// tracking submit button clicking
+$work_form.on("submit", (e) => {
+  ga && ga('send', 'event', 'LANDING_PAGE', 'click-submit');
+});
+
+// tracking sharing button clicking
+const $fb_share_button = $("#fb-share-button");
+const $twitter_share_button = $("#twitter-share-button");
+
+$fb_share_button.on('click', (e) => {
+  ga && ga('send', 'event', 'LANDING_PAGE', 'click-fb-share');
+});
+$twitter_share_button.on('click', (e) => {
+  ga && ga('send', 'event', 'LANDING_PAGE', 'click-twitter-share');
+});
+
+// tracking form validation and upload status
+$work_form.on("submitted", (e, result) => {
+  if (result.error) {
+    if (result.type === "ValidationError") {
+      ga && ga('send', 'event', 'LANDING_PAGE', 'check-form-fail', result.error.message);
+    } else if (result.type === "AuthError") {
+      ga && ga('send', 'event', 'LANDING_PAGE', 'upload-fail', result.error.message);
+    } else if (result.type === "SendError") {
+      if (result.jqXHR.readyState === 0) {
+        ga && ga('send', 'event', 'LANDING_PAGE', 'upload-fail', 'readyState:' + result.jqXHR.readyState);
+      } else if (result.jqXHR.readyState === 4) {
+        ga && ga('send', 'event', 'LANDING_PAGE', 'upload-fail', result.jqXHR.responseJSON.message);
+      } else {
+        ga && ga('send', 'event', 'LANDING_PAGE', 'upload-fail', result.error.message);
+      }
+    }
+  } else {
+    ga && ga('send', 'event', 'LANDING_PAGE', 'upload-success');
+  }
+});
+
 const $job_title = $("#form-job-title");
 const $company_query = $("#form-company-query");
 
@@ -454,4 +529,3 @@ $company_query.on('autocomplete-search', (query) => {
 $company_query.on('autocomplete-search', (selected) => {
     ga && ga('send', 'event', 'LANDING_PAGE', 'company-query-autocomplete-select', selected);
 });
-
