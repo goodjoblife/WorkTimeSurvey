@@ -55,3 +55,17 @@ if (section_faq) {
     })
   }
 }
+
+const highlightCurrentPage = () => {
+  const menu_item = document.querySelectorAll('.site-menu__item');
+  const pathname = window.location.pathname;
+  for (let i = 0; i < menu_item.length; i++) {
+    const href_item = menu_item[i].childNodes[0];
+    if ( href_item.getAttribute('href') === pathname) {
+      href_item.classList.add('is-current');
+    } else {
+      href_item.classList.remove('is-current');
+    }
+  }
+}
+highlightCurrentPage();

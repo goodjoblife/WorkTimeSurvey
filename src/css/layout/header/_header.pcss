@@ -12,12 +12,8 @@
 	&.is-fixed {
 		height: $nav-height-m;
 		box-shadow: 0 0 8px rgba(0,0,0,.15);
-		.header__wrapper {
-			padding-top: 0px;
-			padding-bottom: 0px;
-			height: 100%;
-		}
 		.header__logo {
+			transform: translateY(0px);
 			svg {
 				transform: scale(0.8) translateY(6px);
 				transform-origin: 0% 50%;
@@ -36,8 +32,9 @@
 }
 .header__wrapper {
 	@mixin clear;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	height: 100%;
+
+	transition: transform;
 	@media (max-width: $below-small) {
 		padding-top: 2px;
 		padding-bottom: 0;
@@ -45,6 +42,7 @@
 }
 .header__logo {
 	float: left;
+	transform: translateY(10px);
 	> a {
 		display: block;
 	}
@@ -59,7 +57,7 @@
 }
 .header__nav {
 	float: right;
-	height: 47px;
+	height: 100%;
 	@media (max-width: $below-small) {
 		opacity: 0;
 		visibility: hidden;
