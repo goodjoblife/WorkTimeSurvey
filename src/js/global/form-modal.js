@@ -12,7 +12,7 @@ const showAlert = (type, message1, message2, button_type) => {
   } else if (button_type == 'go-to-form') {
     button = '<button class="modal-content__btn btn-black btn-m" id="modal-scroll-to-form">重新填寫</button>'
   } else if (button_type == 'go-fb-login') {
-    button = '<button id="fb-login-modal" class="modal-content__btn btn-black btn-m">以 fb 驗證並送出資料</button>'
+    button = '<button id="fb-login-and-submit-in-modal" class="modal-content__btn btn-black btn-m">以 fb 驗證並送出資料</button>'
   }
   if (type == 'success') {
     icon = 'form-checked'
@@ -36,6 +36,12 @@ const showAlert = (type, message1, message2, button_type) => {
   form_modal.classList.add('is-open');
   document.querySelector('html').classList.add('is-fixed');
   document.querySelector('body').classList.add('is-fixed');
+
+  const $submit_in_modal = $("#fb-login-and-submit-in-modal");
+  $submit_in_modal.on('click', (e) => {
+    closeFormModal();
+    $("#work-form").trigger("submit");
+  });
 }
 $('body').on('click', '#modal-scroll-to-form', (e) => {
   let form_position = section_form.offsetTop - 58;
