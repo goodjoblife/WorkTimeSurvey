@@ -178,8 +178,12 @@ const searchBarApp = new Vue({
     onSubmit: function() {
       if (this.search_type === "by-company") {
         router.setRoute(`/search-and-group/by-company/${encodeURIComponent(this.keyword)}`);
+
+        this.$emit("submit", this.search_type, this.keyword);
       } else if (this.search_type === "by-job-title") {
         router.setRoute(`/search-and-group/by-job-title/${encodeURIComponent(this.keyword)}`);
+
+        this.$emit("submit", this.search_type, this.keyword);
       } else {
         router.setRoute("/latest");
       }
@@ -218,8 +222,6 @@ const router = Router({
   }
 });
 
-router.init(["/"]);
-
 $(window).on('scroll', function() {
   if ($(window).scrollTop() + window.innerHeight >= $(document).height() - 100) {
     if (app.currentView === "latestWorkings") {
@@ -238,6 +240,7 @@ $(function(){
   $input.autocomplete({
     source: function (request, response) {
       if(vue.search_type === "by-company") {
+        $input.trigger("company-query-autocomplete-search", request.term);
         $.ajax({
           url: WTS.constants.backendURL + "workings/companies/search",
           data: {
@@ -256,6 +259,7 @@ $(function(){
         });
       }
       else if(vue.search_type === "by-job-title") {
+        $input.trigger("jot-title-query-autocomplete-search", request.term);
         $.ajax({
           url: WTS.constants.backendURL + "workings/jobs/search",
           data: {
@@ -273,6 +277,75 @@ $(function(){
           response([]);
         });  
       }
-    }
+    },
+    select: function(event, ui) {
+      if (searchBarApp.search_type === "by-company") {
+        $input.trigger("company-query-autocomplete-select", ui.item.label);
+      } else if (searchBarApp.search_type === "by-job-title") {
+        $input.trigger("job-title-query-autocomplete-select", ui.item.label);
+      }
+    },
   });
 });
+
+//*************************************************
+//
+//  Begin of GA part
+//
+//*************************************************
+(($, searchBarApp) => {
+  const category = "QUERY_PAGE";
+
+  const $search_bar = $("#search-bar-input");
+
+  // autocomplete event
+  $search_bar.on("company-query-autocomplete-search", (e, q) => {
+    ga("send", "event", category, "company-query-autocomplete-search", q);
+  });
+
+  $search_bar.on("job-title-query-autocomplete-search", (e, q) => {
+    ga("send", "event", category, "job-title-query-autocomplete-search", q);
+  });
+
+  $search_bar.on("ompany-query-autocomplete-select", (e, q) => {
+    ga("send", "event", category, "ompany-query-autocomplete-select", q);
+  });
+
+  $search_bar.on("job-title-query-autocomplete-select", (e, q) => {
+    ga("send", "event", category, "job-title-query-autocomplete-select", q);
+  });
+
+  // form event
+  searchBarApp.$on("submit", (search_type, keyword) => {
+    if (search_type === "by-company") {
+      ga("send", "event", category, "company-form-submit", keyword);
+    } else if (search_type === "by-job-title") {
+      ga("send", "event", category, "job-title-form-submit", keyword);
+    }
+  });
+
+  // router event
+  router.on("on", "/latest", () => {
+    ga("send", "event", category, "visit-latest");
+  });
+
+  router.on("on", "/search-and-group/by-job-title/(.*)", (name) => {
+    ga("send", "event", category, "visit-job-title", decodeURIComponent(name));
+  });
+
+  router.on("on", "/search-and-group/by-company/(.*)", (name) => {
+    ga("send", "event", category, "visit-company", decodeURIComponent(name));
+  });
+})(window.jQuery, searchBarApp);
+//*************************************************
+//
+//  End of GA part
+//
+//*************************************************
+
+/*
+ * Init Part
+ */
+
+// wait the event trigger done
+router.init(["/"]);
