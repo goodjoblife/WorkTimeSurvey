@@ -325,7 +325,7 @@ $(function(){
                 $.map(res.workings, (item,i)=>({
                     "value": item.company.name,
                     "company_id": item.company.id,
-                })).filter( item=>item.id!==undefined )
+                })).filter( item=>item.company_id!==undefined )
             )).slice(0,4);
     });
     const default_search = function() {
