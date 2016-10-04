@@ -36,12 +36,6 @@ const showAlert = (type, message1, message2, button_type) => {
   form_modal.classList.add('is-open');
   document.querySelector('html').classList.add('is-fixed');
   document.querySelector('body').classList.add('is-fixed');
-
-  const $submit_in_modal = $("#fb-login-and-submit-in-modal");
-  $submit_in_modal.on('click', (e) => {
-    closeFormModal();
-    $("#work-form").trigger("submit");
-  });
 }
 $('body').on('click', '#modal-scroll-to-form', (e) => {
   let form_position = section_form.offsetTop - 58;
@@ -50,6 +44,12 @@ $('body').on('click', '#modal-scroll-to-form', (e) => {
   $('html, body').animate({
     scrollTop: form_position
   }, 600);
+});
+
+$('body').on('click', '#fb-login-and-submit-in-modal', (e) => {
+  e.preventDefault();
+  closeFormModal();
+  $("#work-form").trigger("submit");
 });
 
 $('body').on('click', '.modal__close', () => {
