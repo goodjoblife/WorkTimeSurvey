@@ -1,0 +1,68 @@
+.footer {
+  background-color: $primary-color;
+  padding: 12px 0;
+  @media (min-width: $above-desktop) {
+    height: $footer-height;
+  }
+  .wrapper-l {
+    @mixin clear;
+  }
+  &__col-1 {
+    @mixin clear;
+    float: left;
+    width: 70%;
+    @media (max-width: $below-small) {
+      float: none;
+      width: 100%;
+    }
+  }
+  &__col-2 {
+    float: left;
+    width: 30%;
+    @media (max-width: $below-small) {
+      float: none;
+      width: 100%;
+    }
+  }
+  &__logo {
+    float: left;
+    width: 140px;
+    svg {
+      width: 120px;
+    }
+    @media (max-width: $below-mobile) {
+      float: none;
+      width: 100%;
+    }
+  }
+  &__content {
+    float: left;
+    width: calc(100% - 140px);
+    font-size: .85em;
+    line-height: 1.4em;
+    @media (max-width: $below-mobile) {
+      float: none;
+      width: 100%;
+    }
+    a {
+      @mixin hover-color $gray-dark;
+    }
+  }
+  .share-buttons {
+    text-align: right;
+    @media (max-width: $below-small) {
+      text-align: left;
+    }
+    .share-buttons__item {
+      @media (max-width: $below-small) {
+        margin: 0 10px 0 0;
+      }
+    }
+    svg {
+      width: 34px;
+      height: 34px;
+      margin-top: 10px;
+      @mixin hover-fill $gray-dark;
+    }
+  }
+}

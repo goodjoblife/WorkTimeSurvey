@@ -1,0 +1,97 @@
+@define-mixin table-th {
+  font-size: .95em;
+  letter-spacing: 0.05em;
+  color: $gray-dark;
+}
+@define-mixin table-td {
+  font-size: .95em;
+  line-height: 1.3em;
+}
+@define-mixin table-link {
+  @mixin hover-color $blue;
+  font-weight: 700;
+}
+.rwd-table {
+  width: 100%;
+	table-layout: fixed;
+  background-color: #fff;
+  th {
+    @mixin table-th;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid $border-gray;
+		@media (max-width: $below-small) {
+			display: none;
+		}
+	}
+  td {
+    @mixin table-td;
+		border-bottom: 1px solid $border-gray;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+    @media (max-width: $below-small) {
+      display: flex;
+      width: 100%;
+      padding: 10px 20px;
+    }
+    &:before {
+			@media (max-width: $below-small) {
+				content: attr(data-th);
+        flex: 0 0 100px;
+        margin-right: 10px;
+        width: 100px;
+        @mixin table-th;
+			}
+    }
+    &:last-child {
+      @media (max-width: $below-small) {
+        border-bottom: 4px solid $gray-light;
+      }
+    }
+    a {
+      @mixin table-link;
+    }
+  }
+  th, td {
+    display: table-cell;
+    text-align: left;
+    @media (min-width: $above-small) {
+      &:first-child {
+        padding-left: $block-gutter-s;
+      }
+      &:last-child {
+        padding-right: $block-gutter-s;
+      }
+    }
+    @media (min-width: $above-desktop) {
+      &:first-child {
+        padding-left: $block-gutter-m;
+      }
+      &:last-child {
+        padding-right: $block-gutter-m;
+      }
+    }
+  }
+  tr {
+    &:last-child {
+      td {
+        @media (min-width: $above-small) {
+          border: 0;
+        }
+        &:last-child {
+          @media (max-width: $below-small) {
+            border-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+  .rwd-td {
+    display: block;
+    @media (max-width: $below-small) {
+      flex: 1 1 auto;
+    }
+  }
+}

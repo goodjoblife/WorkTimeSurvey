@@ -1,0 +1,45 @@
+@define-mixin clear {
+	&:before, &:after {
+		content: "";
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+@define-mixin hover-color $color {
+	transition: color .2s;
+	@media (min-width: $above-desktop) {
+		&:hover {
+			color: $color;
+		}
+	}
+}
+
+@define-mixin hover-color-darken $color, $percentage {
+	@media (min-width: $above-desktop) {
+		&:hover {
+			color: color($color blackness($percentage));
+		}
+	}
+}
+
+@define-mixin hover-bg-color $bgcolor, $color {
+	transition: background-color .2s, color .2s;
+	@media (min-width: $above-desktop) {
+		&:hover {
+			background-color: $bgcolor;
+			color: $color;
+		}
+	}
+}
+
+@define-mixin hover-fill $color {
+	transition: fill .2s;
+	@media (min-width: $above-desktop) {
+		&:hover {
+			fill: $color;
+		}
+	}
+}

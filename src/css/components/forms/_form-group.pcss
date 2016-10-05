@@ -1,0 +1,93 @@
+$form-gutter: 40px;
+$form-gutter-s: 25px;
+
+.form-group {
+	position: relative;
+	&.has-error {
+		input,
+		select {
+			border-color: $warning;
+		}
+		.input-unit span {
+			border-color: $warning;
+		}
+	}
+}
+
+.form-section {
+	margin-bottom: $form-gutter;
+	@media (max-width: $below-desktop) {
+		margin-bottom: $form-gutter-s;
+	}
+	.btn-l {
+		display: block;
+	}
+}
+
+.form-group--two {
+	@mixin clear;
+	.form-group {
+		float: left;
+		width: 48%;
+		margin-bottom: 0;
+		&:first-child {
+			margin-right: 2%;
+		}
+		&:last-child {
+			margin-left: 2%;
+		}
+	}
+}
+
+.form-group--inline {
+	.select-form {
+		display: inline-block;
+		vertical-align: middle;
+		&:first-child {
+			margin-right: 60px;
+			@media (max-width: $below-small) {
+				margin-right: 30px;
+			}
+			@media (max-width: $below-mobile) {
+				margin-right: 60px;
+			}
+		}
+	}
+}
+
+.form-error-message {
+	background: rgba(0,0,0,.7);
+	color: #fff;
+	padding: 8px 10px;
+	position: absolute;
+	left: 45%;
+	bottom: 54px;
+	font-size: .85em;
+	font-weight: 400;
+	line-height: 1.3em;
+	&:before {
+		position: absolute;
+		bottom: -14px;
+		left: 15px;
+		content: "";
+		display: block;
+		width: 0;
+		height: 0;
+		border-bottom: 7px solid transparent;
+		border-left: 7px solid transparent;
+		border-right: 7px solid transparent;
+		border-top: 7px solid rgba(0,0,0,.7);
+	}
+}
+
+.form-info {
+	background-color: $yellow-bg;
+	padding: 10px 20px;
+	margin-top: 12px;
+	@media (max-width: $below-mobile) {
+		padding: 5px 10px;
+	}
+	p {
+		@mixin font-p-s;
+	}
+}

@@ -2,21 +2,18 @@
 
 REV=`git describe --always`
 
-rm -rf public
-git clone git@github.com:goodjoblife/WorkTimeSurvey.git public -b gh-pages --depth 1
+rm -rf _public
+git clone git@github.com:goodjoblife/WorkTimeSurvey.git _public -b gh-pages --depth 1
 
 # Remove all the old build files
 
-rm -rf public/* public/.gitignore
-cp CNAME public/
-
-# Build the page into public
-
-cp -r bower_components css font-awesome fonts img js *.html public
+rm -rf _public/*
 
 # Build done, now commit it
 
-cd public
+cp -r public/* _public
+cp CNAME _public/
+cd _public
 git add -A .
 git commit -m "regen for $REV"
 git push origin gh-pages

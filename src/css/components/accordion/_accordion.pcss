@@ -1,0 +1,35 @@
+.accordion__item {
+  &.is-active {
+    .accordion__icon {
+      svg {
+        color: transparent;
+      }
+    }
+  }
+}
+
+.accordion__content {
+  display: none;
+}
+
+.accordion__trigger {
+  width: 100%;
+  cursor: pointer;
+}
+
+.accordion__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    color: $gray;
+    fill: $gray;
+    width: 18px;
+    height: 18px;
+    transition: fill .3s, color .3s;
+    @media (max-width: $below-small) {
+      width: 12px;
+      height: 12px;
+    }
+  }
+}

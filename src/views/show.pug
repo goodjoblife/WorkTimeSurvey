@@ -1,0 +1,41 @@
+extends ./_layout.pug
+block vars
+	- var bodyClass = "body-show body-gray";
+	- var page_url = "show.html";
+	- var page_title = "查看工時";
+
+block content
+	section(class="page-banner")
+		div(class="wrapper-l page-banner__container")
+			h1(class="page-banner__heading") 查看工時
+			a(class="btn-s btn-yellow-line" id="btn-latest" href="#/latest") <svg role="img" class="star"><use xlink:href="#star"></use></svg>最新資料
+			img(src="/assets/img/workers.jpg" class="page-banner__image")
+	div(class="wrapper-m")
+		section(class="section show-searchbar" id="section-search")
+			div(class="show-searchbar__type")
+				div(class="form-group form-group--inline")
+					div(class="select-form")
+						input(type="radio" id="btn-company" name="search-type" v-model="search_type" value="by-company")
+						label(for="btn-company" class="select-form__label")
+							span(class="radio-input")
+							span(class="radio-text") 公司
+					div(class="select-form")
+						input(type="radio" id="btn-position" name="search-type" v-model="search_type" value="by-job-title")
+						label(for="btn-position" class="select-form__label")
+							span(class="radio-input")
+							span(class="radio-text") 職稱
+			div(class="show-searchbar__form")
+				form(class="search-bar" id="" v-on:submit.prevent="onSubmit")
+					input(type="text" placeholder="輸入公司 / 單位名稱" class="search-bar__input" id="search-bar-input" name="keyword" v-model="keyword")
+					button(class="search-bar__button" type="submit") 搜尋
+	div(class="wrapper-l" id="app")
+		component(:is="currentView" keep-alive)
+	template(id="app-search-and-group-by-company")
+		include partials/_show_search_and_group_by_company.pug
+	template(id="app-search-and-group-by-job-title")
+		include partials/_show_search_and_group_by_job_title.pug
+	template(id="app-latest-workings")
+		include partials/_show_latest_workings.pug
+	button(id="btn-back-to-top") <svg><use xlink:href="#icon-arrow-up"></use></svg>
+block scripts
+	script(src="/assets/js/show.js")

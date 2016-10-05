@@ -1,0 +1,141 @@
+.btn-black-icon {
+	display: block;
+	position: relative;
+	background-color: $primary-color;
+	color: #fff;
+	padding: 0 20px;
+	font-size: 1em;
+	letter-spacing: 0.07em;
+	color: $gray-light;
+	text-transform: uppercase;
+	height: 40px;
+	line-height: 40px;
+	box-sizing: content-box;
+	border-bottom: 4px solid $gray-dark;
+	@mixin hover-bg-color #333, #fff;
+}
+
+.btn-l {
+	display: inline-block;
+	height: 50px;
+	line-height: 50px;
+	min-width: 200px;
+	padding: 0 10px;
+	text-align: center;
+	font-size: .95em;
+	font-weight: 400;
+	letter-spacing: 0.05em;
+	margin: 0 auto;
+	cursor: pointer;
+	transition: background .3s, color .3s, border .3s;
+}
+
+.btn-m {
+	display: inline-block;
+	height: 45px;
+	line-height: 45px;
+	min-width: 170px;
+	padding: 0 10px;
+	text-align: center;
+	font-size: .95em;
+	font-weight: 400;
+	letter-spacing: 0.05em;
+	margin: 0 auto;
+	cursor: pointer;
+	transition: background .3s, color .3s, border .3s;
+}
+
+.btn-s {
+	display: inline-block;
+	height: 32px;
+	line-height: 32px;
+	padding: 0 20px;
+	text-align: center;
+	font-size: .9em;
+	font-weight: 400;
+	letter-spacing: 0.1em;
+	margin: 0 auto;
+	cursor: pointer;
+	transition: background .3s, color .3s, border .3s;
+	svg {
+		margin-top: -3px;
+    margin-right: 5px;
+	}
+}
+
+
+.btn-black {
+	background-color: #000;
+	color: #fff;
+	transition: background .3s, color .3s, border .3s;
+	svg {
+		fill: #fff;
+		transition: fill .3s;
+		margin: 0 4px 4px 4px;
+	}
+	@media (min-width: $above-desktop) {
+		&:hover {
+			background-color: $primary-color;
+			color: #000;
+			svg {
+				fill: #000;
+			}
+		}
+	}
+}
+
+.btn-white {
+	background-color: #fff;
+	@media (min-width: $above-desktop) {
+		&:hover {
+			background-color: $gray-light;
+		}
+	}
+}
+
+.btn-yellow-line {
+	background-color: #fff;
+	border: 1px solid $primary-color;
+	@mixin hover-bg-color $gray-light;
+}
+
+.btn-why-facebook-login {
+	display: inline-block;
+	color: $gray;
+	text-align: center;
+	cursor: pointer;
+	margin-top: 25px;
+	font-size: .95em;
+	letter-spacing: 0.05em;
+	@mixin hover-color $gray-dark;
+}
+
+#btn-back-to-top {
+  opacity: 0;
+	visibility: hidden;
+  width: 40px;
+  height: 40px;
+  background-color: $gray;
+  color: #fff;
+  position: fixed;
+  bottom: 30px;
+  right: 10%;
+  z-index: 99;
+  border-radius: 100%;
+	transition: opacity .4s, visibility .4s;
+  svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+    margin: 0 auto;
+    fill: #fff;
+  }
+	&.is-active {
+		opacity: .8;
+		visibility: visible;
+	}
+	@media (max-width: $below-desktop) {
+		bottom: 15px;
+	  right: 15px;
+	}
+}

@@ -1,0 +1,21 @@
+.section {
+	padding-top: $block-gutter-l;
+	padding-bottom: $block-gutter-l;
+	@media (max-width: $below-small) {
+		padding-top: $block-gutter-m;
+		padding-bottom: $block-gutter-m;
+	}
+}
+
+.section--yellow {
+	background-color: $yellow-light;
+}
+
+.section__heading {
+	@mixin heading-style;
+	text-align: center;
+	margin-bottom: $block-gutter-m;
+	@media (max-width: $below-mobile) {
+		margin-bottom: $block-gutter-s;
+	}
+}

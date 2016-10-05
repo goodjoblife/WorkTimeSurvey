@@ -1,0 +1,136 @@
+.result-fee-off {
+  @mixin clear;
+}
+
+.result-fee-off__item {
+  width: 48%;
+  float: left;
+  &:last-child {
+    margin-left: 4%;
+    @media (max-width: $below-mobile) {
+      margin-left: 0;
+      margin-top: 40px;
+    }
+  }
+  @media (max-width: $below-mobile) {
+    width: 100%;
+    float: none;
+  }
+}
+
+.result-fee-off__heading {
+  font-weight: 700;
+  svg {
+    fill: $primary-color;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    margin-right: 10px;
+  }
+}
+
+.result-fee-off__contnet {
+  display: flex;
+  background-color: #f9f9f9;
+  margin-top: 15px;
+  font-size: .95em;
+  @media (max-width: $below-small) {
+    flex-direction: column;
+  }
+  @media (max-width: $below-mobile) {
+    margin-top: 10px;
+  }
+}
+
+.result-fee-off__yes {
+  flex: 1 1 auto;
+  border-right: 5px solid #fff;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  @media (min-width: $above-desktop) {
+    min-height: 100px;
+  }
+  @media (max-width: $below-medium) {
+    padding: 15px;
+  }
+  @media (max-width: $below-small) {
+    flex: 1 1 auto;
+    border-right: 0;
+    border-bottom: 5px solid #fff;
+  }
+  > div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .result-fee-off-name {
+    flex: 0 1 70px;
+    @media (max-width: $below-medium) {
+      flex: 0 1 40px;
+    }
+    @media (max-width: $below-small) {
+      flex: 1 1 auto;
+      margin-right: 15px;
+    }
+  }
+  .result-fee-off-num {
+    flex: 0 1 30px;
+  }
+  .yes-extra {
+    width: 100%;
+    > li {
+      display: flex;
+      width: 100%;
+      margin-bottom: 8px;
+      line-height: 1.2em;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    &__heading {
+      flex: 1 1 auto;
+      color: $gray-dark;
+      font-size: .9em;
+    }
+    &__number {
+      flex: 0 1 30px;
+    }
+  }
+}
+
+.result-fee-off__no {
+  flex: 0 1 40%;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  @media (max-width: $below-medium) {
+    padding: 15px;
+  }
+  @media (max-width: $below-small) {
+    flex: 1 1 auto;
+  }
+  > div {
+    width: 100%;
+  }
+}
+
+.no-extra {
+  display: flex;
+  &:first-child {
+    margin-bottom: 15px;
+  }
+  .result-fee-off-name {
+    flex: 1 1 auto;
+  }
+  .result-fee-off-num {
+    flex: 0 1 30px;
+  }
+}
+
+.result-fee-off-name {
+  font-weight: 700;
+}
+.result-fee-off-num {
+  text-align: right;
+}

@@ -1,0 +1,24 @@
+.section-two-col {
+	@mixin clear;
+	background-color: $primary-color;
+}
+
+.section-two-col__item {
+	padding: $block-gutter-l 0;
+	@media (min-width: $above-mobile) {
+		lost-column: 1/2 2 0;
+
+	}
+	@media (max-width: $below-small) {
+		padding: $block-gutter-m 0;
+	}
+
+	&:first-child {
+		@media (min-width: $above-mobile) {
+			border-right: 1px solid #000;
+		}
+		@media (max-width: $below-mobile) {
+			border-bottom: 1px solid #000;
+		}
+	}
+}
