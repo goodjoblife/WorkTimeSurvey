@@ -26,8 +26,8 @@ const removeTooltip = ($selector) => {
 /* validate form on focus */
 const $form_input = $('#work-form :input.is-required');
 $form_input.on('blur', function() {
-  if (!$(this).val()) {
-    $(this).hasClass('ui-autocomplete-input') ? showTooltip($(this), '本欄必填 (可自動完成)') : showTooltip($(this), '本欄必填');
+  if (!$.trim(this.value)) {
+    showTooltip($(this), '本欄必填');
   } else {
     removeTooltip($(this));
   }
@@ -337,7 +337,7 @@ $(function(){
         let $active_item = $(event.currentTarget).find('.ui-state-active');
         if($active_item.parent().hasClass('ui-state-disabled')){
             event.preventDefault();
-            $active_item.parent().siblings().first().children('div').mouseenter();  
+            $active_item.parent().siblings().first().children('div').mouseenter();
         }
     }
     // render each item in ui.content as a <li> element
@@ -396,7 +396,7 @@ $(function(){
     $("#form-company-query").autocomplete({
         source: function (request, response) {
             $company_query.trigger('autocomplete-search', request.term);
-            
+
             // show some list when focusing on an empty input
             if(request.term.length<2){
                 response([{
@@ -470,7 +470,7 @@ $work_form.on('submitted', (e, result) => {
       ga && ga('send', 'timing', 'LANDING_PAGE', 'form-submitted', formSubmittedTime);
       ga && ga('send', 'timing', 'LANDING_PAGE', 'form-writing', elapsedTime);
       hasSendedFormWritingTime = true;
-    } 
+    }
   }
 });
 
