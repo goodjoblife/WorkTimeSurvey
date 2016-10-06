@@ -42,7 +42,9 @@
 }
 .header__logo {
 	float: left;
-	transform: translateY(10px);
+	@media (min-width: $above-small) {
+		transform: translateY(10px);
+	}
 	> a {
 		display: block;
 	}
