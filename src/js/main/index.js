@@ -276,6 +276,8 @@ $work_form.on("submitted", (e, result) => {
 /*
  * Facebook related
  */
+
+//define async function first
 window.fbAsyncInit = () => {
   const appId = (window.location.hostname === "localhost") ? "1750608541889151" : "1750216878594984";
   FB.init({
@@ -301,6 +303,16 @@ const statusChangeCallback = (response) => {
     document.querySelector(".btn-why-facebook-login").style.display = "";
   }
 };
+
+//execute async function to load fb sdk
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/zh_TW/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+})(document, 'script', 'facebook-jssdk');
+
 
 /*
  * Autocomplete Part
