@@ -290,6 +290,7 @@ window.fbAsyncInit = () => {
   });
 };
 
+$("#submit").prop("disabled",true);
 const statusChangeCallback = (response) => {
   if (response.status == "connected") {
     isFacebookSignedIn = true;
@@ -300,6 +301,7 @@ const statusChangeCallback = (response) => {
     document.querySelector(".fb-login-word").style.display = "";
     document.querySelector(".btn-why-facebook-login").style.display = "";
   }
+  $("#submit").prop("disabled",false);
 };
 
 /*
