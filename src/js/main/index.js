@@ -202,6 +202,22 @@ const sendFormData = () => {
   });
 };
 
+/*
+ * loading indicator
+ */
+
+$("#submit").after(
+  $("<div>").attr("id","tmp_loading").addClass("search-result__status").append(
+    $("<div>").addClass("status-loading")
+  ).append(
+      $("<div>").css("text-align","center").text("正在檢查Facebook是否登入，如果一直沒有回應，請重新整理：（")
+  ).css("padding-bottom","2em").hide()
+);
+
+/*
+ * submission handlers
+ */
+
 $work_form.on("submit", function(e) {
   e.preventDefault();
 
@@ -246,9 +262,13 @@ $work_form.on("submit", function(e) {
   }
 });
 
-$work_form.on("submitting", (e) => {});
+$work_form.on("submitting", (e) => {
+  $("#tmp_loading").show(1000);
+});
 
 $work_form.on("submitted", (e, result) => {
+  $("#tmp_loading").hide(1000);
+
   if (result.error) {
     if (result.type === "ValidationError") {
       showTooltipAndScroll(result.error.target, result.error.message);
