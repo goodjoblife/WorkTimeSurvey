@@ -203,19 +203,14 @@ const sendFormData = () => {
 };
 
 /*
- * loading indicator
+ * authentication checking indicator
  */
 
-$("#submit").after(
-  $("<div>").attr("id","tmp_loading").addClass("search-result__status").append(
-    $("<div>").addClass("status-loading")
-  ).append(
-      $("<div>").css("text-align","center").text("正在檢查Facebook是否登入，如果一直沒有回應，請重新整理：（")
-  ).css("padding-bottom","2em").hide()
-);
+$("#auth_check").hide()
+$("#auth_check_remind").hide()
 
 /*
- * submission handlers
+ * Listen to submit events
  */
 
 $work_form.on("submit", function(e) {
@@ -262,12 +257,25 @@ $work_form.on("submit", function(e) {
   }
 });
 
+// for auth_check_reminder (i.e. 如果一直沒有回應，請重新整理：（)
+let auth_check_reminder = null;
+const auth_check_reminder_latency = 3000;
+
 $work_form.on("submitting", (e) => {
-  $("#tmp_loading").show(1000);
+  // show authenticating-message
+  $("#submit_text").hide();
+  $("#auth_check").show();
+  auth_check_reminder = setTimeout(function(){
+    $("#auth_check_remind").show("slow");
+  }, auth_check_reminder_latency);
 });
 
 $work_form.on("submitted", (e, result) => {
-  $("#tmp_loading").hide(1000);
+  // remove authenticating-message and restore button text
+  $("#submit_text").show();
+  $("#auth_check").hide();
+  clearTimeout(auth_check_reminder);
+  $("#auth_check_remind").hide("slow");
 
   if (result.error) {
     if (result.type === "ValidationError") {
