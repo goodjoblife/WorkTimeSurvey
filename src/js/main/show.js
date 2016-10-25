@@ -275,7 +275,7 @@ $(function(){
             response(nameList);
         }).fail(function(jqXHR, textStatus) {
           response([]);
-        });  
+        });
       }
     },
     select: function(event, ui) {
