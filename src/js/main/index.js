@@ -206,8 +206,8 @@ const sendFormData = () => {
  * authentication checking indicator
  */
 
-$("#auth_check").hide()
-$("#auth_check_remind").hide()
+$("#auth_check_text").hide()
+$("#auth_check_reminder").hide()
 
 /*
  * Listen to submit events
@@ -258,24 +258,24 @@ $work_form.on("submit", function(e) {
 });
 
 // for auth_check_reminder (i.e. 如果一直沒有回應，請重新整理：（)
-let auth_check_reminder = null;
+let auth_check_reminder_timer = null;
 const auth_check_reminder_latency = 3000;
 
 $work_form.on("submitting", (e) => {
   // show authenticating-message
   $("#submit_text").hide();
-  $("#auth_check").show();
-  auth_check_reminder = setTimeout(function(){
-    $("#auth_check_remind").show("slow");
+  $("#auth_check_text").show();
+  auth_check_reminder_timer = setTimeout(function(){
+    $("#auth_check_reminder").show("slow");
   }, auth_check_reminder_latency);
 });
 
 $work_form.on("submitted", (e, result) => {
   // remove authenticating-message and restore button text
   $("#submit_text").show();
-  $("#auth_check").hide();
-  clearTimeout(auth_check_reminder);
-  $("#auth_check_remind").hide("slow");
+  $("#auth_check_text").hide();
+  clearTimeout(auth_check_reminder_timer);
+  $("#auth_check_reminder").hide("slow");
 
   if (result.error) {
     if (result.type === "ValidationError") {
