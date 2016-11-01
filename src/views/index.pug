@@ -179,9 +179,15 @@ block content
 							input(type="email" placeholder="example@email.com" id="form-email" name="email")
 				div(class="form-section")
 					button(type="submit" id="submit" class="btn-black btn-l" )
-						span(class="fb-login-word")
-							| 以<svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg>驗證並
-						| 送出資料
+						span(id="auth_check_text")
+							span(id="auth_check_indicator")
+							| 努力上傳資料中
+						span(id="submit_text")
+							span(class="fb-login-word")
+								| 以<svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg>驗證並
+							| 送出資料
+					div(id="auth_check_reminder")
+						| 如果一直沒有回應，請重新整理：（
 					div(class="text-center")
 						sapn(class="btn-why-facebook-login" data-modal-id="why-facebook") 為什麼需要 Facebook 帳戶驗證？
 	section(class="section-two-col")
