@@ -30,3 +30,22 @@
     }
   }
 }
+
+.icon-line-divider {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px 0;
+  &:before,
+  &:after {
+    content: '';
+    flex: 0 1 calc(50% - 50px);
+    height: 2px;
+    background-color: $primary-color;
+  }
+  svg {
+    width: 32px;
+    height: 32px;
+    fill: $primary-color;
+  }
+}

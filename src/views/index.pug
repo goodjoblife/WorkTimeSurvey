@@ -47,7 +47,6 @@ block content
 		div(class="wrapper-s")
 			div(class="heading")
 				h2(class="heading__heading") 匿名參與工時透明化運動
-				p(class="heading__description") 請您留下<strong>「最近一週」</strong>的資訊
 			form(id="work-form" action="")
 				div(class="form-section")
 					div(class="form-group")
@@ -58,12 +57,67 @@ block content
 				div(class="form-section")
 					div(class="form-group--two")
 						div(class="form-group")
+							label(class="is-required") 你現在在職嗎？
+							div(class="radio-form inline-item")
+								input(type="radio" value="yes" id="form-is-present" name="is_present" checked="true")
+								label(for="form-is-present" class="radio-circle")
+									span(class="radio-input")
+									span(class="radio-text") 在職
+							div(class="radio-form inline-item")
+								input(type="radio" value="no" id="form-not-present" name="is_present")
+								label(for="form-not-present" class="radio-circle")
+									span(class="radio-input")
+									span(class="radio-text") 已離職
+						div(class="form-group hide-first" id="form-leave-job-time")
+							label(class="is-required") 離職時間
+							div(class="form-year-month")
+								div
+									select(id="form-job-year" name="")
+										option(value="2016") 2016
+									label 年
+								div
+									select(id="form-job-month" name="")
+										option(value="01") 01
+									label 月
+				div(class="form-section")
+					div(class="form-group--two")
+						div(class="form-group")
 							label(for="form-job-title" class="is-required") 職稱
 							input(type="text" placeholder="硬體工程師" id="form-job-title" name="job_title" class="is-required ui-autocomplete-input")
 						div(class="form-group")
 							label(for="form-sector") 廠區/門市/分公司
 							div
 								input(type="text" placeholder="楠梓廠區  研發部" id="form-sector" name="sector")
+				div(class="form-section")
+					div(class="form-group--two")
+						div(class="form-group")
+							label(for="" class="is-required") 職務型態
+							select(id="" name="")
+								option(value="全職" selected) 全職
+						div(class="form-group")
+							label(for="form-sex") 性別
+							select(id="form-sex" name="sex")
+								option(value="-" selected) 請選擇
+								option(value="male") 男
+								option(value="female") 女
+				h5(class="please-select-one") 以下薪資 / 工時擇一必填
+				section(class="form-section-salary")
+					div(class="icon-line-divider") <svg><use xlink:href="#icon-coin"></use></svg>
+					div(class="form-section")
+						div(class="form-group--two")
+							div(class="form-group")
+								label(for="" class="is-required") 薪資
+								div(class="form-salary-group")
+									select
+										option(value="年薪") 年薪
+									div(class="input-unit")
+										span(class="unit") 元
+										input(type="text" placeholder="700,000" id="" name="")
+							div(class="form-group")
+								label(for="" class="is-required") 相關職務工作經歷
+								select(id="" name="")
+									option(value="") 不到一年
+				div(class="icon-line-divider") <svg><use xlink:href="#icon-clock"></use></svg>
 				div(class="form-section")
 					div(class="form-group--two")
 						div(class="form-group")
@@ -137,19 +191,19 @@ block content
 									include ./partials/_icon-x.pug
 									| 重設
 					div(class="form-group" id="has-fee-option")
-						div(class="select-form")
+						div(class="radio-form")
 							input(type="radio" value="yes" id="pay1" name="has_pay")
-							label(for="pay1" class="select-form__label")
+							label(for="pay1" class="radio-circle")
 								span(class="radio-input")
 								span(class="radio-text") 有，優於或符合勞基法
-						div(class="select-form")
+						div(class="radio-form")
 							input(type="radio" value="no" id="pay2" name="has_pay")
-							label(for="pay2" class="select-form__label")
+							label(for="pay2" class="radio-circle")
 								span(class="radio-input")
 								span(class="radio-text") 有，不符合勞基法
-						div(class="select-form")
+						div(class="radio-form")
 							input(type="radio" value="don't know" id="pay3" name="has_pay")
-							label(for="pay3" class="select-form__label")
+							label(for="pay3" class="radio-circle")
 								span(class="radio-input")
 								span(class="radio-text") 有，不清楚是否符合勞基法
 				div(class="form-section")

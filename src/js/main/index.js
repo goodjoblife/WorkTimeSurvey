@@ -34,11 +34,11 @@ $form_input.on('blur', function() {
 });
 
 
-/* radio button */
+/* check fee options */
 const has_fee_option = document.getElementById('has-fee-option');
 const clearHasFee = () => {
   has_fee_option.classList.remove('is-active');
-  let item = has_fee_option.childNodes;
+  const item = has_fee_option.childNodes;
   for (let j = 0; j < item.length; j++) {
     for (let k = 0; k < item[j].childNodes.length; k++) {
       if (item[j].childNodes[k].nodeName === 'INPUT') {
@@ -47,6 +47,7 @@ const clearHasFee = () => {
     }
   }
 }
+
 $('#select-fee :input[type="radio"]').on('change', function() {
   if (document.getElementById('fee_yes').checked) {
     has_fee_option.classList.add('is-active');
@@ -71,6 +72,20 @@ for (let i = 0; i < clear_radio_btn.length; i++) {
     }
   })
 }
+
+/* is-present-check */
+const is_present_btn = document.querySelectorAll('input[type="radio"][name="is_present"]');
+const leave_job_form = document.getElementById('form-leave-job-time');
+const presentChange = () => {
+  if (document.getElementById('form-not-present').checked) {
+    leave_job_form.classList.add('is-active');
+  } else {
+    leave_job_form.classList.remove('is-active');
+  }
+}
+Array.prototype.forEach.call(is_present_btn, function(radio) {
+  radio.addEventListener('change', presentChange);
+})
 
 /*
  * Form Submit Controller
