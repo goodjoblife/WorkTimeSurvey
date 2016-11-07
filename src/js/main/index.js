@@ -73,18 +73,18 @@ for (let i = 0; i < clear_radio_btn.length; i++) {
   })
 }
 
-/* is-present-check */
-const is_present_btn = document.querySelectorAll('input[type="radio"][name="is_present"]');
-const leave_job_form = document.getElementById('form-leave-job-time');
-const presentChange = () => {
-  if (document.getElementById('form-not-present').checked) {
+/* is-currently-check */
+const is_currently_btn = document.querySelectorAll('input[type="radio"][name="is_currently_employed"]');
+const leave_job_form = document.getElementById('form-job-ending-time');
+const currentlyChange = () => {
+  if (document.getElementById('form-not-currently-employed').checked) {
     leave_job_form.classList.add('is-active');
   } else {
     leave_job_form.classList.remove('is-active');
   }
 }
-Array.prototype.forEach.call(is_present_btn, function(radio) {
-  radio.addEventListener('change', presentChange);
+Array.prototype.forEach.call(is_currently_btn, function(radio) {
+  radio.addEventListener('change', currentlyChange);
 })
 
 /*
