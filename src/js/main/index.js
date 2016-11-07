@@ -77,6 +77,7 @@ for (let i = 0; i < clear_radio_btn.length; i++) {
 const is_currently_btn = document.querySelectorAll('input[type="radio"][name="is_currently_employed"]');
 const leave_job_form = document.getElementById('form-job-ending-time');
 const currentlyChange = () => {
+  resetJobEndingTime();
   if (document.getElementById('form-not-currently-employed').checked) {
     leave_job_form.classList.add('is-active');
   } else {
@@ -86,6 +87,31 @@ const currentlyChange = () => {
 Array.prototype.forEach.call(is_currently_btn, function(radio) {
   radio.addEventListener('change', currentlyChange);
 })
+
+const now_year = new Date().getFullYear();
+const now_month = new Date().getMonth();
+function appendJogEndingTime() {
+  let years = [];
+  for (let i = now_year; i > (now_year - 10); i--) { years.push(i) }
+  years.reverse().map(item => {
+    $('#form-job-ending-year').append(`<option value="${item}">${item}</option>`);
+  });
+
+  let month = [];
+  for (let i = 1; i < 13; i++) { month.push(i); }
+  month.map(item => {
+    $('#form-job-ending-month').append(`<option value="${item}">${item}</option>`)
+  });
+
+  resetJobEndingTime();
+}
+appendJogEndingTime();
+
+function resetJobEndingTime() {
+  document.querySelector(`#form-job-ending-year option[value="${now_year}"]`).selected = true;
+  document.querySelector(`#form-job-ending-month option[value="${now_month}"]`).selected = true;
+}
+
 
 /*
  * Form Submit Controller
