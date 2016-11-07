@@ -94,15 +94,15 @@ block content
 							label(for="form-employed-type" class="is-required") 職務型態
 							select(id="form-employed-type" name="employment_type")
 								option(value="full-time" selected) 全職
-								option(value="part-time" selected) 兼職
-								option(value="intern" selected) 實習
-								option(value="temporary" selected) 臨時工
-								option(value="contract" selected) 合約
-								option(value="dispatched-labor" selected) 派遣
+								option(value="part-time") 兼職
+								option(value="intern") 實習
+								option(value="temporary") 臨時工
+								option(value="contract") 合約
+								option(value="dispatched-labor") 派遣
 						div(class="form-group")
 							label(for="form-gender") 性別
 							select(id="form-gender" name="gender")
-								option(value="none" selected) 請選擇
+								option(value="" selected) 請選擇
 								option(value="male") 男
 								option(value="female") 女
 								option(value="other") 其他
@@ -115,13 +115,18 @@ block content
 								label(class="is-required") 薪資
 								div(class="form-salary-group")
 									select(name="salary_type")
+										option(value="" selected) 請選擇
 										option(value="年薪") 年薪
+										option(value="月薪") 月薪
+										option(value="日薪") 日薪
+										option(value="時薪") 時薪
 									div(class="input-unit")
 										span(class="unit") 元
 										input(type="text" placeholder="700,000" id="" name="salary_amount")
 							div(class="form-group")
 								label(for="form-experience-in-year" class="is-required") 相關職務工作經歷
 								select(id="form-experience-in-year" name="experience_in_year")
+									option(value="" selected) 請選擇
 									option(value="0") 不到一年
 									option(value="1") 一年
 									option(value="2") 兩年
