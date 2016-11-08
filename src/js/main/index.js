@@ -7,7 +7,7 @@ const showTooltipAndScroll = ($selector, message) => {
   $('html, body').animate({
     scrollTop: $selector.offset().top - 100
   }, 600);
-}
+};
 
 const showTooltip = ($selector, message) => {
   let $form_group = $selector.closest('.form-group');
@@ -15,23 +15,36 @@ const showTooltip = ($selector, message) => {
     $form_group.addClass('has-error');
     $form_group.append(`<div class="form-error-message">${message}</div>`);
   }
-}
+};
 
 const removeTooltip = ($selector) => {
   let $form_group = $selector.closest('.form-group');
   $form_group.removeClass('has-error');
   $form_group.find('.form-error-message').remove();
-}
+};
 
-/*  add is-required by which section focus first*/
+const checkAllBlank = ($selector) => {
+  let result = true;
+  $selector.each(function() {
+    if ($.trim(this.value)) {
+      result = false;
+    }
+  });
+  return result;
+};
+
+/* add is-required by which section input first*/
 const $form_input_salary = $('#form-section-salary .maybe-is-required');
 const $form_input_work_time = $('#form-section-work-time .maybe-is-required');
 $form_input_salary.on('input', function() {
   if (!($form_input_work_time.first().hasClass('is-required'))) {
     if ($.trim(this.value)) {
+      $form_input_work_time.attr('disabled', true);
       $form_input_salary.addClass('is-required');
-    } else {
+    } else if (checkAllBlank($form_input_salary)) {
+      $form_input_work_time.removeAttr("disabled");
       $form_input_salary.removeClass('is-required');
+      removeTooltip($form_input_salary);
     }
   }
 });
@@ -39,9 +52,12 @@ $form_input_salary.on('input', function() {
 $form_input_work_time.on('input', function() {
   if (!($form_input_salary.first().hasClass('is-required'))) {
     if ($.trim(this.value)) {
+      $form_input_salary.attr('disabled', true);
       $form_input_work_time.addClass('is-required');
-    } else {
+    } else if (checkAllBlank($form_input_work_time)) {
+      $form_input_salary.removeAttr("disabled");
       $form_input_work_time.removeClass('is-required');
+      removeTooltip($form_input_work_time);
     }
   }
 });
@@ -55,7 +71,6 @@ $form_input.on('blur', function() {
     removeTooltip($(this));
   }
 });
-
 
 /* check fee options */
 const has_fee_option = document.getElementById('has-fee-option');
@@ -170,8 +185,6 @@ const domToData = () => {
 
 /* check form before submit */
 const checkFormField = () => {
-
-
   const data = domToData();
 
   // TODO {String}.trim() can be a better solution, but here use $.trim() for IE8.
