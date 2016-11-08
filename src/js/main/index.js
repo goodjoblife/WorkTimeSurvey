@@ -23,10 +23,33 @@ const removeTooltip = ($selector) => {
   $form_group.find('.form-error-message').remove();
 }
 
+/*  add is-required by which section focus first*/
+const $form_input_salary = $('#form-section-salary .maybe-is-required');
+const $form_input_work_time = $('#form-section-work-time .maybe-is-required');
+$form_input_salary.on('input', function() {
+  if (!($form_input_work_time.first().hasClass('is-required'))) {
+    if ($.trim(this.value)) {
+      $form_input_salary.addClass('is-required');
+    } else {
+      $form_input_salary.removeClass('is-required');
+    }
+  }
+});
+
+$form_input_work_time.on('input', function() {
+  if (!($form_input_salary.first().hasClass('is-required'))) {
+    if ($.trim(this.value)) {
+      $form_input_work_time.addClass('is-required');
+    } else {
+      $form_input_work_time.removeClass('is-required');
+    }
+  }
+});
+
 /* validate form on focus */
-const $form_input = $('#work-form :input.is-required');
+const $form_input = $('#work-form :input.maybe-is-required');
 $form_input.on('blur', function() {
-  if (!$.trim(this.value)) {
+  if (!$.trim(this.value) && $(this).hasClass('is-required')) {
     showTooltip($(this), '本欄必填');
   } else {
     removeTooltip($(this));
@@ -147,6 +170,8 @@ const domToData = () => {
 
 /* check form before submit */
 const checkFormField = () => {
+
+
   const data = domToData();
 
   // TODO {String}.trim() can be a better solution, but here use $.trim() for IE8.

@@ -105,14 +105,14 @@ block content
 								option(value="female") 女
 								option(value="other") 其他
 				h5(class="please-select-one") 以下薪資 / 工時擇一必填
-				section(class="form-section-salary")
+				section(id="form-section-salary")
 					div(class="icon-line-divider") <svg><use xlink:href="#icon-coin"></use></svg>
 					div(class="form-section")
 						div(class="form-group--two")
 							div(class="form-group")
-								label(class="is-required") 薪資
+								label(class="maybe-is-required") 薪資
 								div(class="form-salary-group")
-									select(name="salary_type")
+									select(id="salary-type" name="salary_type" class="maybe-is-required")
 										option(value="" selected) 請選擇
 										option(value="年薪") 年薪
 										option(value="月薪") 月薪
@@ -120,10 +120,10 @@ block content
 										option(value="時薪") 時薪
 									div(class="input-unit")
 										span(class="unit") 元
-										input(type="text" placeholder="700,000" id="" name="salary_amount")
+										input(type="text" placeholder="700,000" id="salary-amount" name="salary_amount" class="maybe-is-required")
 							div(class="form-group")
-								label(for="form-experience-in-year" class="is-required") 相關職務工作經歷
-								select(id="form-experience-in-year" name="experience_in_year")
+								label(for="form-experience-in-year" class="maybe-is-required") 相關職務工作經歷
+								select(id="form-experience-in-year" name="experience_in_year" class="maybe-is-required")
 									option(value="" selected) 請選擇
 									option(value="0") 不到一年
 									option(value="1") 一年
@@ -131,115 +131,116 @@ block content
 									option(value="3") 三年
 									option(value="4") 四年
 									option(value="5") 五年
-				div(class="icon-line-divider") <svg><use xlink:href="#icon-clock"></use></svg>
-				div(class="form-section")
-					div(class="form-group--two")
+				section(id="form-section-work-time")
+					div(class="icon-line-divider") <svg><use xlink:href="#icon-clock"></use></svg>
+					div(class="form-section")
+						div(class="form-group--two")
+							div(class="form-group")
+								label(for="form-day-promised-work-time" class="maybe-is-required") 工作日表訂工時
+								div(class="input-unit")
+									span(class="unit") 小時
+									input(type="text" placeholder="8 或 8.5" id="form-day-promised-work-time" name="day_promised_work_time" class="maybe-is-required")
+							div(class="form-group")
+								label(for="form-day-real-work-time" class="maybe-is-required") 實際平均工時
+								div(class="input-unit")
+									span(class="unit") 小時
+									input(type="text" placeholder="10 或 10.5" id="form-day-real-work-time" name="day_real_work_time" class="maybe-is-required")
+						div(class="form-info")
+							p <strong>工作日</strong>指與雇主約定的上班日，或是排班排定的日子。
+							p <strong>實際平均工時</strong>包含在家工作、待命的時間。
+								span(class="form-info__btn" data-show-trigger="info1") 我有疑問
+							p(class="hide" data-show="info1") 例如: 公司規定 9:00上班，18:00 下班，午休 1 小時。 那麼表訂工作時間為 (18:00-9:00)-1=8 小時。<br>若實際上平均 20:00 才下班，則實際工作時間為 (20:00-9:00)-1=10 小時。
+					div(class="form-section")
 						div(class="form-group")
-							label(for="form-day-promised-work-time" class="is-required") 工作日表訂工時
+							label(for="form-week-work-time" class="maybe-is-required") 一週總工時
 							div(class="input-unit")
 								span(class="unit") 小時
-								input(type="text" placeholder="8 或 8.5" id="form-day-promised-work-time" name="day_promised_work_time" class="is-required")
-						div(class="form-group")
-							label(for="form-day-real-work-time" class="is-required") 實際平均工時
-							div(class="input-unit")
-								span(class="unit") 小時
-								input(type="text" placeholder="10 或 10.5" id="form-day-real-work-time" name="day_real_work_time" class="is-required")
-					div(class="form-info")
-						p <strong>工作日</strong>指與雇主約定的上班日，或是排班排定的日子。
-						p <strong>實際平均工時</strong>包含在家工作、待命的時間。
-							span(class="form-info__btn" data-show-trigger="info1") 我有疑問
-						p(class="hide" data-show="info1") 例如: 公司規定 9:00上班，18:00 下班，午休 1 小時。 那麼表訂工作時間為 (18:00-9:00)-1=8 小時。<br>若實際上平均 20:00 才下班，則實際工作時間為 (20:00-9:00)-1=10 小時。
-				div(class="form-section")
-					div(class="form-group")
-						label(for="form-week-work-time" class="is-required") 一週總工時
-						div(class="input-unit")
-							span(class="unit") 小時
-							input(type="text" placeholder="40 或 40.5" id="form-week-work-time" name="week_work_time" class="is-required")
-					div(class="form-info")
-						p 請您留下最近一週的「實際工作時數（不含休息時間，如：午休）」。
-							span(class="form-info__btn" data-show-trigger="info2") 我有疑問
-						p(class="hide" data-show="info2") 例如: 週一至週五工作 10 小時，週六加班 8 小時，則最近一週工時為 10x5+8 = 58 小時。<br>若您為每月排班，您可以考慮將整個月個工時加總，除上該月天數，再乘上七估算。
+								input(type="text" placeholder="40 或 40.5" id="form-week-work-time" name="week_work_time" class="maybe-is-required")
+						div(class="form-info")
+							p 請您留下最近一週的「實際工作時數（不含休息時間，如：午休）」。
+								span(class="form-info__btn" data-show-trigger="info2") 我有疑問
+							p(class="hide" data-show="info2") 例如: 週一至週五工作 10 小時，週六加班 8 小時，則最近一週工時為 10x5+8 = 58 小時。<br>若您為每月排班，您可以考慮將整個月個工時加總，除上該月天數，再乘上七估算。
 
-				div(class="form-section")
-					div(class="form-group")
-						label(class="is-required") 加班頻率
-						div(class="radio-button radio-button--icon" id="form-overtime-frequency")
-							div(class="radio-button__item")
-								input(type="radio" value="0" name="frequency" id="feq0")
-								label(class="radio-square" for="feq0")
-									i(class="radio-square__icon emoji-0")
-									span(class="radio-square__text") 幾乎不<span class="hide-m">加班</span>
-							div(class="radio-button__item")
-								input(type="radio" value="1" name="frequency" id="feq1")
-								label(class="radio-square" for="feq1")
-									i(class="radio-square__icon emoji-1")
-									span(class="radio-square__text") 偶爾<span class="hide-m">加班</span>
-							div(class="radio-button__item")
-								input(type="radio" value="2" name="frequency" id="feq2")
-								label(class="radio-square" for="feq2")
-									i(class="radio-square__icon emoji-2")
-									span(class="radio-square__text") 經常<span class="hide-m">加班</span>
-							div(class="radio-button__item")
-								input(type="radio" value="3" name="frequency" id="feq3")
-								label(class="radio-square" for="feq3")
-									i(class="radio-square__icon emoji-3")
-									span(class="radio-square__text") 幾乎每天<span class="hide-m">加班</span>
-				div(class="form-section")
-					div(class="form-group")
-						label 加班有無加班費
-						div(class="radio-button" id="select-fee")
-							div(class="radio-button__item")
-								input(type="radio" value="yes" name="fee" id="fee_yes")
-								label(class="radio-square" for="fee_yes")
-									span(class="radio-square__text") 有
-							div(class="radio-button__item")
-								input(type="radio" value="no" name="fee" id="fee_no")
-								label(class="radio-square" for="fee_no")
-									span(class="radio-square__text") 沒有
-							div(class="radio-button__item")
-								input(type="radio" value="don't know" name="fee" id="fee_unknown")
-								label(class="radio-square" for="fee_unknown")
-									span(class="radio-square__text") 不知道
-							div(class="radio-button__item")
-								div(class="btn-radio-clear")
-									include ./partials/_icon-x.pug
-									| 重設
-					div(class="form-group" id="has-fee-option")
-						div(class="radio-form")
-							input(type="radio" value="yes" id="pay1" name="has_pay")
-							label(for="pay1" class="radio-circle")
-								span(class="radio-input")
-								span(class="radio-text") 有，優於或符合勞基法
-						div(class="radio-form")
-							input(type="radio" value="no" id="pay2" name="has_pay")
-							label(for="pay2" class="radio-circle")
-								span(class="radio-input")
-								span(class="radio-text") 有，不符合勞基法
-						div(class="radio-form")
-							input(type="radio" value="don't know" id="pay3" name="has_pay")
-							label(for="pay3" class="radio-circle")
-								span(class="radio-input")
-								span(class="radio-text") 有，不清楚是否符合勞基法
-				div(class="form-section")
-					div(class="form-group")
-						label 加班有無補休
-						div(class="radio-button" id="form-has-compensatory-dayoff")
-							div(class="radio-button__item")
-								input(type="radio" value="yes" name="time_off" id="off_yes")
-								label(class="radio-square" for="off_yes")
-									span(class="radio-square__text") 有
-							div(class="radio-button__item")
-								input(type="radio" value="no" name="time_off" id="off_no")
-								label(class="radio-square" for="off_no")
-									span(class="radio-square__text") 沒有
-							div(class="radio-button__item")
-								input(type="radio" value="don't know" name="time_off" id="off_unknown")
-								label(class="radio-square" for="off_unknown")
-									span(class="radio-square__text") 不知道
-							div(class="radio-button__item")
-								div(class="btn-radio-clear")
-									include ./partials/_icon-x.pug
-									| 重設
+					div(class="form-section")
+						div(class="form-group")
+							label(class="maybe-is-required") 加班頻率
+							div(class="radio-button radio-button--icon" id="form-overtime-frequency")
+								div(class="radio-button__item")
+									input(type="radio" value="0" name="frequency" id="feq0")
+									label(class="radio-square" for="feq0")
+										i(class="radio-square__icon emoji-0")
+										span(class="radio-square__text") 幾乎不<span class="hide-m">加班</span>
+								div(class="radio-button__item")
+									input(type="radio" value="1" name="frequency" id="feq1")
+									label(class="radio-square" for="feq1")
+										i(class="radio-square__icon emoji-1")
+										span(class="radio-square__text") 偶爾<span class="hide-m">加班</span>
+								div(class="radio-button__item")
+									input(type="radio" value="2" name="frequency" id="feq2")
+									label(class="radio-square" for="feq2")
+										i(class="radio-square__icon emoji-2")
+										span(class="radio-square__text") 經常<span class="hide-m">加班</span>
+								div(class="radio-button__item")
+									input(type="radio" value="3" name="frequency" id="feq3")
+									label(class="radio-square" for="feq3")
+										i(class="radio-square__icon emoji-3")
+										span(class="radio-square__text") 幾乎每天<span class="hide-m">加班</span>
+					div(class="form-section")
+						div(class="form-group")
+							label 加班有無加班費
+							div(class="radio-button" id="select-fee")
+								div(class="radio-button__item")
+									input(type="radio" value="yes" name="fee" id="fee_yes")
+									label(class="radio-square" for="fee_yes")
+										span(class="radio-square__text") 有
+								div(class="radio-button__item")
+									input(type="radio" value="no" name="fee" id="fee_no")
+									label(class="radio-square" for="fee_no")
+										span(class="radio-square__text") 沒有
+								div(class="radio-button__item")
+									input(type="radio" value="don't know" name="fee" id="fee_unknown")
+									label(class="radio-square" for="fee_unknown")
+										span(class="radio-square__text") 不知道
+								div(class="radio-button__item")
+									div(class="btn-radio-clear")
+										include ./partials/_icon-x.pug
+										| 重設
+						div(class="form-group" id="has-fee-option")
+							div(class="radio-form")
+								input(type="radio" value="yes" id="pay1" name="has_pay")
+								label(for="pay1" class="radio-circle")
+									span(class="radio-input")
+									span(class="radio-text") 有，優於或符合勞基法
+							div(class="radio-form")
+								input(type="radio" value="no" id="pay2" name="has_pay")
+								label(for="pay2" class="radio-circle")
+									span(class="radio-input")
+									span(class="radio-text") 有，不符合勞基法
+							div(class="radio-form")
+								input(type="radio" value="don't know" id="pay3" name="has_pay")
+								label(for="pay3" class="radio-circle")
+									span(class="radio-input")
+									span(class="radio-text") 有，不清楚是否符合勞基法
+					div(class="form-section")
+						div(class="form-group")
+							label 加班有無補休
+							div(class="radio-button" id="form-has-compensatory-dayoff")
+								div(class="radio-button__item")
+									input(type="radio" value="yes" name="time_off" id="off_yes")
+									label(class="radio-square" for="off_yes")
+										span(class="radio-square__text") 有
+								div(class="radio-button__item")
+									input(type="radio" value="no" name="time_off" id="off_no")
+									label(class="radio-square" for="off_no")
+										span(class="radio-square__text") 沒有
+								div(class="radio-button__item")
+									input(type="radio" value="don't know" name="time_off" id="off_unknown")
+									label(class="radio-square" for="off_unknown")
+										span(class="radio-square__text") 不知道
+								div(class="radio-button__item")
+									div(class="btn-radio-clear")
+										include ./partials/_icon-x.pug
+										| 重設
 				div(class="form-section")
 					div(class="form-group")
 						label(for="form-email") 電子郵件 - 有消息時將通知您
