@@ -27,7 +27,11 @@ const checkAllBlank = ($selector) => {
   let result = true;
   $selector.each(function() {
     if ($.trim(this.value)) {
-      result = false;
+      if (this.checked && this.name === 'frequency') {
+        result = false;
+      } else if (!this.checked && this.name !== 'frequency') {
+        result = false;
+      }
     }
   });
   return result;
@@ -49,7 +53,7 @@ $form_input_salary.on('input', function() {
   }
 });
 
-$form_input_work_time.on('input', function() {
+$form_input_work_time.on('input change', function() {
   if (!($form_input_salary.first().hasClass('is-required'))) {
     if ($.trim(this.value)) {
       $form_input_salary.attr('disabled', true);
