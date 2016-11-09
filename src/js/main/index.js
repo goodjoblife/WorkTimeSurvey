@@ -27,9 +27,9 @@ const checkAllBlank = ($selector) => {
   let result = true;
   $selector.each(function() {
     if ($.trim(this.value)) {
-      if (this.checked && this.name === 'frequency') {
+      if (this.checked && $(this).prop('type') === 'radio') {
         result = false;
-      } else if (!this.checked && this.name !== 'frequency') {
+      } else if (!this.checked && $(this).prop('type') !== 'radio') {
         result = false;
       }
     }
@@ -39,30 +39,26 @@ const checkAllBlank = ($selector) => {
 
 /* add is-required by which section input first*/
 const $form_input_salary = $('#form-section-salary .maybe-is-required');
-const $form_input_work_time = $('#form-section-work-time .maybe-is-required');
+const $form_input_work_time = $('#form-section-work-time .maybe-is-required, .not-required');
 $form_input_salary.on('input', function() {
-  if (!($form_input_work_time.first().hasClass('is-required'))) {
-    if ($.trim(this.value)) {
-      $form_input_work_time.attr('disabled', true);
-      $form_input_salary.addClass('is-required');
-    } else if (checkAllBlank($form_input_salary)) {
-      $form_input_work_time.removeAttr("disabled");
-      $form_input_salary.removeClass('is-required');
-      removeTooltip($form_input_salary);
-    }
+  if ($.trim(this.value)) {
+    $form_input_salary.addClass('is-required');
+  } else if (checkAllBlank($form_input_salary)) {
+    $form_input_salary.removeClass('is-required');
+    removeTooltip($form_input_salary);
   }
 });
 
 $form_input_work_time.on('input change', function() {
-  if (!($form_input_salary.first().hasClass('is-required'))) {
-    if ($.trim(this.value)) {
-      $form_input_salary.attr('disabled', true);
-      $form_input_work_time.addClass('is-required');
-    } else if (checkAllBlank($form_input_work_time)) {
-      $form_input_salary.removeAttr("disabled");
-      $form_input_work_time.removeClass('is-required');
-      removeTooltip($form_input_work_time);
-    }
+  if (($(this).prop('type') === 'text' && $.trim(this.value)) || ($(this).prop('type') === 'radio' && this.checked === true)) {
+    $form_input_work_time.each(function (){
+      if ($(this).hasClass('maybe-is-required')) {
+        $(this).addClass('is-required');
+      }
+    });
+  } else if (checkAllBlank($form_input_work_time)) {
+    $form_input_work_time.removeClass('is-required');
+    removeTooltip($form_input_work_time);
   }
 });
 
@@ -98,22 +94,20 @@ $('#select-fee :input[type="radio"]').on('change', function() {
   }
 });
 
-const clear_radio_btn = document.querySelectorAll('.btn-radio-clear');
-for (let i = 0; i < clear_radio_btn.length; i++) {
-  clear_radio_btn[i].addEventListener('click', function() {
-    let item = this.parentNode.parentNode.childNodes;
-    for (let j = 0; j < item.length; j++) {
-      for (let k = 0; k < item[j].childNodes.length; k++) {
-        if (item[j].childNodes[k].nodeName === 'INPUT') {
-          item[j].childNodes[k].checked = false;
-        }
-      }
+const clear_radio_btn = $('.btn-radio-clear');
+clear_radio_btn.on('click', function() {
+  let item = $(this).parent().siblings();
+  item.each(function() {
+    let input = $(this).children('input');
+    if (input.prop('checked') === true) {
+      input.prop('checked', false);
+      input.trigger('change');
     }
-    if (this.parentNode.parentNode.id === 'select-fee') {
-      clearHasFee();
-    }
-  })
-}
+  });
+  if ($(this).parent().parent().prop('id') === 'select-fee') {
+    clearHasFee();
+  }
+});
 
 /* is-currently-check */
 const is_currently_btn = document.querySelectorAll('input[type="radio"][name="is_currently_employed"]');
