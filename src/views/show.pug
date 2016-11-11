@@ -14,14 +14,14 @@ block content
 		section(class="section show-searchbar" id="section-search")
 			div(class="show-searchbar__type")
 				div(class="form-group form-group--inline")
-					div(class="select-form")
+					div(class="radio-form")
 						input(type="radio" id="btn-company" name="search-type" v-model="search_type" value="by-company")
-						label(for="btn-company" class="select-form__label")
+						label(for="btn-company" class="radio-circle")
 							span(class="radio-input")
 							span(class="radio-text") 公司
-					div(class="select-form")
+					div(class="radio-form")
 						input(type="radio" id="btn-position" name="search-type" v-model="search_type" value="by-job-title")
-						label(for="btn-position" class="select-form__label")
+						label(for="btn-position" class="radio-circle")
 							span(class="radio-input")
 							span(class="radio-text") 職稱
 			div(class="show-searchbar__form")

@@ -34,11 +34,11 @@ $form_input.on('blur', function() {
 });
 
 
-/* radio button */
+/* check fee options */
 const has_fee_option = document.getElementById('has-fee-option');
 const clearHasFee = () => {
   has_fee_option.classList.remove('is-active');
-  let item = has_fee_option.childNodes;
+  const item = has_fee_option.childNodes;
   for (let j = 0; j < item.length; j++) {
     for (let k = 0; k < item[j].childNodes.length; k++) {
       if (item[j].childNodes[k].nodeName === 'INPUT') {
@@ -47,6 +47,7 @@ const clearHasFee = () => {
     }
   }
 }
+
 $('#select-fee :input[type="radio"]').on('change', function() {
   if (document.getElementById('fee_yes').checked) {
     has_fee_option.classList.add('is-active');
@@ -71,6 +72,46 @@ for (let i = 0; i < clear_radio_btn.length; i++) {
     }
   })
 }
+
+/* is-currently-check */
+const is_currently_btn = document.querySelectorAll('input[type="radio"][name="is_currently_employed"]');
+const leave_job_form = document.getElementById('form-job-ending-time');
+const currentlyChange = () => {
+  resetJobEndingTime();
+  if (document.getElementById('form-not-currently-employed').checked) {
+    leave_job_form.classList.add('is-active');
+  } else {
+    leave_job_form.classList.remove('is-active');
+  }
+}
+Array.prototype.forEach.call(is_currently_btn, function(radio) {
+  radio.addEventListener('change', currentlyChange);
+})
+
+const now_year = new Date().getFullYear();
+const now_month = new Date().getMonth();
+function appendJogEndingTime() {
+  let years = [];
+  for (let i = now_year; i > (now_year - 10); i--) { years.push(i) }
+  years.reverse().map(item => {
+    $('#form-job-ending-year').append(`<option value="${item}">${item}</option>`);
+  });
+
+  let month = [];
+  for (let i = 1; i < 13; i++) { month.push(i); }
+  month.map(item => {
+    $('#form-job-ending-month').append(`<option value="${item}">${item}</option>`)
+  });
+
+  resetJobEndingTime();
+}
+appendJogEndingTime();
+
+function resetJobEndingTime() {
+  document.querySelector(`#form-job-ending-year option[value="${now_year}"]`).selected = true;
+  document.querySelector(`#form-job-ending-month option[value="${now_month}"]`).selected = true;
+}
+
 
 /*
  * Form Submit Controller

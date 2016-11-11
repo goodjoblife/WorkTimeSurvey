@@ -47,7 +47,6 @@ block content
 		div(class="wrapper-s")
 			div(class="heading")
 				h2(class="heading__heading") 匿名參與工時透明化運動
-				p(class="heading__description") 請您留下<strong>「最近一週」</strong>的資訊
 			form(id="work-form" action="")
 				div(class="form-section")
 					div(class="form-group")
@@ -58,12 +57,81 @@ block content
 				div(class="form-section")
 					div(class="form-group--two")
 						div(class="form-group")
+							label(class="is-required") 你現在在職嗎？
+							div(class="radio-form inline-item")
+								input(type="radio" value="yes" id="form-is-currently-employed" name="is_currently_employed" checked="true")
+								label(for="form-is-currently-employed" class="radio-circle")
+									span(class="radio-input")
+									span(class="radio-text") 在職
+							div(class="radio-form inline-item")
+								input(type="radio" value="no" id="form-not-currently-employed" name="is_currently_employed")
+								label(for="form-not-currently-employed" class="radio-circle")
+									span(class="radio-input")
+									span(class="radio-text") 已離職
+						div(class="form-group hide-first" id="form-job-ending-time")
+							label(class="is-required") 離職時間
+							div(class="form-year-month")
+								div
+									select(id="form-job-ending-year" name="job_ending_time")
+									label 年
+								div
+									select(id="form-job-ending-month" name="job_ending_time")
+									label 月
+				div(class="form-section")
+					div(class="form-group--two")
+						div(class="form-group")
 							label(for="form-job-title" class="is-required") 職稱
 							input(type="text" placeholder="硬體工程師" id="form-job-title" name="job_title" class="is-required ui-autocomplete-input")
 						div(class="form-group")
 							label(for="form-sector") 廠區/門市/分公司
 							div
 								input(type="text" placeholder="楠梓廠區  研發部" id="form-sector" name="sector")
+				div(class="form-section")
+					div(class="form-group--two")
+						div(class="form-group")
+							label(for="form-employed-type" class="is-required") 職務型態
+							select(id="form-employed-type" name="employment_type")
+								option(value="full-time" selected) 全職
+								option(value="part-time") 兼職
+								option(value="intern") 實習
+								option(value="temporary") 臨時工
+								option(value="contract") 合約
+								option(value="dispatched-labor") 派遣
+						div(class="form-group")
+							label(for="form-gender") 性別
+							select(id="form-gender" name="gender")
+								option(value="" selected) 請選擇
+								option(value="male") 男
+								option(value="female") 女
+								option(value="other") 其他
+				h5(class="please-select-one") 以下薪資 / 工時擇一必填
+				section(class="form-section-salary")
+					div(class="icon-line-divider") <svg><use xlink:href="#icon-coin"></use></svg>
+					div(class="form-section")
+						div(class="form-group--two")
+							div(class="form-group")
+								label(class="is-required") 薪資
+								div(class="form-salary-group")
+									select(name="salary_type")
+										option(value="" selected) 請選擇
+										option(value="年薪") 年薪
+										option(value="月薪") 月薪
+										option(value="日薪") 日薪
+										option(value="時薪") 時薪
+									div(class="input-unit")
+										span(class="unit") 元
+										input(type="text" placeholder="700,000" id="" name="salary_amount")
+							div(class="form-group")
+								label(for="form-experience-in-year" class="is-required") 相關職務工作經歷
+								select(id="form-experience-in-year" name="experience_in_year")
+									option(value="" selected) 請選擇
+									option(value="0") 不到一年
+									option(value="1") 一年
+									option(value="2") 兩年
+									option(value="3") 三年
+									option(value="4") 四年
+									option(value="5") 五年
+				div(class="icon-line-divider") <svg><use xlink:href="#icon-clock"></use></svg>
 				div(class="form-section")
 					div(class="form-group--two")
 						div(class="form-group")
@@ -137,19 +205,19 @@ block content
 									include ./partials/_icon-x.pug
 									| 重設
 					div(class="form-group" id="has-fee-option")
-						div(class="select-form")
+						div(class="radio-form")
 							input(type="radio" value="yes" id="pay1" name="has_pay")
-							label(for="pay1" class="select-form__label")
+							label(for="pay1" class="radio-circle")
 								span(class="radio-input")
 								span(class="radio-text") 有，優於或符合勞基法
-						div(class="select-form")
+						div(class="radio-form")
 							input(type="radio" value="no" id="pay2" name="has_pay")
-							label(for="pay2" class="select-form__label")
+							label(for="pay2" class="radio-circle")
 								span(class="radio-input")
 								span(class="radio-text") 有，不符合勞基法
-						div(class="select-form")
+						div(class="radio-form")
 							input(type="radio" value="don't know" id="pay3" name="has_pay")
-							label(for="pay3" class="select-form__label")
+							label(for="pay3" class="radio-circle")
 								span(class="radio-input")
 								span(class="radio-text") 有，不清楚是否符合勞基法
 				div(class="form-section")
