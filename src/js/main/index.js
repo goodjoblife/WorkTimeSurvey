@@ -178,6 +178,14 @@ const domToData = () => {
     is_overtime_salary_legal: $("#has-fee-option input[name='has_pay']:checked").val(),
     has_compensatory_dayoff: $("#form-has-compensatory-dayoff input[name='time_off']:checked").val(),
     email: $("#form-email").val(),
+    is_currently_employed: $('input[type="radio"][name="is_currently_employed"]:checked').val(),
+    job_ending_time_year: $('#form-job-ending-year').val(),
+    job_ending_time_month: $('#form-job-ending-month').val(),
+    employment_type: $('#form-employed-type').val(),
+    gender: $('#form-gender').val(),
+    salary_type: $('#salary-type').val(),
+    salary_amount: $('#salary-amount').val(),
+    experience_in_year: $('#form-experience-in-year').val(),
   };
 };
 
@@ -196,41 +204,61 @@ const checkFormField = () => {
     throw new ValidationError("需填寫職稱", $("#form-job-title"));
   }
 
-  if (data.day_promised_work_time === "") {
-    throw new ValidationError("需填寫工作日表定工作時間", $("#form-day-promised-work-time"));
-  }
-  data.day_promised_work_time = parseFloat(data.day_promised_work_time);
-  if (isNaN(data.day_promised_work_time)) {
-    throw new ValidationError("工作日表定工作時間並非數字", $("#form-day-promised-work-time"));
-  }
-  if (data.day_promised_work_time < 0 || data.day_promised_work_time > 24) {
-    throw new ValidationError("工作日表定工作時間範圍為0~24小時", $("#form-day-promised-work-time"));
-  }
+  if (!($('#salary-amount').hasClass('is-required')) && !($("#form-day-promised-work-time").hasClass('is-required'))) {
+    throw new ValidationError("薪資 / 工時需擇一必填", $("#salary-amount"));
+  } else {
+    if ($('#salary-amount').hasClass('is-required')) {
+      if (data.salary_type === "") {
+        throw new ValidationError("需填寫薪資類型", $("#salary-type"));
+      }
 
-  if (data.day_real_work_time === "") {
-    throw new ValidationError("需填寫工作日實際工作時間", $("#form-day-real-work-time"));
-  }
-  data.day_real_work_time = parseFloat(data.day_real_work_time);
-  if (isNaN(data.day_real_work_time)) {
-    throw new ValidationError("工作日實際工作時間並非數字", $("#form-day-real-work-time"));
-  }
-  if (data.day_real_work_time < 0 || data.day_real_work_time > 24) {
-    throw new ValidationError("工作日實際工作時間範圍為0~24小時", $("#form-day-real-work-time"));
-  }
+      if (data.salary_amount === "") {
+        throw new ValidationError("需填寫薪資", $("#salary-amount"));
+      }
 
-  if (data.week_work_time === "") {
-    throw new ValidationError("需填寫一週總工時", $("#form-week-work-time"));
-  }
-  data.week_work_time = parseFloat(data.week_work_time);
-  if (isNaN(data.week_work_time)) {
-    throw new ValidationError("一週總工時並非數字", $("#form-week-work-time"));
-  }
-  if (data.week_work_time < 0 || data.week_work_time > 168) {
-    throw new ValidationError("一週總工時範圍為0~168小時", $("#form-week-work-time"));
-  }
+      if (data.experience_in_year === "") {
+        throw new ValidationError("需填寫相關職務工作經歷", $("#form-experience-in-year"));
+      }
+    }
 
-  if (!data.overtime_frequency || data.overtime_frequency === "") {
-    throw new ValidationError("需填寫加班頻率", $("#form-overtime-frequency"));
+    if ($("#form-day-promised-work-time").hasClass('is-required')) {
+      if (data.day_promised_work_time === "") {
+        throw new ValidationError("需填寫工作日表定工作時間", $("#form-day-promised-work-time"));
+      }
+      data.day_promised_work_time = parseFloat(data.day_promised_work_time);
+      if (isNaN(data.day_promised_work_time)) {
+        throw new ValidationError("工作日表定工作時間並非數字", $("#form-day-promised-work-time"));
+      }
+      if (data.day_promised_work_time < 0 || data.day_promised_work_time > 24) {
+        throw new ValidationError("工作日表定工作時間範圍為0~24小時", $("#form-day-promised-work-time"));
+      }
+
+      if (data.day_real_work_time === "") {
+        throw new ValidationError("需填寫工作日實際工作時間", $("#form-day-real-work-time"));
+      }
+      data.day_real_work_time = parseFloat(data.day_real_work_time);
+      if (isNaN(data.day_real_work_time)) {
+        throw new ValidationError("工作日實際工作時間並非數字", $("#form-day-real-work-time"));
+      }
+      if (data.day_real_work_time < 0 || data.day_real_work_time > 24) {
+        throw new ValidationError("工作日實際工作時間範圍為0~24小時", $("#form-day-real-work-time"));
+      }
+
+      if (data.week_work_time === "") {
+        throw new ValidationError("需填寫一週總工時", $("#form-week-work-time"));
+      }
+      data.week_work_time = parseFloat(data.week_work_time);
+      if (isNaN(data.week_work_time)) {
+        throw new ValidationError("一週總工時並非數字", $("#form-week-work-time"));
+      }
+      if (data.week_work_time < 0 || data.week_work_time > 168) {
+        throw new ValidationError("一週總工時範圍為0~168小時", $("#form-week-work-time"));
+      }
+
+      if (!data.overtime_frequency || data.overtime_frequency === "") {
+        throw new ValidationError("需填寫加班頻率", $("#form-overtime-frequency"));
+      }
+    }
   }
 };
 
