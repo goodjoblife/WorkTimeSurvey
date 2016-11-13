@@ -56,30 +56,37 @@ section(class="search-result")
 					table(class="rwd-table company-table")
 						thead
 							tr
-								th(class="col-position")
-									span 職稱
-									span(class="table-sector") 廠區/門市/分公司
-								th(class="col-day-promise") 日表訂工時
-								th(class="col-day-real") 日實際平均工時
-								th(class="col-week-time") 一週總工時（小時）
+								th(class="col-position") 職稱
+								th(class="col-type") 職務型態
+								th(class="col-day-time") 表訂 / <br>實際工時
+								th(class="col-week-time") 一週總工時
 								th(class="col-frequency") 加班頻率
+								th(class="col-experience") 資歷
+								th(class="col-salary") 薪資
+								th(class="col-time") 資料時間
 						tbody
 							tr(v-for="working in g.workings")
-								td(data-th="職稱 (廠區/門市/分公司)")
+								td(data-th="職稱")
 									span(class="rwd-td")
 										span {{working.job_title}}
 										span(class="table-sector") {{working.sector}}
-								td(data-th="日表訂工時")
-									span(class="rwd-td") {{working.day_promised_work_time}}
-								td(data-th="日實際平均工時")
-									span(class="rwd-td") {{working.day_real_work_time}}
+								td(data-th="職務型態")
+									span(class="rwd-td") type
+								td(data-th="表訂 / 實際工時")
+									span(class="rwd-td") {{working.day_promised_work_time}} / {{working.day_real_work_time}}
 								td(data-th="一週總工時")
 									span(class="rwd-td")
-										span(class="table-time-bar" data-time="{{working.week_work_time}}" v-bind:style="{ width: working.week_work_time * 2 + 'px' }") {{working.week_work_time}}
+										span(class="table-time-bar" data-time="{{working.week_work_time}}" v-bind:style="{ width: working.week_work_time + 'px' }") {{working.week_work_time}}
 								td(data-th="加班頻率")
 									span(class="rwd-td")
 										span(class="table-frequency-circle" data-frequency="{{working.overtime_frequency}}")
 										| {{working.overtime_frequency | overtime_frequency_string}}
+								td(data-th="資歷")
+									span(class="rwd-td") 一年以下
+								td(data-th="薪資")
+									span(class="rwd-td") 2,000,000 / 年
+								td(data-th="資料時間")
+									span(class="rwd-td") <span class="data-time">2016.08</span>
 	div(class="search-result__status")
 		div(class="status-loading" v-show="is_loading")
 		div(class="status-no-result" v-show="data.length == 0 && is_loading === false") 找不到結果
