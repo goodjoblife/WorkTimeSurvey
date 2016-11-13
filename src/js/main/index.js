@@ -7,7 +7,7 @@ const showTooltipAndScroll = ($selector, message) => {
   $('html, body').animate({
     scrollTop: $selector.offset().top - 100
   }, 600);
-}
+};
 
 const showTooltip = ($selector, message) => {
   let $form_group = $selector.closest('.form-group');
@@ -15,24 +15,62 @@ const showTooltip = ($selector, message) => {
     $form_group.addClass('has-error');
     $form_group.append(`<div class="form-error-message">${message}</div>`);
   }
-}
+};
 
 const removeTooltip = ($selector) => {
   let $form_group = $selector.closest('.form-group');
   $form_group.removeClass('has-error');
   $form_group.find('.form-error-message').remove();
-}
+};
+
+const checkAllBlank = ($selector) => {
+  let result = true;
+  $selector.each(function() {
+    if ($.trim(this.value)) {
+      if (this.checked && $(this).prop('type') === 'radio') {
+        result = false;
+      } else if (!this.checked && $(this).prop('type') !== 'radio') {
+        result = false;
+      }
+    }
+  });
+  return result;
+};
+
+/* add is-required by which section input first*/
+const $form_input_salary = $('#form-section-salary .maybe-is-required');
+const $form_input_work_time = $('#form-section-work-time .maybe-is-required, .not-required');
+$form_input_salary.on('input', function() {
+  if ($.trim(this.value)) {
+    $form_input_salary.addClass('is-required');
+  } else if (checkAllBlank($form_input_salary)) {
+    $form_input_salary.removeClass('is-required');
+    removeTooltip($form_input_salary);
+  }
+});
+
+$form_input_work_time.on('input change', function() {
+  if (($(this).prop('type') === 'text' && $.trim(this.value)) || ($(this).prop('type') === 'radio' && this.checked === true)) {
+    $form_input_work_time.each(function (){
+      if ($(this).hasClass('maybe-is-required')) {
+        $(this).addClass('is-required');
+      }
+    });
+  } else if (checkAllBlank($form_input_work_time)) {
+    $form_input_work_time.removeClass('is-required');
+    removeTooltip($form_input_work_time);
+  }
+});
 
 /* validate form on focus */
-const $form_input = $('#work-form :input.is-required');
+const $form_input = $('#work-form :input.maybe-is-required');
 $form_input.on('blur', function() {
-  if (!$.trim(this.value)) {
+  if (!$.trim(this.value) && $(this).hasClass('is-required')) {
     showTooltip($(this), '本欄必填');
   } else {
     removeTooltip($(this));
   }
 });
-
 
 /* check fee options */
 const has_fee_option = document.getElementById('has-fee-option');
@@ -56,22 +94,20 @@ $('#select-fee :input[type="radio"]').on('change', function() {
   }
 });
 
-const clear_radio_btn = document.querySelectorAll('.btn-radio-clear');
-for (let i = 0; i < clear_radio_btn.length; i++) {
-  clear_radio_btn[i].addEventListener('click', function() {
-    let item = this.parentNode.parentNode.childNodes;
-    for (let j = 0; j < item.length; j++) {
-      for (let k = 0; k < item[j].childNodes.length; k++) {
-        if (item[j].childNodes[k].nodeName === 'INPUT') {
-          item[j].childNodes[k].checked = false;
-        }
-      }
+const clear_radio_btn = $('.btn-radio-clear');
+clear_radio_btn.on('click', function() {
+  let item = $(this).parent().siblings();
+  item.each(function() {
+    let input = $(this).children('input');
+    if (input.prop('checked') === true) {
+      input.prop('checked', false);
+      input.trigger('change');
     }
-    if (this.parentNode.parentNode.id === 'select-fee') {
-      clearHasFee();
-    }
-  })
-}
+  });
+  if ($(this).parent().parent().prop('id') === 'select-fee') {
+    clearHasFee();
+  }
+});
 
 /* is-currently-check */
 const is_currently_btn = document.querySelectorAll('input[type="radio"][name="is_currently_employed"]');
@@ -142,6 +178,14 @@ const domToData = () => {
     is_overtime_salary_legal: $("#has-fee-option input[name='has_pay']:checked").val(),
     has_compensatory_dayoff: $("#form-has-compensatory-dayoff input[name='time_off']:checked").val(),
     email: $("#form-email").val(),
+    is_currently_employed: $('input[type="radio"][name="is_currently_employed"]:checked').val(),
+    job_ending_time_year: $('#form-job-ending-year').val(),
+    job_ending_time_month: $('#form-job-ending-month').val(),
+    employment_type: $('#form-employed-type').val(),
+    gender: $('#form-gender').val(),
+    salary_type: $('#salary-type').val(),
+    salary_amount: $('#salary-amount').val(),
+    experience_in_year: $('#form-experience-in-year').val(),
   };
 };
 
@@ -160,41 +204,61 @@ const checkFormField = () => {
     throw new ValidationError("需填寫職稱", $("#form-job-title"));
   }
 
-  if (data.day_promised_work_time === "") {
-    throw new ValidationError("需填寫工作日表定工作時間", $("#form-day-promised-work-time"));
-  }
-  data.day_promised_work_time = parseFloat(data.day_promised_work_time);
-  if (isNaN(data.day_promised_work_time)) {
-    throw new ValidationError("工作日表定工作時間並非數字", $("#form-day-promised-work-time"));
-  }
-  if (data.day_promised_work_time < 0 || data.day_promised_work_time > 24) {
-    throw new ValidationError("工作日表定工作時間範圍為0~24小時", $("#form-day-promised-work-time"));
-  }
+  if (!($('#salary-amount').hasClass('is-required')) && !($("#form-day-promised-work-time").hasClass('is-required'))) {
+    throw new ValidationError("薪資 / 工時需擇一必填", $("#salary-amount"));
+  } else {
+    if ($('#salary-amount').hasClass('is-required')) {
+      if (data.salary_type === "") {
+        throw new ValidationError("需填寫薪資類型", $("#salary-type"));
+      }
 
-  if (data.day_real_work_time === "") {
-    throw new ValidationError("需填寫工作日實際工作時間", $("#form-day-real-work-time"));
-  }
-  data.day_real_work_time = parseFloat(data.day_real_work_time);
-  if (isNaN(data.day_real_work_time)) {
-    throw new ValidationError("工作日實際工作時間並非數字", $("#form-day-real-work-time"));
-  }
-  if (data.day_real_work_time < 0 || data.day_real_work_time > 24) {
-    throw new ValidationError("工作日實際工作時間範圍為0~24小時", $("#form-day-real-work-time"));
-  }
+      if (data.salary_amount === "") {
+        throw new ValidationError("需填寫薪資", $("#salary-amount"));
+      }
 
-  if (data.week_work_time === "") {
-    throw new ValidationError("需填寫一週總工時", $("#form-week-work-time"));
-  }
-  data.week_work_time = parseFloat(data.week_work_time);
-  if (isNaN(data.week_work_time)) {
-    throw new ValidationError("一週總工時並非數字", $("#form-week-work-time"));
-  }
-  if (data.week_work_time < 0 || data.week_work_time > 168) {
-    throw new ValidationError("一週總工時範圍為0~168小時", $("#form-week-work-time"));
-  }
+      if (data.experience_in_year === "") {
+        throw new ValidationError("需填寫相關職務工作經歷", $("#form-experience-in-year"));
+      }
+    }
 
-  if (!data.overtime_frequency || data.overtime_frequency === "") {
-    throw new ValidationError("需填寫加班頻率", $("#form-overtime-frequency"));
+    if ($("#form-day-promised-work-time").hasClass('is-required')) {
+      if (data.day_promised_work_time === "") {
+        throw new ValidationError("需填寫工作日表定工作時間", $("#form-day-promised-work-time"));
+      }
+      data.day_promised_work_time = parseFloat(data.day_promised_work_time);
+      if (isNaN(data.day_promised_work_time)) {
+        throw new ValidationError("工作日表定工作時間並非數字", $("#form-day-promised-work-time"));
+      }
+      if (data.day_promised_work_time < 0 || data.day_promised_work_time > 24) {
+        throw new ValidationError("工作日表定工作時間範圍為0~24小時", $("#form-day-promised-work-time"));
+      }
+
+      if (data.day_real_work_time === "") {
+        throw new ValidationError("需填寫工作日實際工作時間", $("#form-day-real-work-time"));
+      }
+      data.day_real_work_time = parseFloat(data.day_real_work_time);
+      if (isNaN(data.day_real_work_time)) {
+        throw new ValidationError("工作日實際工作時間並非數字", $("#form-day-real-work-time"));
+      }
+      if (data.day_real_work_time < 0 || data.day_real_work_time > 24) {
+        throw new ValidationError("工作日實際工作時間範圍為0~24小時", $("#form-day-real-work-time"));
+      }
+
+      if (data.week_work_time === "") {
+        throw new ValidationError("需填寫一週總工時", $("#form-week-work-time"));
+      }
+      data.week_work_time = parseFloat(data.week_work_time);
+      if (isNaN(data.week_work_time)) {
+        throw new ValidationError("一週總工時並非數字", $("#form-week-work-time"));
+      }
+      if (data.week_work_time < 0 || data.week_work_time > 168) {
+        throw new ValidationError("一週總工時範圍為0~168小時", $("#form-week-work-time"));
+      }
+
+      if (!data.overtime_frequency || data.overtime_frequency === "") {
+        throw new ValidationError("需填寫加班頻率", $("#form-overtime-frequency"));
+      }
+    }
   }
 };
 
