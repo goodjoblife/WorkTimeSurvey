@@ -76,7 +76,7 @@ section(class="search-result")
 									span(class="rwd-td") {{working.day_promised_work_time}} / {{working.day_real_work_time}}
 								td(data-th="一週總工時")
 									span(class="rwd-td")
-										span(class="table-time-bar" data-time="{{working.week_work_time}}" v-bind:style="{ width: working.week_work_time + 'px' }") {{working.week_work_time}}
+										span(class="table-time-bar" data-time="{{working.week_work_time}}" v-bind:style="{ width: working.week_work_time * 2 + 'px' }") {{working.week_work_time}}
 								td(data-th="加班頻率")
 									span(class="rwd-td")
 										span(class="table-frequency-circle" data-frequency="{{working.overtime_frequency}}")
