@@ -153,4 +153,15 @@
 
 .form-section-salary {
   margin-bottom: $block-gutter-l;
+  .form-group--two .form-group {
+    @media (max-width: $below-mobile) {
+      float: none;
+      width: 100%;
+      margin-right: 0;
+      margin-left: 0;
+      &:last-child {
+        margin-top: 30px;
+      }
+    }
+  }
 }
