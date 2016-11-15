@@ -8,8 +8,10 @@ section(class="search-result")
 					th(class="col-position")
 						span 職稱
 						span(class="table-sector") 廠區/門市/分公司
-					th(class="col-time") 一週總工時（小時）
+					th(class="col-week-time") 一週總工時
 					th(class="col-frequency") 加班頻率
+					th(class="col-salary") 薪資
+					th(class="col-time") 資料時間
 			tbody(id="tbody-latest-data")
 				tr(v-for="w in workings")
 					td(data-th="公司名稱")
@@ -27,6 +29,10 @@ section(class="search-result")
 						span(class="rwd-td")
 							span(class="table-frequency-circle" data-frequency="{{w.overtime_frequency}}")
 							| {{w.overtime_frequency | overtime_frequency_string}}
+					td(data-th="薪資")
+						span(class="rwd-td") 2,000,000 / 年
+					td(data-th="資料時間")
+						span(class="rwd-td") <span class="data-time">2016.08</span>
 	div(class="search-result__status")
 		div(class="status-loading" v-show="is_loading")
 		div(class="status-no-result" v-show="workings.length == 0 && is_loading === false") 找不到結果
