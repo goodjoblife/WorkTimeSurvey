@@ -30,9 +30,9 @@ section(class="search-result")
 							span(class="table-frequency-circle" data-frequency="{{w.overtime_frequency}}")
 							| {{w.overtime_frequency | overtime_frequency_string}}
 					td(data-th="薪資")
-						span(class="rwd-td") 2,000,000 / 年
+						span(class="rwd-td") {{w.salary | salary_string}}
 					td(data-th="資料時間")
-						span(class="rwd-td") <span class="data-time">2016.08</span>
+						span(class="rwd-td") <span class="data-time">{{w | getDataTime}}</span>
 	div(class="search-result__status")
 		div(class="status-loading" v-show="is_loading")
 		div(class="status-no-result" v-show="workings.length == 0 && is_loading === false") 找不到結果
