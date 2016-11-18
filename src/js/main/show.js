@@ -200,9 +200,9 @@ Vue.filter('salary_string', (salary) => {
   return amount_in_comma(salary.amount) + " / " + type_text(salary.type)
 });
 
-const amount_in_comma = (value) => {
-  if(typeof value!="number") throw new Error('invalid value');
-  return value.toString().replace(/^(\d{0,2})((?:\d{3})*)$/,
+const amount_in_comma = (amount) => {
+  if(typeof amount!="number") throw new Error('invalid amount');
+  return amount.toString().replace(/^(\d{0,2})((?:\d{3})*)$/,
     ($0,$1,$2) => $1+$2.replace(/(\d{3})/g,',$1').slice($1==''?1:0)
   );
 };
