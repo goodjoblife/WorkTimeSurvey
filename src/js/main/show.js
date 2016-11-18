@@ -167,13 +167,12 @@ Vue.filter('overtime_frequency_string', (value) => {
 });
 
 Vue.filter('experience_in_year_string', (value) => {
-  const zh_num = ['零','一','二','三','四','五'];
   if (value == 0) {
-    return "一年以下";
-  } else if (1<=value && value<=5) {
-    return zh_num[value] + "年";
+    return "未滿1年";
+  } else if (1<=value) {
+    return value + "年";
   }
-
+  throw new Error("invalid value");
 });
 
 Vue.filter('employment_type_string', (value) => {
