@@ -180,7 +180,7 @@ Vue.filter('employment_type_string', (value) => {
     case "full-time": return '全職';
     case "part-time": return '兼職';
     case "intern": return '實習';
-    case "temporary": return '臨時工';
+    case "temporary": return '約聘雇';
     case "contract": return '合約';
     case "dispatched-labor": return '派遣';
     default: throw new Error("invalid value");
