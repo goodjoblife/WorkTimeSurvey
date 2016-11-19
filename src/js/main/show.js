@@ -200,6 +200,8 @@ Vue.filter('salary_string', (salary) => {
   return amount_in_comma(salary.amount) + " / " + type_text(salary.type)
 });
 
+// convert number to comma-separated number string for every thousand
+// e.g. 10000 => 10,000
 const amount_in_comma = (amount) => {
   if(typeof amount!="number") throw new Error('invalid amount');
   return amount.toString().replace(/^(\d{0,2})((?:\d{3})*)$/,
