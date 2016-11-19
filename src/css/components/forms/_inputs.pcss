@@ -50,7 +50,8 @@ label {
 	font-size: 0.95em;
 	font-weight: 700;
 	color: #000;
-	&.is-required {
+	&.is-required,
+	&.maybe-is-required {
 		&:after {
 			content: "*";
 			color: $warning;
