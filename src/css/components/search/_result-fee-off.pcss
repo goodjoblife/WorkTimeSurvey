@@ -12,6 +12,7 @@
       margin-top: 40px;
     }
   }
+
   @media (max-width: $below-mobile) {
     width: 100%;
     float: none;
@@ -34,6 +35,27 @@
   background-color: #f9f9f9;
   margin-top: 15px;
   font-size: .95em;
+  position: relative;
+  &.count-is-not-enough {
+    max-height: 100px;
+    overflow: hidden;
+    &:after {
+      content: "資料未達五筆";
+      position: absolute;
+      background-color: rgba(255,255,255,.95);
+      width: 100%;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px dashed #e3e3e3;
+      color: $gray-dark;
+      letter-spacing: 1px;
+    }
+  }
   @media (max-width: $below-small) {
     flex-direction: column;
   }

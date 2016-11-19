@@ -12,8 +12,7 @@ section(class="search-result")
 							div(class="result-fee-off__item")
 								h4(class="result-fee-off__heading")
 									<svg><use xlink:href="#icon-coin"></use></svg> 加班有無加班費
-									span(class="small-info-right" v-show="g.count <= 5") &nbsp;&nbsp;資料未達五筆
-								div(class="result-fee-off__contnet")
+								div(class="result-fee-off__contnet" v-bind:class="{ 'count-is-not-enough': g.count < 5 }")
 									div(class="result-fee-off__yes")
 										div
 											div(class="result-fee-off-name") 有
@@ -38,8 +37,7 @@ section(class="search-result")
 							div(class="result-fee-off__item")
 								h4(class="result-fee-off__heading")
 									<svg><use xlink:href="#icon-clock"></use></svg> 加班有無補休
-									span(class="small-info-right" v-show="g.count <= 5") &nbsp;&nbsp;資料未達五筆
-								div(class="result-fee-off__contnet")
+								div(class="result-fee-off__contnet" v-bind:class="{ 'count-is-not-enough': g.count < 5 }")
 									div(class="result-fee-off__yes")
 										div
 											div(class="result-fee-off-name") 有
@@ -52,7 +50,7 @@ section(class="search-result")
 											div(class="no-extra")
 												span(class="result-fee-off-name") 不知道
 												span(class="result-fee-off-num") {{g.has_compensatory_dayoff_count["don't know"] | num}}
-						div(class="small-info-right") 單位：資料筆數
+						div(class="small-info-right" v-show="g.count > 5") 單位：資料筆數
 					table(class="rwd-table company-table")
 						thead
 							tr
