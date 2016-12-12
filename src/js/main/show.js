@@ -146,7 +146,7 @@ Vue.filter('overtime_frequency_string', function (value) {
   if (value == "0") {
     return "幾乎不";
   } else if (value == "1") {
-    return "偶而";
+    return "偶爾";
   } else if (value == "2") {
     return "經常";
   } else if (value == "3") {
