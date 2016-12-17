@@ -72,42 +72,33 @@ $form_input.on('blur', function() {
   }
 });
 
-/* check fee options */
-const has_fee_option = document.getElementById('has-fee-option');
-const clearHasFee = () => {
-  has_fee_option.classList.remove('is-active');
-  const item = has_fee_option.childNodes;
-  for (let j = 0; j < item.length; j++) {
-    for (let k = 0; k < item[j].childNodes.length; k++) {
-      if (item[j].childNodes[k].nodeName === 'INPUT') {
-        item[j].childNodes[k].checked = false;
-      }
-    }
-  }
-}
-
-$('#select-fee :input[type="radio"]').on('change', function() {
-  if (document.getElementById('fee_yes').checked) {
-    has_fee_option.classList.add('is-active');
+/* dropdown has fee options */
+const $has_fee_options = $('#has-fee-options');
+const $child_options = $has_fee_options.find('input[name="has_pay"]');
+$('#select-fee input[name="fee"]').on('click', function() {
+  if ($('#fee_yes').prop('checked') === true) {
+    $has_fee_options.addClass('is-active');
   } else {
-    clearHasFee();
+    $has_fee_options.removeClass('is-active');
   }
+  //reset all child options
+  $child_options.prop('checked', false);
+  $child_options.data('waschecked', false);
 });
 
-const clear_radio_btn = $('.btn-radio-clear');
-clear_radio_btn.on('click', function() {
-  let item = $(this).parent().siblings();
-  item.each(function() {
-    let input = $(this).children('input');
-    if (input.prop('checked') === true) {
-      input.prop('checked', false);
-      input.trigger('change');
-    }
-  });
-  if ($(this).parent().parent().prop('id') === 'select-fee') {
-    clearHasFee();
+
+/* toggle radio buttons */
+$('.toggled-radio-button').click(function() {
+  const $radio = $(this);
+  if ($radio.data('waschecked') === true) {
+    $radio.prop('checked', false);
+    $radio.data('waschecked', false);
+  } else {
+    $radio.data('waschecked', true);
   }
+  $radio.parent().siblings().find('input').data('waschecked', false);
 });
+
 
 /* is-currently-check */
 const is_currently_btn = document.querySelectorAll('input[type="radio"][name="is_currently_employed"]');
@@ -175,7 +166,7 @@ const domToData = () => {
     week_work_time: $("#form-week-work-time").val(),
     overtime_frequency: $("#form-overtime-frequency input[name='frequency']:checked").val(),
     has_overtime_salary: $("#select-fee input[name='fee']:checked").val(),
-    is_overtime_salary_legal: $("#has-fee-option input[name='has_pay']:checked").val(),
+    is_overtime_salary_legal: $("#has-fee-options input[name='has_pay']:checked").val(),
     has_compensatory_dayoff: $("#form-has-compensatory-dayoff input[name='time_off']:checked").val(),
     email: $("#form-email").val(),
     is_currently_employed: $('input[type="radio"][name="is_currently_employed"]:checked').val(),

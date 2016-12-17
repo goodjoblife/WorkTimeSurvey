@@ -166,22 +166,22 @@ block content
 							label(class="maybe-is-required") 加班頻率
 							div(class="radio-button radio-button--icon" id="form-overtime-frequency")
 								div(class="radio-button__item")
-									input(type="radio" value="0" name="frequency" id="feq0" class="maybe-is-required")
+									input(type="radio" value="0" name="frequency" id="feq0" class="maybe-is-required toggled-radio-button")
 									label(class="radio-square" for="feq0")
 										i(class="radio-square__icon emoji-0")
 										span(class="radio-square__text") 幾乎不<span class="hide-m">加班</span>
 								div(class="radio-button__item")
-									input(type="radio" value="1" name="frequency" id="feq1" class="maybe-is-required")
+									input(type="radio" value="1" name="frequency" id="feq1" class="maybe-is-required toggled-radio-button")
 									label(class="radio-square" for="feq1")
 										i(class="radio-square__icon emoji-1")
 										span(class="radio-square__text") 偶爾<span class="hide-m">加班</span>
 								div(class="radio-button__item")
-									input(type="radio" value="2" name="frequency" id="feq2" class="maybe-is-required")
+									input(type="radio" value="2" name="frequency" id="feq2" class="maybe-is-required toggled-radio-button")
 									label(class="radio-square" for="feq2")
 										i(class="radio-square__icon emoji-2")
 										span(class="radio-square__text") 經常<span class="hide-m">加班</span>
 								div(class="radio-button__item")
-									input(type="radio" value="3" name="frequency" id="feq3" class="maybe-is-required")
+									input(type="radio" value="3" name="frequency" id="feq3" class="maybe-is-required toggled-radio-button")
 									label(class="radio-square" for="feq3")
 										i(class="radio-square__icon emoji-3")
 										span(class="radio-square__text") 幾乎每天<span class="hide-m">加班</span>
@@ -190,34 +190,30 @@ block content
 							label(class="not-required") 加班有無加班費
 							div(class="radio-button" id="select-fee")
 								div(class="radio-button__item")
-									input(type="radio" value="yes" name="fee" id="fee_yes" class="not-required")
+									input(type="radio" value="yes" name="fee" id="fee_yes" class="not-required toggled-radio-button")
 									label(class="radio-square" for="fee_yes")
 										span(class="radio-square__text") 有
 								div(class="radio-button__item")
-									input(type="radio" value="no" name="fee" id="fee_no" class="not-required")
+									input(type="radio" value="no" name="fee" id="fee_no" class="not-required toggled-radio-button")
 									label(class="radio-square" for="fee_no")
 										span(class="radio-square__text") 沒有
 								div(class="radio-button__item")
-									input(type="radio" value="don't know" name="fee" id="fee_unknown" class="not-required")
+									input(type="radio" value="don't know" name="fee" id="fee_unknown" class="not-required toggled-radio-button")
 									label(class="radio-square" for="fee_unknown")
 										span(class="radio-square__text") 不知道
-								div(class="radio-button__item")
-									div(class="btn-radio-clear")
-										include ./partials/_icon-x.pug
-										| 重設
-						div(class="form-group" id="has-fee-option")
+						div(class="form-group" id="has-fee-options")
 							div(class="radio-form")
-								input(type="radio" value="yes" id="pay1" name="has_pay")
+								input(type="radio" value="yes" id="pay1" name="has_pay" class="toggled-radio-button")
 								label(for="pay1" class="radio-circle")
 									span(class="radio-input")
 									span(class="radio-text") 有，優於或符合勞基法
 							div(class="radio-form")
-								input(type="radio" value="no" id="pay2" name="has_pay")
+								input(type="radio" value="no" id="pay2" name="has_pay" class="toggled-radio-button")
 								label(for="pay2" class="radio-circle")
 									span(class="radio-input")
 									span(class="radio-text") 有，不符合勞基法
 							div(class="radio-form")
-								input(type="radio" value="don't know" id="pay3" name="has_pay")
+								input(type="radio" value="don't know" id="pay3" name="has_pay" class="toggled-radio-button")
 								label(for="pay3" class="radio-circle")
 									span(class="radio-input")
 									span(class="radio-text") 有，不清楚是否符合勞基法
@@ -226,21 +222,17 @@ block content
 							label(class="not-required") 加班有無補休
 							div(class="radio-button" id="form-has-compensatory-dayoff")
 								div(class="radio-button__item")
-									input(type="radio" value="yes" name="time_off" id="off_yes" class="not-required")
+									input(type="radio" value="yes" name="time_off" id="off_yes" class="not-required toggled-radio-button")
 									label(class="radio-square" for="off_yes")
 										span(class="radio-square__text") 有
 								div(class="radio-button__item")
-									input(type="radio" value="no" name="time_off" id="off_no" class="not-required")
+									input(type="radio" value="no" name="time_off" id="off_no" class="not-required toggled-radio-button")
 									label(class="radio-square" for="off_no")
 										span(class="radio-square__text") 沒有
 								div(class="radio-button__item")
-									input(type="radio" value="don't know" name="time_off" id="off_unknown" class="not-required")
+									input(type="radio" value="don't know" name="time_off" id="off_unknown" class="not-required toggled-radio-button")
 									label(class="radio-square" for="off_unknown")
 										span(class="radio-square__text") 不知道
-								div(class="radio-button__item")
-									div(class="btn-radio-clear")
-										include ./partials/_icon-x.pug
-										| 重設
 				div(class="form-section")
 					div(class="form-group")
 						label(for="form-email") 電子郵件 - 有消息時將通知您
