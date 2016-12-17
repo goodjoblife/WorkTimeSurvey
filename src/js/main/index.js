@@ -353,6 +353,7 @@ $work_form.on("submit", function(e) {
   }
 });
 
+
 // for auth_check_reminder (i.e. 如果一直沒有回應，請重新整理：（)
 let auth_check_reminder_timer = null;
 const auth_check_reminder_latency = 3000;
@@ -397,25 +398,6 @@ $work_form.on("submitted", (e, result) => {
   showAlert('success', '上傳成功', `您已經上傳 ${queries_count} 次，還有 ${quota - queries_count} 次可以上傳。`, 'go-to-show');
 });
 
-/*
- * Facebook related
- */
-
-//define async function first
-window.fbAsyncInit = () => {
-  const appId = (window.location.hostname === "localhost") ? "1750608541889151" : "1750216878594984";
-  FB.init({
-    appId: appId,
-    cookie: true,
-    xfbml: true,
-    version: "v2.6",
-  });
-
-  FB.getLoginStatus((response) => {
-    statusChangeCallback(response);
-  });
-};
-
 const statusChangeCallback = (response) => {
   if (response.status == "connected") {
     isFacebookSignedIn = true;
@@ -427,16 +409,6 @@ const statusChangeCallback = (response) => {
     document.querySelector(".btn-why-facebook-login").style.display = "";
   }
 };
-
-//execute async function to load fb sdk
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/zh_TW/sdk.js";
-  fjs.parentNode.insertBefore(js, fjs);
-})(document, 'script', 'facebook-jssdk');
-
 
 /*
  * Autocomplete Part

@@ -15,6 +15,9 @@
   width: 100%;
 	table-layout: fixed;
   background-color: #fff;
+  &.is-disabled {
+    pointer-events: none;
+  }
   th {
     @mixin table-th;
     padding-top: 30px;

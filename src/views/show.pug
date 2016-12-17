@@ -11,13 +11,13 @@ block content
 			a(class="btn-s btn-yellow-line" id="btn-latest" href="#/latest") <svg role="img" class="star"><use xlink:href="#star"></use></svg>最新資料
 			img(src="/assets/img/workers.jpg" class="page-banner__image")
 	div(class="wrapper-m")
-		section
+		section(id="user-enabled")
 			div(class="dashed-line-box")
 				div(class="not-login hide")
 					| 哈囉！請先
 					button(class="btn-login") <svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg> 登入
 					| 才能查看完整薪資工時資訊喔
-				div(class="logined")
+				div(class="logined hide")
 					| 請留下至少一筆資料，才能查看完整薪資、工時資訊。
 					br
 					| 沒有工作經驗嗎？沒有關係，分享以下連結給朋友，朋友留了資料，系統將開放您完整權限。
@@ -26,7 +26,7 @@ block content
 							input(type="text" value="https://worktime.goodjob.life/?share=wutingy" id="user-link")
 						| <svg role="img" class="icon-form-checked" id="user-link-icon"><use xlink:href="#form-checked" ></use></svg>
 						button(class="button" data-copytarget="#user-link") 複製連結
-		section(class="section show-searchbar is-disabled" id="section-search")
+		section(class="section show-searchbar", id="section-search", :class="{ 'is-disabled':  !user_enabled}")
 			div(class="show-searchbar__type")
 				div(class="form-group form-group--inline")
 					div(class="radio-form")

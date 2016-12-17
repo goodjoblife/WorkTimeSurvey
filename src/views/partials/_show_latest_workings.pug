@@ -1,7 +1,7 @@
 section(class="search-result")
 	h2(class="section__heading") 最新工時資料
 	div(class="search-result__result")
-		table(class="rwd-table latest-table")
+		table(class="rwd-table latest-table", :class="{ 'is-disabled':  !user_enabled}")
 			thead
 				tr
 					th(class="col-company") 公司名稱

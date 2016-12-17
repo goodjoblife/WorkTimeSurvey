@@ -1,5 +1,3 @@
-const user_enabled = false;
-
 const latestWorkings = Vue.extend({
   template: "#app-latest-workings",
   data: function () {
@@ -183,6 +181,7 @@ const searchBarApp = new Vue({
   data: {
     search_type: "by-company",
     keyword: "",
+    user_enabled: user_enabled,
   },
   methods: {
     onSubmit: function() {
