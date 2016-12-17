@@ -1,6 +1,13 @@
 section(class="search-result")
-	h2(class="section__heading") 搜尋 “<span class="search-query">{{company_keyword}}</span>” 的工時結果
+	h2(class="section__heading") 搜尋 “<span class="search-query">{{company_keyword}}</span>” 的排行
 	div(class="search-result__result")
+		div(class="search-result__sort")
+			div(class="label") 排序：
+			select(id="" name="")
+				option(value="" selected) 總工時（高到低）
+				option(value="" selected) 總工時（低到高）
+				option(value="" selected) 估算時薪（高到低）
+				option(value="" selected) 估算時薪（低到高）
 		div(class="search-result-list accordion")
 			div(class="accordion__item search-result-list__item" v-for="g in data")
 				button(class="accordion__trigger")
@@ -61,7 +68,7 @@ section(class="search-result")
 								th(class="col-frequency") 加班頻率
 								th(class="col-experience") 資歷
 								th(class="col-salary") 薪資
-								th(class="col-time") 資料時間
+								th(class="col-hourly") 估計時薪
 						tbody
 							tr(v-for="working in g.workings")
 								td(data-th="職稱")
@@ -84,7 +91,7 @@ section(class="search-result")
 								td(data-th="薪資")
 									span(class="rwd-td") 2,000,000 / 年
 								td(data-th="資料時間")
-									span(class="rwd-td") <span class="data-time">2016.08</span>
+									span(class="rwd-td") 166
 	div(class="search-result__status")
 		div(class="status-loading" v-show="is_loading")
 		div(class="status-no-result" v-show="data.length == 0 && is_loading === false") 找不到結果

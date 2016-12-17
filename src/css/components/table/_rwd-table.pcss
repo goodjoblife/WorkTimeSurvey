@@ -23,6 +23,7 @@
     padding-top: 30px;
     padding-bottom: 10px;
     border-bottom: 2px solid $border-gray;
+    vertical-align: bottom;
 		@media (max-width: $below-small) {
 			display: none;
 		}
@@ -104,6 +105,23 @@
     display: block;
     @media (max-width: $below-small) {
       flex: 1 1 auto;
+    }
+  }
+  button {
+    font-weight: 200;
+    @mixin hover-color $orange;
+    &.is-active {
+      &::after {
+        content: "▲";
+        font-size: 11px;
+        position: relative;
+        top: -2px;
+        display: inline-block;
+        margin-left: 5px;
+      }
+      &[data-sort="low"]::after {
+        content: "▼";
+      }
     }
   }
 }
