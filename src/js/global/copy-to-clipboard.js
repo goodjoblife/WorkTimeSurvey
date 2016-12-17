@@ -1,8 +1,13 @@
-document.body.addEventListener('click', copyToClipboard, true);
-function copyToClipboard(e) {
-  const t = e.target;
-  const name = t.dataset.copytarget;
-  const text = (name ? document.querySelector(name) : null);
+const element = document.querySelector('[data-copytarget]');
+if (element) {
+  element.addEventListener('click', function() {
+    copyToClipboard(this);
+  });
+}
+
+function copyToClipboard(t) {
+  const name = t.dataset.copytarget ? t.dataset.copytarget : null;
+  const text = name ? document.querySelector(name) : null;
   const icon = document.querySelector(`${name}-icon`);
 
   if (text && text.select) {

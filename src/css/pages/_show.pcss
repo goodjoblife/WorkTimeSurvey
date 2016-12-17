@@ -7,8 +7,17 @@
 .show-searchbar {
   @mixin clear;
   &.is-disabled {
-    opacity: .25;
+    opacity: .4;
     pointer-events: none;
+    label {
+      color: $gray;
+    }
+    input[type="text"] {
+      border-color: $gray;
+    }
+    button {
+      background-color: $gray;
+    }
   }
 }
 

@@ -7,7 +7,9 @@ const latestWorkings = Vue.extend({
       // current page loaded
       current_page: 0,
       workings: [],
+      total: 0,
       is_loading: false,
+      user_enabled: user_enabled,
     };
   },
   created: function() {
@@ -32,6 +34,7 @@ const latestWorkings = Vue.extend({
       this.is_loading = true;
       this.getLatestWorkings(page).then((res) => {
         this.workings = this.workings.concat(res.data.workings);
+        this.total = res.data.total;
         this.is_loading = false;
       }, (err) => {
         this.is_loading = false;
@@ -48,8 +51,8 @@ const latestWorkings = Vue.extend({
     }
   },
   computed: {
-    limitedWorkings: function() {
-      return this.workings.slice(0, 9);
+    workingsList: function() {
+      return this.user_enabled ? this.workings : this.workings.slice(0, 10);
     }
   }
 });
