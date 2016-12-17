@@ -6,6 +6,10 @@
 
 .show-searchbar {
   @mixin clear;
+  &.is-disabled {
+    opacity: .25;
+    pointer-events: none;
+  }
 }
 
 .show-searchbar__type {

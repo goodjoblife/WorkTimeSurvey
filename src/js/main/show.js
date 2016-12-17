@@ -1,3 +1,5 @@
+const user_enabled = false;
+
 const latestWorkings = Vue.extend({
   template: "#app-latest-workings",
   data: function () {
@@ -45,6 +47,11 @@ const latestWorkings = Vue.extend({
       return this.$http.get(`${WTS.constants.backendURL}workings/latest`, opt);
     }
   },
+  computed: {
+    limitedWorkings: function() {
+      return this.workings.slice(0, 9);
+    }
+  }
 });
 
 const searchAndGroupByJobTitle = Vue.extend({
@@ -146,7 +153,7 @@ Vue.filter('overtime_frequency_string', function (value) {
   if (value == "0") {
     return "幾乎不";
   } else if (value == "1") {
-    return "偶而";
+    return "偶爾";
   } else if (value == "2") {
     return "經常";
   } else if (value == "3") {
@@ -222,14 +229,15 @@ const router = Router({
   }
 });
 
-$(window).on('scroll', function() {
-  if ($(window).scrollTop() + window.innerHeight >= $(document).height() - 100) {
-    if (app.currentView === "latestWorkings") {
-      app.$broadcast("scroll_bottom_reach");
+if (user_enabled) {
+  $(window).on('scroll', function() {
+    if ($(window).scrollTop() + window.innerHeight >= $(document).height() - 100) {
+      if (app.currentView === "latestWorkings") {
+        app.$broadcast("scroll_bottom_reach");
+      }
     }
-  }
-});
-
+  });
+}
 
 /*
  * Autocomplete Part
