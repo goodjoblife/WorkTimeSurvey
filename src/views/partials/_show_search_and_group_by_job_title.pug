@@ -6,13 +6,13 @@ section(class="search-result")
 			select(id="" name="")
 				option(value="") 一週平均總工時（高到低）
 				option(value="") 一週平均總工時（低到高）
-				option(value="" selected) 估算時薪（高到低）
-				option(value="") 估算時薪（低到高）
+				option(value="" selected) 平均估算時薪（高到低）
+				option(value="") 平均估算時薪（低到高）
 		div(class="search-result-list accordion")
 			div(class="accordion__item search-result-list__item" v-for="group in data")
 				button(class="accordion__trigger")
 					div(class="search-result-list__heading")
-						h3(class="name") {{group._id}}
+						h3(class="name") 公司名稱
 						div(class="sort-item")
 							div
 								span(class="heading") 估算時薪：
@@ -22,7 +22,7 @@ section(class="search-result")
 					table(class="rwd-table company-table")
 						thead
 							tr
-								th(class="col-position") 公司名稱
+								th(class="col-position") 職稱
 								th(class="col-type") 職務型態
 								th(class="col-day-time") 表訂 / <br>實際工時
 								th(class="col-week-time") 一週總工時
@@ -32,8 +32,10 @@ section(class="search-result")
 								th(class="col-hourly") 估計時薪
 						tbody
 							tr(v-for="working in group.workings")
-								td(data-th="公司名稱")
-									span(class="rwd-td") {{working.company.name}}
+								td(data-th="職稱")
+									span(class="rwd-td")
+										span 行政助理
+										span(class="table-sector") {{working.sector}}
 								td(data-th="職務型態")
 									span(class="rwd-td") type
 								td(data-th="表訂 / 實際工時")
