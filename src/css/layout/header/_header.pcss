@@ -24,24 +24,24 @@
 			height: 100%;
 		}
 		.site-menu {
-			>li {
+			> li {
 				line-height: $nav-height-m;
 			}
 		}
 	}
 }
 .header__wrapper {
-	@mixin clear;
 	height: 100%;
-
 	transition: transform;
+	display: flex;
+	justify-content: space-between;
 	@media (max-width: $below-small) {
 		padding-top: 2px;
 		padding-bottom: 0;
 	}
 }
 .header__logo {
-	float: left;
+	flex: 0 0 170px;
 	@media (min-width: $above-small) {
 		transform: translateY(10px);
 	}
@@ -58,8 +58,8 @@
 	}
 }
 .header__nav {
-	float: right;
 	height: 100%;
+	flex: 1 0 auto;
 	@media (max-width: $below-small) {
 		opacity: 0;
 		visibility: hidden;
@@ -75,5 +75,22 @@
 			opacity: 1;
 			visibility: visible;
 		}
+	}
+}
+.header__user {
+	flex: 0 1 auto;
+	display: flex;
+	height: 100%;
+	align-items: center;
+	.icon-user {
+		width: 20px;
+		height: 20px;
+		margin-right: 10px;
+	}
+	.name {
+		text-transform: lowercase;
+	}
+	.login-block {
+		min-width: 32px;
 	}
 }

@@ -2,8 +2,6 @@
  * Facebook related
  */
 
-let isFbLogin = null;
-
 //define async function first
 window.fbAsyncInit = () => {
   const appId = (window.location.hostname === "localhost") ? "1750608541889151" : "1750216878594984";
@@ -15,16 +13,7 @@ window.fbAsyncInit = () => {
   });
 
   FB.getLoginStatus((response) => {
-    if (response.status === 'connected') {
-      isFbLogin = true;
-    } else {
-      isFbLogin = false;
-    }
-    FB.api('/me', function(response) {
-      console.log(response.name);
-    });
-
-    changeLoginBlock();
+    loginStatusChange(response);
   });
 };
 
@@ -39,28 +28,46 @@ window.fbAsyncInit = () => {
 
 
 $('.btn-login').on('click', function() {
-  FB.login(function(response) {
+  FB.login((response) => {
+    console.log('user login...')
     if (response.authResponse) {
-      isFbLogin = true;
+      FB.api('/me', (childResponse) => {
+        changeLoginBlock(true, childResponse.name);
+      });
     } else {
-      isFbLogin = false;
+      changeLoginBlock(false, '');
       console.log('User cancelled login or did not fully authorize.');
     }
-
-    changeLoginBlock();
   });
 });
 
-const changeLoginBlock = () => {
+const loginStatusChange = (response) => {
+  if (response.status === 'connected') {
+    FB.api('/me', (childResponse) => {
+      changeLoginBlock(true, childResponse.name);
+    });
+  } else {
+    changeLoginBlock(false, '');
+  }
+}
+
+const changeLoginBlock = (status, name) => {
   const $not_login = $('.dashed-line-box .not-login');
   const $logined = $('.dashed-line-box .logined');
+  const $user_name = $('.header__user .name');
+  const $button = $('.btn-login');
 
-  if (isFbLogin === false) {
+  if (status === false) {
     $not_login.removeClass('hide');
     $logined.addClass('hide');
-  } else if (isFbLogin === true) {
+    $button.removeClass('hide');
+    $user_name.addClass('hide');
+  } else if (status === true) {
     $logined.removeClass('hide');
     $not_login.addClass('hide');
+    $button.addClass('hide');
+    $user_name.removeClass('hide');
+    $user_name.text(name);
   }
 }
 
