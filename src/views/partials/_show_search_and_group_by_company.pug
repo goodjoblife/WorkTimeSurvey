@@ -4,14 +4,19 @@ section(class="search-result")
 		div(class="search-result__sort")
 			div(class="label") 排序：
 			select(id="" name="")
-				option(value="" selected) 總工時（高到低）
-				option(value="" selected) 總工時（低到高）
-				option(value="" selected) 估算時薪（高到低）
-				option(value="" selected) 估算時薪（低到高）
+				option(value="" selected) 一週平均總工時（高到低）
+				option(value="") 一週平均總工時（低到高）
+				option(value="") 估算時薪（高到低）
+				option(value="") 估算時薪（低到高）
 		div(class="search-result-list accordion")
 			div(class="accordion__item search-result-list__item" v-for="g in data")
 				button(class="accordion__trigger")
-					h3(class="search-result-list__heading") {{g._id.name}}
+					div(class="search-result-list__heading")
+						h3(class="name") {{g._id.name}}
+						div(class="sort-item")
+							div
+								span(class="heading") 一週平均總工時：
+								span(class="value") 41
 					span(class="accordion__icon") <svg role="img"><use xlink:href="#icon-minus"></use></svg>
 				div(class="accordion__content")
 					div(class="search-result-list__content")
