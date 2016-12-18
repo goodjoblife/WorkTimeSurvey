@@ -1,7 +1,13 @@
 section(class="search-result")
 	h2(class="section__heading") 最新工時資料
-	div(class="search-result__sort") 排序：一週總工時（低到高）
 	div(class="search-result__result")
+		div(class="search-result__sort")
+			div(class="label") 排序：
+			select(id="" name="")
+				option(value="" selected) 一週平均總工時（高到低）
+				option(value="") 一週總工時（低到高）
+				option(value="") 估算時薪（高到低）
+				option(value="") 估算時薪（低到高）
 		table(class="rwd-table latest-table", :class="{ 'is-disabled':  !user_enabled}")
 			thead
 				tr
@@ -9,12 +15,10 @@ section(class="search-result")
 					th(class="col-position")
 						span 職稱
 						span(class="table-sector") 廠區/門市/分公司
-					th(class="col-week-time")
-						button(class="is-active" data-sort="low") 一週總工時
+					th(class="col-week-time") 一週總工時
 					th(class="col-frequency") 加班頻率
 					th(class="col-salary") 薪資
-					th(class="col-hourly")
-						button(data-sort="high") 估計時薪
+					th(class="col-hourly") 估計時薪
 			tbody(id="tbody-latest-data")
 				tr(v-for="w in workingsList")
 					td(data-th="公司名稱")
