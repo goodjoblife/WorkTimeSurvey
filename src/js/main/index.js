@@ -72,12 +72,12 @@ $form_input.on('blur', function() {
   }
 });
 
-/* dropdown has fee options */
+/* show hide has fee options */
 const $has_fee_options = $('#has-fee-options');
 const $child_options = $has_fee_options.find('input[name="has_pay"]');
 $('#select-fee input[name="fee"]').on('click', function() {
   if ($('#fee_yes').prop('checked') === true) {
-    $has_fee_options.addClass('is-active');
+    $has_fee_options.toggleClass('is-active');
   } else {
     $has_fee_options.removeClass('is-active');
   }
