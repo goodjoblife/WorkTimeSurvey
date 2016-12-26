@@ -60,6 +60,8 @@
 .header__nav {
 	height: 100%;
 	flex: 1 0 auto;
+	display: flex;
+	justify-content: space-between;
 	@media (max-width: $below-small) {
 		opacity: 0;
 		visibility: hidden;
@@ -71,6 +73,7 @@
 		width: 100%;
 		height: 100%;
 		z-index: 99;
+		flex-direction: column;
 		&.is-open {
 			opacity: 1;
 			visibility: visible;
@@ -92,5 +95,16 @@
 	}
 	.login-block {
 		min-width: 32px;
+		@media (max-width: $below-small) {
+			display: inline-block;
+			font-size: 1.15em;
+		}
+	}
+	@media (max-width: $below-small) {
+		height: auto;
+		flex: 1 1 auto;
+		display: block;
+		text-align: center;
+		padding: 15px 0;
 	}
 }
