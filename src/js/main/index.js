@@ -320,6 +320,18 @@ window.fbAsyncInit = () => {
   });
 };
 
+/*
+ * temp loading of Facebook authentication
+ * will be removed after done with authentication check
+ */
+$("#submit").prop("disabled",true).before(
+  $("<div>").attr("id","tmp_loading").addClass("search-result__status").append(
+    $("<div>").addClass("status-loading")
+  ).append(
+      $("<div>").css("text-align","center").text("正在檢查Facebook是否登入，如果一直沒有回應，請重新整理：（")
+  ).css("padding-bottom","2em")
+);
+
 const statusChangeCallback = (response) => {
   if (response.status == "connected") {
     isFacebookSignedIn = true;
@@ -330,6 +342,8 @@ const statusChangeCallback = (response) => {
     document.querySelector(".fb-login-word").style.display = "";
     document.querySelector(".btn-why-facebook-login").style.display = "";
   }
+  $("#submit").prop("disabled",false);
+  $("tmp_loading").remove();
 };
 
 //execute async function to load fb sdk
