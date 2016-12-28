@@ -43,7 +43,7 @@ const latestWorkings = Vue.extend({
         }
       };
       return this.$http.get(`${WTS.constants.backendURL}workings/latest`, opt);
-    }
+    },
   },
 });
 
@@ -88,7 +88,7 @@ const searchAndGroupByJobTitle = Vue.extend({
         }
       };
       return this.$http.get(`${WTS.constants.backendURL}workings/search-and-group/by-job-title`, opt);
-    }
+    },
   },
 });
 
@@ -134,15 +134,25 @@ const searchAndGroupByCompany = Vue.extend({
         }
       };
       return this.$http.get(`${WTS.constants.backendURL}workings/search-and-group/by-company`, opt);
-    }
+    },
   },
 });
 
-Vue.filter('num', function (value) {
-  return value ? value : "-";
-})
+Vue.filter('getDataTime', (working) => {
+  const toDate = (t) => {
+    let d = new Date(t);
+    return {
+      year:d.getFullYear(),
+      month:d.getMonth()+1,
+    };
+  };
+  const date = working.is_currently_employed? toDate(working.created_at): working.job_ending_time;
+  return date.year + "." + date.month;
+});
 
-Vue.filter('overtime_frequency_string', function (value) {
+Vue.filter('num', (value) => value ? value : "-");
+
+Vue.filter('overtime_frequency_string', (value) => {
   if (value == "0") {
     return "幾乎不";
   } else if (value == "1") {
@@ -155,6 +165,51 @@ Vue.filter('overtime_frequency_string', function (value) {
 
   throw new Error("invalid value");
 });
+
+Vue.filter('experience_in_year_string', (value) => {
+  if (value == 0) {
+    return "未滿1年";
+  } else if (1<=value) {
+    return value + "年";
+  }
+  throw new Error("invalid value");
+});
+
+Vue.filter('employment_type_string', (value) => {
+  switch(value){
+    case "full-time": return '全職';
+    case "part-time": return '兼職';
+    case "intern": return '實習';
+    case "temporary": return '約聘雇';
+    case "contract": return '合約';
+    case "dispatched-labor": return '派遣';
+    default: throw new Error("invalid value");
+  }
+});
+
+Vue.filter('salary_string', (salary) => {
+  const type_text = (x) => {
+    switch(x){
+      case 'year': return '年';
+      case 'month': return '月';
+      case 'day': return '日';
+      case 'hour': return '時';
+      default: throw new Error("invalid value");
+    }
+  };
+  return amount_in_comma(salary.amount) + " / " + type_text(salary.type)
+});
+
+// convert a positive integer to comma-separated number string for every thousand
+// e.g. 10000 => 10,000
+const amount_in_comma = (amount) => {
+  if(typeof amount!="number"){
+    throw new Error('invalid amount');
+  }
+  return amount.toString().replace(/^(\d{0,2})((?:\d{3})*)$/,
+    ($0,$1,$2) => $1+$2.replace(/(\d{3})/g,',$1').slice($1==''?1:0)
+  );
+};
 
 const app = new Vue({
   el: "#app",
