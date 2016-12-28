@@ -238,7 +238,9 @@ $work_form.on("submit", function(e) {
   if (isFacebookSignedIn) {
     sendFormData();
   } else {
+    console.log("before FB.login");
     FB.login((response) => {
+      console.log("inside FB login callback");
       statusChangeCallback(response);
       if (response.status === "connected") {
         sendFormData();
