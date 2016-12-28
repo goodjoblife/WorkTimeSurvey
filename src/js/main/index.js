@@ -49,7 +49,7 @@ $form_input_salary.on('input', function() {
   }
 });
 
-$form_input_work_time.on('input change', function() {
+$form_input_work_time.on('click input change', function() {
   if (($(this).prop('type') === 'text' && $.trim(this.value)) || ($(this).prop('type') === 'radio' && this.checked === true)) {
     $form_input_work_time.each(function (){
       if ($(this).hasClass('maybe-is-required')) {
@@ -86,7 +86,6 @@ $('#select-fee input[name="fee"]').on('click', function() {
   $child_options.data('waschecked', false);
 });
 
-
 /* toggle radio buttons */
 $('.toggled-radio-button').click(function() {
   const $radio = $(this);
@@ -116,8 +115,8 @@ Array.prototype.forEach.call(is_currently_btn, function(radio) {
 })
 
 const now_year = new Date().getFullYear();
-const now_month = new Date().getMonth();
-function appendJogEndingTime() {
+const now_month = new Date().getMonth() + 1;
+function appendJobEndingTime() {
   let years = [];
   for (let i = now_year; i > (now_year - 10); i--) { years.push(i) }
   years.reverse().map(item => {
@@ -127,18 +126,25 @@ function appendJogEndingTime() {
   let month = [];
   for (let i = 1; i < 13; i++) { month.push(i); }
   month.map(item => {
-    $('#form-job-ending-month').append(`<option value="${item}">${item}</option>`)
+    $('#form-job-ending-month').append(`<option value="${item}">${item}</option>`);
   });
 
   resetJobEndingTime();
 }
-appendJogEndingTime();
+appendJobEndingTime();
 
 function resetJobEndingTime() {
   document.querySelector(`#form-job-ending-year option[value="${now_year}"]`).selected = true;
   document.querySelector(`#form-job-ending-month option[value="${now_month}"]`).selected = true;
 }
 
+/* form-experience-in-year select */
+const appendJobExperienceTime = () => {
+  for(let i = 1; i <= 50; i++) {
+    $('#form-experience-in-year').append(`<option value="${i}">${i} 年</option>`);
+  }
+};
+appendJobExperienceTime();
 
 /*
  * Form Submit Controller
@@ -249,6 +255,10 @@ const checkFormField = () => {
       if (!data.overtime_frequency || data.overtime_frequency === "") {
         throw new ValidationError("需填寫加班頻率", $("#form-overtime-frequency"));
       }
+
+      if (data.has_overtime_salary === "yes" && (!data.is_overtime_salary_legal || data.is_overtime_salary_legal === "")) {
+        throw new ValidationError("需填寫是否符合勞基法", $("#select-fee"));
+      }
     }
   }
 };
@@ -256,12 +266,23 @@ const checkFormField = () => {
 const sendFormData = () => {
   const data = domToData();
 
+  // convert all Nan, undefined and "" to ""
+  $.each(data, (index, value) => {
+    if (!value) {
+      data[index] = "";
+    }
+  });
+
+  // default job_ending_time_year and job_ending_time_month is not null
+  if (data.is_currently_employed === "yes") {
+    data.job_ending_time_year = "";
+    data.job_ending_time_month = "";
+  }
+
   data.access_token = FB.getAccessToken();
   data.company = data.company_query;
   delete data.company_query;
-  data.day_promised_work_time = parseFloat(data.day_promised_work_time);
-  data.day_real_work_time = parseFloat(data.day_real_work_time);
-  data.week_work_time = parseFloat(data.week_work_time);
+
 
   $.ajax({
     url: WTS.constants.backendURL + "workings",
