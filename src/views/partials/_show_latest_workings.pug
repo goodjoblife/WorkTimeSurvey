@@ -8,6 +8,8 @@ section(class="search-result")
 				option(value="") 一週總工時（低到高）
 				option(value="") 估算時薪（高到低）
 				option(value="") 估算時薪（低到高）
+				option(value="") 資料時間（高到低）
+				option(value="") 資料時間（低到高）
 		table(class="rwd-table latest-table", :class="{ 'is-disabled':  !user_enabled}")
 			thead
 				tr
@@ -19,6 +21,7 @@ section(class="search-result")
 					th(class="col-frequency") 加班頻率
 					th(class="col-salary") 薪資
 					th(class="col-hourly") 估計時薪
+					th(class="col-data-time") 資料時間
 			tbody(id="tbody-latest-data")
 				tr(v-for="w in workingsList")
 					td(data-th="公司名稱")
@@ -31,15 +34,18 @@ section(class="search-result")
 							span(class="table-sector") {{w.sector}}
 					td(data-th="一週總工時")
 						span(class="rwd-td")
-							span(class="table-time-bar" data-time="{{w.week_work_time}}" v-bind:style="{ width: w.week_work_time * 2 + 'px' }") {{w.week_work_time}}
+							span(class="table-time-bar" data-time="{{w.week_work_time}}" v-bind:style="{ width: w.week_work_time + 'px' }") {{w.week_work_time}}
 					td(data-th="加班頻率")
 						span(class="rwd-td")
 							span(class="table-frequency-circle" data-frequency="{{w.overtime_frequency}}")
 							| {{w.overtime_frequency | overtime_frequency_string}}
 					td(data-th="薪資")
 						span(class="rwd-td") 2,000,000 / 年
-					td(data-th="估計時薪" data-time="2016.12.18")
+					td(data-th="估計時薪")
 						span(class="rwd-td") 212
+					td(data-th="資料時間")
+						span(class="rwd-td")
+							span(class="data-time") 2016.12.29
 	div(class="search-result__status")
 		div(class="status-loading" v-show="is_loading")
 		div(class="status-no-result" v-show="workings.length == 0 && is_loading === false") 找不到結果

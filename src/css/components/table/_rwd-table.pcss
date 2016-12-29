@@ -1,5 +1,6 @@
 @define-mixin table-th {
   font-size: .95em;
+  line-height: 1.2em;
   letter-spacing: 0.05em;
   color: $gray-dark;
 }
@@ -22,8 +23,11 @@
     @mixin table-th;
     padding-top: 30px;
     padding-bottom: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
     border-bottom: 2px solid $border-gray;
     vertical-align: bottom;
+
 		@media (max-width: $below-small) {
 			display: none;
 		}
@@ -85,10 +89,6 @@
         td {
           background-color: rgba(0,0,0,.025);
         }
-        td:last-child::after {
-          opacity: 1;
-          transform: translateX(0);
-        }
       }
     }
     &:last-child {
@@ -110,25 +110,12 @@
       flex: 1 1 auto;
     }
   }
-  td:last-child {
-    position: relative;
-    &::after {
-      content: attr(data-time);
-      display: block;
-      position: absolute;
-      top: 50%;
-      right: -60px;
-      border: 1px solid $gray-light;
-      color: $gray-dark;
-      background-color: #fff;
-      padding: 0 8px;
-      font-size: 0.9em;
-      height: 32px;
-      line-height: 32px;
-      margin-top: -16px;
-      transition: opacity .3s, transform .3s;
-      opacity: 0;
-      transform: translateX(-10px);
+
+  .data-time {
+    font-size: 0.95em;
+    color: $gray;
+    @media (max-width: $below-desktop) {
+      word-break: break-all;
     }
   }
 }
