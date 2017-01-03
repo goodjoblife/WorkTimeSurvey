@@ -49,7 +49,7 @@ $form_input_salary.on('input', function() {
   }
 });
 
-$form_input_work_time.on('input change', function() {
+$form_input_work_time.on('click input change', function() {
   if (($(this).prop('type') === 'text' && $.trim(this.value)) || ($(this).prop('type') === 'radio' && this.checked === true)) {
     $form_input_work_time.each(function (){
       if ($(this).hasClass('maybe-is-required')) {
@@ -72,42 +72,32 @@ $form_input.on('blur', function() {
   }
 });
 
-/* check fee options */
-const has_fee_option = document.getElementById('has-fee-option');
-const clearHasFee = () => {
-  has_fee_option.classList.remove('is-active');
-  const item = has_fee_option.childNodes;
-  for (let j = 0; j < item.length; j++) {
-    for (let k = 0; k < item[j].childNodes.length; k++) {
-      if (item[j].childNodes[k].nodeName === 'INPUT') {
-        item[j].childNodes[k].checked = false;
-      }
-    }
-  }
-}
-
-$('#select-fee :input[type="radio"]').on('change', function() {
-  if (document.getElementById('fee_yes').checked) {
-    has_fee_option.classList.add('is-active');
+/* show hide has fee options */
+const $has_fee_options = $('#has-fee-options');
+const $child_options = $has_fee_options.find('input[name="has_pay"]');
+$('#select-fee input[name="fee"]').on('click', function() {
+  if ($('#fee_yes').prop('checked') === true) {
+    $has_fee_options.toggleClass('is-active');
   } else {
-    clearHasFee();
+    $has_fee_options.removeClass('is-active');
   }
+  //reset all child options
+  $child_options.prop('checked', false);
+  $child_options.data('waschecked', false);
 });
 
-const clear_radio_btn = $('.btn-radio-clear');
-clear_radio_btn.on('click', function() {
-  let item = $(this).parent().siblings();
-  item.each(function() {
-    let input = $(this).children('input');
-    if (input.prop('checked') === true) {
-      input.prop('checked', false);
-      input.trigger('change');
-    }
-  });
-  if ($(this).parent().parent().prop('id') === 'select-fee') {
-    clearHasFee();
+/* toggle radio buttons */
+$('.toggled-radio-button').click(function() {
+  const $radio = $(this);
+  if ($radio.data('waschecked') === true) {
+    $radio.prop('checked', false);
+    $radio.data('waschecked', false);
+  } else {
+    $radio.data('waschecked', true);
   }
+  $radio.parent().siblings().find('input').data('waschecked', false);
 });
+
 
 /* is-currently-check */
 const is_currently_btn = document.querySelectorAll('input[type="radio"][name="is_currently_employed"]');
@@ -125,8 +115,8 @@ Array.prototype.forEach.call(is_currently_btn, function(radio) {
 })
 
 const now_year = new Date().getFullYear();
-const now_month = new Date().getMonth();
-function appendJogEndingTime() {
+const now_month = new Date().getMonth() + 1;
+function appendJobEndingTime() {
   let years = [];
   for (let i = now_year; i > (now_year - 10); i--) { years.push(i) }
   years.reverse().map(item => {
@@ -136,18 +126,25 @@ function appendJogEndingTime() {
   let month = [];
   for (let i = 1; i < 13; i++) { month.push(i); }
   month.map(item => {
-    $('#form-job-ending-month').append(`<option value="${item}">${item}</option>`)
+    $('#form-job-ending-month').append(`<option value="${item}">${item}</option>`);
   });
 
   resetJobEndingTime();
 }
-appendJogEndingTime();
+appendJobEndingTime();
 
 function resetJobEndingTime() {
   document.querySelector(`#form-job-ending-year option[value="${now_year}"]`).selected = true;
   document.querySelector(`#form-job-ending-month option[value="${now_month}"]`).selected = true;
 }
 
+/* form-experience-in-year select */
+const appendJobExperienceTime = () => {
+  for(let i = 1; i <= 50; i++) {
+    $('#form-experience-in-year').append(`<option value="${i}">${i} 年</option>`);
+  }
+};
+appendJobExperienceTime();
 
 /*
  * Form Submit Controller
@@ -175,7 +172,7 @@ const domToData = () => {
     week_work_time: $("#form-week-work-time").val(),
     overtime_frequency: $("#form-overtime-frequency input[name='frequency']:checked").val(),
     has_overtime_salary: $("#select-fee input[name='fee']:checked").val(),
-    is_overtime_salary_legal: $("#has-fee-option input[name='has_pay']:checked").val(),
+    is_overtime_salary_legal: $("#has-fee-options input[name='has_pay']:checked").val(),
     has_compensatory_dayoff: $("#form-has-compensatory-dayoff input[name='time_off']:checked").val(),
     email: $("#form-email").val(),
     is_currently_employed: $('input[type="radio"][name="is_currently_employed"]:checked').val(),
@@ -258,6 +255,10 @@ const checkFormField = () => {
       if (!data.overtime_frequency || data.overtime_frequency === "") {
         throw new ValidationError("需填寫加班頻率", $("#form-overtime-frequency"));
       }
+
+      if (data.has_overtime_salary === "yes" && (!data.is_overtime_salary_legal || data.is_overtime_salary_legal === "")) {
+        throw new ValidationError("需填寫是否符合勞基法", $("#select-fee"));
+      }
     }
   }
 };
@@ -265,12 +266,23 @@ const checkFormField = () => {
 const sendFormData = () => {
   const data = domToData();
 
+  // convert all Nan, undefined and "" to ""
+  $.each(data, (index, value) => {
+    if (!value) {
+      data[index] = "";
+    }
+  });
+
+  // default job_ending_time_year and job_ending_time_month is not null
+  if (data.is_currently_employed === "yes") {
+    data.job_ending_time_year = "";
+    data.job_ending_time_month = "";
+  }
+
   data.access_token = FB.getAccessToken();
   data.company = data.company_query;
   delete data.company_query;
-  data.day_promised_work_time = parseFloat(data.day_promised_work_time);
-  data.day_real_work_time = parseFloat(data.day_real_work_time);
-  data.week_work_time = parseFloat(data.week_work_time);
+
 
   $.ajax({
     url: WTS.constants.backendURL + "workings",
@@ -362,6 +374,7 @@ $work_form.on("submit", function(e) {
   }
 });
 
+
 // for auth_check_reminder (i.e. 如果一直沒有回應，請重新整理：（)
 let auth_check_reminder_timer = null;
 const auth_check_reminder_latency = 3000;
@@ -406,25 +419,6 @@ $work_form.on("submitted", (e, result) => {
   showAlert('success', '上傳成功', `您已經上傳 ${queries_count} 次，還有 ${quota - queries_count} 次可以上傳。`, 'go-to-show');
 });
 
-/*
- * Facebook related
- */
-
-//define async function first
-window.fbAsyncInit = () => {
-  const appId = (window.location.hostname === "localhost") ? "1750608541889151" : "1750216878594984";
-  FB.init({
-    appId: appId,
-    cookie: true,
-    xfbml: true,
-    version: "v2.6",
-  });
-
-  FB.getLoginStatus((response) => {
-    statusChangeCallback(response);
-  });
-};
-
 const statusChangeCallback = (response) => {
   if (response.status == "connected") {
     isFacebookSignedIn = true;
@@ -436,16 +430,6 @@ const statusChangeCallback = (response) => {
     document.querySelector(".btn-why-facebook-login").style.display = "";
   }
 };
-
-//execute async function to load fb sdk
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/zh_TW/sdk.js";
-  fjs.parentNode.insertBefore(js, fjs);
-})(document, 'script', 'facebook-jssdk');
-
 
 /*
  * Autocomplete Part

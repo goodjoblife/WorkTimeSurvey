@@ -1,0 +1,80 @@
+.dashed-line-box {
+  margin-top: 40px;
+  border: 2px dashed #D8D8D8;
+  padding: 40px;
+  color: $gray-dark;
+  @media (max-width: $below-small) {
+    padding: 20px;
+  }
+  .btn-login {
+    color: $blue;
+    font-weight: $bold;
+    display: inline-block;
+    padding: 0 5px;
+    border-bottom: 1px solid transparent;
+    transition: border .3s;
+    &:hover {
+      border-bottom: 1px solid $blue;
+    }
+  }
+  .icon-facebook {
+    fill: $blue;
+    position: relative;
+    top: -2px;
+  }
+  .not-login {
+    text-align: center;
+    @mixin font-p;
+  }
+  .logined {
+    text-align: left;
+    @mixin font-p-m;
+  }
+  .bottom {
+    @mixin font-p;
+    text-align: center;
+  }
+}
+
+.share-link {
+  background-color: #fff;
+  position: relative;
+  margin-top: 20px;
+  .button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    font-size: 0.9em;
+    color: $blue;
+    padding: 0 20px;
+    @mixin hover-color $gray-dark;
+    @media (max-width: $below-desktop) {
+      display: none;
+    }
+  }
+  input[type="text"] {
+    border: 0;
+    color: $gray-dark;
+  }
+  .icon-form-checked {
+    opacity: 0;
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    top: 7px;
+    right: 90px;
+    transform: translateX(20px);
+    transition: opacity .3s, transform .3s;
+    &.is-active {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+  .is-safari &,
+  .is-mobile & {
+    .button {
+      display: none;
+    }
+  }
+}

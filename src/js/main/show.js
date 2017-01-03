@@ -5,7 +5,9 @@ const latestWorkings = Vue.extend({
       // current page loaded
       current_page: 0,
       workings: [],
+      total: 0,
       is_loading: false,
+      user_enabled: user_enabled,
     };
   },
   created: function() {
@@ -30,6 +32,7 @@ const latestWorkings = Vue.extend({
       this.is_loading = true;
       this.getLatestWorkings(page).then((res) => {
         this.workings = this.workings.concat(res.data.workings);
+        this.total = res.data.total;
         this.is_loading = false;
       }, (err) => {
         this.is_loading = false;
@@ -45,6 +48,11 @@ const latestWorkings = Vue.extend({
       return this.$http.get(`${WTS.constants.backendURL}workings/latest`, opt);
     }
   },
+  computed: {
+    workingsList: function() {
+      return this.user_enabled ? this.workings : this.workings.slice(0, 10);
+    }
+  }
 });
 
 const searchAndGroupByJobTitle = Vue.extend({
@@ -173,6 +181,7 @@ const searchBarApp = new Vue({
   data: {
     search_type: "by-company",
     keyword: "",
+    user_enabled: user_enabled,
   },
   methods: {
     onSubmit: function() {
@@ -222,14 +231,15 @@ const router = Router({
   }
 });
 
-$(window).on('scroll', function() {
-  if ($(window).scrollTop() + window.innerHeight >= $(document).height() - 100) {
-    if (app.currentView === "latestWorkings") {
-      app.$broadcast("scroll_bottom_reach");
+if (user_enabled) {
+  $(window).on('scroll', function() {
+    if ($(window).scrollTop() + window.innerHeight >= $(document).height() - 100) {
+      if (app.currentView === "latestWorkings") {
+        app.$broadcast("scroll_bottom_reach");
+      }
     }
-  }
-});
-
+  });
+}
 
 /*
  * Autocomplete Part

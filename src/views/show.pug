@@ -8,10 +8,26 @@ block content
 	section(class="page-banner")
 		div(class="wrapper-l page-banner__container")
 			h1(class="page-banner__heading") 查看工時
-			a(class="btn-s btn-yellow-line" id="btn-latest" href="#/latest") <svg role="img" class="star"><use xlink:href="#star"></use></svg>最新資料
+			a(class="btn-s btn-yellow-line" href="#/latest") <svg role="img" class="star"><use xlink:href="#star"></use></svg>最新資料
+			div(class="btn-s btn-yellow-line" id="") <svg role="img" class="icon-sort"><use xlink:href="#icon-sort"></use></svg>工時排行
 			img(src="/assets/img/workers.jpg" class="page-banner__image")
 	div(class="wrapper-m")
-		section(class="section show-searchbar" id="section-search")
+		section(id="user-enabled")
+			div(class="dashed-line-box")
+				div(class="not-login hide")
+					| 哈囉！請先
+					button(class="btn-login") <svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg> 登入
+					| 才能查看完整薪資工時資訊喔
+				div(class="logined hide")
+					| 請留下至少一筆資料，才能查看完整薪資、工時資訊。
+					br
+					| 沒有工作經驗嗎？沒有關係，分享以下連結給朋友，朋友留了資料，系統將開放您完整權限。
+					div(class="share-link")
+						div(class="link")
+							input(type="text" value="https://worktime.goodjob.life/?share=wutingy" id="user-link")
+						| <svg role="img" class="icon-form-checked" id="user-link-icon"><use xlink:href="#form-checked" ></use></svg>
+						button(class="button" data-copytarget="#user-link") 複製連結
+		section(class="section show-searchbar", id="section-search", :class="{ 'is-disabled':  !user_enabled}")
 			div(class="show-searchbar__type")
 				div(class="form-group form-group--inline")
 					div(class="radio-form")
@@ -36,6 +52,5 @@ block content
 		include partials/_show_search_and_group_by_job_title.pug
 	template(id="app-latest-workings")
 		include partials/_show_latest_workings.pug
-	button(id="btn-back-to-top") <svg><use xlink:href="#icon-arrow-up"></use></svg>
 block scripts
 	script(src="/assets/js/show.js")

@@ -1,11 +1,18 @@
-#btn-latest {
-  display: inline-block;
-  vertical-align: bottom;
-  margin-left: 30px;
-}
-
 .show-searchbar {
   @mixin clear;
+  &.is-disabled {
+    opacity: .4;
+    pointer-events: none;
+    label {
+      color: $gray;
+    }
+    input[type="text"] {
+      border-color: $gray;
+    }
+    button {
+      background-color: $gray;
+    }
+  }
 }
 
 .show-searchbar__type {

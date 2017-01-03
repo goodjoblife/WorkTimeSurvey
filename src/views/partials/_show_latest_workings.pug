@@ -1,7 +1,16 @@
 section(class="search-result")
 	h2(class="section__heading") 最新工時資料
 	div(class="search-result__result")
-		table(class="rwd-table latest-table")
+		div(class="search-result__sort")
+			div(class="label") 排序：
+			select(id="" name="")
+				option(value="" selected) 一週平均總工時（高到低）
+				option(value="") 一週總工時（低到高）
+				option(value="") 估算時薪（高到低）
+				option(value="") 估算時薪（低到高）
+				option(value="") 資料時間（高到低）
+				option(value="") 資料時間（低到高）
+		table(class="rwd-table latest-table", :class="{ 'is-disabled':  !user_enabled}")
 			thead
 				tr
 					th(class="col-company") 公司名稱
@@ -11,9 +20,10 @@ section(class="search-result")
 					th(class="col-week-time") 一週總工時
 					th(class="col-frequency") 加班頻率
 					th(class="col-salary") 薪資
-					th(class="col-time") 資料時間
+					th(class="col-hourly") 估計時薪
+					th(class="col-data-time") 資料時間
 			tbody(id="tbody-latest-data")
-				tr(v-for="w in workings")
+				tr(v-for="w in workingsList")
 					td(data-th="公司名稱")
 						span(class="rwd-td")
 							a(href="#/search-and-group/by-company/{{encodeURIComponent(w.company ? w.company.name : '')}}") {{w.company ? w.company.name : ""}}
@@ -24,15 +34,22 @@ section(class="search-result")
 							span(class="table-sector") {{w.sector}}
 					td(data-th="一週總工時")
 						span(class="rwd-td")
-							span(class="table-time-bar" data-time="{{w.week_work_time}}" v-bind:style="{ width: w.week_work_time * 2 + 'px' }") {{w.week_work_time}}
+							span(class="table-time-bar" data-time="{{w.week_work_time}}" v-bind:style="{ width: w.week_work_time + 'px' }") {{w.week_work_time}}
 					td(data-th="加班頻率")
 						span(class="rwd-td")
 							span(class="table-frequency-circle" data-frequency="{{w.overtime_frequency}}")
 							| {{w.overtime_frequency | overtime_frequency_string}}
 					td(data-th="薪資")
 						span(class="rwd-td") 2,000,000 / 年
+					td(data-th="估計時薪")
+						span(class="rwd-td") 212
 					td(data-th="資料時間")
-						span(class="rwd-td") <span class="data-time">2016.08</span>
+						span(class="rwd-td")
+							span(class="data-time") 2016.12.29
 	div(class="search-result__status")
 		div(class="status-loading" v-show="is_loading")
 		div(class="status-no-result" v-show="workings.length == 0 && is_loading === false") 找不到結果
+	section(class="wrapper-m" v-if="!user_enabled")
+		div(class="dashed-line-box")
+			div(class="bottom")
+				| 目前僅顯示：10 / {{ total }} 筆
