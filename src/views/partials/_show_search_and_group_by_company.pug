@@ -12,7 +12,7 @@ section(class="search-result")
 			div(class="accordion__item search-result-list__item" v-for="g in data")
 				button(class="accordion__trigger")
 					div(class="search-result-list__heading")
-						h3(class="name") {{g.company.name}}
+						h3(class="name") {{w.company ? w.company.name : ""}}
 						div(class="sort-item")
 							div
 								span(class="heading") 一週平均總工時：

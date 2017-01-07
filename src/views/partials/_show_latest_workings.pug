@@ -3,13 +3,13 @@ section(class="search-result")
 	div(class="search-result__result")
 		div(class="search-result__sort")
 			div(class="label") 排序：
-			select(id="" name="")
-				option(value="" selected) 一週平均總工時（高到低）
-				option(value="") 一週總工時（低到高）
-				option(value="") 估算時薪（高到低）
-				option(value="") 估算時薪（低到高）
-				option(value="") 資料時間（高到低）
-				option(value="") 資料時間（低到高）
+			select(id="" name="" v-model="search_result_sort" @change="sortOnChange(search_result_sort)")
+				option(value='{"sort_by": "week_work_time", "order": "descending"}') 一週平均總工時（高到低）
+				option(value='{"sort_by": "week_work_time", "order": "ascending"}') 一週平均總工時（低到高）
+				option(value='{"sort_by": "estimated_hourly_wage", "order": "descending"}') 估算時薪（高到低）
+				option(value='{"sort_by": "estimated_hourly_wage", "order": "ascending"}') 估算時薪（低到高）
+				option(value='{"sort_by": "created_at", "order": "descending"}' selected) 資料時間（高到低）
+				option(value='{"sort_by": "created_at", "order": "ascending"}') 資料時間（低到高）
 		table(class="rwd-table latest-table", :class="{ 'is-disabled':  !user_enabled}")
 			thead
 				tr
@@ -23,7 +23,7 @@ section(class="search-result")
 					th(class="col-hourly") 估計時薪
 					th(class="col-data-time") 資料時間
 			tbody(id="tbody-latest-data")
-				tr(v-for="w in workingsList")
+				tr(v-for="w in data.time_and_salary")
 					td(data-th="公司名稱")
 						span(class="rwd-td")
 							a(href="#/search-and-group/by-company/{{encodeURIComponent(w.company ? w.company.name : '')}}") {{w.company ? w.company.name : ""}}
@@ -40,12 +40,12 @@ section(class="search-result")
 							span(class="table-frequency-circle" data-frequency="{{w.overtime_frequency}}")
 							| {{w.overtime_frequency | overtime_frequency_string}}
 					td(data-th="薪資")
-						span(class="rwd-td") 2,000,000 / 年
+						span(class="rwd-td") {{w.salary.amount}} / {{w.salary.type | salary_type_string}}
 					td(data-th="估計時薪")
-						span(class="rwd-td") 212
+						span(class="rwd-td") {{w.estimated_hourly_wage}} 元
 					td(data-th="資料時間")
 						span(class="rwd-td")
-							span(class="data-time") 2016.12.29
+							span(class="data-time") {{w.data_time.year}} / {{w.data_time.month}}
 	div(class="search-result__status")
 		div(class="status-loading" v-show="is_loading")
 		div(class="status-no-result" v-show="workings.length == 0 && is_loading === false") 找不到結果

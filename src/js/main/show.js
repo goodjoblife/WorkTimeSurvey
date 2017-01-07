@@ -4,14 +4,14 @@ const latestWorkings = Vue.extend({
     return {
       // current page loaded
       current_page: 0,
-      workings: [],
+      data: [],
       total: 0,
       is_loading: false,
       user_enabled,
     };
   },
   created: function() {
-    this.loadLatestWorkings(0);
+    this.loadLatestWorkings(0, this.search_result_sort);
   },
   events: {
     scroll_bottom_reach: function() {
@@ -26,26 +26,39 @@ const latestWorkings = Vue.extend({
   methods: {
     loadMorePage: function() {
       this.current_page += 1;
-      this.loadLatestWorkings(this.current_page);
+      this.loadLatestWorkings(this.current_page, this.search_result_sort);
     },
-    loadLatestWorkings: function(page) {
+    loadLatestWorkings: function(page, search_result_sort = `{
+      "sort_by": "week_work_time",
+      "order": "descending"
+    }`) {
       this.is_loading = true;
-      this.getLatestWorkings(page).then((res) => {
-        this.workings = this.workings.concat(res.data.workings);
+      this.search_result_sort = search_result_sort;
+
+      const sort_by = JSON.parse(this.search_result_sort).sort_by;
+      const order = JSON.parse(this.search_result_sort).order;
+
+      this.getLatestWorkings(page, sort_by, order).then(res => {
+        this.data = res.data;
         this.total = res.data.total;
         this.is_loading = false;
       }, (err) => {
         this.is_loading = false;
       });
     },
-    getLatestWorkings: function(page) {
+    getLatestWorkings: function(page, sort_by, order) {
       const opt = {
         params: {
-          page: page,
-          limit: 20,
+          sort_by,
+          order,
+          page,
+          limit: 25,
         },
       };
-      return this.$http.get(`${WTS.constants.backendURL}workings/latest`, opt);
+      return this.$http.get(`${WTS.constants.backendURL}workings`, opt);
+    },
+    sortOnChange: function(selected) {
+      this.loadLatestWorkings(this.current_page, this.search_result_sort);
     },
   },
   computed: {
@@ -204,13 +217,13 @@ Vue.filter('employment_type_string', value => {
 
 Vue.filter('salary_type_string', value => {
   if (value === "year") {
-    return "年薪";
+    return "年";
   } else if (value === "month") {
-    return "月薪";
+    return "月";
   } else if (value === "day") {
-    return "日薪";
+    return "日";
   } else if (value === "hour") {
-    return "時薪";
+    return "小時";
   }
 
   return "";
