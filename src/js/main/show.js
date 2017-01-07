@@ -111,7 +111,7 @@ const searchAndGroupByCompany = Vue.extend({
   },
   events: {
     load_search_and_group_by_company: function(company_keyword) {
-      this.loadData(company_keyword);
+      this.loadData(company_keyword, this.search_result_sort);
     },
     data_loaded: function() {
       if (this.data.length === 1) {
@@ -121,11 +121,14 @@ const searchAndGroupByCompany = Vue.extend({
     },
   },
   methods: {
-    loadData: function(company_keyword) {
+    loadData: function(company_keyword, search_result_sort) {
       this.company_keyword = company_keyword;
+      this.search_result_sort = search_result_sort;
+      const group_sort_by = JSON.parse(this.search_result_sort).group_sort_by;
+      const order = JSON.parse(this.search_result_sort).order;
       this.data = [];
       this.is_loading = true;
-      this.getData(company_keyword).then((res) => {
+      this.getData(company_keyword, group_sort_by, order).then(res => {
         this.data = res.data;
       }, (err) => {
         this.data = [];
@@ -135,33 +138,70 @@ const searchAndGroupByCompany = Vue.extend({
         this.$emit('data_loaded');
       });
     },
-    getData: function(company_keyword) {
+    getData: function(company, group_sort_by, order) {
       const opt = {
         params: {
-          company: company_keyword,
-        }
+          company,
+          group_sort_by,
+          order,
+        },
       };
-      return this.$http.get(`${WTS.constants.backendURL}workings/search-and-group/by-company`, opt);
-    }
+      return this.$http.get(`${WTS.constants.backendURL}workings/search_by/company/group_by/company`, opt);
+    },
+    sortOnChange: function(selected) {
+      this.loadData(this.company_keyword, this.search_result_sort);
+    },
   },
 });
 
-Vue.filter('num', function (value) {
+Vue.filter('num', value => {
   return value ? value : "-";
-})
+});
 
-Vue.filter('overtime_frequency_string', function (value) {
-  if (value == "0") {
+Vue.filter('overtime_frequency_string', value => {
+  if (value === 0) {
     return "幾乎不";
-  } else if (value == "1") {
+  } else if (value === 1) {
     return "偶爾";
-  } else if (value == "2") {
+  } else if (value === 2) {
     return "經常";
-  } else if (value == "3") {
+  } else if (value === 3) {
     return "幾乎每天";
   }
 
   throw new Error("invalid value");
+});
+
+Vue.filter('employment_type_string', value => {
+  if (value === "full-time") {
+    return "全職";
+  } else if (value === "part-time") {
+    return "兼職(含打工)";
+  } else if (value === "intern") {
+    return "實習";
+  } else if (value === "temporary") {
+    return "臨時工";
+  } else if (value === "contract") {
+    return "約聘雇";
+  } else if (value === "dispatched-labor") {
+    return "派遣";
+  }
+
+  throw new Error("invalid value");
+});
+
+Vue.filter('salary_type_string', value => {
+  if (value === "year") {
+    return "年薪";
+  } else if (value === "month") {
+    return "月薪";
+  } else if (value === "day") {
+    return "日薪";
+  } else if (value === "hour") {
+    return "時薪";
+  } else {
+    return "";
+  }
 });
 
 const app = new Vue({
@@ -182,6 +222,7 @@ const searchBarApp = new Vue({
     search_type: "by-company",
     keyword: "",
     user_enabled: user_enabled,
+    search_result_sort: "",
   },
   methods: {
     onSubmit: function() {
