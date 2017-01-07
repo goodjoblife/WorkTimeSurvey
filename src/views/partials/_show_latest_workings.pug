@@ -4,12 +4,12 @@ section(class="search-result")
 		div(class="search-result__sort")
 			div(class="label") 排序：
 			select(id="" name="" v-model="search_result_sort" @change="sortOnChange(search_result_sort)")
-				option(value='{"sort_by": "week_work_time", "order": "descending"}') 一週平均總工時（高到低）
-				option(value='{"sort_by": "week_work_time", "order": "ascending"}') 一週平均總工時（低到高）
-				option(value='{"sort_by": "estimated_hourly_wage", "order": "descending"}') 估算時薪（高到低）
-				option(value='{"sort_by": "estimated_hourly_wage", "order": "ascending"}') 估算時薪（低到高）
-				option(value='{"sort_by": "created_at", "order": "descending"}' selected) 資料時間（高到低）
-				option(value='{"sort_by": "created_at", "order": "ascending"}') 資料時間（低到高）
+				option(value='{"sort_by":"week_work_time","order":"descending"}') 一週平均總工時（高到低）
+				option(value='{"sort_by":"week_work_time","order":"ascending"}') 一週平均總工時（低到高）
+				option(value='{"sort_by":"estimated_hourly_wage","order": "descending"}') 估算時薪（高到低）
+				option(value='{"sort_by":"estimated_hourly_wage","order": "ascending"}') 估算時薪（低到高）
+				option(value='{"sort_by":"created_at","order":"descending"}') 資料時間（高到低）
+				option(value='{"sort_by":"created_at","order":"ascending"}') 資料時間（低到高）
 		table(class="rwd-table latest-table", :class="{ 'is-disabled':  !user_enabled}")
 			thead
 				tr
@@ -26,11 +26,11 @@ section(class="search-result")
 				tr(v-for="w in data.time_and_salary")
 					td(data-th="公司名稱")
 						span(class="rwd-td")
-							a(href="#/search-and-group/by-company/{{encodeURIComponent(w.company ? w.company.name : '')}}") {{w.company ? w.company.name : ""}}
+							a(href="#/search-by-company/{{encodeURIComponent(w.company ? w.company.name : '')}}/sort/week-work-time-descending") {{w.company ? w.company.name : ""}}
 					td(data-th="職稱 (廠區/門市/分公司)")
 						span(class="rwd-td")
 							span
-								a(href="#/search-and-group/by-job-title/{{encodeURIComponent(w.job_title)}}") {{w.job_title}}
+								a(href="#/search-by-job-title/{{encodeURIComponent(w.job_title)}}/sort/estimated-hourly-wage-descending") {{w.job_title}}
 							span(class="table-sector") {{w.sector}}
 					td(data-th="一週總工時")
 						span(class="rwd-td")

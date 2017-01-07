@@ -8,12 +8,13 @@ const latestWorkings = Vue.extend({
       total: 0,
       is_loading: false,
       user_enabled,
+      search_result_sort: "",
     };
   },
-  created: function() {
-    this.loadLatestWorkings(0, this.search_result_sort);
-  },
   events: {
+    load_latset_search_and_group: function(searchResultSort) {
+      this.loadLatestWorkings(0, searchResultSort);
+    },
     scroll_bottom_reach: function() {
       // we don't want the two loading
       if (this.is_loading) {
@@ -26,17 +27,18 @@ const latestWorkings = Vue.extend({
   methods: {
     loadMorePage: function() {
       this.current_page += 1;
-      this.loadLatestWorkings(this.current_page, this.search_result_sort);
+      const searchResultSort = JSON.parse(this.search_result_sort);
+      this.loadLatestWorkings(this.current_page, searchResultSort);
     },
-    loadLatestWorkings: function(page, search_result_sort = `{
-      "sort_by": "week_work_time",
-      "order": "descending"
-    }`) {
+    loadLatestWorkings: function(page, searchResultSort = {
+      "sort_by": "created_at",
+      "order": "descending",
+    }) {
       this.is_loading = true;
-      this.search_result_sort = search_result_sort;
+      this.search_result_sort = JSON.stringify(searchResultSort);
 
-      const sort_by = JSON.parse(this.search_result_sort).sort_by;
-      const order = JSON.parse(this.search_result_sort).order;
+      const sort_by = searchResultSort.sort_by;
+      const order = searchResultSort.order;
 
       this.getLatestWorkings(page, sort_by, order).then(res => {
         this.data = res.data;
@@ -58,11 +60,14 @@ const latestWorkings = Vue.extend({
       return this.$http.get(`${WTS.constants.backendURL}workings`, opt);
     },
     sortOnChange: function(selected) {
-      this.loadLatestWorkings(this.current_page, this.search_result_sort);
+      const sortBy = JSON.parse(selected).sort_by.replace(/_/g, "-") + "-" + JSON.parse(selected).order;
+      router.setRoute(`/sort/${sortBy}`);
     },
   },
   computed: {
     workingsList: function() {
+      const sortBy = JSON.parse(this.search_result_sort).group_sort_by.replace(/_/g, "-") + "-" + JSON.parse(this.search_result_sort).order;
+      router.setRoute(`/sort/${sortBy}`);
       return this.user_enabled ? this.workings : this.workings.slice(0, 10);
     },
   },
@@ -75,11 +80,12 @@ const searchAndGroupByJobTitle = Vue.extend({
       job_title_keyword: null,
       data: [],
       is_loading: false,
+      search_result_sort: "",
     };
   },
   events: {
-    load_search_and_group_by_job_title: function(job_title_keyword) {
-      this.loadData(job_title_keyword, this.search_result_sort);
+    load_search_and_group_by_job_title: function(job_title_keyword, searchResultSort) {
+      this.loadData(job_title_keyword, searchResultSort);
     },
     data_loaded: function() {
       if (this.data.length === 1) {
@@ -89,14 +95,14 @@ const searchAndGroupByJobTitle = Vue.extend({
     },
   },
   methods: {
-    loadData: function(job_title_keyword, search_result_sort) {
+    loadData: function(job_title_keyword, searchResultSort) {
       this.job_title_keyword = job_title_keyword;
-      this.search_result_sort = search_result_sort;
       this.data = [];
       this.is_loading = true;
+      this.search_result_sort = JSON.stringify(searchResultSort);
 
-      const group_sort_by = JSON.parse(this.search_result_sort).group_sort_by;
-      const order = JSON.parse(this.search_result_sort).order;
+      const group_sort_by = searchResultSort.group_sort_by;
+      const order = searchResultSort.order;
 
       this.getData(job_title_keyword, group_sort_by, order).then(res => {
         this.data = res.data;
@@ -118,7 +124,8 @@ const searchAndGroupByJobTitle = Vue.extend({
       return this.$http.get(`${WTS.constants.backendURL}workings/search_by/job_title/group_by/company`, opt);
     },
     sortOnChange: function(selected) {
-      this.loadData(this.job_title_keyword, this.search_result_sort);
+      const sortBy = JSON.parse(selected).group_sort_by.replace(/_/g, "-") + "-" + JSON.parse(selected).order;
+      router.setRoute(`/search-by-job-title/${encodeURIComponent(this.job_title_keyword)}/sort/${sortBy}`);
     },
   },
 });
@@ -130,11 +137,12 @@ const searchAndGroupByCompany = Vue.extend({
       company_keyword: null,
       data: [],
       is_loading: false,
+      search_result_sort: "",
     };
   },
   events: {
-    load_search_and_group_by_company: function(company_keyword) {
-      this.loadData(company_keyword, this.search_result_sort);
+    load_search_and_group_by_company: function(company_keyword, searchResultSort) {
+      this.loadData(company_keyword, searchResultSort);
     },
     data_loaded: function() {
       if (this.data.length === 1) {
@@ -144,14 +152,14 @@ const searchAndGroupByCompany = Vue.extend({
     },
   },
   methods: {
-    loadData: function(company_keyword, search_result_sort) {
+    loadData: function(company_keyword, searchResultSort) {
       this.company_keyword = company_keyword;
-      this.search_result_sort = search_result_sort;
       this.data = [];
       this.is_loading = true;
+      this.search_result_sort = JSON.stringify(searchResultSort);
 
-      const group_sort_by = JSON.parse(this.search_result_sort).group_sort_by;
-      const order = JSON.parse(this.search_result_sort).order;
+      const group_sort_by = searchResultSort.group_sort_by;
+      const order = searchResultSort.order;
 
       this.getData(company_keyword, group_sort_by, order).then(res => {
         this.data = res.data;
@@ -174,7 +182,8 @@ const searchAndGroupByCompany = Vue.extend({
       return this.$http.get(`${WTS.constants.backendURL}workings/search_by/company/group_by/company`, opt);
     },
     sortOnChange: function(selected) {
-      this.loadData(this.company_keyword, this.search_result_sort);
+      const sortBy = JSON.parse(selected).group_sort_by.replace(/_/g, "-") + "-" + JSON.parse(selected).order;
+      router.setRoute(`/search-by-company/${encodeURIComponent(this.company_keyword)}/sort/${sortBy}`);
     },
   },
 });
@@ -247,53 +256,87 @@ const searchBarApp = new Vue({
     search_type: "by-company",
     keyword: "",
     user_enabled,
-    search_result_sort: "",
+    search_result_sort: {},
   },
   methods: {
     onSubmit: function() {
       if (this.search_type === "by-company") {
-        router.setRoute(`/search-and-group/by-company/${encodeURIComponent(this.keyword)}`);
+        router.setRoute(`/search-by-company/${encodeURIComponent(this.keyword)}/sort/week-work-time-descending`);
 
         this.$emit("submit", this.search_type, this.keyword);
       } else if (this.search_type === "by-job-title") {
-        router.setRoute(`/search-and-group/by-job-title/${encodeURIComponent(this.keyword)}`);
+        router.setRoute(`/search-by-job-title/${encodeURIComponent(this.keyword)}/sort/estimated-hourly-wage-descending`);
 
         this.$emit("submit", this.search_type, this.keyword);
       } else {
-        router.setRoute("/latest");
+        router.setRoute("/sort/created-at-descending");
       }
     },
-    setInputInfo: function(search_type = "by-company", keyword = "") {
+    setInputInfo: function(search_type = "by-company", keyword = "", searchResultSort="") {
       this.search_type = search_type;
       this.keyword = keyword;
+      this.search_result_sort = searchResultSort;
     },
   },
 });
 
+const sortByToSearchResultSort = (sortBy, isLatest) => {
+  const sort = sortBy.split("-");
+  let group_sort_by = "";
+  for (let i = 0; i < sort.length - 1; i++) {
+    group_sort_by += sort[i] + "_";
+  }
+  group_sort_by = group_sort_by.slice(0, -1);
+
+  if (isLatest) {
+    return {
+      sort_by: group_sort_by,
+      order: sort[sort.length - 1],
+    };
+  }
+
+  return {
+    group_sort_by,
+    order: sort[sort.length - 1],
+  };
+};
+
 const router = Router({
-  "/latest": function() {
-    app.currentView = "latestWorkings";
-    searchBarApp.setInputInfo();
+  "/sort/:sort": {
+    on: sort => {
+      app.currentView = "latestWorkings";
+      const searchResultSort = sortByToSearchResultSort(sort, true);
+      searchBarApp.setInputInfo("by-company", "", searchResultSort);
+      Vue.nextTick(() => {
+        app.$broadcast("load_latset_search_and_group", searchResultSort);
+      });
+    },
   },
-  "/search-and-group/by-job-title/(.*)": function(name) {
-    app.currentView = "searchAndGroupByJobTitle";
-    const decodedName = decodeURIComponent(name);
-    searchBarApp.setInputInfo("by-job-title", decodedName);
-    Vue.nextTick(function() {
-      app.$broadcast("load_search_and_group_by_job_title", decodedName);
-    });
+  "/search-by-job-title/:job_title/sort/:sort": {
+    on: (job_title, sort) => {
+      app.currentView = "searchAndGroupByJobTitle";
+      const decodedName = decodeURIComponent(job_title);
+      const searchResultSort = sortByToSearchResultSort(sort, false);
+      searchBarApp.setInputInfo("by-job-title", decodedName, searchResultSort);
+      Vue.nextTick(() => {
+        app.$broadcast("load_search_and_group_by_job_title", decodedName, searchResultSort);
+      });
+    },
   },
-  "/search-and-group/by-company/(.*)": function(name) {
-    app.currentView = "searchAndGroupByCompany";
-    const decodedName = decodeURIComponent(name);
-    searchBarApp.setInputInfo("by-company", decodedName);
-    Vue.nextTick(function() {
-      app.$broadcast("load_search_and_group_by_company", decodedName);
-    });
+  "/search-by-company/:company/sort/:sort": {
+    on: (company, sort) => {
+      app.currentView = "searchAndGroupByCompany";
+      const decodedName = decodeURIComponent(company);
+      const searchResultSort = sortByToSearchResultSort(sort, false);
+      searchBarApp.setInputInfo("by-company", decodedName, searchResultSort);
+      Vue.nextTick(() => {
+        app.$broadcast("load_search_and_group_by_company", decodedName, searchResultSort);
+      });
+    },
   },
 }).configure({
-  notfound: function() {
-    router.setRoute("/latest");
+  notfound: () => {
+    router.setRoute(`/sort/created-at-descending`);
   }
 });
 
