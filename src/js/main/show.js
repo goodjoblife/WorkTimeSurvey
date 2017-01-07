@@ -7,7 +7,7 @@ const latestWorkings = Vue.extend({
       workings: [],
       total: 0,
       is_loading: false,
-      user_enabled: user_enabled,
+      user_enabled,
     };
   },
   created: function() {
@@ -21,7 +21,7 @@ const latestWorkings = Vue.extend({
       }
 
       this.loadMorePage();
-    }
+    },
   },
   methods: {
     loadMorePage: function() {
@@ -43,16 +43,16 @@ const latestWorkings = Vue.extend({
         params: {
           page: page,
           limit: 20,
-        }
+        },
       };
       return this.$http.get(`${WTS.constants.backendURL}workings/latest`, opt);
-    }
+    },
   },
   computed: {
     workingsList: function() {
       return this.user_enabled ? this.workings : this.workings.slice(0, 10);
-    }
-  }
+    },
+  },
 });
 
 const searchAndGroupByJobTitle = Vue.extend({
@@ -66,7 +66,7 @@ const searchAndGroupByJobTitle = Vue.extend({
   },
   events: {
     load_search_and_group_by_job_title: function(job_title_keyword) {
-      this.loadData(job_title_keyword);
+      this.loadData(job_title_keyword, this.search_result_sort);
     },
     data_loaded: function() {
       if (this.data.length === 1) {
@@ -76,11 +76,16 @@ const searchAndGroupByJobTitle = Vue.extend({
     },
   },
   methods: {
-    loadData: function(job_title_keyword) {
+    loadData: function(job_title_keyword, search_result_sort) {
       this.job_title_keyword = job_title_keyword;
+      this.search_result_sort = search_result_sort;
       this.data = [];
       this.is_loading = true;
-      this.getData(job_title_keyword).then((res) => {
+
+      const group_sort_by = JSON.parse(this.search_result_sort).group_sort_by;
+      const order = JSON.parse(this.search_result_sort).order;
+
+      this.getData(job_title_keyword, group_sort_by, order).then(res => {
         this.data = res.data;
       }, (err) => {
         this.data = [];
@@ -89,14 +94,19 @@ const searchAndGroupByJobTitle = Vue.extend({
         this.$emit('data_loaded');
       });
     },
-    getData: function(job_title_keyword) {
+    getData: function(job_title, group_sort_by, order) {
       const opt = {
         params: {
-          job_title: job_title_keyword,
-        }
+          job_title,
+          group_sort_by,
+          order,
+        },
       };
-      return this.$http.get(`${WTS.constants.backendURL}workings/search-and-group/by-job-title`, opt);
-    }
+      return this.$http.get(`${WTS.constants.backendURL}workings/search_by/job_title/group_by/company`, opt);
+    },
+    sortOnChange: function(selected) {
+      this.loadData(this.job_title_keyword, this.search_result_sort);
+    },
   },
 });
 
@@ -124,10 +134,12 @@ const searchAndGroupByCompany = Vue.extend({
     loadData: function(company_keyword, search_result_sort) {
       this.company_keyword = company_keyword;
       this.search_result_sort = search_result_sort;
-      const group_sort_by = JSON.parse(this.search_result_sort).group_sort_by;
-      const order = JSON.parse(this.search_result_sort).order;
       this.data = [];
       this.is_loading = true;
+
+      const group_sort_by = JSON.parse(this.search_result_sort).group_sort_by;
+      const order = JSON.parse(this.search_result_sort).order;
+
       this.getData(company_keyword, group_sort_by, order).then(res => {
         this.data = res.data;
       }, (err) => {
@@ -169,7 +181,7 @@ Vue.filter('overtime_frequency_string', value => {
     return "幾乎每天";
   }
 
-  throw new Error("invalid value");
+  return "";
 });
 
 Vue.filter('employment_type_string', value => {
@@ -187,7 +199,7 @@ Vue.filter('employment_type_string', value => {
     return "派遣";
   }
 
-  throw new Error("invalid value");
+  return "";
 });
 
 Vue.filter('salary_type_string', value => {
@@ -199,9 +211,9 @@ Vue.filter('salary_type_string', value => {
     return "日薪";
   } else if (value === "hour") {
     return "時薪";
-  } else {
-    return "";
   }
+
+  return "";
 });
 
 const app = new Vue({
@@ -213,7 +225,7 @@ const app = new Vue({
   },
   data: {
     currentView: null,
-  }
+  },
 });
 
 const searchBarApp = new Vue({
@@ -221,7 +233,7 @@ const searchBarApp = new Vue({
   data: {
     search_type: "by-company",
     keyword: "",
-    user_enabled: user_enabled,
+    user_enabled,
     search_result_sort: "",
   },
   methods: {
@@ -241,7 +253,7 @@ const searchBarApp = new Vue({
     setInputInfo: function(search_type = "by-company", keyword = "") {
       this.search_type = search_type;
       this.keyword = keyword;
-    }
+    },
   },
 });
 
