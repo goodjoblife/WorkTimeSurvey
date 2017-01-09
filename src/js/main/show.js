@@ -1,5 +1,5 @@
-const latestWorkings = Vue.extend({
-  template: "#app-latest-workings",
+const timeAndSalary = Vue.extend({
+  template: "#app-time-and-salary",
   data: function () {
     return {
       // current page loaded
@@ -12,8 +12,8 @@ const latestWorkings = Vue.extend({
     };
   },
   events: {
-    load_latset_search_and_group: function(searchResultSort) {
-      this.loadLatestWorkings(0, searchResultSort);
+    load_time_and_salary: function(searchResultSort) {
+      this.loadTimeAndSalary(0, searchResultSort);
     },
     scroll_bottom_reach: function() {
       // we don't want the two loading
@@ -28,9 +28,9 @@ const latestWorkings = Vue.extend({
     loadMorePage: function() {
       this.current_page += 1;
       const searchResultSort = JSON.parse(this.search_result_sort);
-      this.loadLatestWorkings(this.current_page, searchResultSort);
+      this.loadTimeAndSalary(this.current_page, searchResultSort);
     },
-    loadLatestWorkings: function(page, searchResultSort = {
+    loadTimeAndSalary: function(page, searchResultSort = {
       "sort_by": "created_at",
       "order": "descending",
     }) {
@@ -40,15 +40,15 @@ const latestWorkings = Vue.extend({
       const sort_by = searchResultSort.sort_by;
       const order = searchResultSort.order;
 
-      this.getLatestWorkings(page, sort_by, order).then(res => {
+      this.getData(page, sort_by, order).then(res => {
         this.data = res.data;
         this.total = res.data.total;
         this.is_loading = false;
-      }, (err) => {
+      }, err => {
         this.is_loading = false;
       });
     },
-    getLatestWorkings: function(page, sort_by, order) {
+    getData: function(page, sort_by, order) {
       const opt = {
         params: {
           sort_by,
@@ -106,7 +106,7 @@ const searchAndGroupByJobTitle = Vue.extend({
 
       this.getData(job_title_keyword, group_sort_by, order).then(res => {
         this.data = res.data;
-      }, (err) => {
+      }, err => {
         this.data = [];
       }).then(() => {
         this.is_loading = false;
@@ -163,7 +163,7 @@ const searchAndGroupByCompany = Vue.extend({
 
       this.getData(company_keyword, group_sort_by, order).then(res => {
         this.data = res.data;
-      }, (err) => {
+      }, err => {
         this.data = [];
       }).then(() => {
         this.is_loading = false;
@@ -241,7 +241,7 @@ Vue.filter('salary_type_string', value => {
 const app = new Vue({
   el: "#app",
   components: {
-    'latestWorkings': latestWorkings,
+    'timeAndSalary': timeAndSalary,
     "searchAndGroupByJobTitle": searchAndGroupByJobTitle,
     "searchAndGroupByCompany": searchAndGroupByCompany,
   },
@@ -304,11 +304,11 @@ const sortByToSearchResultSort = (sortBy, isLatest) => {
 const router = Router({
   "/sort/:sort": {
     on: sort => {
-      app.currentView = "latestWorkings";
+      app.currentView = "timeAndSalary";
       const searchResultSort = sortByToSearchResultSort(sort, true);
       searchBarApp.setInputInfo("by-company", "", searchResultSort);
       Vue.nextTick(() => {
-        app.$broadcast("load_latset_search_and_group", searchResultSort);
+        app.$broadcast("load_time_and_salary", searchResultSort);
       });
     },
   },
@@ -343,7 +343,7 @@ const router = Router({
 if (user_enabled) {
   $(window).on('scroll', function() {
     if ($(window).scrollTop() + window.innerHeight >= $(document).height() - 100) {
-      if (app.currentView === "latestWorkings") {
+      if (app.currentView === "timeAndSalary") {
         app.$broadcast("scroll_bottom_reach");
       }
     }
