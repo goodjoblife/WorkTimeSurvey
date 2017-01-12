@@ -23,6 +23,9 @@ const timeAndSalary = Vue.extend({
 
       this.loadMorePage();
     },
+    change_user_enabled: function(user_enabled){
+      this.changeUserEnabled(user_enabled);
+    },
   },
   methods: {
     loadMorePage: function() {
@@ -62,6 +65,9 @@ const timeAndSalary = Vue.extend({
     sortOnChange: function(selected) {
       const sortBy = JSON.parse(selected).sort_by.replace(/_/g, "-") + "-" + JSON.parse(selected).order;
       router.setRoute(`/sort/${sortBy}`);
+    },
+    changeUserEnabled: function(user_enabled){
+      this.user_enabled = user_enabled;
     },
   },
   computed: {
@@ -457,7 +463,7 @@ $(function(){
  */
 
 // user_enabled
-function setUserEnabled(user_enabled){
+function changeUserEnabled(user_enabled){
   if (user_enabled) {
     $('#user-enabled').addClass('hide');
   } else {
@@ -472,7 +478,7 @@ function setUserEnabled(user_enabled){
       }
     });
   }
-  timeAndSalary.user_enabled = user_enabled;
+  app.$broadcast("change_user_enabled", user_enabled);
   searchBarApp.user_enabled = user_enabled;
 }
 
