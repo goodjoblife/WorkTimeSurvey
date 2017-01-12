@@ -463,6 +463,20 @@ $(function(){
  */
 
 // user_enabled
+function testSearchPermission(){
+  const access_token = FB.getAccessToken();
+  $.ajax({
+    url: WTS.constants.backendURL + "me/permissions/search",
+    data: {access_token},
+    dataType: "json",
+  }).then(response => {
+    const user_enabled = response.hasSearchPermission;
+    changeUserEnabled(user_enabled);
+  }).catch((jqXHR, textStatus, errorThrown) => {
+    // TODO
+  });
+}
+
 function changeUserEnabled(user_enabled){
   if (user_enabled) {
     $('#user-enabled').addClass('hide');
