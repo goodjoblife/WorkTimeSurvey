@@ -7,7 +7,7 @@ const timeAndSalary = Vue.extend({
       data: [],
       total: 0,
       is_loading: false,
-      user_enabled,
+      user_enabled: false,
       search_result_sort: "",
     };
   },
@@ -22,6 +22,9 @@ const timeAndSalary = Vue.extend({
       }
 
       this.loadMorePage();
+    },
+    change_user_enabled: function(user_enabled){
+      this.changeUserEnabled(user_enabled);
     },
   },
   methods: {
@@ -62,6 +65,9 @@ const timeAndSalary = Vue.extend({
     sortOnChange: function(selected) {
       const sortBy = JSON.parse(selected).sort_by.replace(/_/g, "-") + "-" + JSON.parse(selected).order;
       router.setRoute(`/sort/${sortBy}`);
+    },
+    changeUserEnabled: function(user_enabled){
+      this.user_enabled = user_enabled;
     },
   },
   computed: {
@@ -255,7 +261,7 @@ const searchBarApp = new Vue({
   data: {
     search_type: "by-company",
     keyword: "",
-    user_enabled,
+    user_enabled: false,
     search_result_sort: {},
   },
   methods: {
@@ -339,16 +345,6 @@ const router = Router({
     router.setRoute(`/sort/created-at-descending`);
   }
 });
-
-if (user_enabled) {
-  $(window).on('scroll', function() {
-    if ($(window).scrollTop() + window.innerHeight >= $(document).height() - 100) {
-      if (app.currentView === "timeAndSalary") {
-        app.$broadcast("scroll_bottom_reach");
-      }
-    }
-  });
-}
 
 /*
  * Autocomplete Part
@@ -465,6 +461,25 @@ $(function(){
 /*
  * Init Part
  */
+
+function changeUserEnabled(user_enabled){
+  if (user_enabled) {
+    $('#user-enabled').addClass('hide');
+  } else {
+    $('#user-enabled').removeClass('hide');
+  }
+  if (user_enabled) {
+    $(window).on('scroll', function() {
+      if ($(window).scrollTop() + window.innerHeight >= $(document).height() - 100) {
+        if (app.currentView === "timeAndSalary") {
+          app.$broadcast("scroll_bottom_reach");
+        }
+      }
+    });
+  }
+  app.$broadcast("change_user_enabled", user_enabled);
+  searchBarApp.user_enabled = user_enabled;
+}
 
 // wait the event trigger done
 router.init(["/"]);
