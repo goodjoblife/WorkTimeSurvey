@@ -1,35 +1,62 @@
 section(class="search-result")
-	h2(class="section__heading") 搜尋 “<span class="search-query">{{job_title_keyword}}</span>” 的工時結果
+	h2(class="section__heading") 搜尋 “<span class="search-query">{{job_title_keyword}}</span>” 的排行
 	div(class="search-result__result")
+		div(class="search-result__sort")
+			div(class="label") 排序：
+			select(id="" name="" v-model="search_result_sort" @change="sortOnChange(search_result_sort)")
+				option(value='{"group_sort_by":"week_work_time","order":"descending"}') 一週平均總工時（高到低）
+				option(value='{"group_sort_by":"week_work_time","order":"ascending"}') 一週平均總工時（低到高）
+				option(value='{"group_sort_by":"estimated_hourly_wage","order":"descending"}') 平均估算時薪（高到低）
+				option(value='{"group_sort_by":"estimated_hourly_wage","order":"ascending"}') 平均估算時薪（低到高）
 		div(class="search-result-list accordion")
-			div(class="accordion__item search-result-list__item" v-for="group in data")
+			div(class="accordion__item search-result-list__item" v-for="g in data")
 				button(class="accordion__trigger")
-					h3(class="search-result-list__heading") {{group._id}}
+					div(class="search-result-list__heading")
+						h3(class="name") {{w.company ? w.company.name : ""}}
+						div(class="sort-item")
+							div
+								span(class="heading") 估算時薪：
+								span(class="value") {{g.average.estimated_hourly_wage}} 元
 					span(class="accordion__icon") <svg role="img"><use xlink:href="#icon-minus"></use></svg>
 				div(class="accordion__content")
 					table(class="rwd-table company-table")
 						thead
 							tr
-								th(class="col-company") 公司名稱
-								th(class="col-day-promise") 日表訂工時
-								th(class="col-day-real") 日實際平均工時
-								th(class="col-week-time") 一週總工時（小時）
+								th(class="col-position") 職稱
+								th(class="col-type") 職務型態
+								th(class="col-day-time") 表訂 / <br>實際工時
+								th(class="col-week-time") 一週總工時
 								th(class="col-frequency") 加班頻率
+								th(class="col-experience") 資歷
+								th(class="col-salary") 薪資
+								th(class="col-hourly") 估計時薪
+								th(class="col-data-time") 資料時間
 						tbody
-							tr(v-for="working in group.workings")
-								td(data-th="公司名稱")
-									span(class="rwd-td") {{working.company.name}}
-								td(data-th="日表訂工時")
-									span(class="rwd-td") {{working.day_promised_work_time}}
-								td(data-th="日實際平均工時")
-									span(class="rwd-td") {{working.day_real_work_time}}
+							tr(v-for="working in g.time_and_salary")
+								td(data-th="職稱")
+									span(class="rwd-td")
+										span {{working.job_title}}
+										span(class="table-sector") {{working.sector}}
+								td(data-th="職務型態")
+									span(class="rwd-td") {{working.employment_type | employment_type_string}}
+								td(data-th="表訂 / 實際工時")
+									span(class="rwd-td") {{working.day_promised_work_time}} / {{working.day_real_work_time}}
 								td(data-th="一週總工時")
 									span(class="rwd-td")
-										span(class="table-time-bar" data-time="{{working.week_work_time}}" v-bind:style="{ width: working.week_work_time * 2 + 'px' }") {{working.week_work_time}}
+										span(class="table-time-bar" data-time="{{working.week_work_time}}" v-bind:style="{ width: working.week_work_time + 'px' }") {{working.week_work_time}}
 								td(data-th="加班頻率")
 									span(class="rwd-td")
 										span(class="table-frequency-circle" data-frequency="{{working.overtime_frequency}}")
 										| {{working.overtime_frequency | overtime_frequency_string}}
+								td(data-th="資歷")
+									span(class="rwd-td") {{working.experience_in_year}} 年
+								td(data-th="薪資")
+									span(class="rwd-td") {{working.salary.amount}} / {{working.salary.type | salary_type_string}}
+								td(data-th="估計時薪")
+									span(class="rwd-td") {{working.estimated_hourly_wage}} 元
+								td(data-th="資料時間")
+									span(class="rwd-td")
+										span(class="data-time") {{working.data_time.year}} / {{working.data_time.month}}
 	div(class="search-result__status")
 		div(class="status-loading" v-show="is_loading")
 		div(class="status-no-result" v-show="data.length == 0 && is_loading === false") 找不到結果

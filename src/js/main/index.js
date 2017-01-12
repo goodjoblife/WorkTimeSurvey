@@ -7,7 +7,7 @@ const showTooltipAndScroll = ($selector, message) => {
   $('html, body').animate({
     scrollTop: $selector.offset().top - 100
   }, 600);
-}
+};
 
 const showTooltip = ($selector, message) => {
   let $form_group = $selector.closest('.form-group');
@@ -15,62 +15,136 @@ const showTooltip = ($selector, message) => {
     $form_group.addClass('has-error');
     $form_group.append(`<div class="form-error-message">${message}</div>`);
   }
-}
+};
 
 const removeTooltip = ($selector) => {
   let $form_group = $selector.closest('.form-group');
   $form_group.removeClass('has-error');
   $form_group.find('.form-error-message').remove();
-}
+};
+
+const checkAllBlank = ($selector) => {
+  let result = true;
+  $selector.each(function() {
+    if ($.trim(this.value)) {
+      if (this.checked && $(this).prop('type') === 'radio') {
+        result = false;
+      } else if (!this.checked && $(this).prop('type') !== 'radio') {
+        result = false;
+      }
+    }
+  });
+  return result;
+};
+
+/* add is-required by which section input first*/
+const $form_input_salary = $('#form-section-salary .maybe-is-required');
+const $form_input_work_time = $('#form-section-work-time .maybe-is-required, .not-required');
+$form_input_salary.on('input', function() {
+  if ($.trim(this.value)) {
+    $form_input_salary.addClass('is-required');
+  } else if (checkAllBlank($form_input_salary)) {
+    $form_input_salary.removeClass('is-required');
+    removeTooltip($form_input_salary);
+  }
+});
+
+$form_input_work_time.on('click input change', function() {
+  if (($(this).prop('type') === 'text' && $.trim(this.value)) || ($(this).prop('type') === 'radio' && this.checked === true)) {
+    $form_input_work_time.each(function (){
+      if ($(this).hasClass('maybe-is-required')) {
+        $(this).addClass('is-required');
+      }
+    });
+  } else if (checkAllBlank($form_input_work_time)) {
+    $form_input_work_time.removeClass('is-required');
+    removeTooltip($form_input_work_time);
+  }
+});
 
 /* validate form on focus */
-const $form_input = $('#work-form :input.is-required');
+const $form_input = $('#work-form :input.maybe-is-required');
 $form_input.on('blur', function() {
-  if (!$.trim(this.value)) {
+  if (!$.trim(this.value) && $(this).hasClass('is-required')) {
     showTooltip($(this), '本欄必填');
   } else {
     removeTooltip($(this));
   }
 });
 
-
-/* radio button */
-const has_fee_option = document.getElementById('has-fee-option');
-const clearHasFee = () => {
-  has_fee_option.classList.remove('is-active');
-  let item = has_fee_option.childNodes;
-  for (let j = 0; j < item.length; j++) {
-    for (let k = 0; k < item[j].childNodes.length; k++) {
-      if (item[j].childNodes[k].nodeName === 'INPUT') {
-        item[j].childNodes[k].checked = false;
-      }
-    }
-  }
-}
-$('#select-fee :input[type="radio"]').on('change', function() {
-  if (document.getElementById('fee_yes').checked) {
-    has_fee_option.classList.add('is-active');
+/* show hide has fee options */
+const $has_fee_options = $('#has-fee-options');
+const $child_options = $has_fee_options.find('input[name="has_pay"]');
+$('#select-fee input[name="fee"]').on('click', function() {
+  if ($('#fee_yes').prop('checked') === true) {
+    $has_fee_options.toggleClass('is-active');
   } else {
-    clearHasFee();
+    $has_fee_options.removeClass('is-active');
   }
+  //reset all child options
+  $child_options.prop('checked', false);
+  $child_options.data('waschecked', false);
 });
 
-const clear_radio_btn = document.querySelectorAll('.btn-radio-clear');
-for (let i = 0; i < clear_radio_btn.length; i++) {
-  clear_radio_btn[i].addEventListener('click', function() {
-    let item = this.parentNode.parentNode.childNodes;
-    for (let j = 0; j < item.length; j++) {
-      for (let k = 0; k < item[j].childNodes.length; k++) {
-        if (item[j].childNodes[k].nodeName === 'INPUT') {
-          item[j].childNodes[k].checked = false;
-        }
-      }
-    }
-    if (this.parentNode.parentNode.id === 'select-fee') {
-      clearHasFee();
-    }
-  })
+/* toggle radio buttons */
+$('.toggled-radio-button').click(function() {
+  const $radio = $(this);
+  if ($radio.data('waschecked') === true) {
+    $radio.prop('checked', false);
+    $radio.data('waschecked', false);
+  } else {
+    $radio.data('waschecked', true);
+  }
+  $radio.parent().siblings().find('input').data('waschecked', false);
+});
+
+
+/* is-currently-check */
+const is_currently_btn = document.querySelectorAll('input[type="radio"][name="is_currently_employed"]');
+const leave_job_form = document.getElementById('form-job-ending-time');
+const currentlyChange = () => {
+  resetJobEndingTime();
+  if (document.getElementById('form-not-currently-employed').checked) {
+    leave_job_form.classList.add('is-active');
+  } else {
+    leave_job_form.classList.remove('is-active');
+  }
 }
+Array.prototype.forEach.call(is_currently_btn, function(radio) {
+  radio.addEventListener('change', currentlyChange);
+})
+
+const now_year = new Date().getFullYear();
+const now_month = new Date().getMonth() + 1;
+function appendJobEndingTime() {
+  let years = [];
+  for (let i = now_year; i > (now_year - 10); i--) { years.push(i) }
+  years.reverse().map(item => {
+    $('#form-job-ending-year').append(`<option value="${item}">${item}</option>`);
+  });
+
+  let month = [];
+  for (let i = 1; i < 13; i++) { month.push(i); }
+  month.map(item => {
+    $('#form-job-ending-month').append(`<option value="${item}">${item}</option>`);
+  });
+
+  resetJobEndingTime();
+}
+appendJobEndingTime();
+
+function resetJobEndingTime() {
+  document.querySelector(`#form-job-ending-year option[value="${now_year}"]`).selected = true;
+  document.querySelector(`#form-job-ending-month option[value="${now_month}"]`).selected = true;
+}
+
+/* form-experience-in-year select */
+const appendJobExperienceTime = () => {
+  for(let i = 1; i <= 50; i++) {
+    $('#form-experience-in-year').append(`<option value="${i}">${i} 年</option>`);
+  }
+};
+appendJobExperienceTime();
 
 /*
  * Form Submit Controller
@@ -98,9 +172,17 @@ const domToData = () => {
     week_work_time: $("#form-week-work-time").val(),
     overtime_frequency: $("#form-overtime-frequency input[name='frequency']:checked").val(),
     has_overtime_salary: $("#select-fee input[name='fee']:checked").val(),
-    is_overtime_salary_legal: $("#has-fee-option input[name='has_pay']:checked").val(),
+    is_overtime_salary_legal: $("#has-fee-options input[name='has_pay']:checked").val(),
     has_compensatory_dayoff: $("#form-has-compensatory-dayoff input[name='time_off']:checked").val(),
     email: $("#form-email").val(),
+    is_currently_employed: $('input[type="radio"][name="is_currently_employed"]:checked').val(),
+    job_ending_time_year: $('#form-job-ending-year').val(),
+    job_ending_time_month: $('#form-job-ending-month').val(),
+    employment_type: $('#form-employed-type').val(),
+    gender: $('#form-gender').val(),
+    salary_type: $('#salary-type').val(),
+    salary_amount: $('#salary-amount').val(),
+    experience_in_year: $('#form-experience-in-year').val(),
   };
 };
 
@@ -119,53 +201,88 @@ const checkFormField = () => {
     throw new ValidationError("需填寫職稱", $("#form-job-title"));
   }
 
-  if (data.day_promised_work_time === "") {
-    throw new ValidationError("需填寫工作日表定工作時間", $("#form-day-promised-work-time"));
-  }
-  data.day_promised_work_time = parseFloat(data.day_promised_work_time);
-  if (isNaN(data.day_promised_work_time)) {
-    throw new ValidationError("工作日表定工作時間並非數字", $("#form-day-promised-work-time"));
-  }
-  if (data.day_promised_work_time < 0 || data.day_promised_work_time > 24) {
-    throw new ValidationError("工作日表定工作時間範圍為0~24小時", $("#form-day-promised-work-time"));
-  }
+  if (!($('#salary-amount').hasClass('is-required')) && !($("#form-day-promised-work-time").hasClass('is-required'))) {
+    throw new ValidationError("薪資 / 工時需擇一必填", $("#salary-amount"));
+  } else {
+    if ($('#salary-amount').hasClass('is-required')) {
+      if (data.salary_type === "") {
+        throw new ValidationError("需填寫薪資類型", $("#salary-type"));
+      }
 
-  if (data.day_real_work_time === "") {
-    throw new ValidationError("需填寫工作日實際工作時間", $("#form-day-real-work-time"));
-  }
-  data.day_real_work_time = parseFloat(data.day_real_work_time);
-  if (isNaN(data.day_real_work_time)) {
-    throw new ValidationError("工作日實際工作時間並非數字", $("#form-day-real-work-time"));
-  }
-  if (data.day_real_work_time < 0 || data.day_real_work_time > 24) {
-    throw new ValidationError("工作日實際工作時間範圍為0~24小時", $("#form-day-real-work-time"));
-  }
+      if (data.salary_amount === "") {
+        throw new ValidationError("需填寫薪資", $("#salary-amount"));
+      }
 
-  if (data.week_work_time === "") {
-    throw new ValidationError("需填寫一週總工時", $("#form-week-work-time"));
-  }
-  data.week_work_time = parseFloat(data.week_work_time);
-  if (isNaN(data.week_work_time)) {
-    throw new ValidationError("一週總工時並非數字", $("#form-week-work-time"));
-  }
-  if (data.week_work_time < 0 || data.week_work_time > 168) {
-    throw new ValidationError("一週總工時範圍為0~168小時", $("#form-week-work-time"));
-  }
+      if (data.experience_in_year === "") {
+        throw new ValidationError("需填寫相關職務工作經歷", $("#form-experience-in-year"));
+      }
+    }
 
-  if (!data.overtime_frequency || data.overtime_frequency === "") {
-    throw new ValidationError("需填寫加班頻率", $("#form-overtime-frequency"));
+    if ($("#form-day-promised-work-time").hasClass('is-required')) {
+      if (data.day_promised_work_time === "") {
+        throw new ValidationError("需填寫工作日表定工作時間", $("#form-day-promised-work-time"));
+      }
+      data.day_promised_work_time = parseFloat(data.day_promised_work_time);
+      if (isNaN(data.day_promised_work_time)) {
+        throw new ValidationError("工作日表定工作時間並非數字", $("#form-day-promised-work-time"));
+      }
+      if (data.day_promised_work_time < 0 || data.day_promised_work_time > 24) {
+        throw new ValidationError("工作日表定工作時間範圍為0~24小時", $("#form-day-promised-work-time"));
+      }
+
+      if (data.day_real_work_time === "") {
+        throw new ValidationError("需填寫工作日實際工作時間", $("#form-day-real-work-time"));
+      }
+      data.day_real_work_time = parseFloat(data.day_real_work_time);
+      if (isNaN(data.day_real_work_time)) {
+        throw new ValidationError("工作日實際工作時間並非數字", $("#form-day-real-work-time"));
+      }
+      if (data.day_real_work_time < 0 || data.day_real_work_time > 24) {
+        throw new ValidationError("工作日實際工作時間範圍為0~24小時", $("#form-day-real-work-time"));
+      }
+
+      if (data.week_work_time === "") {
+        throw new ValidationError("需填寫一週總工時", $("#form-week-work-time"));
+      }
+      data.week_work_time = parseFloat(data.week_work_time);
+      if (isNaN(data.week_work_time)) {
+        throw new ValidationError("一週總工時並非數字", $("#form-week-work-time"));
+      }
+      if (data.week_work_time < 0 || data.week_work_time > 168) {
+        throw new ValidationError("一週總工時範圍為0~168小時", $("#form-week-work-time"));
+      }
+
+      if (!data.overtime_frequency || data.overtime_frequency === "") {
+        throw new ValidationError("需填寫加班頻率", $("#form-overtime-frequency"));
+      }
+
+      if (data.has_overtime_salary === "yes" && (!data.is_overtime_salary_legal || data.is_overtime_salary_legal === "")) {
+        throw new ValidationError("需填寫是否符合勞基法", $("#select-fee"));
+      }
+    }
   }
 };
 
 const sendFormData = () => {
   const data = domToData();
 
+  // convert all Nan, undefined and "" to ""
+  $.each(data, (index, value) => {
+    if (!value) {
+      data[index] = "";
+    }
+  });
+
+  // default job_ending_time_year and job_ending_time_month is not null
+  if (data.is_currently_employed === "yes") {
+    data.job_ending_time_year = "";
+    data.job_ending_time_month = "";
+  }
+
   data.access_token = FB.getAccessToken();
   data.company = data.company_query;
   delete data.company_query;
-  data.day_promised_work_time = parseFloat(data.day_promised_work_time);
-  data.day_real_work_time = parseFloat(data.day_real_work_time);
-  data.week_work_time = parseFloat(data.week_work_time);
+
 
   $.ajax({
     url: WTS.constants.backendURL + "workings",
@@ -257,6 +374,7 @@ $work_form.on("submit", function(e) {
   }
 });
 
+
 // for auth_check_reminder (i.e. 如果一直沒有回應，請重新整理：（)
 let auth_check_reminder_timer = null;
 const auth_check_reminder_latency = 3000;
@@ -301,25 +419,6 @@ $work_form.on("submitted", (e, result) => {
   showAlert('success', '上傳成功', `您已經上傳 ${queries_count} 次，還有 ${quota - queries_count} 次可以上傳。`, 'go-to-show');
 });
 
-/*
- * Facebook related
- */
-
-//define async function first
-window.fbAsyncInit = () => {
-  const appId = (window.location.hostname === "localhost") ? "1750608541889151" : "1750216878594984";
-  FB.init({
-    appId: appId,
-    cookie: true,
-    xfbml: true,
-    version: "v2.6",
-  });
-
-  FB.getLoginStatus((response) => {
-    statusChangeCallback(response);
-  });
-};
-
 const statusChangeCallback = (response) => {
   if (response.status == "connected") {
     isFacebookSignedIn = true;
@@ -331,16 +430,6 @@ const statusChangeCallback = (response) => {
     document.querySelector(".btn-why-facebook-login").style.display = "";
   }
 };
-
-//execute async function to load fb sdk
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/zh_TW/sdk.js";
-  fjs.parentNode.insertBefore(js, fjs);
-})(document, 'script', 'facebook-jssdk');
-
 
 /*
  * Autocomplete Part

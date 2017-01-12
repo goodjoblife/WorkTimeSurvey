@@ -29,14 +29,19 @@
 			}
 		}
 	}
+
 	@media (max-width: $below-small) {
 		margin-top: 20px;
+		width: 100%;
 		> li {
 			> a {
 				display: block;
-				font-size: 1.3em;
+				font-size: 1.15em;
 				padding: 15px 20px;
 				text-align: center;
+				&.is-current {
+					background-color: $yellow-bg.7;
+				}
 			}
 		}
 	}
