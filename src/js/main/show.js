@@ -7,7 +7,7 @@ const timeAndSalary = Vue.extend({
       data: [],
       total: 0,
       is_loading: false,
-      user_enabled,
+      user_enabled: false,
       search_result_sort: "",
     };
   },
@@ -255,7 +255,7 @@ const searchBarApp = new Vue({
   data: {
     search_type: "by-company",
     keyword: "",
-    user_enabled,
+    user_enabled: false,
     search_result_sort: {},
   },
   methods: {
@@ -339,16 +339,6 @@ const router = Router({
     router.setRoute(`/sort/created-at-descending`);
   }
 });
-
-if (user_enabled) {
-  $(window).on('scroll', function() {
-    if ($(window).scrollTop() + window.innerHeight >= $(document).height() - 100) {
-      if (app.currentView === "timeAndSalary") {
-        app.$broadcast("scroll_bottom_reach");
-      }
-    }
-  });
-}
 
 /*
  * Autocomplete Part
@@ -465,6 +455,26 @@ $(function(){
 /*
  * Init Part
  */
+
+// user_enabled
+function setUserEnabled(user_enabled){
+  if (user_enabled) {
+    $('#user-enabled').addClass('hide');
+  } else {
+    $('#user-enabled').removeClass('hide');
+  }
+  if (user_enabled) {
+    $(window).on('scroll', function() {
+      if ($(window).scrollTop() + window.innerHeight >= $(document).height() - 100) {
+        if (app.currentView === "timeAndSalary") {
+          app.$broadcast("scroll_bottom_reach");
+        }
+      }
+    });
+  }
+  timeAndSalary.user_enabled = user_enabled;
+  searchBarApp.user_enabled = user_enabled;
+}
 
 // wait the event trigger done
 router.init(["/"]);
