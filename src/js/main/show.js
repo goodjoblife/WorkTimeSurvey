@@ -479,7 +479,8 @@ function testSearchPermission(){
         data: {access_token},
         dataType: "json",
       }).then(response => {
-        const recomm_url = `https://worktime.goodjob.life?rec_usr=${response.recommendation_string}`
+        const recomm_url =
+            WTS.constants.siteURL + '?rec_by=' + response.recommendation_string;
         $('#user-link').val(recomm_url);
       });
     }
