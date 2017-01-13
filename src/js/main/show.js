@@ -462,6 +462,33 @@ $(function(){
  * Init Part
  */
 
+// user_enabled
+function testSearchPermission(){
+  const access_token = FB.getAccessToken();
+  $.ajax({
+    url: WTS.constants.backendURL + "me/permissions/search",
+    data: {access_token},
+    dataType: "json",
+  }).then(response => {
+    const hasSearchPermission = response.hasSearchPermission;
+    if(hasSearchPermission) changeUserEnabled(true);
+    else{
+      return $.ajax({
+        url: WTS.constants.backendURL + "me/recommendations",
+        method:'POST',
+        data: {access_token},
+        dataType: "json",
+      }).then(response => {
+        const recomm_url =
+            WTS.constants.siteURL + '?rec_by=' + response.recommendation_string;
+        $('#user-link').val(recomm_url);
+      });
+    }
+  }).catch((jqXHR, textStatus, errorThrown) => {
+    // TODO
+  });
+}
+
 function changeUserEnabled(user_enabled){
   if (user_enabled) {
     $('#user-enabled').addClass('hide');
