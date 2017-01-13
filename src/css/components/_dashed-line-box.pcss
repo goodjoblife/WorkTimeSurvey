@@ -78,3 +78,25 @@
     }
   }
 }
+
+
+.dashed-line-box__buttons {
+  display: flex;
+  margin-top: 20px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: $below-mobile) {
+    max-width: 280px;
+  }
+
+  > div, a {
+    display: block;
+
+    @media (max-width: $below-mobile) {
+      min-width: initial;
+      padding: 0 15px;
+    }
+  }
+}
