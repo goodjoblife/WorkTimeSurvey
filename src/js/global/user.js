@@ -70,11 +70,3 @@ const changeLoginBlock = (status, name) => {
     $user_name.text(name);
   }
 }
-
-let user_enabled = false;
-
-if (user_enabled) {
-  $('#user-enabled').addClass('hide');
-} else {
-  $('#user-enabled').removeClass('hide');
-}
