@@ -7,14 +7,46 @@
 		margin-top: $nav-height-s;
 	}
 
+
+}
+
+.page-banner__btns {
+	display: inline-block;
+
+	@media (max-width: $below-medium) {
+		display: block;
+		margin-top: 15px;
+	}
+
+	@media (max-width: $below-mobile) {
+		display: flex;
+	}
+
 	.btn-yellow-line {
 	  display: inline-block;
 	  vertical-align: bottom;
-	  margin-left: 30px;
+	  margin-left: 15px;
+
+		@media (max-width: $below-medium) {
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+
+		@media (max-width: $below-mobile) {
+			padding: 0 8px;
+			letter-spacing: 0;
+			margin-left: 8px;
+		}
+
 		svg {
 			width: 16px;
 			height: 16px;
 			fill: $primary-color;
+			@media (max-width: $below-mobile) {
+					width: 12px;
+					height: 12px;
+			}
 		}
 	}
 }
@@ -52,10 +84,6 @@
 		width: 380px;
 	}
 	@media (max-width: $below-small) {
-		width: 240px;
-		right: 10px;
-	}
-	@media (max-width: $below-mobile) {
 		display: none;
 	}
 }

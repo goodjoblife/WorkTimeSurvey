@@ -73,4 +73,3 @@ const changeLoginBlock = (status, name) => {
     $user_name.text(name);
   }
 }
-
