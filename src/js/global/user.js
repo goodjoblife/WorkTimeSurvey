@@ -46,7 +46,9 @@ const loginStatusChange = (response) => {
     FB.api('/me', (childResponse) => {
       changeLoginBlock(true, childResponse.name);
     });
-    if(testSearchPermission) testSearchPermission();
+	if(typeof testSearchPermission == 'function'){
+		testSearchPermission();
+	}
   } else {
     changeLoginBlock(false, '');
   }
