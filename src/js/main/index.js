@@ -440,18 +440,18 @@ $(function(){
     let default_job_titles = [];
     let default_company_names = [];
     $.ajax({
-        url: WTS.constants.backendURL + 'workings/latest',
+        url: WTS.constants.backendURL + 'workings',
         dataType:"json",
     }).done(function(res){
         default_job_titles =
             Array.from(new Set(
-                $.map(res.workings, (item,i)=>({
+                $.map(res.time_and_salary, (item,i)=>({
                     "value": item.job_title,
                 }))
             )).slice(0,4);
         default_company_names =
             Array.from(new Set(
-                $.map(res.workings, (item,i)=>({
+                $.map(res.time_and_salary, (item,i)=>({
                     "value": item.company.name,
                     "company_id": item.company.id,
                 })).filter( item=>item.company_id!==undefined )
