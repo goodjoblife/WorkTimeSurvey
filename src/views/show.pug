@@ -9,9 +9,9 @@ block content
 		div(class="wrapper-l page-banner__container")
 			h1(class="page-banner__heading") 查看工時
 			div(class="page-banner__btns")
-				a(class="btn-s btn-yellow-line" href="#/latest") <svg role="img" class="star"><use xlink:href="#star"></use></svg>最新資料
-				div(class="btn-s btn-yellow-line" id="") <svg role="img" class="icon-sort"><use xlink:href="#icon-sort"></use></svg>工時排行
-				div(class="btn-s btn-yellow-line" id="") <svg role="img" class="icon-sort"><use xlink:href="#icon-sort"></use></svg>時薪排行
+				a(class="btn-s btn-yellow-line" href="#/sort/created-at-descending") <svg role="img" class="star"><use xlink:href="#star"></use></svg>最新資料
+				a(class="btn-s btn-yellow-line" href="#/sort/work-time-descending") <svg role="img" class="icon-sort"><use xlink:href="#icon-sort"></use></svg>工時排行
+				a(class="btn-s btn-yellow-line" href="#/sort/salary-descending") <svg role="img" class="icon-sort"><use xlink:href="#icon-sort"></use></svg>時薪排行
 			img(src="/assets/img/workers.jpg" class="page-banner__image")
 	div(class="wrapper-m")
 		section(id="user-enabled")
@@ -31,7 +31,7 @@ block content
 						button(class="button" data-copytarget="#user-link") 複製連結
 				div(class="dashed-line-box__buttons")
 					a(class="btn-m btn-black" href="/#section-form") 馬上留資料
-					div(class="btn-m btn-yellow ") fb 貼文分享
+					div(class="btn-m btn-yellow" id="share-rec-url") fb 貼文分享
 		section(class="section show-searchbar", id="section-search", :class="{ 'is-disabled':  !user_enabled}")
 			div(class="show-searchbar__type")
 				div(class="form-group form-group--inline")

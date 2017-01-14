@@ -482,6 +482,15 @@ function testSearchPermission(){
         const recomm_url =
             WTS.constants.siteURL + '?rec_by=' + response.recommendation_string;
         $('#user-link').val(recomm_url);
+
+        $("#share-rec-url").click(function(){
+          FB.ui({
+            method: 'share',
+            display: 'popup',
+            href: recomm_url,
+            quote: "想邀請身邊的朋友們，一起參與【工時透明化運動】！",
+          }, function(response){});
+        });
       });
     }
   }).catch((jqXHR, textStatus, errorThrown) => {
