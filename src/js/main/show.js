@@ -1,6 +1,5 @@
 const show_store = {
   state: {
-    debug: true,
     is_loggined: false,
     is_authed: false,
   },
@@ -453,13 +452,6 @@ const userEnabledApp = new Vue({
           this.user_link = null;
         });
     },
-  },
-});
-
-const DebugApp = new Vue({
-  el: "#debug",
-  data: {
-    share: show_store.state,
   },
 });
 
