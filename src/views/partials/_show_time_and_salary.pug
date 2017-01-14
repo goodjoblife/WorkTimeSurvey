@@ -40,7 +40,7 @@ section(class="search-result")
 							span(class="table-frequency-circle" data-frequency="{{w.overtime_frequency}}")
 							| {{w.overtime_frequency | overtime_frequency_string}}
 					td(data-th="薪資")
-						span(class="rwd-td") {{w.salary.amount}} / {{w.salary.type | salary_type_string}}
+						span(class="rwd-td") {{w.salary.amount | formatted_wage_string}} / {{w.salary.type | salary_type_string}}
 					td(data-th="估計時薪")
 						span(class="rwd-td") {{w.estimated_hourly_wage | formatted_wage_string}} 元
 					td(data-th="資料時間")

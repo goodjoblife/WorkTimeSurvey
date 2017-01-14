@@ -16,7 +16,7 @@ section(class="search-result")
 						div(class="sort-item")
 							div
 								span(class="heading") 估算時薪：
-								span(class="value") {{g.average.estimated_hourly_wage}} 元
+								span(class="value") {{g.average.estimated_hourly_wage | formatted_wage_string}} 元
 					span(class="accordion__icon") <svg role="img"><use xlink:href="#icon-minus"></use></svg>
 				div(class="accordion__content")
 					table(class="rwd-table company-table")
@@ -51,9 +51,9 @@ section(class="search-result")
 								td(data-th="資歷")
 									span(class="rwd-td") {{working.experience_in_year}} 年
 								td(data-th="薪資")
-									span(class="rwd-td") {{working.salary.amount}} / {{working.salary.type | salary_type_string}}
+									span(class="rwd-td") {{working.salary.amount | formatted_wage_string}} / {{working.salary.type | salary_type_string}}
 								td(data-th="估計時薪")
-									span(class="rwd-td") {{working.estimated_hourly_wage}} 元
+									span(class="rwd-td") {{working.estimated_hourly_wage | formatted_wage_string}} 元
 								td(data-th="資料時間")
 									span(class="rwd-td")
 										span(class="data-time") {{working.data_time.year}} / {{working.data_time.month}}

@@ -245,7 +245,7 @@ Vue.filter('salary_type_string', value => {
 });
 
 Vue.filter('formatted_wage_string', value => {
-    if(typeof value == 'number') return parseFloat(value).toFixed(2).replace(/\.?0*$/g, '');
+    if(typeof value == 'number') return parseFloat(value).toFixed(2).replace(/\.?0*$/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return value;
 });
 
