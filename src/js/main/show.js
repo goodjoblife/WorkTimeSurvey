@@ -33,6 +33,9 @@ const timeAndSalary = Vue.extend({
       this.loadTimeAndSalary(0, searchResultSort);
     },
     scroll_bottom_reach: function() {
+      if (! this.share.is_authed) {
+        return;
+      }
       // we don't want the two loading
       if (this.is_loading) {
         return;
@@ -514,23 +517,35 @@ const userEnabledApp = new Vue({
  * Init Part
  */
 
+$(window).on('scroll', function() {
+  if ($(window).scrollTop() + window.innerHeight >= $(document).height() - 100) {
+    if (app.currentView === "timeAndSalary") {
+      app.$broadcast("scroll_bottom_reach");
+    }
+  }
+});
+
 // wait the event trigger done
 router.init(["/"]);
 
 function testSearchPermission(){
   const access_token = FB.getAccessToken();
-  $.ajax({
-    url: WTS.constants.backendURL + "me/permissions/search",
-    data: {access_token},
-    dataType: "json",
-  }).then(response => {
-    const hasSearchPermission = response.hasSearchPermission;
-    if (hasSearchPermission) {
-      show_store.changeAuthState(true);
-    } else {
+  const opt = {
+    params: {
+      access_token,
+    },
+  };
+  return Vue.http.get(`${WTS.constants.backendURL}me/permissions/search`, opt)
+    .then(response => response.json())
+    .then(response => {
+      const hasSearchPermission = response.hasSearchPermission;
+      if (hasSearchPermission) {
+        show_store.changeAuthState(true);
+      } else {
+        show_store.changeAuthState(false);
+      }
+    })
+    .catch(err => {
       show_store.changeAuthState(false);
-    }
-  }).catch((jqXHR, textStatus, errorThrown) => {
-    // TODO
-  });
+    });
 }
