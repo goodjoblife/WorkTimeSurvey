@@ -13,7 +13,11 @@ window.fbAsyncInit = () => {
   });
 
   FB.getLoginStatus((response) => {
-    loginStatusChange(response);
+    if (response.status === 'connected') {
+      loginStatusChange(true);
+    } else {
+      loginStatusChange(false);
+    }
   });
 };
 
@@ -31,43 +35,38 @@ $('.btn-login').on('click', function() {
   FB.login((response) => {
     console.log('user login...')
     if (response.authResponse) {
-      FB.api('/me', (childResponse) => {
-        changeLoginBlock(true, childResponse.name);
-      });
+      loginStatusChange(true);
     } else {
-      changeLoginBlock(false, '');
       console.log('User cancelled login or did not fully authorize.');
+      loginStatusChange(false);
     }
   });
 });
 
-const loginStatusChange = (response) => {
-  if (response.status === 'connected') {
+const loginStatusChange = (is_loggined) => {
+  if (is_loggined) {
     FB.api('/me', (childResponse) => {
       changeLoginBlock(true, childResponse.name);
     });
-    if(typeof testSearchPermission == 'function'){
-        testSearchPermission();
+    if (typeof show_store !== 'undefined') {
+      show_store.changeLogginedState(true);
     }
   } else {
-    changeLoginBlock(false, '');
+    if (typeof show_store !== 'undefined') {
+      show_store.changeLogginedState(false);
+    }
+    changeLoginBlock(false;
   }
 }
 
 const changeLoginBlock = (status, name) => {
-  const $not_login = $('.dashed-line-box .not-login');
-  const $logined = $('.dashed-line-box .logined');
   const $user_name = $('.header__user .name');
   const $button = $('.btn-login');
 
   if (status === false) {
-    $not_login.removeClass('hide');
-    $logined.addClass('hide');
     $button.removeClass('hide');
     $user_name.addClass('hide');
   } else if (status === true) {
-    $logined.removeClass('hide');
-    $not_login.addClass('hide');
     $button.addClass('hide');
     $user_name.removeClass('hide');
     $user_name.text(name);

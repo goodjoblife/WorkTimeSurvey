@@ -14,25 +14,27 @@ block content
 				a(class="btn-s btn-yellow-line" href="#/sort/salary-descending") <svg role="img" class="icon-sort"><use xlink:href="#icon-sort"></use></svg>時薪排行
 			img(src="/assets/img/workers.jpg" class="page-banner__image")
 	div(class="wrapper-m")
-		section(id="user-enabled")
+		section(id="debug" v-show="share.debug")
+			code {{ share | json }}
+		section(id="user-enabled" v-show="! share.is_authed")
 			div(class="dashed-line-box")
-				div(class="not-login hide")
+				div(class="not-login" v-bind:class="{ 'hide': share.is_loggined }")
 					| 哈囉！請先
 					button(class="btn-login") <svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg> 登入
 					| 才能查看完整薪資工時資訊喔
-				div(class="logined hide")
+				div(class="logined" v-bind:class="{ 'hide': !share.is_loggined }")
 					| 請留下至少一筆資料，才能查看完整薪資、工時資訊。
 					br
 					| 沒有工作經驗嗎？沒有關係，分享以下連結給朋友，朋友留了資料，系統將開放您完整權限。
 					div(class="share-link")
 						div(class="link")
-							input(type="text" value="https://worktime.goodjob.life/?share=wutingy" id="user-link")
+							input(type="text" v-model="user_link" id="user-link")
 						| <svg role="img" class="icon-form-checked" id="user-link-icon"><use xlink:href="#form-checked" ></use></svg>
 						button(class="button" data-copytarget="#user-link") 複製連結
 				div(class="dashed-line-box__buttons")
 					a(class="btn-m btn-black" href="/#section-form") 馬上留資料
-					div(class="btn-m btn-yellow" id="share-rec-url") fb 貼文分享
-		section(class="section show-searchbar", id="section-search", :class="{ 'is-disabled':  !user_enabled}")
+					div(class="btn-m btn-yellow" id="share-rec-url" v-on:click="shareLink" v-show="user_link") fb 貼文分享
+		section(class="section show-searchbar", id="section-search", :class="{ 'is-disabled': !share.is_authed}")
 			div(class="show-searchbar__type")
 				div(class="form-group form-group--inline")
 					div(class="radio-form")
