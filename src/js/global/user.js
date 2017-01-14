@@ -55,7 +55,7 @@ const loginStatusChange = (is_loggined) => {
     if (typeof show_store !== 'undefined') {
       show_store.changeLogginedState(false);
     }
-    changeLoginBlock(false;
+    changeLoginBlock(false);
   }
 }
 
