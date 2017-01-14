@@ -244,6 +244,11 @@ Vue.filter('salary_type_string', value => {
   return "";
 });
 
+Vue.filter('formatted_wage_string', value => {
+    if(typeof value == 'number') return parseFloat(value).toFixed(2).replace(/\.?0*$/g, '');
+    return value;
+});
+
 const app = new Vue({
   el: "#app",
   components: {
