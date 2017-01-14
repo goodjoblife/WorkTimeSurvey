@@ -263,16 +263,12 @@ const checkFormField = () => {
   }
 };
 
-function getParameterByName(name, url) {
-    if (!url) {
-      url = window.location.href;
-    }
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
+function getRecommendationString(url = window.location.href) {
+  const regex = new RegExp("[?&]rec_by(=([^&#]*)|&|#|$)");
+  const results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
 const sendFormData = () => {
@@ -296,7 +292,7 @@ const sendFormData = () => {
   delete data.company_query;
 
   //get recommendation_string if it exists
-  const rec_str = getParameterByName('rec_by');
+  const rec_str = getRecommendationString();
   if(rec_str !== null){
     data.recommendation_string = rec_str;
   }
