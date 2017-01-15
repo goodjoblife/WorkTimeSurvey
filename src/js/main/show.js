@@ -244,6 +244,13 @@ Vue.filter('salary_type_string', value => {
   return "";
 });
 
+//Attribution: http://stackoverflow.com/a/29249277/4844397  
+//http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+Vue.filter('formatted_wage_string', value => {
+    if(typeof value == 'number') return parseFloat(value).toFixed(2).replace(/\.?0*$/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return value;
+});
+
 const app = new Vue({
   el: "#app",
   components: {
