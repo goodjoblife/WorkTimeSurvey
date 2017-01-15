@@ -1,17 +1,22 @@
-const show_store = {
+/*
+ * A store to save the state.
+ *
+ * any change of state should by methods here, and reflect to the downstream
+ */
+const showjs_store = {
   state: {
     is_loggined: false,
     is_authed: false,
   },
   changeLogginedState: function(is_loggined) {
-    show_store.state.is_loggined = is_loggined;
+    showjs_store.state.is_loggined = is_loggined;
 
-    if (show_store.state.is_loggined === true) {
+    if (showjs_store.state.is_loggined === true) {
       testSearchPermission();
     }
   },
   changeAuthState: function(is_authed) {
-    show_store.state.is_authed = is_authed;
+    showjs_store.state.is_authed = is_authed;
   },
 };
 
@@ -25,7 +30,7 @@ const timeAndSalary = Vue.extend({
       total: 0,
       is_loading: false,
       search_result_sort: "",
-      share: show_store.state,
+      share: showjs_store.state,
     };
   },
   events: {
@@ -273,7 +278,7 @@ const app = new Vue({
 const searchBarApp = new Vue({
   el: "#section-search",
   data: {
-    share: show_store.state,
+    share: showjs_store.state,
     search_type: "by-company",
     keyword: "",
     search_result_sort: {},
@@ -420,7 +425,7 @@ $(function(){
 const userEnabledApp = new Vue({
   el: "#user-enabled",
   data: {
-    share: show_store.state,
+    share: showjs_store.state,
     user_link: null,
   },
   watch: {
@@ -540,12 +545,12 @@ function testSearchPermission(){
     .then(response => {
       const hasSearchPermission = response.hasSearchPermission;
       if (hasSearchPermission) {
-        show_store.changeAuthState(true);
+        showjs_store.changeAuthState(true);
       } else {
-        show_store.changeAuthState(false);
+        showjs_store.changeAuthState(false);
       }
     })
     .catch(err => {
-      show_store.changeAuthState(false);
+      showjs_store.changeAuthState(false);
     });
 }

@@ -48,12 +48,12 @@ const loginStatusChange = (is_loggined) => {
     FB.api('/me', (childResponse) => {
       changeLoginBlock(true, childResponse.name);
     });
-    if (typeof show_store !== 'undefined') {
-      show_store.changeLogginedState(true);
+    if (typeof showjs_store !== 'undefined') {
+      showjs_store.changeLogginedState(true);
     }
   } else {
-    if (typeof show_store !== 'undefined') {
-      show_store.changeLogginedState(false);
+    if (typeof showjs_store !== 'undefined') {
+      showjs_store.changeLogginedState(false);
     }
     changeLoginBlock(false);
   }
