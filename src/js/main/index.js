@@ -263,6 +263,11 @@ const checkFormField = () => {
   }
 };
 
+/*
+ * Get the recommendation string from url
+ *
+ * Adapted from http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+ */
 function getRecommendationString(url = window.location.href) {
   const regex = new RegExp("[?&]rec_by(=([^&#]*)|&|#|$)");
   const results = regex.exec(url);
