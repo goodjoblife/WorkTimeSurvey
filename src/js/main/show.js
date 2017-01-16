@@ -40,8 +40,7 @@ const timeAndSalary = Vue.extend({
       const sort_by = searchResultSort.sort_by;
       const order = searchResultSort.order;
 
-      this.getData(page, sort_by, order).then(res => {
-        const data = res.json();
+      this.getData(page, sort_by, order).then(res => res.json()).then(data => {
         this.data = data;
         this.total = data.total;
         this.is_loading = false;
