@@ -103,9 +103,18 @@ const timeAndSalary = Vue.extend({
       };
       return this.$http.get(`${WTS.constants.backendURL}workings`, opt);
     },
-    sortOnChange: function(selected) {
-      const sortBy = JSON.parse(selected).sort_by.replace(/_/g, "-") + "-" + JSON.parse(selected).order;
-      router.setRoute(`/sort/${sortBy}`);
+    sortOnChange: function() {
+      const routes = {
+        "created_at_descending": "/latest",
+        "created_at_ascending": "/sort/time-asc",
+        "week_work_time_descending": "/work-time-dashboard",
+        "week_work_time_ascending": "/sort/week-time-asc",
+        "estimated_hourly_wage_descending": "/salary-dashboard",
+        "estimated_hourly_wage_ascending": "/sort/salary-asc",
+      };
+
+      const key = `${this.search_result_sort.sort_by}_${this.search_result_sort.order}`;
+      router.setRoute(routes[key]);
     },
   },
   computed: {
