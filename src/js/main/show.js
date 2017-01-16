@@ -1,7 +1,9 @@
 /*
  * A store to save the state.
  *
- * any change of state should by methods here, and reflect to the downstream
+ * store 提供 methods 來改動狀態(state)，並觸發相關的下游來接收狀態，
+ * 任何的狀態改變都需要透過這裡的 methods 來進行（除了 Routing 除外）
+ *
  */
 const showjs_store = {
   state: {
