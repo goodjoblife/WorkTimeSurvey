@@ -51,7 +51,7 @@ const loginStatusChange = (is_loggined) => {
     if (typeof showjs_store !== 'undefined') {
       showjs_store.changeLogginedState(true);
     }
-    if(statusChangeCallback !== undefined){
+    if(typeof statusChangeCallback !== 'undefined'){
       statusChangeCallback(is_loggined);
     }
   } else {
