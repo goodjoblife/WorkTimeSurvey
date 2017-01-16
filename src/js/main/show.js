@@ -8,18 +8,30 @@
  */
 const showjs_store = {
   state: {
-    is_logged_in: false,
-    is_authed: false,
+    is_logged_in: null,
+    is_authed: null,
+    current_view: null,
+    view_params: {},
   },
   changeLoggedInState: function(is_logged_in) {
     showjs_store.state.is_logged_in = is_logged_in;
 
     if (showjs_store.state.is_logged_in === true) {
       testSearchPermission();
+    } else if (showjs_store.state.is_logged_in === false) {
+      showjs_store.state.is_authed = false;
     }
+
+    app.$emit("state-change");
   },
   changeAuthState: function(is_authed) {
     showjs_store.state.is_authed = is_authed;
+    app.$emit("state-change");
+  },
+  changeViewState: function(new_view, new_params) {
+    showjs_store.state.current_view = new_view;
+    showjs_store.state.view_params = new_params;
+    app.$emit("state-change");
   },
 };
 
@@ -32,13 +44,19 @@ const timeAndSalary = Vue.extend({
       data: [],
       total: 0,
       is_loading: false,
-      search_result_sort: "",
+      search_result_sort: {},
       share: showjs_store.state,
     };
   },
   events: {
-    load_time_and_salary: function(searchResultSort) {
-      this.loadTimeAndSalary(0, searchResultSort);
+    load_time_and_salary: function() {
+      this.search_result_sort = {
+        sort_by: this.share.view_params.sort_by,
+        order: this.share.view_params.order,
+      };
+      this.current_page = 0;
+
+      this.loadTimeAndSalary(0, this.share.view_params);
     },
     scroll_bottom_reach: function() {
       if (! this.share.is_authed) {
@@ -55,15 +73,13 @@ const timeAndSalary = Vue.extend({
   methods: {
     loadMorePage: function() {
       this.current_page += 1;
-      const searchResultSort = JSON.parse(this.search_result_sort);
-      this.loadTimeAndSalary(this.current_page, searchResultSort);
+      this.loadTimeAndSalary(this.current_page, this.search_result_sort);
     },
     loadTimeAndSalary: function(page, searchResultSort = {
       "sort_by": "created_at",
       "order": "descending",
     }) {
       this.is_loading = true;
-      this.search_result_sort = JSON.stringify(searchResultSort);
 
       const sort_by = searchResultSort.sort_by;
       const order = searchResultSort.order;
@@ -94,8 +110,6 @@ const timeAndSalary = Vue.extend({
   },
   computed: {
     workingsList: function() {
-      const sortBy = JSON.parse(this.search_result_sort).group_sort_by.replace(/_/g, "-") + "-" + JSON.parse(this.search_result_sort).order;
-      router.setRoute(`/sort/${sortBy}`);
       return this.share.is_authed ? this.workings : this.workings.slice(0, 10);
     },
   },
@@ -109,11 +123,18 @@ const searchAndGroupByJobTitle = Vue.extend({
       data: [],
       is_loading: false,
       search_result_sort: "",
+      share: showjs_store.state,
     };
   },
   events: {
-    load_search_and_group_by_job_title: function(job_title_keyword, searchResultSort) {
-      this.loadData(job_title_keyword, searchResultSort);
+    load_search_and_group_by_job_title: function() {
+      this.search_result_sort = {
+        group_sort_by: this.share.view_params.group_sort_by,
+        order: this.share.view_params.order,
+      };
+      this.job_title_keyword = this.share.view_params.job_title;
+
+      this.loadData(this.job_title_keyword, this.search_result_sort);
     },
     data_loaded: function() {
       if (this.data.length === 1) {
@@ -124,10 +145,8 @@ const searchAndGroupByJobTitle = Vue.extend({
   },
   methods: {
     loadData: function(job_title_keyword, searchResultSort) {
-      this.job_title_keyword = job_title_keyword;
       this.data = [];
       this.is_loading = true;
-      this.search_result_sort = JSON.stringify(searchResultSort);
 
       const group_sort_by = searchResultSort.group_sort_by;
       const order = searchResultSort.order;
@@ -166,11 +185,18 @@ const searchAndGroupByCompany = Vue.extend({
       data: [],
       is_loading: false,
       search_result_sort: "",
+      share: showjs_store.state,
     };
   },
   events: {
     load_search_and_group_by_company: function(company_keyword, searchResultSort) {
-      this.loadData(company_keyword, searchResultSort);
+      this.search_result_sort = {
+        group_sort_by: this.share.view_params.group_sort_by,
+        order: this.share.view_params.order,
+      };
+      this.company_keyword = this.share.view_params.company;
+
+      this.loadData(this.company_keyword, this.search_result_sort);
     },
     data_loaded: function() {
       if (this.data.length === 1) {
@@ -181,10 +207,8 @@ const searchAndGroupByCompany = Vue.extend({
   },
   methods: {
     loadData: function(company_keyword, searchResultSort) {
-      this.company_keyword = company_keyword;
       this.data = [];
       this.is_loading = true;
-      this.search_result_sort = JSON.stringify(searchResultSort);
 
       const group_sort_by = searchResultSort.group_sort_by;
       const order = searchResultSort.order;
@@ -282,6 +306,25 @@ const app = new Vue({
   },
   data: {
     currentView: null,
+    share: showjs_store.state,
+  },
+  events: {
+    "state-change": function() {
+      this.currentView = this.share.current_view;
+      if (this.currentView == "timeAndSalary") {
+        Vue.nextTick(() => {
+          app.$broadcast("load_time_and_salary");
+        });
+      } else if (this.currentView == "searchAndGroupByJobTitle") {
+        Vue.nextTick(() => {
+          app.$broadcast("load_search_and_group_by_job_title");
+        });
+      } else if (this.currentView == "searchAndGroupByCompany") {
+        Vue.nextTick(() => {
+          app.$broadcast("load_search_and_group_by_company");
+        });
+      }
+    },
   },
 });
 
@@ -337,35 +380,29 @@ const sortByToSearchResultSort = (sortBy, isLatest) => {
 };
 
 const router = Router({
-  "/sort/:sort": {
-    on: sort => {
-      app.currentView = "timeAndSalary";
-      const searchResultSort = sortByToSearchResultSort(sort, true);
-      searchBarApp.setInputInfo("by-company", "", searchResultSort);
-      Vue.nextTick(() => {
-        app.$broadcast("load_time_and_salary", searchResultSort);
+  "/latest": {
+    on: () => {
+      showjs_store.changeViewState("timeAndSalary", {
+        sort_by: "created_at",
+        order: "descending",
       });
     },
   },
-  "/search-by-job-title/:job_title/sort/:sort": {
-    on: (job_title, sort) => {
-      app.currentView = "searchAndGroupByJobTitle";
-      const decodedName = decodeURIComponent(job_title);
-      const searchResultSort = sortByToSearchResultSort(sort, false);
-      searchBarApp.setInputInfo("by-job-title", decodedName, searchResultSort);
-      Vue.nextTick(() => {
-        app.$broadcast("load_search_and_group_by_job_title", decodedName, searchResultSort);
+  "/job-title/:job_title/work-time-dashboard": {
+    on: (job_title) => {
+      showjs_store.changeViewState("searchAndGroupByJobTitle", {
+        job_title: decodeURIComponent(job_title),
+        group_sort_by: "week_work_time",
+        order: "descending",
       });
     },
   },
-  "/search-by-company/:company/sort/:sort": {
-    on: (company, sort) => {
-      app.currentView = "searchAndGroupByCompany";
-      const decodedName = decodeURIComponent(company);
-      const searchResultSort = sortByToSearchResultSort(sort, false);
-      searchBarApp.setInputInfo("by-company", decodedName, searchResultSort);
-      Vue.nextTick(() => {
-        app.$broadcast("load_search_and_group_by_company", decodedName, searchResultSort);
+  "/company/:company/work-time-dashboard": {
+    on: (company) => {
+      showjs_store.changeViewState("searchAndGroupByCompany", {
+        company: decodeURIComponent(company),
+        group_sort_by: "week_work_time",
+        order: "descending",
       });
     },
   },
