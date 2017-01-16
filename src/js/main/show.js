@@ -376,27 +376,6 @@ const searchBarApp = new Vue({
   }
 });
 
-const sortByToSearchResultSort = (sortBy, isLatest) => {
-  const sort = sortBy.split("-");
-  let group_sort_by = "";
-  for (let i = 0; i < sort.length - 1; i++) {
-    group_sort_by += sort[i] + "_";
-  }
-  group_sort_by = group_sort_by.slice(0, -1);
-
-  if (isLatest) {
-    return {
-      sort_by: group_sort_by,
-      order: sort[sort.length - 1],
-    };
-  }
-
-  return {
-    group_sort_by,
-    order: sort[sort.length - 1],
-  };
-};
-
 const router = Router({
   "/latest": {
     on: () => {
