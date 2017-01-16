@@ -362,7 +362,7 @@ $(function(){
             key : request.term,
           },
         };
-        Vue.http.get(url, opt).then(res => {
+        Vue.http.get(url, opt).then(res => res.json()).then(res => {
           const nameList = $.map(res, (item, i) => ({
               value: item._id.name,
               id: item._id.name,
@@ -381,7 +381,7 @@ $(function(){
             key : request.term,
           },
         };
-        Vue.http.get(url, opt).then(res => {
+        Vue.http.get(url, opt).then(res => res.json()).then(res => {
           const nameList = $.map(res, (item, i) => ({
               value: item._id,
               id: item._id,
