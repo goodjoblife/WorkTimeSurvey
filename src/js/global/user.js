@@ -15,6 +15,9 @@ window.fbAsyncInit = () => {
   FB.getLoginStatus((response) => {
     if (response.status === 'connected') {
       loginStatusChange(true);
+      if(statusChangeCallback !== undefined){
+        statusChangeCallback(response);
+      }
     } else {
       loginStatusChange(false);
     }
