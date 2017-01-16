@@ -23,15 +23,18 @@ const showjs_store = {
     }
 
     app.$emit("state-change");
+    searchBarApp.$emit("state-change");
   },
   changeAuthState: function(is_authed) {
     showjs_store.state.is_authed = is_authed;
     app.$emit("state-change");
+    searchBarApp.$emit("state-change");
   },
   changeViewState: function(new_view, new_params) {
     showjs_store.state.current_view = new_view;
     showjs_store.state.view_params = new_params;
     app.$emit("state-change");
+    searchBarApp.$emit("state-change");
   },
 };
 
@@ -348,23 +351,29 @@ const searchBarApp = new Vue({
   methods: {
     onSubmit: function() {
       if (this.search_type === "by-company") {
-        router.setRoute(`/search-by-company/${encodeURIComponent(this.keyword)}/sort/week-work-time-descending`);
+        router.setRoute(`/company/${encodeURIComponent(this.keyword)}/work-time-dashboard`);
 
         this.$emit("submit", this.search_type, this.keyword);
       } else if (this.search_type === "by-job-title") {
-        router.setRoute(`/search-by-job-title/${encodeURIComponent(this.keyword)}/sort/estimated-hourly-wage-descending`);
+        router.setRoute(`/job-title/${encodeURIComponent(this.keyword)}/work-time-dashboard`);
 
         this.$emit("submit", this.search_type, this.keyword);
       } else {
-        router.setRoute("/sort/created-at-descending");
+        router.setRoute("/latest");
       }
     },
-    setInputInfo: function(search_type = "by-company", keyword = "", searchResultSort="") {
-      this.search_type = search_type;
-      this.keyword = keyword;
-      this.search_result_sort = searchResultSort;
-    },
   },
+  events: {
+    'state-change': function() {
+      if (this.share.current_view == "searchAndGroupByCompany") {
+        this.search_type = "by-company";
+        this.keyword = this.share.view_params.company;
+      } else if (this.share.current_view == "searchAndGroupByJobTitle") {
+        this.search_type = "by-job-title";
+        this.keyword = this.share.view_params.job_title;
+      }
+    },
+  }
 });
 
 const sortByToSearchResultSort = (sortBy, isLatest) => {
