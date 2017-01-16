@@ -437,8 +437,8 @@ $work_form.on("submitted", (e, result) => {
   showAlert('success', '上傳成功', `您已經上傳 ${queries_count} 次，還有 ${quota - queries_count} 次可以上傳。`, 'go-to-show');
 });
 
-const statusChangeCallback = (response) => {
-  if (response.status == "connected") {
+const statusChangeCallback = (is_loggined) => {
+  if (is_loggined) {
     isFacebookSignedIn = true;
     document.querySelector(".fb-login-word").style.display = "none";
     document.querySelector(".btn-why-facebook-login").style.display = "none";
