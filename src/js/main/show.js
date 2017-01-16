@@ -1,3 +1,27 @@
+/*
+ * A store to save the state.
+ *
+ * store 提供 methods 來改動狀態(state)，並觸發相關的下游來接收狀態，
+ * 任何的狀態改變都需要透過這裡的 methods 來進行（除了 Routing 除外）
+ *
+ */
+const showjs_store = {
+  state: {
+    is_loggined: false,
+    is_authed: false,
+  },
+  changeLogginedState: function(is_loggined) {
+    showjs_store.state.is_loggined = is_loggined;
+
+    if (showjs_store.state.is_loggined === true) {
+      testSearchPermission();
+    }
+  },
+  changeAuthState: function(is_authed) {
+    showjs_store.state.is_authed = is_authed;
+  },
+};
+
 const timeAndSalary = Vue.extend({
   template: "#app-time-and-salary",
   data: function () {
@@ -7,8 +31,8 @@ const timeAndSalary = Vue.extend({
       data: [],
       total: 0,
       is_loading: false,
-      user_enabled: false,
       search_result_sort: "",
+      share: showjs_store.state,
     };
   },
   events: {
@@ -16,15 +40,15 @@ const timeAndSalary = Vue.extend({
       this.loadTimeAndSalary(0, searchResultSort);
     },
     scroll_bottom_reach: function() {
+      if (! this.share.is_authed) {
+        return;
+      }
       // we don't want the two loading
       if (this.is_loading) {
         return;
       }
 
       this.loadMorePage();
-    },
-    change_user_enabled: function(user_enabled){
-      this.changeUserEnabled(user_enabled);
     },
   },
   methods: {
@@ -66,15 +90,12 @@ const timeAndSalary = Vue.extend({
       const sortBy = JSON.parse(selected).sort_by.replace(/_/g, "-") + "-" + JSON.parse(selected).order;
       router.setRoute(`/sort/${sortBy}`);
     },
-    changeUserEnabled: function(user_enabled){
-      this.user_enabled = user_enabled;
-    },
   },
   computed: {
     workingsList: function() {
       const sortBy = JSON.parse(this.search_result_sort).group_sort_by.replace(/_/g, "-") + "-" + JSON.parse(this.search_result_sort).order;
       router.setRoute(`/sort/${sortBy}`);
-      return this.user_enabled ? this.workings : this.workings.slice(0, 10);
+      return this.share.is_authed ? this.workings : this.workings.slice(0, 10);
     },
   },
 });
@@ -266,9 +287,9 @@ const app = new Vue({
 const searchBarApp = new Vue({
   el: "#section-search",
   data: {
+    share: showjs_store.state,
     search_type: "by-company",
     keyword: "",
-    user_enabled: false,
     search_result_sort: {},
   },
   methods: {
@@ -410,6 +431,47 @@ $(function(){
   });
 });
 
+const userEnabledApp = new Vue({
+  el: "#user-enabled",
+  data: {
+    share: showjs_store.state,
+    user_link: null,
+  },
+  watch: {
+    'share.is_loggined': function(new_value) {
+      if (new_value === true) {
+        this.queryRecommendationString();
+      } else {
+        this.user_link = null;
+      }
+    },
+  },
+  methods: {
+    shareLink: function() {
+      FB.ui({
+        method: 'share',
+        display: 'popup',
+        href: this.user_link,
+        quote: "想邀請身邊的朋友們，一起參與【工時透明化運動】！",
+      });
+    },
+    queryRecommendationString: function() {
+      const access_token = FB.getAccessToken();
+      const body = {
+        access_token
+      };
+      return this.$http.post(`${WTS.constants.backendURL}me/recommendations`, body)
+        .then(response => response.json())
+        .then(response => {
+          this.user_link = `${WTS.constants.siteURL}?rec_by=${response.recommendation_string}`;
+        })
+        .catch(err => {
+          this.user_link = null;
+        });
+    },
+  },
+});
+
 //*************************************************
 //
 //  Begin of GA part
@@ -469,60 +531,35 @@ $(function(){
  * Init Part
  */
 
-// user_enabled
-function testSearchPermission(){
-  const access_token = FB.getAccessToken();
-  $.ajax({
-    url: WTS.constants.backendURL + "me/permissions/search",
-    data: {access_token},
-    dataType: "json",
-  }).then(response => {
-    const hasSearchPermission = response.hasSearchPermission;
-    if(hasSearchPermission) changeUserEnabled(true);
-    else{
-      return $.ajax({
-        url: WTS.constants.backendURL + "me/recommendations",
-        method:'POST',
-        data: {access_token},
-        dataType: "json",
-      }).then(response => {
-        const recomm_url =
-            WTS.constants.siteURL + '?rec_by=' + response.recommendation_string;
-        $('#user-link').val(recomm_url);
-
-        $("#share-rec-url").click(function(){
-          FB.ui({
-            method: 'share',
-            display: 'popup',
-            href: recomm_url,
-            quote: "想邀請身邊的朋友們，一起參與【工時透明化運動】！",
-          }, function(response){});
-        });
-      });
+$(window).on('scroll', function() {
+  if ($(window).scrollTop() + window.innerHeight >= $(document).height() - 100) {
+    if (app.currentView === "timeAndSalary") {
+      app.$broadcast("scroll_bottom_reach");
     }
-  }).catch((jqXHR, textStatus, errorThrown) => {
-    // TODO
-  });
-}
-
-function changeUserEnabled(user_enabled){
-  if (user_enabled) {
-    $('#user-enabled').addClass('hide');
-  } else {
-    $('#user-enabled').removeClass('hide');
   }
-  if (user_enabled) {
-    $(window).on('scroll', function() {
-      if ($(window).scrollTop() + window.innerHeight >= $(document).height() - 100) {
-        if (app.currentView === "timeAndSalary") {
-          app.$broadcast("scroll_bottom_reach");
-        }
-      }
-    });
-  }
-  app.$broadcast("change_user_enabled", user_enabled);
-  searchBarApp.user_enabled = user_enabled;
-}
+});
 
 // wait the event trigger done
 router.init(["/"]);
+
+function testSearchPermission(){
+  const access_token = FB.getAccessToken();
+  const opt = {
+    params: {
+      access_token,
+    },
+  };
+  return Vue.http.get(`${WTS.constants.backendURL}me/permissions/search`, opt)
+    .then(response => response.json())
+    .then(response => {
+      const hasSearchPermission = response.hasSearchPermission;
+      if (hasSearchPermission) {
+        showjs_store.changeAuthState(true);
+      } else {
+        showjs_store.changeAuthState(false);
+      }
+    })
+    .catch(err => {
+      showjs_store.changeAuthState(false);
+    });
+}

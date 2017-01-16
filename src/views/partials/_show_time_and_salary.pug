@@ -3,14 +3,14 @@ section(class="search-result")
 	div(class="search-result__result")
 		div(class="search-result__sort")
 			div(class="label") 排序：
-			select(id="" name="" v-model="search_result_sort" v-bind:disabled="!user_enabled" @change="sortOnChange(search_result_sort)")
+			select(id="" name="" v-model="search_result_sort" v-bind:disabled="!share.is_authed" @change="sortOnChange(search_result_sort)")
 				option(value='{"sort_by":"week_work_time","order":"descending"}') 一週平均總工時（高到低）
 				option(value='{"sort_by":"week_work_time","order":"ascending"}') 一週平均總工時（低到高）
 				option(value='{"sort_by":"estimated_hourly_wage","order": "descending"}') 估算時薪（高到低）
 				option(value='{"sort_by":"estimated_hourly_wage","order": "ascending"}') 估算時薪（低到高）
 				option(value='{"sort_by":"created_at","order":"descending"}') 資料時間（高到低）
 				option(value='{"sort_by":"created_at","order":"ascending"}') 資料時間（低到高）
-		table(class="rwd-table latest-table", :class="{ 'is-disabled':  !user_enabled}")
+		table(class="rwd-table latest-table", :class="{ 'is-disabled':  !share.is_authed}")
 			thead
 				tr
 					th(class="col-company") 公司名稱
@@ -49,7 +49,7 @@ section(class="search-result")
 	div(class="search-result__status")
 		div(class="status-loading" v-show="is_loading")
 		div(class="status-no-result" v-show="workings.length == 0 && is_loading === false") 找不到結果
-	section(class="wrapper-m" v-if="!user_enabled")
+	section(class="wrapper-m" v-show="! share.is_authed")
 		div(class="dashed-line-box")
 			div(class="bottom")
 				| 目前僅顯示：10 / {{ total }} 筆
