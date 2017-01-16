@@ -1,3 +1,4 @@
+/* global WTS, FB, ga, $, Vue, Router */
 /*
  * A store to save the state.
  *
