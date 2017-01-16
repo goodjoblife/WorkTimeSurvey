@@ -388,6 +388,46 @@ const router = Router({
       });
     },
   },
+  "/sort/time-asc": {
+    on: () => {
+      showjs_store.changeViewState("timeAndSalary", {
+        sort_by: "created_at",
+        order: "ascending",
+      });
+    },
+  },
+  "/work-time-dashboard": {
+    on: () => {
+      showjs_store.changeViewState("timeAndSalary", {
+        sort_by: "week_work_time",
+        order: "descending",
+      });
+    },
+  },
+  "/sort/work-time-asc": {
+    on: () => {
+      showjs_store.changeViewState("timeAndSalary", {
+        sort_by: "week_work_time",
+        order: "ascending",
+      });
+    },
+  },
+  "/salary-dashboard": {
+    on: () => {
+      showjs_store.changeViewState("timeAndSalary", {
+        sort_by: "estimated_hourly_wage",
+        order: "descending",
+      });
+    },
+  },
+  "/sort/salary-asc": {
+    on: () => {
+      showjs_store.changeViewState("timeAndSalary", {
+        sort_by: "estimated_hourly_wage",
+        order: "ascending",
+      });
+    },
+  },
   "/job-title/:job_title/work-time-dashboard": {
     on: (job_title) => {
       showjs_store.changeViewState("searchAndGroupByJobTitle", {
@@ -406,9 +446,23 @@ const router = Router({
       });
     },
   },
+  // This url is outdated
+  "/search-and-group/by-job-title/(.*)": {
+    on: (job_title) => {
+      job_title = decodeURIComponent(job_title);
+      router.setRoute(`/job-title/${encodeURIComponent(job_title)}/work-time-dashboard`);
+    },
+  },
+  // This url is outdated
+  "/search-and-group/by-company/(.*)": {
+    on: (company) => {
+      company = decodeURIComponent(company);
+      router.setRoute(`/company/${encodeURIComponent(company)}/work-time-dashboard`);
+    },
+  },
 }).configure({
   notfound: () => {
-    router.setRoute(`/sort/created-at-descending`);
+    router.setRoute(`/latest`);
   }
 });
 
