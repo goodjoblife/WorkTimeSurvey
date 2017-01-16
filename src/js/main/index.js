@@ -374,10 +374,12 @@ $work_form.on("submit", function(e) {
     sendFormData();
   } else {
     FB.login((response) => {
-      statusChangeCallback(response);
       if (response.status === "connected") {
+        statusChangeCallback(true);
         sendFormData();
       } else {
+        statusChangeCallback(false);
+
         // enable the form
         $work_form_submit_button.prop("disabled", false);
 
