@@ -8,13 +8,13 @@
  */
 const showjs_store = {
   state: {
-    is_loggined: false,
+    is_logged_in: false,
     is_authed: false,
   },
-  changeLogginedState: function(is_loggined) {
-    showjs_store.state.is_loggined = is_loggined;
+  changeLoggedInState: function(is_logged_in) {
+    showjs_store.state.is_logged_in = is_logged_in;
 
-    if (showjs_store.state.is_loggined === true) {
+    if (showjs_store.state.is_logged_in === true) {
       testSearchPermission();
     }
   },
@@ -439,7 +439,7 @@ const callToShareDataApp = new Vue({
     user_link: null,
   },
   watch: {
-    'share.is_loggined': function(new_value) {
+    'share.is_logged_in': function(new_value) {
       if (new_value === true) {
         this.queryRecommendationString();
       } else {
