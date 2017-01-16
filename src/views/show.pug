@@ -14,7 +14,7 @@ block content
 				a(class="btn-s btn-yellow-line" href="#/sort/salary-descending") <svg role="img" class="icon-sort"><use xlink:href="#icon-sort"></use></svg>時薪排行
 			img(src="/assets/img/workers.jpg" class="page-banner__image")
 	div(class="wrapper-m")
-		section(id="user-enabled" v-show="! share.is_authed")
+		section(id="call-to-share-data" v-show="! share.is_authed")
 			div(class="dashed-line-box")
 				div(class="not-login" v-bind:class="{ 'hide': share.is_loggined }")
 					| 哈囉！請先

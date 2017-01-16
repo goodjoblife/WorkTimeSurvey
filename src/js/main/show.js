@@ -431,8 +431,8 @@ $(function(){
   });
 });
 
-const userEnabledApp = new Vue({
-  el: "#user-enabled",
+const callToShareDataApp = new Vue({
+  el: "#call-to-share-data",
   data: {
     share: showjs_store.state,
     user_link: null,
