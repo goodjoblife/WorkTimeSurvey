@@ -7,19 +7,24 @@
  *
  */
 const showjs_store = {
+  has_tried: false,
   state: {
     is_logged_in: false,
     is_authed: false,
   },
   changeLoggedInState: function(is_logged_in) {
+    showjs_store.has_tried = true;
     showjs_store.state.is_logged_in = is_logged_in;
 
     if (showjs_store.state.is_logged_in === true) {
       testSearchPermission();
+    } else {
+      testRedirectToUnauthedView();
     }
   },
   changeAuthState: function(is_authed) {
     showjs_store.state.is_authed = is_authed;
+    testRedirectToUnauthedView();
   },
 };
 
@@ -345,6 +350,7 @@ const router = Router({
       Vue.nextTick(() => {
         app.$broadcast("load_time_and_salary", searchResultSort);
       });
+      testRedirectToUnauthedView();
     },
   },
   "/search-by-job-title/:job_title/sort/:sort": {
@@ -356,6 +362,7 @@ const router = Router({
       Vue.nextTick(() => {
         app.$broadcast("load_search_and_group_by_job_title", decodedName, searchResultSort);
       });
+      testRedirectToUnauthedView();
     },
   },
   "/search-by-company/:company/sort/:sort": {
@@ -367,6 +374,7 @@ const router = Router({
       Vue.nextTick(() => {
         app.$broadcast("load_search_and_group_by_company", decodedName, searchResultSort);
       });
+      testRedirectToUnauthedView();
     },
   },
 }).configure({
@@ -563,4 +571,12 @@ function testSearchPermission(){
     .catch(err => {
       showjs_store.changeAuthState(false);
     });
+}
+
+function testRedirectToUnauthedView(){
+if( showjs_store.has_tried && !showjs_store.state.is_authed
+    && (searchBarApp.search_type !== 'by-company' ||
+      searchBarApp.search_result_sort.sort_by !== 'created_at') ){
+    window.location = 'show.html';
+  }
 }
