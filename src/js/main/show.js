@@ -574,7 +574,7 @@ function testSearchPermission(){
 }
 
 function testRedirectToUnauthedView(){
-if( showjs_store.has_tried && !showjs_store.state.is_authed
+  if( showjs_store.has_tried && !showjs_store.state.is_authed
     && (searchBarApp.search_type !== 'by-company' ||
       searchBarApp.search_result_sort.sort_by !== 'created_at') ){
     window.location = 'show.html';
