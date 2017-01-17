@@ -385,39 +385,39 @@ $(function(){
     source: function (request, response) {
       if(vue.search_type === "by-company") {
         $input.trigger("company-query-autocomplete-search", request.term);
-        $.ajax({
-          url: WTS.constants.backendURL + "workings/companies/search",
-          data: {
+        const url = `${WTS.constants.backendURL}workings/companies/search`;
+        const opt = {
+          params: {
             key : request.term,
           },
-          dataType: "json",
-        }).done(function(res) {
+        };
+        Vue.http.get(url, opt).then(res => res.json()).then(res => {
           const nameList = $.map(res, (item, i) => ({
               value: item._id.name,
               id: item._id.name,
             })
           );
           response(nameList);
-        }).fail(function( jqXHR, textStatus ) {
+        }).catch(err => {
           response([]);
         });
       }
       else if(vue.search_type === "by-job-title") {
         $input.trigger("jot-title-query-autocomplete-search", request.term);
-        $.ajax({
-          url: WTS.constants.backendURL + "workings/jobs/search",
-          data: {
+        const url = `${WTS.constants.backendURL}workings/jobs/search`;
+        const opt = {
+          params: {
             key : request.term,
           },
-          dataType: "json",
-        }).done(function(res) {
-            const nameList = $.map(res, (item, i) => ({
-                value: item._id,
-                id: item._id,
-              })
-            );
-            response(nameList);
-        }).fail(function(jqXHR, textStatus) {
+        };
+        Vue.http.get(url, opt).then(res => res.json()).then(res => {
+          const nameList = $.map(res, (item, i) => ({
+              value: item._id,
+              id: item._id,
+            })
+          );
+          response(nameList);
+        }).catch(err => {
           response([]);
         });
       }
