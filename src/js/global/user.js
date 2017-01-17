@@ -15,6 +15,9 @@ window.fbAsyncInit = () => {
   FB.getLoginStatus((response) => {
     if (response.status === 'connected') {
       loginStatusChange(true);
+      if(statusChangeCallback !== undefined){
+        statusChangeCallback(response);
+      }
     } else {
       loginStatusChange(false);
     }
@@ -43,20 +46,20 @@ $('.btn-login').on('click', function() {
   });
 });
 
-const loginStatusChange = (is_loggined) => {
-  if (is_loggined) {
+const loginStatusChange = (is_logged_in) => {
+  if (is_logged_in) {
     FB.api('/me', (childResponse) => {
       changeLoginBlock(true, childResponse.name);
     });
     if (typeof showjs_store !== 'undefined') {
-      showjs_store.changeLogginedState(true);
+      showjs_store.changeLoggedInState(true);
     }
     if(typeof statusChangeCallback !== 'undefined'){
       statusChangeCallback(is_loggined);
     }
   } else {
     if (typeof showjs_store !== 'undefined') {
-      showjs_store.changeLogginedState(false);
+      showjs_store.changeLoggedInState(false);
     }
     changeLoginBlock(false);
   }

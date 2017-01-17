@@ -1,3 +1,4 @@
+/* global WTS, FB, ga, $, Vue, Router */
 /*
  * A store to save the state.
  *
@@ -7,13 +8,13 @@
  */
 const showjs_store = {
   state: {
-    is_loggined: false,
+    is_logged_in: false,
     is_authed: false,
   },
-  changeLogginedState: function(is_loggined) {
-    showjs_store.state.is_loggined = is_loggined;
+  changeLoggedInState: function(is_logged_in) {
+    showjs_store.state.is_logged_in = is_logged_in;
 
-    if (showjs_store.state.is_loggined === true) {
+    if (showjs_store.state.is_logged_in === true) {
       testSearchPermission();
     }
   },
@@ -67,9 +68,9 @@ const timeAndSalary = Vue.extend({
       const sort_by = searchResultSort.sort_by;
       const order = searchResultSort.order;
 
-      this.getData(page, sort_by, order).then(res => {
-        this.data = res.data;
-        this.total = res.data.total;
+      this.getData(page, sort_by, order).then(res => res.json()).then(data => {
+        this.data = data;
+        this.total = data.total;
         this.is_loading = false;
       }, err => {
         this.is_loading = false;
@@ -384,39 +385,39 @@ $(function(){
     source: function (request, response) {
       if(vue.search_type === "by-company") {
         $input.trigger("company-query-autocomplete-search", request.term);
-        $.ajax({
-          url: WTS.constants.backendURL + "workings/companies/search",
-          data: {
+        const url = `${WTS.constants.backendURL}workings/companies/search`;
+        const opt = {
+          params: {
             key : request.term,
           },
-          dataType: "json",
-        }).done(function(res) {
+        };
+        Vue.http.get(url, opt).then(res => res.json()).then(res => {
           const nameList = $.map(res, (item, i) => ({
               value: item._id.name,
               id: item._id.name,
             })
           );
           response(nameList);
-        }).fail(function( jqXHR, textStatus ) {
+        }).catch(err => {
           response([]);
         });
       }
       else if(vue.search_type === "by-job-title") {
         $input.trigger("jot-title-query-autocomplete-search", request.term);
-        $.ajax({
-          url: WTS.constants.backendURL + "workings/jobs/search",
-          data: {
+        const url = `${WTS.constants.backendURL}workings/jobs/search`;
+        const opt = {
+          params: {
             key : request.term,
           },
-          dataType: "json",
-        }).done(function(res) {
-            const nameList = $.map(res, (item, i) => ({
-                value: item._id,
-                id: item._id,
-              })
-            );
-            response(nameList);
-        }).fail(function(jqXHR, textStatus) {
+        };
+        Vue.http.get(url, opt).then(res => res.json()).then(res => {
+          const nameList = $.map(res, (item, i) => ({
+              value: item._id,
+              id: item._id,
+            })
+          );
+          response(nameList);
+        }).catch(err => {
           response([]);
         });
       }
@@ -431,14 +432,14 @@ $(function(){
   });
 });
 
-const userEnabledApp = new Vue({
-  el: "#user-enabled",
+const callToShareDataApp = new Vue({
+  el: "#call-to-share-data",
   data: {
     share: showjs_store.state,
     user_link: null,
   },
   watch: {
-    'share.is_loggined': function(new_value) {
+    'share.is_logged_in': function(new_value) {
       if (new_value === true) {
         this.queryRecommendationString();
       } else {
