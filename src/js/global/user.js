@@ -16,7 +16,7 @@ window.fbAsyncInit = () => {
     if (response.status === 'connected') {
       loginStatusChange(true);
       if(statusChangeCallback !== undefined){
-        statusChangeCallback(response);
+        statusChangeCallback(true);
       }
     } else {
       loginStatusChange(false);
@@ -55,7 +55,7 @@ const loginStatusChange = (is_logged_in) => {
       showjs_store.changeLoggedInState(true);
     }
     if(typeof statusChangeCallback !== 'undefined'){
-      statusChangeCallback(is_loggined);
+      statusChangeCallback(is_logged_in);
     }
   } else {
     if (typeof showjs_store !== 'undefined') {
