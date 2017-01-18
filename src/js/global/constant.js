@@ -1,5 +1,5 @@
 window.WTS = window.WTS || {};
 WTS.constants = {
-  backendURL: 'http://wts-test.markchen.cc/',
+  backendURL: 'https://tranquil-fortress-92731.herokuapp.com/',
   siteURL: 'https://worktime.goodjob.life/',
 };
