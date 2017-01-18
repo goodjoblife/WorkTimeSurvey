@@ -44,9 +44,11 @@ const timeAndSalary = Vue.extend({
     return {
       // current page loaded
       current_page: 0,
-      data: [],
+      // 薪時資訊
+      time_and_salary: [],
       total: 0,
       is_loading: false,
+      // 選單的內部狀態
       search_result_sort: {},
       share: showjs_store.state,
     };
@@ -59,7 +61,26 @@ const timeAndSalary = Vue.extend({
       };
       this.current_page = 0;
 
-      this.loadTimeAndSalary(0, this.share.view_params);
+      // 權限未確認狀態，保持原樣
+      if (this.share.is_authed === null) {
+        return;
+      }
+
+      // 有查詢權限
+      if (this.share.is_authed === true) {
+        this.loadTimeAndSalary(0);
+        return;
+      }
+
+      // 無查詢權限，僅允許 最新薪時，其餘轉址
+      if (this.share.is_authed === false) {
+        if (this.share.view_params.sort_by === "created_at" && this.share.view_params.order === "descending") {
+          this.loadTimeAndSalary(0);
+          return;
+        }
+        router.setRoute("/latest");
+        return;
+      }
     },
     scroll_bottom_reach: function() {
       if (! this.share.is_authed) {
@@ -75,36 +96,41 @@ const timeAndSalary = Vue.extend({
   },
   methods: {
     loadMorePage: function() {
-      this.current_page += 1;
-      this.loadTimeAndSalary(this.current_page, this.search_result_sort);
+      this.loadTimeAndSalary(this.current_page + 1);
     },
-    loadTimeAndSalary: function(page, searchResultSort = {
-      "sort_by": "created_at",
-      "order": "descending",
-    }) {
+    loadTimeAndSalary: function(page) {
       this.is_loading = true;
 
-      const sort_by = searchResultSort.sort_by;
-      const order = searchResultSort.order;
+      const limit = 25;
+      const opt = {
+        params: {
+          sort_by: this.share.view_params.sort_by,
+          order: this.share.view_params.order,
+          page,
+          limit,
+          access_token: (this.share.is_authed === true && typeof FB !== 'undefined') ? FB.getAuthResponse().accessToken : undefined,
+        },
+      };
 
-      this.getData(page, sort_by, order).then(res => res.json()).then(data => {
-        this.data = data;
+      this.$http.get(`${WTS.constants.backendURL}workings`, opt).then(res => res.json()).then(data => {
+        // 當讀取的是第 0 頁，代表資料要被取代
+        if (page === 0) {
+          this.time_and_salary = data.time_and_salary;
+        } else {
+          this.time_and_salary = this.time_and_salary.concat(data.time_and_salary);
+        }
+        // 這個只是讓 current_page 不要一直加上去（但不影響功能）
+        if (data.time_and_salary.length === 0) {
+          this.current_page;
+        } else {
+          this.current_page = page;
+        }
         this.total = data.total;
         this.is_loading = false;
       }, err => {
         this.is_loading = false;
+        this.current_page;
       });
-    },
-    getData: function(page, sort_by, order) {
-      const opt = {
-        params: {
-          sort_by,
-          order,
-          page,
-          limit: 25,
-        },
-      };
-      return this.$http.get(`${WTS.constants.backendURL}workings`, opt);
     },
     sortOnChange: function() {
       const routes = {
@@ -118,11 +144,6 @@ const timeAndSalary = Vue.extend({
 
       const key = `${this.search_result_sort.sort_by}_${this.search_result_sort.order}`;
       router.setRoute(routes[key]);
-    },
-  },
-  computed: {
-    workingsList: function() {
-      return this.share.is_authed ? this.workings : this.workings.slice(0, 10);
     },
   },
 });
