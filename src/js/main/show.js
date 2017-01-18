@@ -33,8 +33,6 @@ const showjs_store = {
   changeViewState: function(new_view, new_params) {
     showjs_store.state.current_view = new_view;
     showjs_store.state.view_params = new_params;
-    console.log(showjs_store.state.current_view);
-    console.log(showjs_store.state.view_params);
     app.$emit("state-change");
     searchBarApp.$emit("state-change");
   },
@@ -208,15 +206,13 @@ const searchAndGroupByJobTitle = Vue.extend({
     sortOnChange: function() {
       const routes = {
         "week_work_time_descending": "/work-time-dashboard",
-        "week_work_time_ascending": "/sort/week-time-asc",
+        "week_work_time_ascending": "/sort/work-time-asc",
         "estimated_hourly_wage_descending": "/salary-dashboard",
         "estimated_hourly_wage_ascending": "/sort/salary-asc",
       };
-      console.log("test");
 
       const key = `${this.search_result_sort.group_sort_by}_${this.search_result_sort.order}`;
-      console.log(key);
-      router.setRoute(routes[key]);
+      router.setRoute(`/job-title/${encodeURIComponent(this.job_title_keyword)}` + routes[key]);
     },
   },
 });
@@ -228,7 +224,7 @@ const searchAndGroupByCompany = Vue.extend({
       company_keyword: null,
       data: [],
       is_loading: false,
-      search_result_sort: "",
+      search_result_sort: {},
       share: showjs_store.state,
     };
   },
@@ -277,9 +273,16 @@ const searchAndGroupByCompany = Vue.extend({
       };
       return this.$http.get(`${WTS.constants.backendURL}workings/search_by/company/group_by/company`, opt);
     },
-    sortOnChange: function(selected) {
-      const sortBy = JSON.parse(selected).group_sort_by.replace(/_/g, "-") + "-" + JSON.parse(selected).order;
-      router.setRoute(`/search-by-company/${encodeURIComponent(this.company_keyword)}/sort/${sortBy}`);
+    sortOnChange: function() {
+      const routes = {
+        "week_work_time_descending": "/work-time-dashboard",
+        "week_work_time_ascending": "/sort/work-time-asc",
+        "estimated_hourly_wage_descending": "/salary-dashboard",
+        "estimated_hourly_wage_ascending": "/sort/salary-asc",
+      };
+
+      const key = `${this.search_result_sort.group_sort_by}_${this.search_result_sort.order}`;
+      router.setRoute(`/company/${encodeURIComponent(this.company_keyword)}` + routes[key]);
     },
   },
 });
