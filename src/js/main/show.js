@@ -137,7 +137,7 @@ const timeAndSalary = Vue.extend({
         "created_at_descending": "/latest",
         "created_at_ascending": "/sort/time-asc",
         "week_work_time_descending": "/work-time-dashboard",
-        "week_work_time_ascending": "/sort/week-time-asc",
+        "week_work_time_ascending": "/sort/work-time-asc",
         "estimated_hourly_wage_descending": "/salary-dashboard",
         "estimated_hourly_wage_ascending": "/sort/salary-asc",
       };
