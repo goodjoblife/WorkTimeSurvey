@@ -31,7 +31,7 @@ window.fbAsyncInit = () => {
 })(document, 'script', 'facebook-jssdk');
 
 
-$('.btn-login').on('click', function() {
+$('body').on('click', '.btn-login', function() {
   FB.login((response) => {
     console.log('user login...')
     if (response.authResponse) {
