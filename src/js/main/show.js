@@ -215,6 +215,7 @@ const searchAndGroupByJobTitle = Vue.extend({
           job_title,
           group_sort_by,
           order,
+          access_token: typeof FB !== 'undefined' ? FB.getAuthResponse().accessToken : undefined,
         },
       };
       return this.$http.get(`${WTS.constants.backendURL}workings/search_by/job_title/group_by/company`, opt);
@@ -301,6 +302,7 @@ const searchAndGroupByCompany = Vue.extend({
           company,
           group_sort_by,
           order,
+          access_token: typeof FB !== 'undefined' ? FB.getAuthResponse().accessToken : undefined,
         },
       };
       return this.$http.get(`${WTS.constants.backendURL}workings/search_by/company/group_by/company`, opt);
