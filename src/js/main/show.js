@@ -44,9 +44,11 @@ const timeAndSalary = Vue.extend({
     return {
       // current page loaded
       current_page: 0,
+      // 薪時資訊
       time_and_salary: [],
       total: 0,
       is_loading: false,
+      // 選單的內部狀態
       search_result_sort: {},
       share: showjs_store.state,
     };
@@ -59,15 +61,18 @@ const timeAndSalary = Vue.extend({
       };
       this.current_page = 0;
 
+      // 權限未確認狀態，保持原樣
       if (this.share.is_authed === null) {
         return;
       }
 
+      // 有查詢權限
       if (this.share.is_authed === true) {
         this.loadTimeAndSalary(0);
         return;
       }
 
+      // 無查詢權限，僅允許 最新薪時，其餘轉址
       if (this.share.is_authed === false) {
         if (this.share.view_params.sort_by === "created_at" && this.share.view_params.order === "descending") {
           this.loadTimeAndSalary(0);
