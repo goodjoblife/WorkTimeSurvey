@@ -7,7 +7,8 @@
  *
  */
 const showjs_store = {
-  has_tried: false,
+  has_tried: false, /* indicates whether FB's immediate login has
+                     * been performed after the page loaded */
   state: {
     is_logged_in: false,
     is_authed: false,
