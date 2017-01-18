@@ -323,7 +323,7 @@ Vue.filter('salary_type_string', value => {
   return "";
 });
 
-//Attribution: http://stackoverflow.com/a/29249277/4844397  
+//Attribution: http://stackoverflow.com/a/29249277/4844397
 //http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 Vue.filter('formatted_wage_string', value => {
     if(typeof value == 'number') return parseFloat(value).toFixed(2).replace(/\.?0*$/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -455,12 +455,66 @@ const router = Router({
       });
     },
   },
+  "/job-title/:job_title/sort/work-time-asc": {
+    on: (job_title) => {
+      showjs_store.changeViewState("searchAndGroupByJobTitle", {
+        job_title: decodeURIComponent(job_title),
+        group_sort_by: "week_work_time",
+        order: "ascending",
+      });
+    },
+  },
+  "/job-title/:job_title/salary-dashboard": {
+    on: (job_title) => {
+      showjs_store.changeViewState("searchAndGroupByJobTitle", {
+        job_title: decodeURIComponent(job_title),
+        group_sort_by: "estimated_hourly_wage",
+        order: "descending",
+      });
+    },
+  },
+  "/job-title/:job_title/sort/salary-asc": {
+    on: (job_title) => {
+      showjs_store.changeViewState("searchAndGroupByJobTitle", {
+        job_title: decodeURIComponent(job_title),
+        group_sort_by: "estimated_hourly_wage",
+        order: "ascending",
+      });
+    },
+  },
   "/company/:company/work-time-dashboard": {
     on: (company) => {
       showjs_store.changeViewState("searchAndGroupByCompany", {
         company: decodeURIComponent(company),
         group_sort_by: "week_work_time",
         order: "descending",
+      });
+    },
+  },
+  "/company/:company/sort/work-time-asc": {
+    on: (company) => {
+      showjs_store.changeViewState("searchAndGroupByCompany", {
+        company: decodeURIComponent(company),
+        group_sort_by: "week_work_time",
+        order: "ascending",
+      });
+    },
+  },
+  "/company/:company/salary-dashboard": {
+    on: (company) => {
+      showjs_store.changeViewState("searchAndGroupByCompany", {
+        company: decodeURIComponent(company),
+        group_sort_by: "estimated_hourly_wage",
+        order: "descending",
+      });
+    },
+  },
+  "/company/:company/sort/salary-asc": {
+    on: (company) => {
+      showjs_store.changeViewState("searchAndGroupByCompany", {
+        company: decodeURIComponent(company),
+        group_sort_by: "estimated_hourly_wage",
+        order: "ascending",
       });
     },
   },
