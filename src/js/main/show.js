@@ -252,6 +252,7 @@ const searchAndGroupByCompany = Vue.extend({
       // 無查詢權限，僅允許 最新薪時，其餘轉址
       if (this.share.is_authed === false) {
         router.setRoute("/latest");
+        return;
       }
 
       this.search_result_sort = {
