@@ -161,6 +161,22 @@ const searchAndGroupByJobTitle = Vue.extend({
   },
   events: {
     load_search_and_group_by_job_title: function() {
+      // 權限未確認狀態，保持原樣
+      if (this.share.is_authed === null) {
+        return;
+      }
+
+      // 有查詢權限
+      if (this.share.is_authed === true) {
+        return;
+      }
+
+      // 無查詢權限，僅允許 最新薪時，其餘轉址
+      if (this.share.is_authed === false) {
+        router.setRoute("/latest");
+        return;
+      }
+
       this.search_result_sort = {
         group_sort_by: this.share.view_params.group_sort_by,
         order: this.share.view_params.order,
@@ -223,6 +239,22 @@ const searchAndGroupByCompany = Vue.extend({
   },
   events: {
     load_search_and_group_by_company: function(company_keyword, searchResultSort) {
+      // 權限未確認狀態，保持原樣
+      if (this.share.is_authed === null) {
+        return;
+      }
+
+      // 有查詢權限
+      if (this.share.is_authed === true) {
+        return;
+      }
+
+      // 無查詢權限，僅允許 最新薪時，其餘轉址
+      if (this.share.is_authed === false) {
+        router.setRoute("/latest");
+        return;
+      }
+
       this.search_result_sort = {
         group_sort_by: this.share.view_params.group_sort_by,
         order: this.share.view_params.order,
