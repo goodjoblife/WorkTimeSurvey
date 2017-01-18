@@ -238,7 +238,7 @@ const searchAndGroupByCompany = Vue.extend({
     };
   },
   events: {
-    load_search_and_group_by_company: function(company_keyword, searchResultSort) {
+    load_search_and_group_by_company: function() {
       // 權限未確認狀態，保持原樣
       if (this.share.is_authed === null) {
         // passed
