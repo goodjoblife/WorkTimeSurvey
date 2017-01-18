@@ -137,7 +137,7 @@ const timeAndSalary = Vue.extend({
         "created_at_descending": "/latest",
         "created_at_ascending": "/sort/time-asc",
         "week_work_time_descending": "/work-time-dashboard",
-        "week_work_time_ascending": "/sort/week-time-asc",
+        "week_work_time_ascending": "/sort/work-time-asc",
         "estimated_hourly_wage_descending": "/salary-dashboard",
         "estimated_hourly_wage_ascending": "/sort/salary-asc",
       };
@@ -155,7 +155,7 @@ const searchAndGroupByJobTitle = Vue.extend({
       job_title_keyword: null,
       data: [],
       is_loading: false,
-      search_result_sort: "",
+      search_result_sort: {},
       share: showjs_store.state,
     };
   },
@@ -219,9 +219,16 @@ const searchAndGroupByJobTitle = Vue.extend({
       };
       return this.$http.get(`${WTS.constants.backendURL}workings/search_by/job_title/group_by/company`, opt);
     },
-    sortOnChange: function(selected) {
-      const sortBy = JSON.parse(selected).group_sort_by.replace(/_/g, "-") + "-" + JSON.parse(selected).order;
-      router.setRoute(`/search-by-job-title/${encodeURIComponent(this.job_title_keyword)}/sort/${sortBy}`);
+    sortOnChange: function() {
+      const routes = {
+        "week_work_time_descending": "/work-time-dashboard",
+        "week_work_time_ascending": "/sort/work-time-asc",
+        "estimated_hourly_wage_descending": "/salary-dashboard",
+        "estimated_hourly_wage_ascending": "/sort/salary-asc",
+      };
+
+      const key = `${this.search_result_sort.group_sort_by}_${this.search_result_sort.order}`;
+      router.setRoute(`/job-title/${encodeURIComponent(this.job_title_keyword)}` + routes[key]);
     },
   },
 });
@@ -233,7 +240,7 @@ const searchAndGroupByCompany = Vue.extend({
       company_keyword: null,
       data: [],
       is_loading: false,
-      search_result_sort: "",
+      search_result_sort: {},
       share: showjs_store.state,
     };
   },
@@ -298,9 +305,16 @@ const searchAndGroupByCompany = Vue.extend({
       };
       return this.$http.get(`${WTS.constants.backendURL}workings/search_by/company/group_by/company`, opt);
     },
-    sortOnChange: function(selected) {
-      const sortBy = JSON.parse(selected).group_sort_by.replace(/_/g, "-") + "-" + JSON.parse(selected).order;
-      router.setRoute(`/search-by-company/${encodeURIComponent(this.company_keyword)}/sort/${sortBy}`);
+    sortOnChange: function() {
+      const routes = {
+        "week_work_time_descending": "/work-time-dashboard",
+        "week_work_time_ascending": "/sort/work-time-asc",
+        "estimated_hourly_wage_descending": "/salary-dashboard",
+        "estimated_hourly_wage_ascending": "/sort/salary-asc",
+      };
+
+      const key = `${this.search_result_sort.group_sort_by}_${this.search_result_sort.order}`;
+      router.setRoute(`/company/${encodeURIComponent(this.company_keyword)}` + routes[key]);
     },
   },
 });
