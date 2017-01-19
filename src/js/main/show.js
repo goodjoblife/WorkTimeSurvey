@@ -378,6 +378,11 @@ Vue.filter('formatted_wage_string', value => {
     return value;
 });
 
+Vue.filter('sort_field_title', value => {
+  if(value === 'week_work_time') return "平均一週總工時：";
+  else if(value === 'estimated_hourly_wage') return "平均估計時薪：";
+});
+
 const app = new Vue({
   el: "#app",
   components: {

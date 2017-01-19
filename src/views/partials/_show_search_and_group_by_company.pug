@@ -15,8 +15,9 @@ section(class="search-result")
 						h3(class="name") {{g.company ? g.company.name : ""}}
 						div(class="sort-item")
 							div
-								span(class="heading") 一週平均總工時：
-								span(class="value") {{g.average.week_work_time}}
+								span(class="heading") {{search_result_sort.group_sort_by | sort_field_title}}
+								span(class="value" v-if="search_result_sort.group_sort_by==='estimated_hourly_wage'") {{g.average.estimated_hourly_wage | formatted_wage_string}} 元
+								span(class="value" v-else="search_result_sort.group_sort_by==='week_work_time'") {{g.average.week_work_time}} 小時
 					span(class="accordion__icon") <svg role="img"><use xlink:href="#icon-minus"></use></svg>
 				div(class="accordion__content")
 					div(class="search-result-list__content")
