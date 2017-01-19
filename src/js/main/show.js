@@ -378,6 +378,43 @@ Vue.filter('formatted_wage_string', value => {
     return value;
 });
 
+Vue.filter('time_and_salary_section_title', value => {
+    const names = {
+      "created_at_descending": "最新薪時資訊",
+      "created_at_ascending": "最舊薪時資訊",
+      "week_work_time_descending": "工時排行榜",
+      "week_work_time_ascending": "工時排行榜（由低到高）",
+      "estimated_hourly_wage_descending": "估算時薪排行榜",
+      "estimated_hourly_wage_ascending": "估算時薪排行榜（由低到高）",
+    };
+
+    if(typeof value === 'object'){
+      if("sort_by" in value && "order" in value){
+        const key = `${value.sort_by}_${value.order}`;
+        return names[key];
+      }
+    }
+    return "最新薪時資訊";
+});
+
+Vue.filter('search_by_job_title_section_title', (value) => {
+    const names = {
+      "week_work_time_descending": "工時排行榜",
+      "week_work_time_ascending": "工時排行榜（由低到高）",
+      "estimated_hourly_wage_descending": "估算時薪排行榜",
+      "estimated_hourly_wage_ascending": "估算時薪排行榜（由低到高）",
+    };
+
+    if(typeof value === 'object'){
+      if("group_sort_by" in value && "order" in value){
+        const key = `${value.group_sort_by}_${value.order}`;
+        return names[key];
+      }
+    }
+    return "工時排行榜";
+});
+
+
 const app = new Vue({
   el: "#app",
   components: {
