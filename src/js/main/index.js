@@ -208,9 +208,11 @@ const checkFormField = () => {
       if (data.salary_type === "") {
         throw new ValidationError("需填寫薪資類型", $("#salary-type"));
       }
-
       if (data.salary_amount === "") {
         throw new ValidationError("需填寫薪資", $("#salary-amount"));
+      }
+      if(isNaN(data.salary_amount)){
+        throw new ValidationError("薪資並非數字", $("#salary-amount"));
       }
 
       if (data.experience_in_year === "") {
