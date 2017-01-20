@@ -378,7 +378,7 @@ Vue.filter('formatted_wage_string', value => {
     return value;
 });
 
-Vue.filter('formatted_month', value => {
+Vue.filter('two_digit_month', value => {
   if(typeof value === 'number'){
     return value > 9 ? value.toString() : "0" + value;
   }

@@ -45,7 +45,7 @@ section(class="search-result")
 						span(class="rwd-td") {{w.estimated_hourly_wage | formatted_wage_string}} 元
 					td(data-th="資料時間")
 						span(class="rwd-td")
-							span(class="data-time") {{w.data_time.year}}.{{w.data_time.month | formatted_month}}
+							span(class="data-time") {{w.data_time.year}}.{{w.data_time.month | two_digit_month}}
 	div(class="search-result__status")
 		div(class="status-loading" v-show="is_loading")
 		div(class="status-no-result" v-show="workings.length == 0 && is_loading === false") 找不到結果
