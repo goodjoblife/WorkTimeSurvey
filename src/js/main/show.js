@@ -378,6 +378,13 @@ Vue.filter('formatted_wage_string', value => {
     return value;
 });
 
+Vue.filter('two_digit_month', value => {
+  if(typeof value === 'number'){
+    return value > 9 ? value.toString() : "0" + value;
+  }
+  return "";
+});
+
 Vue.filter('time_and_salary_section_title', value => {
     const names = {
       "created_at_descending": "最新薪時資訊",
