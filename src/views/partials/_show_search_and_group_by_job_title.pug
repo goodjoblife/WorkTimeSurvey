@@ -12,7 +12,7 @@ section(class="search-result")
 			div(class="accordion__item search-result-list__item" v-for="g in data")
 				button(class="accordion__trigger")
 					div(class="search-result-list__heading")
-						h3(class="name") {{w.company ? w.company.name : ""}}
+						h3(class="name") {{g.company ? g.company.name : ""}}
 						div(class="sort-item" v-if="search_result_sort.group_sort_by==='estimated_hourly_wage'")
 							div
 								span(class="heading") 平均估計時薪：
