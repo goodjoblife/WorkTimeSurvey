@@ -140,6 +140,7 @@ function resetJobEndingTime() {
 
 /* form-experience-in-year select */
 const appendJobExperienceTime = () => {
+  $("#form-experience-in-year").append(`<option value="0">小於1年</option>`);
   for(let i = 1; i <= 50; i++) {
     $('#form-experience-in-year').append(`<option value="${i}">${i} 年</option>`);
   }
