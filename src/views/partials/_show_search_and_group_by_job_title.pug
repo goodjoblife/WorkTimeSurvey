@@ -53,7 +53,8 @@ section(class="search-result")
 										span(class="table-frequency-circle" data-frequency="{{working.overtime_frequency}}")
 										| {{working.overtime_frequency | overtime_frequency_string}}
 								td(data-th="資歷")
-									span(class="rwd-td") {{working.experience_in_year}} 年
+									span(class="rwd-td" v-if="working.experience_in_year > 0") {{working.experience_in_year}} 年
+									span(class="rwd-td" v-else) 小於1年
 								td(data-th="薪資")
 									span(class="rwd-td") {{working.salary.amount | formatted_wage_string}} / {{working.salary.type | salary_type_string}}
 								td(data-th="估計時薪")
