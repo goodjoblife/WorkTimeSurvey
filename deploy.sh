@@ -3,7 +3,7 @@
 REV=`git describe --always`
 
 rm -rf _public
-git clone git@github.com:goodjoblife/WorkTimeSurvey.git _public -b gh-pages --depth 1
+git clone git@github.com:goodjoblife/WorkTimeSurvey.git _public -b gh-pages-prebuild --depth 1
 
 # Remove all the old build files
 
@@ -19,4 +19,4 @@ cp src/img/common/og-image_1200-630.png _public/img/
 cd _public
 git add -A .
 git commit -m "regen for $REV"
-git push origin gh-pages
+git push origin gh-pages-prebuild
