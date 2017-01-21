@@ -1,4 +1,8 @@
 /* global WTS, FB, ga, $, Vue, Router */
+const TIME_AND_SALARY_VIEW = 'TIME_AND_SALARY_VIEW';
+const SEARCH_JOB_TITLE_VIEW = 'SEARCH_JOB_TITLE_VIEW';
+const SEARCH_COMPANY_VIEW = 'SEARCH_COMPANY_VIEW';
+
 /*
  * A store to save the state.
  *
@@ -373,60 +377,62 @@ Vue.filter('salary_type_string', value => {
 
 //Attribution: http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 Vue.filter('formatted_wage_string', value => {
-    if(typeof value == 'number') return Math.round(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return value;
+  if (typeof value == 'number') {
+    return Math.round(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+  return value;
 });
 
 Vue.filter('two_digit_month', value => {
-  if(typeof value === 'number'){
+  if (typeof value === 'number') {
     return value > 9 ? value.toString() : "0" + value;
   }
   return "";
 });
 
 Vue.filter('time_and_salary_section_title', value => {
-    const names = {
-      "created_at_descending": "最新薪時資訊",
-      "created_at_ascending": "最舊薪時資訊",
-      "week_work_time_descending": "工時排行榜",
-      "week_work_time_ascending": "工時排行榜（由低到高）",
-      "estimated_hourly_wage_descending": "估算時薪排行榜",
-      "estimated_hourly_wage_ascending": "估算時薪排行榜（由低到高）",
-    };
+  const names = {
+    "created_at_descending": "最新薪時資訊",
+    "created_at_ascending": "最舊薪時資訊",
+    "week_work_time_descending": "工時排行榜",
+    "week_work_time_ascending": "工時排行榜（由低到高）",
+    "estimated_hourly_wage_descending": "估算時薪排行榜",
+    "estimated_hourly_wage_ascending": "估算時薪排行榜（由低到高）",
+  };
 
-    if(typeof value === 'object'){
-      if("sort_by" in value && "order" in value){
-        const key = `${value.sort_by}_${value.order}`;
-        return names[key];
-      }
+  if (typeof value === 'object') {
+    if ("sort_by" in value && "order" in value) {
+      const key = `${value.sort_by}_${value.order}`;
+      return names[key];
     }
-    return "最新薪時資訊";
+  }
+  return "最新薪時資訊";
 });
 
 Vue.filter('search_by_job_title_section_title', (value) => {
-    const names = {
-      "week_work_time_descending": "工時排行榜",
-      "week_work_time_ascending": "工時排行榜（由低到高）",
-      "estimated_hourly_wage_descending": "估算時薪排行榜",
-      "estimated_hourly_wage_ascending": "估算時薪排行榜（由低到高）",
-    };
+  const names = {
+    "week_work_time_descending": "工時排行榜",
+    "week_work_time_ascending": "工時排行榜（由低到高）",
+    "estimated_hourly_wage_descending": "估算時薪排行榜",
+    "estimated_hourly_wage_ascending": "估算時薪排行榜（由低到高）",
+  };
 
-    if(typeof value === 'object'){
-      if("group_sort_by" in value && "order" in value){
-        const key = `${value.group_sort_by}_${value.order}`;
-        return names[key];
-      }
+  if (typeof value === 'object') {
+    if ("group_sort_by" in value && "order" in value) {
+      const key = `${value.group_sort_by}_${value.order}`;
+      return names[key];
     }
-    return "工時排行榜";
+  }
+  return "工時排行榜";
 });
 
 
 const app = new Vue({
   el: "#app",
   components: {
-    'timeAndSalary': timeAndSalary,
-    "searchAndGroupByJobTitle": searchAndGroupByJobTitle,
-    "searchAndGroupByCompany": searchAndGroupByCompany,
+    TIME_AND_SALARY_VIEW: timeAndSalary,
+    SEARCH_JOB_TITLE_VIEW: searchAndGroupByJobTitle,
+    SEARCH_COMPANY_VIEW: searchAndGroupByCompany,
   },
   data: {
     currentView: null,
@@ -435,15 +441,15 @@ const app = new Vue({
   events: {
     "state-change": function() {
       this.currentView = this.share.current_view;
-      if (this.currentView == "timeAndSalary") {
+      if (this.currentView === TIME_AND_SALARY_VIEW) {
         Vue.nextTick(() => {
           app.$broadcast("load_time_and_salary");
         });
-      } else if (this.currentView == "searchAndGroupByJobTitle") {
+      } else if (this.currentView === SEARCH_JOB_TITLE_VIEW) {
         Vue.nextTick(() => {
           app.$broadcast("load_search_and_group_by_job_title");
         });
-      } else if (this.currentView == "searchAndGroupByCompany") {
+      } else if (this.currentView === SEARCH_COMPANY_VIEW) {
         Vue.nextTick(() => {
           app.$broadcast("load_search_and_group_by_company");
         });
@@ -477,21 +483,21 @@ const searchBarApp = new Vue({
   },
   events: {
     'state-change': function() {
-      if (this.share.current_view == "searchAndGroupByCompany") {
+      if (this.share.current_view === SEARCH_COMPANY_VIEW) {
         this.search_type = "by-company";
         this.keyword = this.share.view_params.company;
-      } else if (this.share.current_view == "searchAndGroupByJobTitle") {
+      } else if (this.share.current_view === SEARCH_JOB_TITLE_VIEW) {
         this.search_type = "by-job-title";
         this.keyword = this.share.view_params.job_title;
       }
     },
-  }
+  },
 });
 
 const router = Router({
   "/latest": {
     on: () => {
-      showjs_store.changeViewState("timeAndSalary", {
+      showjs_store.changeViewState(TIME_AND_SALARY_VIEW, {
         sort_by: "created_at",
         order: "descending",
       });
@@ -499,7 +505,7 @@ const router = Router({
   },
   "/sort/time-asc": {
     on: () => {
-      showjs_store.changeViewState("timeAndSalary", {
+      showjs_store.changeViewState(TIME_AND_SALARY_VIEW, {
         sort_by: "created_at",
         order: "ascending",
       });
@@ -507,7 +513,7 @@ const router = Router({
   },
   "/work-time-dashboard": {
     on: () => {
-      showjs_store.changeViewState("timeAndSalary", {
+      showjs_store.changeViewState(TIME_AND_SALARY_VIEW, {
         sort_by: "week_work_time",
         order: "descending",
       });
@@ -515,7 +521,7 @@ const router = Router({
   },
   "/sort/work-time-asc": {
     on: () => {
-      showjs_store.changeViewState("timeAndSalary", {
+      showjs_store.changeViewState(TIME_AND_SALARY_VIEW, {
         sort_by: "week_work_time",
         order: "ascending",
       });
@@ -523,7 +529,7 @@ const router = Router({
   },
   "/salary-dashboard": {
     on: () => {
-      showjs_store.changeViewState("timeAndSalary", {
+      showjs_store.changeViewState(TIME_AND_SALARY_VIEW, {
         sort_by: "estimated_hourly_wage",
         order: "descending",
       });
@@ -531,7 +537,7 @@ const router = Router({
   },
   "/sort/salary-asc": {
     on: () => {
-      showjs_store.changeViewState("timeAndSalary", {
+      showjs_store.changeViewState(TIME_AND_SALARY_VIEW, {
         sort_by: "estimated_hourly_wage",
         order: "ascending",
       });
@@ -539,7 +545,7 @@ const router = Router({
   },
   "/job-title/:job_title/work-time-dashboard": {
     on: (job_title) => {
-      showjs_store.changeViewState("searchAndGroupByJobTitle", {
+      showjs_store.changeViewState(SEARCH_JOB_TITLE_VIEW, {
         job_title: decodeURIComponent(job_title),
         group_sort_by: "week_work_time",
         order: "descending",
@@ -548,7 +554,7 @@ const router = Router({
   },
   "/job-title/:job_title/sort/work-time-asc": {
     on: (job_title) => {
-      showjs_store.changeViewState("searchAndGroupByJobTitle", {
+      showjs_store.changeViewState(SEARCH_JOB_TITLE_VIEW, {
         job_title: decodeURIComponent(job_title),
         group_sort_by: "week_work_time",
         order: "ascending",
@@ -557,7 +563,7 @@ const router = Router({
   },
   "/job-title/:job_title/salary-dashboard": {
     on: (job_title) => {
-      showjs_store.changeViewState("searchAndGroupByJobTitle", {
+      showjs_store.changeViewState(SEARCH_JOB_TITLE_VIEW, {
         job_title: decodeURIComponent(job_title),
         group_sort_by: "estimated_hourly_wage",
         order: "descending",
@@ -566,7 +572,7 @@ const router = Router({
   },
   "/job-title/:job_title/sort/salary-asc": {
     on: (job_title) => {
-      showjs_store.changeViewState("searchAndGroupByJobTitle", {
+      showjs_store.changeViewState(SEARCH_JOB_TITLE_VIEW, {
         job_title: decodeURIComponent(job_title),
         group_sort_by: "estimated_hourly_wage",
         order: "ascending",
@@ -575,7 +581,7 @@ const router = Router({
   },
   "/company/:company/work-time-dashboard": {
     on: (company) => {
-      showjs_store.changeViewState("searchAndGroupByCompany", {
+      showjs_store.changeViewState(SEARCH_COMPANY_VIEW, {
         company: decodeURIComponent(company),
         group_sort_by: "week_work_time",
         order: "descending",
@@ -584,7 +590,7 @@ const router = Router({
   },
   "/company/:company/sort/work-time-asc": {
     on: (company) => {
-      showjs_store.changeViewState("searchAndGroupByCompany", {
+      showjs_store.changeViewState(SEARCH_COMPANY_VIEW, {
         company: decodeURIComponent(company),
         group_sort_by: "week_work_time",
         order: "ascending",
@@ -593,7 +599,7 @@ const router = Router({
   },
   "/company/:company/salary-dashboard": {
     on: (company) => {
-      showjs_store.changeViewState("searchAndGroupByCompany", {
+      showjs_store.changeViewState(SEARCH_COMPANY_VIEW, {
         company: decodeURIComponent(company),
         group_sort_by: "estimated_hourly_wage",
         order: "descending",
@@ -602,7 +608,7 @@ const router = Router({
   },
   "/company/:company/sort/salary-asc": {
     on: (company) => {
-      showjs_store.changeViewState("searchAndGroupByCompany", {
+      showjs_store.changeViewState(SEARCH_COMPANY_VIEW, {
         company: decodeURIComponent(company),
         group_sort_by: "estimated_hourly_wage",
         order: "ascending",
@@ -626,50 +632,47 @@ const router = Router({
 }).configure({
   notfound: () => {
     router.setRoute(`/latest`);
-  }
+  },
 });
 
 /*
  * Autocomplete Part
  */
-$(function(){
+$(function() {
   const $input = $(searchBarApp.$el).find("#search-bar-input");
   const vue = searchBarApp;
   $input.autocomplete({
     source: function (request, response) {
-      if(vue.search_type === "by-company") {
+      if (vue.search_type === "by-company") {
         $input.trigger("company-query-autocomplete-search", request.term);
         const url = `${WTS.constants.backendURL}workings/companies/search`;
         const opt = {
           params: {
-            key : request.term,
+            key: request.term,
           },
         };
         Vue.http.get(url, opt).then(res => res.json()).then(res => {
           const nameList = $.map(res, (item, i) => ({
-              value: item._id.name,
-              id: item._id.name,
-            })
-          );
+            value: item._id.name,
+            id: item._id.name,
+          }));
           response(nameList);
         }).catch(err => {
           response([]);
         });
-      }
-      else if(vue.search_type === "by-job-title") {
+      } else if (vue.search_type === "by-job-title") {
         $input.trigger("jot-title-query-autocomplete-search", request.term);
         const url = `${WTS.constants.backendURL}workings/jobs/search`;
         const opt = {
           params: {
-            key : request.term,
+            key: request.term,
           },
         };
         Vue.http.get(url, opt).then(res => res.json()).then(res => {
           const nameList = $.map(res, (item, i) => ({
-              value: item._id,
-              id: item._id,
-            })
-          );
+            value: item._id,
+            id: item._id,
+          }));
           response(nameList);
         }).catch(err => {
           response([]);
@@ -713,7 +716,7 @@ const callToShareDataApp = new Vue({
     queryRecommendationString: function() {
       const access_token = FB.getAccessToken();
       const body = {
-        access_token
+        access_token,
       };
       return this.$http.post(`${WTS.constants.backendURL}me/recommendations`, body)
         .then(response => response.json())
@@ -788,7 +791,7 @@ const callToShareDataApp = new Vue({
 
 $(window).on('scroll', function() {
   if ($(window).scrollTop() + window.innerHeight >= $(document).height() - 100) {
-    if (app.currentView === "timeAndSalary") {
+    if (app.currentView === TIME_AND_SALARY_VIEW) {
       app.$broadcast("scroll_bottom_reach");
     }
   }
@@ -797,7 +800,7 @@ $(window).on('scroll', function() {
 // wait the event trigger done
 router.init(["/"]);
 
-function testSearchPermission(){
+function testSearchPermission() {
   const access_token = FB.getAccessToken();
   const opt = {
     params: {
