@@ -188,7 +188,7 @@
                     <div class="sort-item" v-if="search_result_sort.group_sort_by==='estimated_hourly_wage'">
                       <div><span class="heading">平均估計時薪：</span><span class="value">{{g.average.estimated_hourly_wage | formatted_wage_string}} 元</span></div>
                     </div>
-                    <div class="sort-item" v-else>
+                    <div class="sort-item" v-else v-show="g.average.week_work_time">
                       <div><span class="heading">平均一週總工時：</span><span class="value">{{g.average.week_work_time}} 小時</span></div>
                     </div>
                   </div><span class="accordion__icon"><svg role="img"><use xlink:href="#icon-minus"></use></svg></span>
@@ -246,8 +246,8 @@
                         <th class="col-week-time">一週總工時</th>
                         <th class="col-frequency">加班頻率</th>
                         <th class="col-experience">資歷</th>
-                        <th class="col-salary">薪資</th>
-                        <th class="col-hourly">估計時薪</th>
+                        <th class="col-salary align-right">薪資</th>
+                        <th class="col-hourly align-right">估計時薪</th>
                         <th class="col-data-time">資料時間</th>
                       </tr>
                     </thead>
@@ -259,8 +259,8 @@
                         <td data-th="一週總工時"><span class="rwd-td"><span v-if="working.week_work_time"><span class="table-time-bar" data-time="{{working.week_work_time}}" v-bind:style="{ width: working.week_work_time + 'px' }">{{working.week_work_time}}</span></span><span v-else>-</span></span></td>
                         <td data-th="加班頻率"><span class="rwd-td"><span v-if="working.overtime_frequency | overtime_frequency_string"><span class="table-frequency-circle" data-frequency="{{working.overtime_frequency}}"></span>{{working.overtime_frequency | overtime_frequency_string}}</span><span v-else>-</span></span></td>
                         <td data-th="資歷"><span class="rwd-td"><span v-if="working.experience_in_year"><span v-if="working.experience_in_year &gt; 0">{{working.experience_in_year}} 年</span><span v-else>小於 1 年</span></span><span v-else>-</span></span></td>
-                        <td data-th="薪資"><span class="rwd-td"><span v-if="working.salary.amount | formatted_wage_string">{{working.salary.amount | formatted_wage_string}} / {{working.salary.type | salary_type_string}}</span><span v-else>-</span></span></td>
-                        <td data-th="估計時薪"><span class="rwd-td"><span v-if="working.estimated_hourly_wage | formatted_wage_string">{{working.estimated_hourly_wage | formatted_wage_string}} 元</span><span v-else>-</span></span></td>
+                        <td data-th="薪資"><span class="rwd-td align-right"><span v-if="working.salary.amount | formatted_wage_string">{{working.salary.amount | formatted_wage_string}} / {{working.salary.type | salary_type_string}}</span><span v-else>-</span></span></td>
+                        <td data-th="估計時薪"><span class="rwd-td align-right"><span v-if="working.estimated_hourly_wage | formatted_wage_string">{{working.estimated_hourly_wage | formatted_wage_string}} 元</span><span v-else>-</span></span></td>
                         <td data-th="資料時間"><span class="rwd-td"><span class="data-time">{{working.data_time.year}}.{{working.data_time.month | two_digit_month}}</span></span></td>
                       </tr>
                     </tbody>
@@ -296,7 +296,7 @@
                     <div class="sort-item" v-if="search_result_sort.group_sort_by==='estimated_hourly_wage'">
                       <div><span class="heading">平均估計時薪：</span><span class="value">{{g.average.estimated_hourly_wage | formatted_wage_string}} 元</span></div>
                     </div>
-                    <div class="sort-item" v-else>
+                    <div class="sort-item" v-else v-show="g.average.week_work_time">
                       <div><span class="heading">平均一週總工時：</span><span class="value">{{g.average.week_work_time}} 小時</span></div>
                     </div>
                   </div><span class="accordion__icon"><svg role="img"><use xlink:href="#icon-minus"></use></svg></span>
@@ -311,8 +311,8 @@
                         <th class="col-week-time">一週總工時</th>
                         <th class="col-frequency">加班頻率</th>
                         <th class="col-experience">資歷</th>
-                        <th class="col-salary">薪資</th>
-                        <th class="col-hourly">估計時薪</th>
+                        <th class="col-salary align-right">薪資</th>
+                        <th class="col-hourly align-right">估計時薪</th>
                         <th class="col-data-time">資料時間</th>
                       </tr>
                     </thead>
@@ -324,8 +324,8 @@
                         <td data-th="一週總工時"><span class="rwd-td"><span v-if="working.week_work_time"><span class="table-time-bar" data-time="{{working.week_work_time}}" v-bind:style="{ width: working.week_work_time + 'px' }">{{working.week_work_time}}</span></span><span v-else>-</span></span></td>
                         <td data-th="加班頻率"><span class="rwd-td"><span v-if="working.overtime_frequency | overtime_frequency_string"><span class="table-frequency-circle" data-frequency="{{working.overtime_frequency}}"></span><span>{{working.overtime_frequency | overtime_frequency_string}}</span></span><span v-else>-</span></span></td>
                         <td data-th="資歷"><span class="rwd-td"><span v-if="working.experience_in_year"><span v-if="working.experience_in_year &gt; 0">{{working.experience_in_year}} 年</span><span v-else>小於 1 年</span></span><span v-else>-</span></span></td>
-                        <td data-th="薪資"><span class="rwd-td"><span v-if="working.salary.amount | formatted_wage_string">{{working.salary.amount | formatted_wage_string}} / {{working.salary.type | salary_type_string}}</span><span v-else>-</span></span></td>
-                        <td data-th="估計時薪"><span class="rwd-td"><span v-if="working.estimated_hourly_wage | formatted_wage_string">{{working.estimated_hourly_wage | formatted_wage_string}} 元</span><span v-else>-</span></span></td>
+                        <td data-th="薪資"><span class="rwd-td align-right"><span v-if="working.salary.amount | formatted_wage_string">{{working.salary.amount | formatted_wage_string}} / {{working.salary.type | salary_type_string}}</span><span v-else>-</span></span></td>
+                        <td data-th="估計時薪"><span class="rwd-td align-right"><span v-if="working.estimated_hourly_wage | formatted_wage_string">{{working.estimated_hourly_wage | formatted_wage_string}} 元</span><span v-else>-</span></span></td>
                         <td data-th="資料時間"><span class="rwd-td"><span class="data-time">{{working.data_time.year}}.{{working.data_time.month | two_digit_month}}</span></span></td>
                       </tr>
                     </tbody>
@@ -362,8 +362,8 @@
                   <th class="col-position"><span>職稱</span><span class="table-sector">廠區/門市/分公司</span></th>
                   <th class="col-week-time">一週總工時</th>
                   <th class="col-frequency">加班頻率</th>
-                  <th class="col-salary">薪資</th>
-                  <th class="col-hourly">估計時薪</th>
+                  <th class="col-salary align-right">薪資</th>
+                  <th class="col-hourly align-right">估計時薪</th>
                   <th class="col-data-time">資料時間</th>
                 </tr>
               </thead>
@@ -373,8 +373,8 @@
                   <td data-th="職稱 (廠區/門市/分公司)"><span class="rwd-td"><span><a href="#/job-title/{{encodeURIComponent(w.job_title)}}/work-time-dashboard">{{w.job_title}}</a></span><span class="table-sector">{{w.sector}}</span></span></td>
                   <td data-th="一週總工時"><span class="rwd-td"><span v-if="w.week_work_time"><span class="table-time-bar" data-time="{{w.week_work_time}}" v-bind:style="{ width: w.week_work_time + 'px' }">{{w.week_work_time}}</span></span><span v-else>-</span></span></td>
                   <td data-th="加班頻率"><span class="rwd-td"><span v-if="w.overtime_frequency | overtime_frequency_string"><span class="table-frequency-circle" data-frequency="{{w.overtime_frequency}}"></span>{{w.overtime_frequency | overtime_frequency_string}}</span><span v-else>-</span></span></td>
-                  <td data-th="薪資"><span class="rwd-td"><span v-if="w.salary.amount | formatted_wage_string">{{w.salary.amount | formatted_wage_string}} / {{w.salary.type | salary_type_string}}</span><span v-else>-</span></span></td>
-                  <td data-th="估計時薪"><span class="rwd-td"><span v-if="w.estimated_hourly_wage | formatted_wage_string">{{w.estimated_hourly_wage | formatted_wage_string}} 元</span><span v-else>-</span></span></td>
+                  <td data-th="薪資"><span class="rwd-td align-right"><span v-if="w.salary.amount | formatted_wage_string">{{w.salary.amount | formatted_wage_string}} / {{w.salary.type | salary_type_string}}</span><span v-else>-</span></span></td>
+                  <td data-th="估計時薪"><span class="rwd-td align-right"><span v-if="w.estimated_hourly_wage | formatted_wage_string">{{w.estimated_hourly_wage | formatted_wage_string}} 元</span><span v-else>-</span></span></td>
                   <td data-th="資料時間"><span class="rwd-td"><span class="data-time">{{w.data_time.year}}.{{w.data_time.month | two_digit_month}}</span></span></td>
                 </tr>
               </tbody>
