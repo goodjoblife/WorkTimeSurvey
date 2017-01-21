@@ -44,21 +44,37 @@ section(class="search-result")
 								td(data-th="職務型態")
 									span(class="rwd-td") {{working.employment_type | employment_type_string}}
 								td(data-th="表訂 / 實際工時")
-									span(class="rwd-td") {{working.day_promised_work_time}} / {{working.day_real_work_time}}
+									span(class="rwd-td")
+										span(v-if="working.day_promised_work_time")
+											| {{working.day_promised_work_time}} / {{working.day_real_work_time}}
+										span(v-else) -
 								td(data-th="一週總工時")
 									span(class="rwd-td")
-										span(class="table-time-bar" data-time="{{working.week_work_time}}" v-bind:style="{ width: working.week_work_time + 'px' }") {{working.week_work_time}}
+										span(v-if="working.week_work_time")
+											span(class="table-time-bar" data-time="{{working.week_work_time}}" v-bind:style="{ width: working.week_work_time + 'px' }") {{working.week_work_time}}
+										span(v-else) -
 								td(data-th="加班頻率")
 									span(class="rwd-td")
-										span(class="table-frequency-circle" data-frequency="{{working.overtime_frequency}}")
-										| {{working.overtime_frequency | overtime_frequency_string}}
+										span(v-if="working.overtime_frequency | overtime_frequency_string")
+											span(class="table-frequency-circle" data-frequency="{{working.overtime_frequency}}")
+											span {{working.overtime_frequency | overtime_frequency_string}}
+										span(v-else) -
 								td(data-th="資歷")
-									span(class="rwd-td" v-if="working.experience_in_year > 0") {{working.experience_in_year}} 年
-									span(class="rwd-td" v-else) 小於1年
+									span(class="rwd-td")
+										span(v-if="working.experience_in_year")
+											span(v-if="working.experience_in_year > 0") {{working.experience_in_year}} 年
+											span(v-else) 小於 1 年
+										span(v-else) -
 								td(data-th="薪資")
-									span(class="rwd-td") {{working.salary.amount | formatted_wage_string}} / {{working.salary.type | salary_type_string}}
+									span(class="rwd-td")
+										span(v-if="working.salary.amount | formatted_wage_string")
+											| {{working.salary.amount | formatted_wage_string}} / {{working.salary.type | salary_type_string}}
+										span(v-else) -
 								td(data-th="估計時薪")
-									span(class="rwd-td") {{working.estimated_hourly_wage | formatted_wage_string}} 元
+									span(class="rwd-td")
+										span(v-if="working.estimated_hourly_wage | formatted_wage_string")
+											| {{working.estimated_hourly_wage | formatted_wage_string}} 元
+										span(v-else) -
 								td(data-th="資料時間")
 									span(class="rwd-td")
 										span(class="data-time") {{working.data_time.year}}.{{working.data_time.month | two_digit_month}}
