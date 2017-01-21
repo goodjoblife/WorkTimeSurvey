@@ -118,4 +118,29 @@
       word-break: break-all;
     }
   }
+
+  [data-sort] {
+    &::after {
+      font-size: 11px;
+      position: relative;
+      top: -2px;
+      display: inline-block;
+      margin-left: 5px;
+      color: $orange;
+    }
+  }
+
+  [data-sort="high"] {
+    color: $orange;
+    &::after {
+      content: "▲";
+    }
+  }
+
+  [data-sort="low"] {
+    color: $orange;
+    &::after {
+      content: "▼";
+    }
+  }
 }
