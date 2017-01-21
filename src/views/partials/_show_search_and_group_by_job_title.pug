@@ -32,8 +32,8 @@ section(class="search-result")
 								th(class="col-week-time") 一週總工時
 								th(class="col-frequency") 加班頻率
 								th(class="col-experience") 資歷
-								th(class="col-salary") 薪資
-								th(class="col-hourly") 估計時薪
+								th(class="col-salary align-right") 薪資
+								th(class="col-hourly align-right") 估計時薪
 								th(class="col-data-time") 資料時間
 						tbody
 							tr(v-for="working in g.time_and_salary")
@@ -66,12 +66,12 @@ section(class="search-result")
 											span(v-else) 小於 1 年
 										span(v-else) -
 								td(data-th="薪資")
-									span(class="rwd-td")
+									span(class="rwd-td align-right")
 										span(v-if="working.salary.amount | formatted_wage_string")
 											| {{working.salary.amount | formatted_wage_string}} / {{working.salary.type | salary_type_string}}
 										span(v-else) -
 								td(data-th="估計時薪")
-									span(class="rwd-td")
+									span(class="rwd-td align-right")
 										span(v-if="working.estimated_hourly_wage | formatted_wage_string")
 											| {{working.estimated_hourly_wage | formatted_wage_string}} 元
 										span(v-else) -
