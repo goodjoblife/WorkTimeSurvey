@@ -209,9 +209,11 @@ const checkFormField = () => {
       if (data.salary_type === "") {
         throw new ValidationError("需填寫薪資類型", $("#salary-type"));
       }
-
       if (data.salary_amount === "") {
         throw new ValidationError("需填寫薪資", $("#salary-amount"));
+      }
+      if(!isPureNumberString(data.salary_amount)){
+        throw new ValidationError('僅能包含0到9或小數點，不能有逗號或國字。', $("#salary-amount"));
       }
 
       if (data.experience_in_year === "") {
@@ -223,10 +225,10 @@ const checkFormField = () => {
       if (data.day_promised_work_time === "") {
         throw new ValidationError("需填寫工作日表定工作時間", $("#form-day-promised-work-time"));
       }
-      data.day_promised_work_time = parseFloat(data.day_promised_work_time);
-      if (isNaN(data.day_promised_work_time)) {
-        throw new ValidationError("工作日表定工作時間並非數字", $("#form-day-promised-work-time"));
+      if(!isPureNumberString(data.day_promised_work_time)){
+        throw new ValidationError('僅能包含0到9或小數點，不能有逗號或國字。', $("#form-day-promised-work-time"));
       }
+      data.day_promised_work_time = parseFloat(data.day_promised_work_time);
       if (data.day_promised_work_time < 0 || data.day_promised_work_time > 24) {
         throw new ValidationError("工作日表定工作時間範圍為0~24小時", $("#form-day-promised-work-time"));
       }
@@ -234,10 +236,10 @@ const checkFormField = () => {
       if (data.day_real_work_time === "") {
         throw new ValidationError("需填寫工作日實際工作時間", $("#form-day-real-work-time"));
       }
-      data.day_real_work_time = parseFloat(data.day_real_work_time);
-      if (isNaN(data.day_real_work_time)) {
-        throw new ValidationError("工作日實際工作時間並非數字", $("#form-day-real-work-time"));
+      if(!isPureNumberString(data.day_real_work_time)){
+        throw new ValidationError('僅能包含0到9或小數點，不能有逗號或國字。', $("#form-day-real-work-time"));
       }
+      data.day_real_work_time = parseFloat(data.day_real_work_time);
       if (data.day_real_work_time < 0 || data.day_real_work_time > 24) {
         throw new ValidationError("工作日實際工作時間範圍為0~24小時", $("#form-day-real-work-time"));
       }
@@ -245,10 +247,10 @@ const checkFormField = () => {
       if (data.week_work_time === "") {
         throw new ValidationError("需填寫一週總工時", $("#form-week-work-time"));
       }
-      data.week_work_time = parseFloat(data.week_work_time);
-      if (isNaN(data.week_work_time)) {
-        throw new ValidationError("一週總工時並非數字", $("#form-week-work-time"));
+      if(!isPureNumberString(data.week_work_time)){
+        throw new ValidationError('僅能包含0到9或小數點，不能有逗號或國字。', $("#form-week-work-time"));
       }
+      data.week_work_time = parseFloat(data.week_work_time);
       if (data.week_work_time < 0 || data.week_work_time > 168) {
         throw new ValidationError("一週總工時範圍為0~168小時", $("#form-week-work-time"));
       }
@@ -263,6 +265,13 @@ const checkFormField = () => {
     }
   }
 };
+
+//to check whether the number string contains only [0-9] and no more than one "." (of course, no comma)
+//and the format should be like mm[.nn]  m,n are [0-9] digit.
+function isPureNumberString(str){
+  const re = /^\d+(\.\d*)?$/;
+  return re.test(str);
+}
 
 /*
  * Get the recommendation string from url
