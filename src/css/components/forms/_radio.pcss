@@ -2,7 +2,7 @@ input[type="radio"] {
 	display: none;
 }
 
-.select-form__label {
+.radio-circle {
 	font-weight: 300;
 	font-size: 1em;
 	position: relative;
@@ -39,25 +39,24 @@ input[type="radio"] {
 		vertical-align: middle;
 		text-transform: capitalize;
 		padding-left: 10px;
+		transition: color .3s;
 		@mixin font-radio;
 	}
 }
 
-input[type="radio"]:checked + .select-form__label {
+input[type="radio"]:checked + .radio-circle {
 	.radio-input:before {
 		transform: scale(1);
 	}
 }
 
-.select-form {
+.radio-form {
 	margin-top: 10px;
-}
-
-#has-fee-option {
-	height: 0;
-	overflow: hidden;
-	transition: height .4s;
-	&.is-active {
-		height: 100px;
+	&.inline-item {
+		display: inline-block;
+		margin-right: 30px;
+		&:last-child {
+			margin-right: 0;
+		}
 	}
 }

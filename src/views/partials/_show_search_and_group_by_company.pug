@@ -1,10 +1,26 @@
 section(class="search-result")
-	h2(class="section__heading") 搜尋 “<span class="search-query">{{company_keyword}}</span>” 的工時結果
+	h2(class="section__heading") 搜尋 “<span class="search-query">{{company_keyword}}</span>” 的薪時資訊
 	div(class="search-result__result")
+		div(class="search-result__sort")
+			div(class="label") 排序：
+			select(id="" name="" v-model="search_result_sort" v-bind:disabled="!share.is_authed" @change="sortOnChange()")
+				option(v-bind:value='{"group_sort_by":"week_work_time","order":"descending"}') 一週平均總工時（高到低）
+				option(v-bind:value='{"group_sort_by":"week_work_time","order":"ascending"}') 一週平均總工時（低到高）
+				option(v-bind:value='{"group_sort_by":"estimated_hourly_wage","order": "descending"}') 估算時薪（高到低）
+				option(v-bind:value='{"group_sort_by":"estimated_hourly_wage","order": "ascending"}') 估算時薪（低到高）
 		div(class="search-result-list accordion")
 			div(class="accordion__item search-result-list__item" v-for="g in data")
 				button(class="accordion__trigger")
-					h3(class="search-result-list__heading") {{g._id.name}}
+					div(class="search-result-list__heading")
+						h3(class="name") {{g.company ? g.company.name : ""}}
+						div(class="sort-item" v-if="search_result_sort.group_sort_by==='estimated_hourly_wage'")
+							div
+								span(class="heading") 平均估計時薪：
+								span(class="value") {{g.average.estimated_hourly_wage | formatted_wage_string}} 元
+						div(class="sort-item" v-else)
+							div
+								span(class="heading") 平均一週總工時：
+								span(class="value") {{g.average.week_work_time}} 小時
 					span(class="accordion__icon") <svg role="img"><use xlink:href="#icon-minus"></use></svg>
 				div(class="accordion__content")
 					div(class="search-result-list__content")
@@ -12,8 +28,7 @@ section(class="search-result")
 							div(class="result-fee-off__item")
 								h4(class="result-fee-off__heading")
 									<svg><use xlink:href="#icon-coin"></use></svg> 加班有無加班費
-									span(class="small-info-right" v-show="g.count < 5") &nbsp;&nbsp;資料未達五筆
-								div(class="result-fee-off__contnet")
+								div(class="result-fee-off__contnet" v-bind:class="{ 'count-is-not-enough': g.count < 5 }")
 									div(class="result-fee-off__yes")
 										div
 											div(class="result-fee-off-name") 有
@@ -38,8 +53,7 @@ section(class="search-result")
 							div(class="result-fee-off__item")
 								h4(class="result-fee-off__heading")
 									<svg><use xlink:href="#icon-clock"></use></svg> 加班有無補休
-									span(class="small-info-right" v-show="g.count < 5") &nbsp;&nbsp;資料未達五筆
-								div(class="result-fee-off__contnet")
+								div(class="result-fee-off__contnet" v-bind:class="{ 'count-is-not-enough': g.count < 5 }")
 									div(class="result-fee-off__yes")
 										div
 											div(class="result-fee-off-name") 有
@@ -52,34 +66,46 @@ section(class="search-result")
 											div(class="no-extra")
 												span(class="result-fee-off-name") 不知道
 												span(class="result-fee-off-num") {{g.has_compensatory_dayoff_count["don't know"] | num}}
-						div(class="small-info-right") 單位：資料筆數
+						div(class="small-info-right" v-show="g.count > 5") 單位：資料筆數
 					table(class="rwd-table company-table")
 						thead
 							tr
-								th(class="col-position")
-									span 職稱
-									span(class="table-sector") 廠區/門市/分公司
-								th(class="col-day-promise") 日表訂工時
-								th(class="col-day-real") 日實際平均工時
-								th(class="col-week-time") 一週總工時（小時）
+								th(class="col-position") 職稱
+								th(class="col-type") 職務型態
+								th(class="col-day-time") 表訂 / <br>實際工時
+								th(class="col-week-time") 一週總工時
 								th(class="col-frequency") 加班頻率
+								th(class="col-experience") 資歷
+								th(class="col-salary") 薪資
+								th(class="col-hourly") 估計時薪
+								th(class="col-data-time") 資料時間
 						tbody
-							tr(v-for="working in g.workings")
-								td(data-th="職稱 (廠區/門市/分公司)")
+							tr(v-for="working in g.time_and_salary")
+								td(data-th="職稱")
 									span(class="rwd-td")
 										span {{working.job_title}}
 										span(class="table-sector") {{working.sector}}
-								td(data-th="日表訂工時")
-									span(class="rwd-td") {{working.day_promised_work_time}}
-								td(data-th="日實際平均工時")
-									span(class="rwd-td") {{working.day_real_work_time}}
+								td(data-th="職務型態")
+									span(class="rwd-td") {{working.employment_type | employment_type_string}}
+								td(data-th="表訂 / 實際工時")
+									span(class="rwd-td") {{working.day_promised_work_time}} / {{working.day_real_work_time}}
 								td(data-th="一週總工時")
 									span(class="rwd-td")
-										span(class="table-time-bar" data-time="{{working.week_work_time}}" v-bind:style="{ width: working.week_work_time * 2 + 'px' }") {{working.week_work_time}}
+										span(class="table-time-bar" data-time="{{working.week_work_time}}" v-bind:style="{ width: working.week_work_time + 'px' }") {{working.week_work_time}}
 								td(data-th="加班頻率")
 									span(class="rwd-td")
 										span(class="table-frequency-circle" data-frequency="{{working.overtime_frequency}}")
 										| {{working.overtime_frequency | overtime_frequency_string}}
+								td(data-th="資歷")
+									span(class="rwd-td" v-if="working.experience_in_year > 0") {{working.experience_in_year}} 年
+									span(class="rwd-td" v-else) 小於1年
+								td(data-th="薪資")
+									span(class="rwd-td") {{working.salary.amount | formatted_wage_string}} / {{working.salary.type | salary_type_string}}
+								td(data-th="估計時薪")
+									span(class="rwd-td") {{working.estimated_hourly_wage | formatted_wage_string}} 元
+								td(data-th="資料時間")
+									span(class="rwd-td")
+										span(class="data-time") {{working.data_time.year}}.{{working.data_time.month | two_digit_month}}
 	div(class="search-result__status")
 		div(class="status-loading" v-show="is_loading")
 		div(class="status-no-result" v-show="data.length == 0 && is_loading === false") 找不到結果

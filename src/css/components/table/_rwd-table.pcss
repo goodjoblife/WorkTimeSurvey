@@ -1,5 +1,6 @@
 @define-mixin table-th {
   font-size: .95em;
+  line-height: 1.2em;
   letter-spacing: 0.05em;
   color: $gray-dark;
 }
@@ -15,11 +16,18 @@
   width: 100%;
 	table-layout: fixed;
   background-color: #fff;
+  &.is-disabled {
+    pointer-events: none;
+  }
   th {
     @mixin table-th;
     padding-top: 30px;
     padding-bottom: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
     border-bottom: 2px solid $border-gray;
+    vertical-align: bottom;
+
 		@media (max-width: $below-small) {
 			display: none;
 		}
@@ -31,6 +39,7 @@
     padding-bottom: 12px;
     padding-left: 5px;
     padding-right: 5px;
+    transition: background-color .3s;
     @media (max-width: $below-small) {
       display: flex;
       width: 100%;
@@ -75,6 +84,13 @@
     }
   }
   tr {
+    @media (min-width: $above-desktop) {
+      &:hover {
+        td {
+          background-color: rgba(0,0,0,.025);
+        }
+      }
+    }
     &:last-child {
       td {
         @media (min-width: $above-small) {
@@ -92,6 +108,14 @@
     display: block;
     @media (max-width: $below-small) {
       flex: 1 1 auto;
+    }
+  }
+
+  .data-time {
+    font-size: 0.95em;
+    color: $gray;
+    @media (max-width: $below-desktop) {
+      word-break: break-all;
     }
   }
 }

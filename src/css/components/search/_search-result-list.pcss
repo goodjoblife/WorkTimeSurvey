@@ -25,11 +25,14 @@
     @media (min-width: $above-desktop) {
       &:hover {
         .accordion__icon {
-          border-color: #000;
+          border-color: $primary-color;
         }
         svg {
-          fill: #000;
-          color: #000;
+          fill: $primary-color;
+          color: $primary-color;
+        }
+        .name {
+          color: $primary-color;
         }
       }
     }
@@ -50,17 +53,37 @@
         }
       }
     }
+    .search-result-list__heading {
+      border-bottom: 1px solid $yellow-bar;
+    }
   }
 }
 
 .search-result-list__heading {
-  @mixin subheading-style;
   padding: 10px $block-gutter-m;
+  display: flex;
+  justify-content: space-between;
   @media (max-width: $below-desktop) {
     padding: 10px $block-gutter-s;
   }
   @media (max-width: $below-small) {
     padding: 10px 45px 10px $block-gutter-s;
+  }
+  .name {
+    @mixin subheading-style;
+    transition: color .3s;
+  }
+  .sort-item {
+    margin-right: 30px;
+    display: flex;
+    align-items: center;
+    .heading {
+      font-size: 0.9em;
+      color: $gray;
+    }
+    .value {
+      font-size: 1.1em;
+    }
   }
 }
 
