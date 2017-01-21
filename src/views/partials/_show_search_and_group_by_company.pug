@@ -17,7 +17,7 @@ section(class="search-result")
 							div
 								span(class="heading") 平均估計時薪：
 								span(class="value") {{g.average.estimated_hourly_wage | formatted_wage_string}} 元
-						div(class="sort-item" v-else)
+						div(class="sort-item" v-else v-show="g.average.week_work_time")
 							div
 								span(class="heading") 平均一週總工時：
 								span(class="value") {{g.average.week_work_time}} 小時

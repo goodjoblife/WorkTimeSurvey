@@ -68,6 +68,7 @@
   }
   @media (max-width: $below-small) {
     padding: 10px 45px 10px $block-gutter-s;
+    flex-direction: column;
   }
   .name {
     @mixin subheading-style;
@@ -83,6 +84,9 @@
     }
     .value {
       font-size: 1.1em;
+    }
+    @media(max-width: $below-small) {
+      margin-top: 5px;
     }
   }
 }
