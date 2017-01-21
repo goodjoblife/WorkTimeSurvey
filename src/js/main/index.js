@@ -211,9 +211,6 @@ const checkFormField = () => {
       if (data.salary_amount === "") {
         throw new ValidationError("需填寫薪資", $("#salary-amount"));
       }
-      if(isNaN(data.salary_amount)){
-        throw new ValidationError("薪資並非數字", $("#salary-amount"));
-      }
       if(!isPureNumberString(data.salary_amount)){
         throw new ValidationError('僅能包含0到9或小數點，不能有逗號或國字。', $("#salary-amount"));
       }
@@ -231,9 +228,6 @@ const checkFormField = () => {
         throw new ValidationError('僅能包含0到9或小數點，不能有逗號或國字。', $("#form-day-promised-work-time"));
       }
       data.day_promised_work_time = parseFloat(data.day_promised_work_time);
-      if (isNaN(data.day_promised_work_time)) {
-        throw new ValidationError("工作日表定工作時間並非數字", $("#form-day-promised-work-time"));
-      }
       if (data.day_promised_work_time < 0 || data.day_promised_work_time > 24) {
         throw new ValidationError("工作日表定工作時間範圍為0~24小時", $("#form-day-promised-work-time"));
       }
@@ -245,9 +239,6 @@ const checkFormField = () => {
         throw new ValidationError('僅能包含0到9或小數點，不能有逗號或國字。', $("#form-day-real-work-time"));
       }
       data.day_real_work_time = parseFloat(data.day_real_work_time);
-      if (isNaN(data.day_real_work_time)) {
-        throw new ValidationError("工作日實際工作時間並非數字", $("#form-day-real-work-time"));
-      }
       if (data.day_real_work_time < 0 || data.day_real_work_time > 24) {
         throw new ValidationError("工作日實際工作時間範圍為0~24小時", $("#form-day-real-work-time"));
       }
@@ -259,9 +250,6 @@ const checkFormField = () => {
         throw new ValidationError('僅能包含0到9或小數點，不能有逗號或國字。', $("#form-week-work-time"));
       }
       data.week_work_time = parseFloat(data.week_work_time);
-      if (isNaN(data.week_work_time)) {
-        throw new ValidationError("一週總工時並非數字", $("#form-week-work-time"));
-      }
       if (data.week_work_time < 0 || data.week_work_time > 168) {
         throw new ValidationError("一週總工時範圍為0~168小時", $("#form-week-work-time"));
       }
