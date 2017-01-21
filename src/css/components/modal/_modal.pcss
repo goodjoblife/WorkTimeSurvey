@@ -102,7 +102,7 @@ $modal-height: 600px;
 		left: 20px;
 		width: 21px;
 		height: 21px;
-		padding-left: 2px;
+		padding-left: 1px;
 		border-radius: 50%;
 		font-size: 12px;
 		color: $orange;
@@ -125,4 +125,27 @@ $modal-height: 600px;
 [data-modal-id] {
 	cursor: pointer;
 	transition: color .3s;
+}
+
+.mobile-info-buttons {
+	display: none;
+
+	@media (max-width: $below-small) {
+		display: flex;
+		margin-bottom: 15px;
+		justify-content: flex-end;
+	}
+
+	[data-info-button] {
+		display: flex;
+		align-items: center;
+		margin-left: 20px;
+		font-size: 0.95em;
+		&::before {
+			opacity: 1;
+			position: static;
+			margin-right: 4px;
+			transform: scale(.9);
+		}
+	}
 }
