@@ -373,51 +373,53 @@ Vue.filter('salary_type_string', value => {
 
 //Attribution: http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 Vue.filter('formatted_wage_string', value => {
-    if(typeof value == 'number') return Math.round(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    return value;
+  if (typeof value == 'number') {
+    return Math.round(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+  return value;
 });
 
 Vue.filter('two_digit_month', value => {
-  if(typeof value === 'number'){
+  if (typeof value === 'number') {
     return value > 9 ? value.toString() : "0" + value;
   }
   return "";
 });
 
 Vue.filter('time_and_salary_section_title', value => {
-    const names = {
-      "created_at_descending": "最新薪時資訊",
-      "created_at_ascending": "最舊薪時資訊",
-      "week_work_time_descending": "工時排行榜",
-      "week_work_time_ascending": "工時排行榜（由低到高）",
-      "estimated_hourly_wage_descending": "估算時薪排行榜",
-      "estimated_hourly_wage_ascending": "估算時薪排行榜（由低到高）",
-    };
+  const names = {
+    "created_at_descending": "最新薪時資訊",
+    "created_at_ascending": "最舊薪時資訊",
+    "week_work_time_descending": "工時排行榜",
+    "week_work_time_ascending": "工時排行榜（由低到高）",
+    "estimated_hourly_wage_descending": "估算時薪排行榜",
+    "estimated_hourly_wage_ascending": "估算時薪排行榜（由低到高）",
+  };
 
-    if(typeof value === 'object'){
-      if("sort_by" in value && "order" in value){
-        const key = `${value.sort_by}_${value.order}`;
-        return names[key];
-      }
+  if (typeof value === 'object') {
+    if ("sort_by" in value && "order" in value) {
+      const key = `${value.sort_by}_${value.order}`;
+      return names[key];
     }
-    return "最新薪時資訊";
+  }
+  return "最新薪時資訊";
 });
 
 Vue.filter('search_by_job_title_section_title', (value) => {
-    const names = {
-      "week_work_time_descending": "工時排行榜",
-      "week_work_time_ascending": "工時排行榜（由低到高）",
-      "estimated_hourly_wage_descending": "估算時薪排行榜",
-      "estimated_hourly_wage_ascending": "估算時薪排行榜（由低到高）",
-    };
+  const names = {
+    "week_work_time_descending": "工時排行榜",
+    "week_work_time_ascending": "工時排行榜（由低到高）",
+    "estimated_hourly_wage_descending": "估算時薪排行榜",
+    "estimated_hourly_wage_ascending": "估算時薪排行榜（由低到高）",
+  };
 
-    if(typeof value === 'object'){
-      if("group_sort_by" in value && "order" in value){
-        const key = `${value.group_sort_by}_${value.order}`;
-        return names[key];
-      }
+  if (typeof value === 'object') {
+    if ("group_sort_by" in value && "order" in value) {
+      const key = `${value.group_sort_by}_${value.order}`;
+      return names[key];
     }
-    return "工時排行榜";
+  }
+  return "工時排行榜";
 });
 
 
@@ -485,7 +487,7 @@ const searchBarApp = new Vue({
         this.keyword = this.share.view_params.job_title;
       }
     },
-  }
+  },
 });
 
 const router = Router({
@@ -626,50 +628,47 @@ const router = Router({
 }).configure({
   notfound: () => {
     router.setRoute(`/latest`);
-  }
+  },
 });
 
 /*
  * Autocomplete Part
  */
-$(function(){
+$(function() {
   const $input = $(searchBarApp.$el).find("#search-bar-input");
   const vue = searchBarApp;
   $input.autocomplete({
     source: function (request, response) {
-      if(vue.search_type === "by-company") {
+      if (vue.search_type === "by-company") {
         $input.trigger("company-query-autocomplete-search", request.term);
         const url = `${WTS.constants.backendURL}workings/companies/search`;
         const opt = {
           params: {
-            key : request.term,
+            key: request.term,
           },
         };
         Vue.http.get(url, opt).then(res => res.json()).then(res => {
           const nameList = $.map(res, (item, i) => ({
-              value: item._id.name,
-              id: item._id.name,
-            })
-          );
+            value: item._id.name,
+            id: item._id.name,
+          }));
           response(nameList);
         }).catch(err => {
           response([]);
         });
-      }
-      else if(vue.search_type === "by-job-title") {
+      } else if (vue.search_type === "by-job-title") {
         $input.trigger("jot-title-query-autocomplete-search", request.term);
         const url = `${WTS.constants.backendURL}workings/jobs/search`;
         const opt = {
           params: {
-            key : request.term,
+            key: request.term,
           },
         };
         Vue.http.get(url, opt).then(res => res.json()).then(res => {
           const nameList = $.map(res, (item, i) => ({
-              value: item._id,
-              id: item._id,
-            })
-          );
+            value: item._id,
+            id: item._id,
+          }));
           response(nameList);
         }).catch(err => {
           response([]);
@@ -713,7 +712,7 @@ const callToShareDataApp = new Vue({
     queryRecommendationString: function() {
       const access_token = FB.getAccessToken();
       const body = {
-        access_token
+        access_token,
       };
       return this.$http.post(`${WTS.constants.backendURL}me/recommendations`, body)
         .then(response => response.json())
@@ -797,7 +796,7 @@ $(window).on('scroll', function() {
 // wait the event trigger done
 router.init(["/"]);
 
-function testSearchPermission(){
+function testSearchPermission() {
   const access_token = FB.getAccessToken();
   const opt = {
     params: {
