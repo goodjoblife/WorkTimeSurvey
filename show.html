@@ -78,8 +78,14 @@
     <symbol id="icon-question" viewBox="0 0 82 82">
       <title>question</title><g fill="#FCD406" fill-rule="evenodd"><path d="M41 0C18.392 0 0 18.392 0 41s18.392 41 41 41 41-18.392 41-41S63.608 0 41 0zm0 76.875C21.219 76.875 5.125 60.781 5.125 41S21.219 5.125 41 5.125 76.875 21.219 76.875 41 60.781 76.875 41 76.875z"/><path d="M41.693 13.369c-10.122 0-18.355 8.233-18.355 18.352a2.563 2.563 0 0 0 5.125 0c0-7.293 5.936-13.227 13.23-13.227 7.292 0 13.225 5.934 13.225 13.227S48.985 44.95 41.693 44.95a2.563 2.563 0 0 0-2.562 2.562v9.906a2.563 2.563 0 0 0 5.125 0v-7.523c8.908-1.25 15.787-8.923 15.787-18.174 0-10.12-8.232-18.351-18.35-18.351z"/><ellipse cx="41.691" cy="67.143" rx="2.805" ry="2.805"/></g>
     </symbol>
+    <symbol id="icon-sort" viewBox="0 0 24 24">
+      <path d="M9 0c-.3 0-.5.1-.7.3l-8 8c-.2.2-.3.4-.3.7 0 .3.1.5.3.7l1.4 1.4c.2.2.5.3.7.3.3 0 .5-.1.7-.3l2-2c.3-.3.9-.1.9.4V23c0 .5.5 1 1 1h2c.5 0 1-.5 1-1V1c0-.3-.1-.5-.3-.7C9.5.1 9.3 0 9 0zM23.7 14.3l-1.4-1.4c-.2-.2-.5-.3-.7-.3-.3 0-.5.1-.7.3l-2 2c-.3.3-.9.1-.9-.4V1c0-.5-.5-1-1-1h-2c-.5 0-1 .5-1 1v22c0 .3.1.5.3.7s.5.3.7.3c.3 0 .5-.1.7-.3l8-8c.2-.2.3-.4.3-.7 0-.3-.1-.5-.3-.7z"/>
+    </symbol>
     <symbol id="icon-twitter" viewBox="0 0 20 20">
       <title>icon-twitter</title><path d="M19.449 3.977a7.871 7.871 0 0 1-2.266.62 3.958 3.958 0 0 0 1.733-2.182c-.774.46-1.62.784-2.504.958A3.944 3.944 0 0 0 9.693 6.97a11.199 11.199 0 0 1-8.13-4.12 3.923 3.923 0 0 0-.534 1.982c0 1.369.696 2.576 1.754 3.283a3.926 3.926 0 0 1-1.786-.494v.05a3.947 3.947 0 0 0 3.163 3.868c-.581.157-1.19.18-1.781.066a3.948 3.948 0 0 0 3.684 2.739 7.915 7.915 0 0 1-5.839 1.634 11.169 11.169 0 0 0 6.046 1.771c7.255 0 11.222-6.01 11.222-11.222 0-.17-.004-.341-.012-.51a7.957 7.957 0 0 0 1.969-2.04z"/>
+    </symbol>
+    <symbol id="icon-user" viewBox="0 0 64 64">
+      <g fill="#1D1D1B"><path d="M63.834 61.199c-.767-3.404-6.562-24.541-31.855-24.541C4.607 36.658.071 61.406.028 61.657A2.006 2.006 0 0 0 2.004 64h59.992a2.005 2.005 0 0 0 1.838-2.801zM4.575 59.988c1.742-5.632 7.977-19.317 27.403-19.317S57.64 54.356 59.382 59.988H4.575zM31.977 32.895c9.063 0 16.436-7.377 16.436-16.447C48.412 7.379 41.04 0 31.977 0c-9.06 0-16.43 7.379-16.43 16.447 0 9.071 7.37 16.448 16.43 16.448zm0-28.883c6.854 0 12.428 5.578 12.428 12.436 0 6.856-5.573 12.436-12.428 12.436-6.849 0-12.422-5.579-12.422-12.436 0-6.858 5.573-12.436 12.422-12.436z"/></g>
     </symbol>
     <symbol id="star" viewBox="0 0 16 16">
       <title>star (1) copy</title><path d="M8.16.606l1.983 4.692 5.075.436a.4.4 0 0 1 .228.701l-3.85 3.335 1.154 4.962a.4.4 0 0 1-.596.433l-4.361-2.63-4.362 2.63a.4.4 0 0 1-.596-.433L3.99 9.77.139 6.434a.4.4 0 0 1 .227-.7l5.076-.436L7.424.606a.4.4 0 0 1 .737 0z" fill="#FCD406" fill-rule="evenodd"/>
@@ -99,26 +105,54 @@
             <li class="site-menu__item"><a class="js-scrollToFaq js-scrollpage" href="/#section-faq">常見問答</a></li>
             <li class="site-menu__item"><a href="/about.html">關於我們</a></li>
           </ul>
+          <div class="header__user">
+            <svg class="icon-user" role="img">
+              <use xlink:href="#icon-user"></use>
+            </svg>
+            <div class="login-block">
+              <div class="name"></div>
+              <button class="btn-login hide">登入</button>
+            </div>
+          </div>
         </nav>
       </div>
     </header>
     <main class="site-main">
       <section class="page-banner">
         <div class="wrapper-l page-banner__container">
-          <h1 class="page-banner__heading">查看工時</h1><a class="btn-s btn-yellow-line" id="btn-latest" href="#/latest"><svg role="img" class="star"><use xlink:href="#star"></use></svg>最新資料</a><img class="page-banner__image" src="/assets/img/workers.jpg">
+          <h1 class="page-banner__heading">查看工時</h1>
+          <div class="page-banner__btns"><a class="btn-s btn-yellow-line" href="#/latest"><svg role="img" class="star"><use xlink:href="#star"></use></svg>最新資料</a><a class="btn-s btn-yellow-line" href="#/work-time-dashboard"><svg role="img" class="icon-sort"><use xlink:href="#icon-sort"></use></svg>工時排行</a><a class="btn-s btn-yellow-line" href="#/salary-dashboard"><svg role="img" class="icon-sort"><use xlink:href="#icon-sort"></use></svg>時薪排行</a></div><img class="page-banner__image" src="/assets/img/workers.jpg">
         </div>
       </section>
       <div class="wrapper-m">
-        <section class="section show-searchbar" id="section-search">
+        <section id="call-to-share-data" style="display:none" v-show="share.is_authed === false">
+          <div class="dashed-line-box">
+            <div class="not-login" v-if="!share.is_logged_in">哈囉！請先
+              <button class="btn-login"><svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg> 登入</button>才能查看完整薪資工時資訊喔
+            </div>
+            <div class="logined" v-if="share.is_logged_in">請留下至少一筆資料，才能查看完整薪資、工時資訊。<br>沒有工作經驗嗎？沒有關係，分享以下連結給朋友，朋友留了資料，系統將開放您完整權限。
+              <div class="share-link">
+                <div class="link">
+                  <input type="text" v-model="user_link" id="user-link">
+                </div><svg role="img" class="icon-form-checked" id="user-link-icon"><use xlink:href="#form-checked" ></use></svg>
+                <button class="button" data-copytarget="#user-link">複製連結</button>
+              </div>
+            </div>
+            <div class="dashed-line-box__buttons" v-if="share.is_logged_in"><a class="btn-m btn-black" href="/#section-form">馬上留資料</a>
+              <div class="btn-m btn-yellow" id="share-rec-url" v-on:click="shareLink" v-if="user_link">fb 貼文分享</div>
+            </div>
+          </div>
+        </section>
+        <section class="section show-searchbar" id="section-search" :class="{ 'is-disabled': !share.is_authed}">
           <div class="show-searchbar__type">
             <div class="form-group form-group--inline">
-              <div class="select-form">
+              <div class="radio-form">
                 <input type="radio" id="btn-company" name="search-type" v-model="search_type" value="by-company">
-                <label class="select-form__label" for="btn-company"><span class="radio-input"></span><span class="radio-text">公司</span></label>
+                <label class="radio-circle" for="btn-company"><span class="radio-input"></span><span class="radio-text">公司</span></label>
               </div>
-              <div class="select-form">
+              <div class="radio-form">
                 <input type="radio" id="btn-position" name="search-type" v-model="search_type" value="by-job-title">
-                <label class="select-form__label" for="btn-position"><span class="radio-input"></span><span class="radio-text">職稱</span></label>
+                <label class="radio-circle" for="btn-position"><span class="radio-input"></span><span class="radio-text">職稱</span></label>
               </div>
             </div>
           </div>
@@ -135,19 +169,36 @@
       </div>
       <template id="app-search-and-group-by-company">
         <section class="search-result">
-          <h2 class="section__heading">搜尋 “<span class="search-query">{{company_keyword}}</span>” 的工時結果</h2>
+          <h2 class="section__heading">搜尋 “<span class="search-query">{{company_keyword}}</span>” 的薪時資訊</h2>
           <div class="search-result__result">
+            <div class="search-result__sort">
+              <div class="label">排序：</div>
+              <select id="" name="" v-model="search_result_sort" v-bind:disabled="!share.is_authed" @change="sortOnChange()">
+                <option v-bind:value="{&quot;group_sort_by&quot;:&quot;week_work_time&quot;,&quot;order&quot;:&quot;descending&quot;}">一週平均總工時（高到低）</option>
+                <option v-bind:value="{&quot;group_sort_by&quot;:&quot;week_work_time&quot;,&quot;order&quot;:&quot;ascending&quot;}">一週平均總工時（低到高）</option>
+                <option v-bind:value="{&quot;group_sort_by&quot;:&quot;estimated_hourly_wage&quot;,&quot;order&quot;: &quot;descending&quot;}">估算時薪（高到低）</option>
+                <option v-bind:value="{&quot;group_sort_by&quot;:&quot;estimated_hourly_wage&quot;,&quot;order&quot;: &quot;ascending&quot;}">估算時薪（低到高）</option>
+              </select>
+            </div>
             <div class="search-result-list accordion">
               <div class="accordion__item search-result-list__item" v-for="g in data">
                 <button class="accordion__trigger">
-                  <h3 class="search-result-list__heading">{{g._id.name}}</h3><span class="accordion__icon"><svg role="img"><use xlink:href="#icon-minus"></use></svg></span>
+                  <div class="search-result-list__heading">
+                    <h3 class="name">{{g.company ? g.company.name : ""}}</h3>
+                    <div class="sort-item" v-if="search_result_sort.group_sort_by==='estimated_hourly_wage'">
+                      <div><span class="heading">平均估計時薪：</span><span class="value">{{g.average.estimated_hourly_wage | formatted_wage_string}} 元</span></div>
+                    </div>
+                    <div class="sort-item" v-else>
+                      <div><span class="heading">平均一週總工時：</span><span class="value">{{g.average.week_work_time}} 小時</span></div>
+                    </div>
+                  </div><span class="accordion__icon"><svg role="img"><use xlink:href="#icon-minus"></use></svg></span>
                 </button>
                 <div class="accordion__content">
                   <div class="search-result-list__content">
                     <div class="result-fee-off">
                       <div class="result-fee-off__item">
-                        <h4 class="result-fee-off__heading"><svg><use xlink:href="#icon-coin"></use></svg> 加班有無加班費<span class="small-info-right" v-show="g.count &lt; 5">&nbsp;&nbsp;資料未達五筆</span></h4>
-                        <div class="result-fee-off__contnet">
+                        <h4 class="result-fee-off__heading"><svg><use xlink:href="#icon-coin"></use></svg> 加班有無加班費</h4>
+                        <div class="result-fee-off__contnet" v-bind:class="{ 'count-is-not-enough': g.count &lt; 5 }">
                           <div class="result-fee-off__yes">
                             <div>
                               <div class="result-fee-off-name">有</div>
@@ -167,8 +218,8 @@
                         </div>
                       </div>
                       <div class="result-fee-off__item">
-                        <h4 class="result-fee-off__heading"><svg><use xlink:href="#icon-clock"></use></svg> 加班有無補休<span class="small-info-right" v-show="g.count &lt; 5">&nbsp;&nbsp;資料未達五筆</span></h4>
-                        <div class="result-fee-off__contnet">
+                        <h4 class="result-fee-off__heading"><svg><use xlink:href="#icon-clock"></use></svg> 加班有無補休</h4>
+                        <div class="result-fee-off__contnet" v-bind:class="{ 'count-is-not-enough': g.count &lt; 5 }">
                           <div class="result-fee-off__yes">
                             <div>
                               <div class="result-fee-off-name">有</div>
@@ -184,25 +235,33 @@
                         </div>
                       </div>
                     </div>
-                    <div class="small-info-right">單位：資料筆數</div>
+                    <div class="small-info-right" v-show="g.count &gt; 5">單位：資料筆數</div>
                   </div>
                   <table class="rwd-table company-table">
                     <thead>
                       <tr>
-                        <th class="col-position"><span>職稱</span><span class="table-sector">廠區/門市/分公司</span></th>
-                        <th class="col-day-promise">日表訂工時</th>
-                        <th class="col-day-real">日實際平均工時</th>
-                        <th class="col-week-time">一週總工時（小時）</th>
+                        <th class="col-position">職稱</th>
+                        <th class="col-type">職務型態</th>
+                        <th class="col-day-time">表訂 / <br>實際工時</th>
+                        <th class="col-week-time">一週總工時</th>
                         <th class="col-frequency">加班頻率</th>
+                        <th class="col-experience">資歷</th>
+                        <th class="col-salary">薪資</th>
+                        <th class="col-hourly">估計時薪</th>
+                        <th class="col-data-time">資料時間</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="working in g.workings">
-                        <td data-th="職稱 (廠區/門市/分公司)"><span class="rwd-td"><span>{{working.job_title}}</span><span class="table-sector">{{working.sector}}</span></span></td>
-                        <td data-th="日表訂工時"><span class="rwd-td">{{working.day_promised_work_time}}</span></td>
-                        <td data-th="日實際平均工時"><span class="rwd-td">{{working.day_real_work_time}}</span></td>
-                        <td data-th="一週總工時"><span class="rwd-td"><span class="table-time-bar" data-time="{{working.week_work_time}}" v-bind:style="{ width: working.week_work_time * 2 + 'px' }">{{working.week_work_time}}</span></span></td>
+                      <tr v-for="working in g.time_and_salary">
+                        <td data-th="職稱"><span class="rwd-td"><span>{{working.job_title}}</span><span class="table-sector">{{working.sector}}</span></span></td>
+                        <td data-th="職務型態"><span class="rwd-td">{{working.employment_type | employment_type_string}}</span></td>
+                        <td data-th="表訂 / 實際工時"><span class="rwd-td">{{working.day_promised_work_time}} / {{working.day_real_work_time}}</span></td>
+                        <td data-th="一週總工時"><span class="rwd-td"><span class="table-time-bar" data-time="{{working.week_work_time}}" v-bind:style="{ width: working.week_work_time + 'px' }">{{working.week_work_time}}</span></span></td>
                         <td data-th="加班頻率"><span class="rwd-td"><span class="table-frequency-circle" data-frequency="{{working.overtime_frequency}}"></span>{{working.overtime_frequency | overtime_frequency_string}}</span></td>
+                        <td data-th="資歷"><span class="rwd-td" v-if="working.experience_in_year &gt; 0">{{working.experience_in_year}} 年</span><span class="rwd-td" v-else>小於1年</span></td>
+                        <td data-th="薪資"><span class="rwd-td">{{working.salary.amount | formatted_wage_string}} / {{working.salary.type | salary_type_string}}</span></td>
+                        <td data-th="估計時薪"><span class="rwd-td">{{working.estimated_hourly_wage | formatted_wage_string}} 元</span></td>
+                        <td data-th="資料時間"><span class="rwd-td"><span class="data-time">{{working.data_time.year}}.{{working.data_time.month | two_digit_month}}</span></span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -218,31 +277,56 @@
       </template>
       <template id="app-search-and-group-by-job-title">
         <section class="search-result">
-          <h2 class="section__heading">搜尋 “<span class="search-query">{{job_title_keyword}}</span>” 的工時結果</h2>
+          <h2 class="section__heading"> “<span class="search-query">{{job_title_keyword}}</span>” 的{{search_result_sort | search_by_job_title_section_title}}</h2>
           <div class="search-result__result">
+            <div class="search-result__sort">
+              <div class="label">排序：</div>
+              <select id="" name="" v-model="search_result_sort" v-bind:disabled="!share.is_authed" @change="sortOnChange()">
+                <option v-bind:value="{&quot;group_sort_by&quot;:&quot;week_work_time&quot;,&quot;order&quot;:&quot;descending&quot;}">一週平均總工時（高到低）</option>
+                <option v-bind:value="{&quot;group_sort_by&quot;:&quot;week_work_time&quot;,&quot;order&quot;:&quot;ascending&quot;}">一週平均總工時（低到高）</option>
+                <option v-bind:value="{&quot;group_sort_by&quot;:&quot;estimated_hourly_wage&quot;,&quot;order&quot;: &quot;descending&quot;}">估算時薪（高到低）</option>
+                <option v-bind:value="{&quot;group_sort_by&quot;:&quot;estimated_hourly_wage&quot;,&quot;order&quot;: &quot;ascending&quot;}">估算時薪（低到高）</option>
+              </select>
+            </div>
             <div class="search-result-list accordion">
-              <div class="accordion__item search-result-list__item" v-for="group in data">
+              <div class="accordion__item search-result-list__item" v-for="g in data">
                 <button class="accordion__trigger">
-                  <h3 class="search-result-list__heading">{{group._id}}</h3><span class="accordion__icon"><svg role="img"><use xlink:href="#icon-minus"></use></svg></span>
+                  <div class="search-result-list__heading">
+                    <h3 class="name">{{g.company ? g.company.name : ""}}</h3>
+                    <div class="sort-item" v-if="search_result_sort.group_sort_by==='estimated_hourly_wage'">
+                      <div><span class="heading">平均估計時薪：</span><span class="value">{{g.average.estimated_hourly_wage | formatted_wage_string}} 元</span></div>
+                    </div>
+                    <div class="sort-item" v-else>
+                      <div><span class="heading">平均一週總工時：</span><span class="value">{{g.average.week_work_time}} 小時</span></div>
+                    </div>
+                  </div><span class="accordion__icon"><svg role="img"><use xlink:href="#icon-minus"></use></svg></span>
                 </button>
                 <div class="accordion__content">
                   <table class="rwd-table company-table">
                     <thead>
                       <tr>
-                        <th class="col-company">公司名稱</th>
-                        <th class="col-day-promise">日表訂工時</th>
-                        <th class="col-day-real">日實際平均工時</th>
-                        <th class="col-week-time">一週總工時（小時）</th>
+                        <th class="col-position">職稱</th>
+                        <th class="col-type">職務型態</th>
+                        <th class="col-day-time">表訂 / <br>實際工時</th>
+                        <th class="col-week-time">一週總工時</th>
                         <th class="col-frequency">加班頻率</th>
+                        <th class="col-experience">資歷</th>
+                        <th class="col-salary">薪資</th>
+                        <th class="col-hourly">估計時薪</th>
+                        <th class="col-data-time">資料時間</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="working in group.workings">
-                        <td data-th="公司名稱"><span class="rwd-td">{{working.company.name}}</span></td>
-                        <td data-th="日表訂工時"><span class="rwd-td">{{working.day_promised_work_time}}</span></td>
-                        <td data-th="日實際平均工時"><span class="rwd-td">{{working.day_real_work_time}}</span></td>
-                        <td data-th="一週總工時"><span class="rwd-td"><span class="table-time-bar" data-time="{{working.week_work_time}}" v-bind:style="{ width: working.week_work_time * 2 + 'px' }">{{working.week_work_time}}</span></span></td>
+                      <tr v-for="working in g.time_and_salary">
+                        <td data-th="職稱"><span class="rwd-td"><span>{{working.job_title}}</span><span class="table-sector">{{working.sector}}</span></span></td>
+                        <td data-th="職務型態"><span class="rwd-td">{{working.employment_type | employment_type_string}}</span></td>
+                        <td data-th="表訂 / 實際工時"><span class="rwd-td">{{working.day_promised_work_time}} / {{working.day_real_work_time}}</span></td>
+                        <td data-th="一週總工時"><span class="rwd-td"><span class="table-time-bar" data-time="{{working.week_work_time}}" v-bind:style="{ width: working.week_work_time + 'px' }">{{working.week_work_time}}</span></span></td>
                         <td data-th="加班頻率"><span class="rwd-td"><span class="table-frequency-circle" data-frequency="{{working.overtime_frequency}}"></span>{{working.overtime_frequency | overtime_frequency_string}}</span></td>
+                        <td data-th="資歷"><span class="rwd-td" v-if="working.experience_in_year &gt; 0">{{working.experience_in_year}} 年</span><span class="rwd-td" v-else>小於1年</span></td>
+                        <td data-th="薪資"><span class="rwd-td">{{working.salary.amount | formatted_wage_string}} / {{working.salary.type | salary_type_string}}</span></td>
+                        <td data-th="估計時薪"><span class="rwd-td">{{working.estimated_hourly_wage | formatted_wage_string}} 元</span></td>
+                        <td data-th="資料時間"><span class="rwd-td"><span class="data-time">{{working.data_time.year}}.{{working.data_time.month | two_digit_month}}</span></span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -256,25 +340,42 @@
           </div>
         </section>
       </template>
-      <template id="app-latest-workings">
+      <template id="app-time-and-salary">
         <section class="search-result">
-          <h2 class="section__heading">最新工時資料</h2>
+          <h2 class="section__heading">{{search_result_sort | time_and_salary_section_title}}</h2>
           <div class="search-result__result">
-            <table class="rwd-table latest-table">
+            <div class="search-result__sort">
+              <div class="label">排序：</div>
+              <select id="" name="" v-model="search_result_sort" v-bind:disabled="!share.is_authed" @change="sortOnChange()">
+                <option v-bind:value="{&quot;sort_by&quot;:&quot;week_work_time&quot;,&quot;order&quot;:&quot;descending&quot;}">一週平均總工時（高到低）</option>
+                <option v-bind:value="{&quot;sort_by&quot;:&quot;week_work_time&quot;,&quot;order&quot;:&quot;ascending&quot;}">一週平均總工時（低到高）</option>
+                <option v-bind:value="{&quot;sort_by&quot;:&quot;estimated_hourly_wage&quot;,&quot;order&quot;: &quot;descending&quot;}">估算時薪（高到低）</option>
+                <option v-bind:value="{&quot;sort_by&quot;:&quot;estimated_hourly_wage&quot;,&quot;order&quot;: &quot;ascending&quot;}">估算時薪（低到高）</option>
+                <option v-bind:value="{&quot;sort_by&quot;:&quot;created_at&quot;,&quot;order&quot;:&quot;descending&quot;}">資料時間（高到低）</option>
+                <option v-bind:value="{&quot;sort_by&quot;:&quot;created_at&quot;,&quot;order&quot;:&quot;ascending&quot;}">資料時間（低到高）</option>
+              </select>
+            </div>
+            <table class="rwd-table latest-table" :class="{ 'is-disabled':  !share.is_authed}">
               <thead>
                 <tr>
                   <th class="col-company">公司名稱</th>
                   <th class="col-position"><span>職稱</span><span class="table-sector">廠區/門市/分公司</span></th>
-                  <th class="col-time">一週總工時（小時）</th>
+                  <th class="col-week-time">一週總工時</th>
                   <th class="col-frequency">加班頻率</th>
+                  <th class="col-salary">薪資</th>
+                  <th class="col-hourly">估計時薪</th>
+                  <th class="col-data-time">資料時間</th>
                 </tr>
               </thead>
               <tbody id="tbody-latest-data">
-                <tr v-for="w in workings">
-                  <td data-th="公司名稱"><span class="rwd-td"><a href="#/search-and-group/by-company/{{encodeURIComponent(w.company ? w.company.name : '')}}">{{w.company ? w.company.name : ""}}</a></span></td>
-                  <td data-th="職稱 (廠區/門市/分公司)"><span class="rwd-td"><span><a href="#/search-and-group/by-job-title/{{encodeURIComponent(w.job_title)}}">{{w.job_title}}</a></span><span class="table-sector">{{w.sector}}</span></span></td>
-                  <td data-th="一週總工時"><span class="rwd-td"><span class="table-time-bar" data-time="{{w.week_work_time}}" v-bind:style="{ width: w.week_work_time * 2 + 'px' }">{{w.week_work_time}}</span></span></td>
+                <tr v-for="w in time_and_salary">
+                  <td data-th="公司名稱"><span class="rwd-td"><a href="#/company/{{encodeURIComponent(w.company ? w.company.name : '')}}/work-time-dashboard">{{w.company ? w.company.name : ""}}</a></span></td>
+                  <td data-th="職稱 (廠區/門市/分公司)"><span class="rwd-td"><span><a href="#/job-title/{{encodeURIComponent(w.job_title)}}/work-time-dashboard">{{w.job_title}}</a></span><span class="table-sector">{{w.sector}}</span></span></td>
+                  <td data-th="一週總工時"><span class="rwd-td"><span class="table-time-bar" data-time="{{w.week_work_time}}" v-bind:style="{ width: w.week_work_time + 'px' }">{{w.week_work_time}}</span></span></td>
                   <td data-th="加班頻率"><span class="rwd-td"><span class="table-frequency-circle" data-frequency="{{w.overtime_frequency}}"></span>{{w.overtime_frequency | overtime_frequency_string}}</span></td>
+                  <td data-th="薪資"><span class="rwd-td">{{w.salary.amount | formatted_wage_string}} / {{w.salary.type | salary_type_string}}</span></td>
+                  <td data-th="估計時薪"><span class="rwd-td">{{w.estimated_hourly_wage | formatted_wage_string}} 元</span></td>
+                  <td data-th="資料時間"><span class="rwd-td"><span class="data-time">{{w.data_time.year}}.{{w.data_time.month | two_digit_month}}</span></span></td>
                 </tr>
               </tbody>
             </table>
@@ -283,9 +384,13 @@
             <div class="status-loading" v-show="is_loading"></div>
             <div class="status-no-result" v-show="workings.length == 0 &amp;&amp; is_loading === false">找不到結果</div>
           </div>
+          <section class="wrapper-m" v-show="! share.is_authed">
+            <div class="dashed-line-box">
+              <div class="bottom">目前僅顯示：{{time_and_salary.length}} 筆，總共有 {{total}} 筆</div>
+            </div>
+          </section>
         </section>
       </template>
-      <button id="btn-back-to-top"><svg><use xlink:href="#icon-arrow-up"></use></svg></button>
     </main>
     <footer class="footer" id="site-footer">
       <div class="wrapper-l">

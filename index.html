@@ -78,8 +78,14 @@
     <symbol id="icon-question" viewBox="0 0 82 82">
       <title>question</title><g fill="#FCD406" fill-rule="evenodd"><path d="M41 0C18.392 0 0 18.392 0 41s18.392 41 41 41 41-18.392 41-41S63.608 0 41 0zm0 76.875C21.219 76.875 5.125 60.781 5.125 41S21.219 5.125 41 5.125 76.875 21.219 76.875 41 60.781 76.875 41 76.875z"/><path d="M41.693 13.369c-10.122 0-18.355 8.233-18.355 18.352a2.563 2.563 0 0 0 5.125 0c0-7.293 5.936-13.227 13.23-13.227 7.292 0 13.225 5.934 13.225 13.227S48.985 44.95 41.693 44.95a2.563 2.563 0 0 0-2.562 2.562v9.906a2.563 2.563 0 0 0 5.125 0v-7.523c8.908-1.25 15.787-8.923 15.787-18.174 0-10.12-8.232-18.351-18.35-18.351z"/><ellipse cx="41.691" cy="67.143" rx="2.805" ry="2.805"/></g>
     </symbol>
+    <symbol id="icon-sort" viewBox="0 0 24 24">
+      <path d="M9 0c-.3 0-.5.1-.7.3l-8 8c-.2.2-.3.4-.3.7 0 .3.1.5.3.7l1.4 1.4c.2.2.5.3.7.3.3 0 .5-.1.7-.3l2-2c.3-.3.9-.1.9.4V23c0 .5.5 1 1 1h2c.5 0 1-.5 1-1V1c0-.3-.1-.5-.3-.7C9.5.1 9.3 0 9 0zM23.7 14.3l-1.4-1.4c-.2-.2-.5-.3-.7-.3-.3 0-.5.1-.7.3l-2 2c-.3.3-.9.1-.9-.4V1c0-.5-.5-1-1-1h-2c-.5 0-1 .5-1 1v22c0 .3.1.5.3.7s.5.3.7.3c.3 0 .5-.1.7-.3l8-8c.2-.2.3-.4.3-.7 0-.3-.1-.5-.3-.7z"/>
+    </symbol>
     <symbol id="icon-twitter" viewBox="0 0 20 20">
       <title>icon-twitter</title><path d="M19.449 3.977a7.871 7.871 0 0 1-2.266.62 3.958 3.958 0 0 0 1.733-2.182c-.774.46-1.62.784-2.504.958A3.944 3.944 0 0 0 9.693 6.97a11.199 11.199 0 0 1-8.13-4.12 3.923 3.923 0 0 0-.534 1.982c0 1.369.696 2.576 1.754 3.283a3.926 3.926 0 0 1-1.786-.494v.05a3.947 3.947 0 0 0 3.163 3.868c-.581.157-1.19.18-1.781.066a3.948 3.948 0 0 0 3.684 2.739 7.915 7.915 0 0 1-5.839 1.634 11.169 11.169 0 0 0 6.046 1.771c7.255 0 11.222-6.01 11.222-11.222 0-.17-.004-.341-.012-.51a7.957 7.957 0 0 0 1.969-2.04z"/>
+    </symbol>
+    <symbol id="icon-user" viewBox="0 0 64 64">
+      <g fill="#1D1D1B"><path d="M63.834 61.199c-.767-3.404-6.562-24.541-31.855-24.541C4.607 36.658.071 61.406.028 61.657A2.006 2.006 0 0 0 2.004 64h59.992a2.005 2.005 0 0 0 1.838-2.801zM4.575 59.988c1.742-5.632 7.977-19.317 27.403-19.317S57.64 54.356 59.382 59.988H4.575zM31.977 32.895c9.063 0 16.436-7.377 16.436-16.447C48.412 7.379 41.04 0 31.977 0c-9.06 0-16.43 7.379-16.43 16.447 0 9.071 7.37 16.448 16.43 16.448zm0-28.883c6.854 0 12.428 5.578 12.428 12.436 0 6.856-5.573 12.436-12.428 12.436-6.849 0-12.422-5.579-12.422-12.436 0-6.858 5.573-12.436 12.422-12.436z"/></g>
     </symbol>
     <symbol id="star" viewBox="0 0 16 16">
       <title>star (1) copy</title><path d="M8.16.606l1.983 4.692 5.075.436a.4.4 0 0 1 .228.701l-3.85 3.335 1.154 4.962a.4.4 0 0 1-.596.433l-4.361-2.63-4.362 2.63a.4.4 0 0 1-.596-.433L3.99 9.77.139 6.434a.4.4 0 0 1 .227-.7l5.076-.436L7.424.606a.4.4 0 0 1 .737 0z" fill="#FCD406" fill-rule="evenodd"/>
@@ -99,6 +105,15 @@
             <li class="site-menu__item"><a class="js-scrollToFaq js-scrollpage" href="/#section-faq">常見問答</a></li>
             <li class="site-menu__item"><a href="/about.html">關於我們</a></li>
           </ul>
+          <div class="header__user">
+            <svg class="icon-user" role="img">
+              <use xlink:href="#icon-user"></use>
+            </svg>
+            <div class="login-block">
+              <div class="name"></div>
+              <button class="btn-login hide">登入</button>
+            </div>
+          </div>
         </nav>
       </div>
     </header>
@@ -142,7 +157,6 @@
         <div class="wrapper-s">
           <div class="heading">
             <h2 class="heading__heading">匿名參與工時透明化運動</h2>
-            <p class="heading__description">請您留下<strong>「最近一週」</strong>的資訊</p>
           </div>
           <form id="work-form" action="">
             <div class="form-section">
@@ -151,6 +165,34 @@
                 <div>
                   <input class="is-required ui-autocomplete-input" type="text" placeholder="〇〇股份有限公司" id="form-company-query" name="company_query">
                   <input type="hidden" placeholder="公司統編" id="form-company-id">
+                </div>
+              </div>
+            </div>
+            <div class="form-section">
+              <div class="form-group--two">
+                <div class="form-group">
+                  <label class="is-required">你現在在職嗎？</label>
+                  <div class="radio-form inline-item">
+                    <input type="radio" value="yes" id="form-is-currently-employed" name="is_currently_employed" checked="true">
+                    <label class="radio-circle" for="form-is-currently-employed"><span class="radio-input"></span><span class="radio-text">在職</span></label>
+                  </div>
+                  <div class="radio-form inline-item">
+                    <input type="radio" value="no" id="form-not-currently-employed" name="is_currently_employed">
+                    <label class="radio-circle" for="form-not-currently-employed"><span class="radio-input"></span><span class="radio-text">已離職</span></label>
+                  </div>
+                </div>
+                <div class="form-group hide-first" id="form-job-ending-time">
+                  <label class="is-required">離職時間</label>
+                  <div class="form-year-month">
+                    <div>
+                      <select id="form-job-ending-year" name="job_ending_time"></select>
+                      <label>年</label>
+                    </div>
+                    <div>
+                      <select id="form-job-ending-month" name="job_ending_time"></select>
+                      <label>月</label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -171,117 +213,171 @@
             <div class="form-section">
               <div class="form-group--two">
                 <div class="form-group">
-                  <label class="is-required" for="form-day-promised-work-time">工作日表訂工時</label>
-                  <div class="input-unit"><span class="unit">小時</span>
-                    <input class="is-required" type="text" placeholder="8 或 8.5" id="form-day-promised-work-time" name="day_promised_work_time">
-                  </div>
+                  <label class="is-required" for="form-employed-type">職務型態</label>
+                  <select id="form-employed-type" name="employment_type">
+                    <option value="" selected>請選擇</option>
+                    <option value="full-time">全職</option>
+                    <option value="part-time">兼職(含打工)</option>
+                    <option value="intern">實習</option>
+                    <option value="temporary">臨時工</option>
+                    <option value="contract">約聘雇</option>
+                    <option value="dispatched-labor">派遣</option>
+                  </select>
                 </div>
                 <div class="form-group">
-                  <label class="is-required" for="form-day-real-work-time">實際平均工時</label>
+                  <label for="form-gender">性別</label>
+                  <select id="form-gender" name="gender">
+                    <option value="" selected>請選擇</option>
+                    <option value="male">男</option>
+                    <option value="female">女</option>
+                    <option value="other">其他</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <h5 class="please-select-one">以下薪資 / 工時擇一必填</h5>
+            <section id="form-section-salary">
+              <div class="icon-line-divider"><svg><use xlink:href="#icon-coin"></use></svg></div>
+              <div class="form-section">
+                <div class="form-group--two">
+                  <div class="form-group">
+                    <label class="maybe-is-required">薪資</label>
+                    <div class="form-salary-group">
+                      <select class="maybe-is-required" id="salary-type" name="salary_type">
+                        <option value="" selected>請選擇</option>
+                        <option value="year">年薪</option>
+                        <option value="month">月薪</option>
+                        <option value="day">日薪</option>
+                        <option value="hour">時薪</option>
+                      </select>
+                      <div class="input-unit"><span class="unit">元</span>
+                        <input class="maybe-is-required" type="text" placeholder="22000" id="salary-amount" name="salary_amount">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="maybe-is-required" for="form-experience-in-year">相關職務工作經歷</label>
+                    <select class="maybe-is-required" id="form-experience-in-year" name="experience_in_year">
+                      <option value="" selected>請選擇</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-info">
+                  <p>薪資請以包含平常的薪資、分紅、年終、績效獎金等實質上獲得的價值去計算。</p>
+                </div>
+              </div>
+            </section>
+            <section id="form-section-work-time">
+              <div class="icon-line-divider"><svg><use xlink:href="#icon-clock"></use></svg></div>
+              <div class="form-section">
+                <div class="form-group--two">
+                  <div class="form-group">
+                    <label class="maybe-is-required" for="form-day-promised-work-time">工作日表訂工時</label>
+                    <div class="input-unit"><span class="unit">小時</span>
+                      <input class="maybe-is-required" type="text" placeholder="8 或 8.5" id="form-day-promised-work-time" name="day_promised_work_time">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="maybe-is-required" for="form-day-real-work-time">實際平均工時</label>
+                    <div class="input-unit"><span class="unit">小時</span>
+                      <input class="maybe-is-required" type="text" placeholder="10 或 10.5" id="form-day-real-work-time" name="day_real_work_time">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-info">
+                  <p><strong>工作日</strong>指與雇主約定的上班日，或是排班排定的日子。</p>
+                  <p><strong>實際平均工時</strong>包含在家工作、待命的時間。<span class="form-info__btn" data-show-trigger="info1">我有疑問</span></p>
+                  <p class="hide" data-show="info1">例如: 公司規定 9:00上班，18:00 下班，午休 1 小時。 那麼表訂工作時間為 (18:00-9:00)-1=8 小時。<br>若實際上平均 20:00 才下班，則實際工作時間為 (20:00-9:00)-1=10 小時。</p>
+                </div>
+              </div>
+              <div class="form-section">
+                <div class="form-group">
+                  <label class="maybe-is-required" for="form-week-work-time">一週總工時</label>
                   <div class="input-unit"><span class="unit">小時</span>
-                    <input class="is-required" type="text" placeholder="10 或 10.5" id="form-day-real-work-time" name="day_real_work_time">
+                    <input class="maybe-is-required" type="text" placeholder="40 或 40.5" id="form-week-work-time" name="week_work_time">
+                  </div>
+                </div>
+                <div class="form-info">
+                  <p>請您留下最近一週的「實際工作時數（不含休息時間，如：午休）」。<span class="form-info__btn" data-show-trigger="info2">我有疑問</span></p>
+                  <p class="hide" data-show="info2">例如: 週一至週五工作 10 小時，週六加班 8 小時，則最近一週工時為 10x5+8 = 58 小時。<br>若您為每月排班，您可以考慮將整個月個工時加總，除上該月天數，再乘上七估算。</p>
+                </div>
+              </div>
+              <div class="form-section">
+                <div class="form-group">
+                  <label class="maybe-is-required">加班頻率</label>
+                  <div class="radio-button radio-button--icon" id="form-overtime-frequency">
+                    <div class="radio-button__item">
+                      <input class="maybe-is-required toggled-radio-button" type="radio" value="0" name="frequency" id="feq0">
+                      <label class="radio-square" for="feq0"><i class="radio-square__icon emoji-0"></i><span class="radio-square__text">幾乎不<span class="hide-m">加班</span></span></label>
+                    </div>
+                    <div class="radio-button__item">
+                      <input class="maybe-is-required toggled-radio-button" type="radio" value="1" name="frequency" id="feq1">
+                      <label class="radio-square" for="feq1"><i class="radio-square__icon emoji-1"></i><span class="radio-square__text">偶爾<span class="hide-m">加班</span></span></label>
+                    </div>
+                    <div class="radio-button__item">
+                      <input class="maybe-is-required toggled-radio-button" type="radio" value="2" name="frequency" id="feq2">
+                      <label class="radio-square" for="feq2"><i class="radio-square__icon emoji-2"></i><span class="radio-square__text">經常<span class="hide-m">加班</span></span></label>
+                    </div>
+                    <div class="radio-button__item">
+                      <input class="maybe-is-required toggled-radio-button" type="radio" value="3" name="frequency" id="feq3">
+                      <label class="radio-square" for="feq3"><i class="radio-square__icon emoji-3"></i><span class="radio-square__text">幾乎每天<span class="hide-m">加班</span></span></label>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="form-info">
-                <p><strong>工作日</strong>指與雇主約定的上班日，或是排班排定的日子。</p>
-                <p><strong>實際平均工時</strong>包含在家工作、待命的時間。<span class="form-info__btn" data-show-trigger="info1">我有疑問</span></p>
-                <p class="hide" data-show="info1">例如: 公司規定 9:00上班，18:00 下班，午休 1 小時。 那麼表訂工作時間為 (18:00-9:00)-1=8 小時。<br>若實際上平均 20:00 才下班，則實際工作時間為 (20:00-9:00)-1=10 小時。</p>
-              </div>
-            </div>
-            <div class="form-section">
-              <div class="form-group">
-                <label class="is-required" for="form-week-work-time">一週總工時</label>
-                <div class="input-unit"><span class="unit">小時</span>
-                  <input class="is-required" type="text" placeholder="40 或 40.5" id="form-week-work-time" name="week_work_time">
+              <div class="form-section">
+                <div class="form-group">
+                  <label class="not-required">加班有無加班費</label>
+                  <div class="radio-button" id="select-fee">
+                    <div class="radio-button__item">
+                      <input class="not-required toggled-radio-button" type="radio" value="yes" name="fee" id="fee_yes">
+                      <label class="radio-square" for="fee_yes"><span class="radio-square__text">有</span></label>
+                    </div>
+                    <div class="radio-button__item">
+                      <input class="not-required toggled-radio-button" type="radio" value="no" name="fee" id="fee_no">
+                      <label class="radio-square" for="fee_no"><span class="radio-square__text">沒有</span></label>
+                    </div>
+                    <div class="radio-button__item">
+                      <input class="not-required toggled-radio-button" type="radio" value="don't know" name="fee" id="fee_unknown">
+                      <label class="radio-square" for="fee_unknown"><span class="radio-square__text">不知道</span></label>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="form-info">
-                <p>請您留下最近一週的「實際工作時數（不含休息時間，如：午休）」。<span class="form-info__btn" data-show-trigger="info2">我有疑問</span></p>
-                <p class="hide" data-show="info2">例如: 週一至週五工作 10 小時，週六加班 8 小時，則最近一週工時為 10x5+8 = 58 小時。<br>若您為每月排班，您可以考慮將整個月個工時加總，除上該月天數，再乘上七估算。</p>
-              </div>
-            </div>
-            <div class="form-section">
-              <div class="form-group">
-                <label class="is-required">加班頻率</label>
-                <div class="radio-button radio-button--icon" id="form-overtime-frequency">
-                  <div class="radio-button__item">
-                    <input type="radio" value="0" name="frequency" id="feq0">
-                    <label class="radio-square" for="feq0"><i class="radio-square__icon emoji-0"></i><span class="radio-square__text">幾乎不<span class="hide-m">加班</span></span></label>
+                <div class="form-group" id="has-fee-options">
+                  <div class="radio-form">
+                    <input class="toggled-radio-button" type="radio" value="yes" id="pay1" name="has_pay">
+                    <label class="radio-circle" for="pay1"><span class="radio-input"></span><span class="radio-text">有，優於或符合勞基法</span></label>
                   </div>
-                  <div class="radio-button__item">
-                    <input type="radio" value="1" name="frequency" id="feq1">
-                    <label class="radio-square" for="feq1"><i class="radio-square__icon emoji-1"></i><span class="radio-square__text">偶爾<span class="hide-m">加班</span></span></label>
+                  <div class="radio-form">
+                    <input class="toggled-radio-button" type="radio" value="no" id="pay2" name="has_pay">
+                    <label class="radio-circle" for="pay2"><span class="radio-input"></span><span class="radio-text">有，不符合勞基法</span></label>
                   </div>
-                  <div class="radio-button__item">
-                    <input type="radio" value="2" name="frequency" id="feq2">
-                    <label class="radio-square" for="feq2"><i class="radio-square__icon emoji-2"></i><span class="radio-square__text">經常<span class="hide-m">加班</span></span></label>
-                  </div>
-                  <div class="radio-button__item">
-                    <input type="radio" value="3" name="frequency" id="feq3">
-                    <label class="radio-square" for="feq3"><i class="radio-square__icon emoji-3"></i><span class="radio-square__text">幾乎每天<span class="hide-m">加班</span></span></label>
+                  <div class="radio-form">
+                    <input class="toggled-radio-button" type="radio" value="don't know" id="pay3" name="has_pay">
+                    <label class="radio-circle" for="pay3"><span class="radio-input"></span><span class="radio-text">有，不清楚是否符合勞基法</span></label>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="form-section">
-              <div class="form-group">
-                <label>加班有無加班費</label>
-                <div class="radio-button" id="select-fee">
-                  <div class="radio-button__item">
-                    <input type="radio" value="yes" name="fee" id="fee_yes">
-                    <label class="radio-square" for="fee_yes"><span class="radio-square__text">有</span></label>
-                  </div>
-                  <div class="radio-button__item">
-                    <input type="radio" value="no" name="fee" id="fee_no">
-                    <label class="radio-square" for="fee_no"><span class="radio-square__text">沒有</span></label>
-                  </div>
-                  <div class="radio-button__item">
-                    <input type="radio" value="don't know" name="fee" id="fee_unknown">
-                    <label class="radio-square" for="fee_unknown"><span class="radio-square__text">不知道</span></label>
-                  </div>
-                  <div class="radio-button__item">
-                    <div class="btn-radio-clear"><svg width="11" height="11" viewBox="0 0 11 11" xmlns="http://www.w3.org/2000/svg"><path d="M10.588.373a.657.657 0 0 0-.931 0L5.48 4.549 1.304.373a.657.657 0 0 0-.931 0 .657.657 0 0 0 0 .931L4.549 5.48.373 9.657a.657.657 0 0 0 0 .931.663.663 0 0 0 .463.196.643.643 0 0 0 .464-.196l4.176-4.176 4.176 4.176a.663.663 0 0 0 .463.196c.17 0 .337-.064.464-.196a.657.657 0 0 0 0-.931L6.412 5.48l4.176-4.176a.657.657 0 0 0 0-.931z" /></svg>重設</div>
+              <div class="form-section">
+                <div class="form-group">
+                  <label class="not-required">加班有無補休</label>
+                  <div class="radio-button" id="form-has-compensatory-dayoff">
+                    <div class="radio-button__item">
+                      <input class="not-required toggled-radio-button" type="radio" value="yes" name="time_off" id="off_yes">
+                      <label class="radio-square" for="off_yes"><span class="radio-square__text">有</span></label>
+                    </div>
+                    <div class="radio-button__item">
+                      <input class="not-required toggled-radio-button" type="radio" value="no" name="time_off" id="off_no">
+                      <label class="radio-square" for="off_no"><span class="radio-square__text">沒有</span></label>
+                    </div>
+                    <div class="radio-button__item">
+                      <input class="not-required toggled-radio-button" type="radio" value="don't know" name="time_off" id="off_unknown">
+                      <label class="radio-square" for="off_unknown"><span class="radio-square__text">不知道</span></label>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="form-group" id="has-fee-option">
-                <div class="select-form">
-                  <input type="radio" value="yes" id="pay1" name="has_pay">
-                  <label class="select-form__label" for="pay1"><span class="radio-input"></span><span class="radio-text">有，優於或符合勞基法</span></label>
-                </div>
-                <div class="select-form">
-                  <input type="radio" value="no" id="pay2" name="has_pay">
-                  <label class="select-form__label" for="pay2"><span class="radio-input"></span><span class="radio-text">有，不符合勞基法</span></label>
-                </div>
-                <div class="select-form">
-                  <input type="radio" value="don't know" id="pay3" name="has_pay">
-                  <label class="select-form__label" for="pay3"><span class="radio-input"></span><span class="radio-text">有，不清楚是否符合勞基法</span></label>
-                </div>
-              </div>
-            </div>
-            <div class="form-section">
-              <div class="form-group">
-                <label>加班有無補休</label>
-                <div class="radio-button" id="form-has-compensatory-dayoff">
-                  <div class="radio-button__item">
-                    <input type="radio" value="yes" name="time_off" id="off_yes">
-                    <label class="radio-square" for="off_yes"><span class="radio-square__text">有</span></label>
-                  </div>
-                  <div class="radio-button__item">
-                    <input type="radio" value="no" name="time_off" id="off_no">
-                    <label class="radio-square" for="off_no"><span class="radio-square__text">沒有</span></label>
-                  </div>
-                  <div class="radio-button__item">
-                    <input type="radio" value="don't know" name="time_off" id="off_unknown">
-                    <label class="radio-square" for="off_unknown"><span class="radio-square__text">不知道</span></label>
-                  </div>
-                  <div class="radio-button__item">
-                    <div class="btn-radio-clear"><svg width="11" height="11" viewBox="0 0 11 11" xmlns="http://www.w3.org/2000/svg"><path d="M10.588.373a.657.657 0 0 0-.931 0L5.48 4.549 1.304.373a.657.657 0 0 0-.931 0 .657.657 0 0 0 0 .931L4.549 5.48.373 9.657a.657.657 0 0 0 0 .931.663.663 0 0 0 .463.196.643.643 0 0 0 .464-.196l4.176-4.176 4.176 4.176a.663.663 0 0 0 .463.196c.17 0 .337-.064.464-.196a.657.657 0 0 0 0-.931L6.412 5.48l4.176-4.176a.657.657 0 0 0 0-.931z" /></svg>重設</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            </section>
             <div class="form-section">
               <div class="form-group">
                 <label for="form-email">電子郵件 - 有消息時將通知您</label>
@@ -292,7 +388,7 @@
             </div>
             <div class="form-section">
               <button class="btn-black btn-l" type="submit" id="submit"><span id="auth_check_text"><span id="auth_check_indicator"></span>努力上傳資料中</span><span id="submit_text"><span class="fb-login-word">以<svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg>驗證並</span>送出資料</span></button>
-              <div id="auth_check_reminder">如果一直沒有回應，請重新整理：（</div>
+              <div id="auth_check_reminder">如果一直沒有回應，請重新整理：(</div>
               <div class="text-center">
                 <sapn class="btn-why-facebook-login" data-modal-id="why-facebook">為什麼需要 Facebook 帳戶驗證？</sapn>
               </div>
