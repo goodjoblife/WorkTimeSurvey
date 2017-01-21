@@ -94,6 +94,7 @@ $modal-height: 600px;
 }
 
 [data-info-button] {
+	cursor: help;
 	position: relative;
 	&::before {
 		content: "?";
@@ -116,14 +117,10 @@ $modal-height: 600px;
 	}
 	&:hover {
 		color: $orange;
-		&::before {
-			opacity: 1;
-		}
 	}
 }
 
 [data-modal-id] {
-	cursor: pointer;
 	transition: color .3s;
 }
 
