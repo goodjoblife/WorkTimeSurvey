@@ -1,4 +1,8 @@
 /* global WTS, FB, ga, $, Vue, Router */
+const TIME_AND_SALARY_VIEW = 'TIME_AND_SALARY_VIEW';
+const SEARCH_JOB_TITLE_VIEW = 'SEARCH_JOB_TITLE_VIEW';
+const SEARCH_COMPANY_VIEW = 'SEARCH_COMPANY_VIEW';
+
 /*
  * A store to save the state.
  *
@@ -426,9 +430,9 @@ Vue.filter('search_by_job_title_section_title', (value) => {
 const app = new Vue({
   el: "#app",
   components: {
-    'timeAndSalary': timeAndSalary,
-    "searchAndGroupByJobTitle": searchAndGroupByJobTitle,
-    "searchAndGroupByCompany": searchAndGroupByCompany,
+    TIME_AND_SALARY_VIEW: timeAndSalary,
+    SEARCH_JOB_TITLE_VIEW: searchAndGroupByJobTitle,
+    SEARCH_COMPANY_VIEW: searchAndGroupByCompany,
   },
   data: {
     currentView: null,
@@ -437,15 +441,15 @@ const app = new Vue({
   events: {
     "state-change": function() {
       this.currentView = this.share.current_view;
-      if (this.currentView == "timeAndSalary") {
+      if (this.currentView === TIME_AND_SALARY_VIEW) {
         Vue.nextTick(() => {
           app.$broadcast("load_time_and_salary");
         });
-      } else if (this.currentView == "searchAndGroupByJobTitle") {
+      } else if (this.currentView === SEARCH_JOB_TITLE_VIEW) {
         Vue.nextTick(() => {
           app.$broadcast("load_search_and_group_by_job_title");
         });
-      } else if (this.currentView == "searchAndGroupByCompany") {
+      } else if (this.currentView === SEARCH_COMPANY_VIEW) {
         Vue.nextTick(() => {
           app.$broadcast("load_search_and_group_by_company");
         });
@@ -479,10 +483,10 @@ const searchBarApp = new Vue({
   },
   events: {
     'state-change': function() {
-      if (this.share.current_view == "searchAndGroupByCompany") {
+      if (this.share.current_view === SEARCH_COMPANY_VIEW) {
         this.search_type = "by-company";
         this.keyword = this.share.view_params.company;
-      } else if (this.share.current_view == "searchAndGroupByJobTitle") {
+      } else if (this.share.current_view === SEARCH_JOB_TITLE_VIEW) {
         this.search_type = "by-job-title";
         this.keyword = this.share.view_params.job_title;
       }
@@ -493,7 +497,7 @@ const searchBarApp = new Vue({
 const router = Router({
   "/latest": {
     on: () => {
-      showjs_store.changeViewState("timeAndSalary", {
+      showjs_store.changeViewState(TIME_AND_SALARY_VIEW, {
         sort_by: "created_at",
         order: "descending",
       });
@@ -501,7 +505,7 @@ const router = Router({
   },
   "/sort/time-asc": {
     on: () => {
-      showjs_store.changeViewState("timeAndSalary", {
+      showjs_store.changeViewState(TIME_AND_SALARY_VIEW, {
         sort_by: "created_at",
         order: "ascending",
       });
@@ -509,7 +513,7 @@ const router = Router({
   },
   "/work-time-dashboard": {
     on: () => {
-      showjs_store.changeViewState("timeAndSalary", {
+      showjs_store.changeViewState(TIME_AND_SALARY_VIEW, {
         sort_by: "week_work_time",
         order: "descending",
       });
@@ -517,7 +521,7 @@ const router = Router({
   },
   "/sort/work-time-asc": {
     on: () => {
-      showjs_store.changeViewState("timeAndSalary", {
+      showjs_store.changeViewState(TIME_AND_SALARY_VIEW, {
         sort_by: "week_work_time",
         order: "ascending",
       });
@@ -525,7 +529,7 @@ const router = Router({
   },
   "/salary-dashboard": {
     on: () => {
-      showjs_store.changeViewState("timeAndSalary", {
+      showjs_store.changeViewState(TIME_AND_SALARY_VIEW, {
         sort_by: "estimated_hourly_wage",
         order: "descending",
       });
@@ -533,7 +537,7 @@ const router = Router({
   },
   "/sort/salary-asc": {
     on: () => {
-      showjs_store.changeViewState("timeAndSalary", {
+      showjs_store.changeViewState(TIME_AND_SALARY_VIEW, {
         sort_by: "estimated_hourly_wage",
         order: "ascending",
       });
@@ -541,7 +545,7 @@ const router = Router({
   },
   "/job-title/:job_title/work-time-dashboard": {
     on: (job_title) => {
-      showjs_store.changeViewState("searchAndGroupByJobTitle", {
+      showjs_store.changeViewState(SEARCH_JOB_TITLE_VIEW, {
         job_title: decodeURIComponent(job_title),
         group_sort_by: "week_work_time",
         order: "descending",
@@ -550,7 +554,7 @@ const router = Router({
   },
   "/job-title/:job_title/sort/work-time-asc": {
     on: (job_title) => {
-      showjs_store.changeViewState("searchAndGroupByJobTitle", {
+      showjs_store.changeViewState(SEARCH_JOB_TITLE_VIEW, {
         job_title: decodeURIComponent(job_title),
         group_sort_by: "week_work_time",
         order: "ascending",
@@ -559,7 +563,7 @@ const router = Router({
   },
   "/job-title/:job_title/salary-dashboard": {
     on: (job_title) => {
-      showjs_store.changeViewState("searchAndGroupByJobTitle", {
+      showjs_store.changeViewState(SEARCH_JOB_TITLE_VIEW, {
         job_title: decodeURIComponent(job_title),
         group_sort_by: "estimated_hourly_wage",
         order: "descending",
@@ -568,7 +572,7 @@ const router = Router({
   },
   "/job-title/:job_title/sort/salary-asc": {
     on: (job_title) => {
-      showjs_store.changeViewState("searchAndGroupByJobTitle", {
+      showjs_store.changeViewState(SEARCH_JOB_TITLE_VIEW, {
         job_title: decodeURIComponent(job_title),
         group_sort_by: "estimated_hourly_wage",
         order: "ascending",
@@ -577,7 +581,7 @@ const router = Router({
   },
   "/company/:company/work-time-dashboard": {
     on: (company) => {
-      showjs_store.changeViewState("searchAndGroupByCompany", {
+      showjs_store.changeViewState(SEARCH_COMPANY_VIEW, {
         company: decodeURIComponent(company),
         group_sort_by: "week_work_time",
         order: "descending",
@@ -586,7 +590,7 @@ const router = Router({
   },
   "/company/:company/sort/work-time-asc": {
     on: (company) => {
-      showjs_store.changeViewState("searchAndGroupByCompany", {
+      showjs_store.changeViewState(SEARCH_COMPANY_VIEW, {
         company: decodeURIComponent(company),
         group_sort_by: "week_work_time",
         order: "ascending",
@@ -595,7 +599,7 @@ const router = Router({
   },
   "/company/:company/salary-dashboard": {
     on: (company) => {
-      showjs_store.changeViewState("searchAndGroupByCompany", {
+      showjs_store.changeViewState(SEARCH_COMPANY_VIEW, {
         company: decodeURIComponent(company),
         group_sort_by: "estimated_hourly_wage",
         order: "descending",
@@ -604,7 +608,7 @@ const router = Router({
   },
   "/company/:company/sort/salary-asc": {
     on: (company) => {
-      showjs_store.changeViewState("searchAndGroupByCompany", {
+      showjs_store.changeViewState(SEARCH_COMPANY_VIEW, {
         company: decodeURIComponent(company),
         group_sort_by: "estimated_hourly_wage",
         order: "ascending",
@@ -787,7 +791,7 @@ const callToShareDataApp = new Vue({
 
 $(window).on('scroll', function() {
   if ($(window).scrollTop() + window.innerHeight >= $(document).height() - 100) {
-    if (app.currentView === "timeAndSalary") {
+    if (app.currentView === TIME_AND_SALARY_VIEW) {
       app.$broadcast("scroll_bottom_reach");
     }
   }
