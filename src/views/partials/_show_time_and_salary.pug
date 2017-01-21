@@ -34,15 +34,25 @@ section(class="search-result")
 							span(class="table-sector") {{w.sector}}
 					td(data-th="一週總工時")
 						span(class="rwd-td")
-							span(class="table-time-bar" data-time="{{w.week_work_time}}" v-bind:style="{ width: w.week_work_time + 'px' }") {{w.week_work_time}}
+							span(v-if="w.week_work_time")
+								span(class="table-time-bar" data-time="{{w.week_work_time}}" v-bind:style="{ width: w.week_work_time + 'px' }") {{w.week_work_time}}
+							span(v-else) -
 					td(data-th="加班頻率")
 						span(class="rwd-td")
-							span(class="table-frequency-circle" data-frequency="{{w.overtime_frequency}}")
-							| {{w.overtime_frequency | overtime_frequency_string}}
+							span(v-if="w.overtime_frequency | overtime_frequency_string")
+								span(class="table-frequency-circle" data-frequency="{{w.overtime_frequency}}")
+								| {{w.overtime_frequency | overtime_frequency_string}}
+							span(v-else) -
 					td(data-th="薪資")
-						span(class="rwd-td") {{w.salary.amount | formatted_wage_string}} / {{w.salary.type | salary_type_string}}
+						span(class="rwd-td")
+							span(v-if="w.salary.amount | formatted_wage_string")
+								| {{w.salary.amount | formatted_wage_string}} / {{w.salary.type | salary_type_string}}
+							span(v-else) -
 					td(data-th="估計時薪")
-						span(class="rwd-td") {{w.estimated_hourly_wage | formatted_wage_string}} 元
+						span(class="rwd-td")
+							span(v-if="w.estimated_hourly_wage | formatted_wage_string")
+								| {{w.estimated_hourly_wage | formatted_wage_string}} 元
+							span(v-else) -
 					td(data-th="資料時間")
 						span(class="rwd-td")
 							span(class="data-time") {{w.data_time.year}}.{{w.data_time.month | two_digit_month}}
