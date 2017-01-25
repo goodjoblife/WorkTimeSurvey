@@ -96,16 +96,16 @@ $modal-height: 600px;
 [data-info-button] {
 	cursor: help;
 	display: inline-block;
+	position: relative;
 	&::after {
-		content: "?";
-		color: $primary-color;
-		font-weight: 800;
-		font-size: 12px;
 		@media (min-width: $above-desktop) {
-			margin-left: 6px;
-			position: relative;
-			top: -2px;
-			display: none;
+			content: "";
+			position: absolute;
+			width: 100%;
+			left: 0;
+			bottom: -4px;
+			height: 1px;
+			border-bottom: 2px dotted $primary-color;
 		}
 	}
 	&:hover {
@@ -132,6 +132,10 @@ $modal-height: 600px;
 		margin-left: 20px;
 		font-size: 0.95em;
 		&::after {
+			content: "?";
+			color: $primary-color;
+			font-weight: 800;
+			font-size: 12px;
 			width: 21px;
 			height: 21px;
 			padding-left: 1px;

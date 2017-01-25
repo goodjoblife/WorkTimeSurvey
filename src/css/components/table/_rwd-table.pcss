@@ -17,7 +17,9 @@
 	table-layout: fixed;
   background-color: #fff;
   &.is-disabled {
-    pointer-events: none;
+    td {
+      pointer-events: none;
+    }  
   }
   th {
     @mixin table-th;
@@ -122,6 +124,7 @@
   [data-sort] {
     &::after {
       font-size: 11px;
+      line-height: 1.2em;
       position: relative;
       top: -2px;
       display: inline-block;
