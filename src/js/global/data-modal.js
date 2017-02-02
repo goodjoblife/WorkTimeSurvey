@@ -9,11 +9,11 @@ const closeModal = () => {
   $('body, html').removeClass('is-fixed');
 };
 
-$('body').on('click', '.js-close-modal', () => {
+$('body').on('click', '.js-close-data-modal', () => {
   closeModal();
 });
-$('body').on('click', '.modal', (event) => {
-  if (!$(event.target).closest('.modal__container').length) {
+$('body').on('click', '.data-modal', (event) => {
+  if (!$(event.target).closest('.js-data-modal-container').length) {
     closeModal();
   }
 });

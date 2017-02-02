@@ -10,6 +10,9 @@ section(class="search-result")
 				option(v-bind:value='{"sort_by":"estimated_hourly_wage","order": "ascending"}') 估算時薪（低到高）
 				option(v-bind:value='{"sort_by":"created_at","order":"descending"}') 資料時間（高到低）
 				option(v-bind:value='{"sort_by":"created_at","order":"ascending"}') 資料時間（低到高）
+		div(class="mobile-info-buttons")
+			<div data-modal-id="info-salary" data-info-button>估計時薪</div>
+			<div data-modal-id="info-time" data-info-button>參考時間</div>
 		table(class="rwd-table latest-table", :class="{ 'is-disabled':  !share.is_authed}")
 			thead
 				tr
@@ -20,8 +23,10 @@ section(class="search-result")
 					th(class="col-week-time") 一週總工時
 					th(class="col-frequency") 加班頻率
 					th(class="col-salary") 薪資
-					th(class="col-hourly") 估計時薪
-					th(class="col-data-time") 資料時間
+					th(class="col-hourly" data-sort="high")
+						<div data-modal-id="info-salary" data-info-button>估計時薪</div>
+					th(class="col-data-time")
+						<div data-modal-id="info-time" data-info-button>參考時間</div>
 			tbody(id="tbody-latest-data")
 				tr(v-for="w in time_and_salary")
 					td(data-th="公司名稱")
@@ -43,7 +48,7 @@ section(class="search-result")
 						span(class="rwd-td") {{w.salary.amount | formatted_wage_string}} / {{w.salary.type | salary_type_string}}
 					td(data-th="估計時薪")
 						span(class="rwd-td") {{w.estimated_hourly_wage | formatted_wage_string}} 元
-					td(data-th="資料時間")
+					td(data-th="參考時間")
 						span(class="rwd-td")
 							span(class="data-time") {{w.data_time.year}}.{{w.data_time.month | two_digit_month}}
 	div(class="search-result__status")

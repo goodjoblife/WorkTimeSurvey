@@ -2,7 +2,7 @@
   margin-bottom: $block-gutter-l;
   .section__heading {
     @media (max-width: $below-mobile) {
-      font-size: 1.4em;
+      font-size: 1.5em;
     }
   }
 }
@@ -71,14 +71,29 @@
 .search-result__sort {
   text-align: right;
   margin-bottom: 20px;
+
+  @media (max-width: $below-mobile) {
+    text-align: left;
+    display: flex;
+    align-items: center;
+  }
   .label {
     display: inline-block;
     position: relative;
     top: 3px;
+
+    @media (max-width: $below-mobile) {
+      flex: 0 0 65px;
+    }
   }
   select {
     display: inline-block;
     max-width: 225px;
     border-color: $gray;
+
+    @media (max-width: $below-mobile) {
+      max-width: initial;
+      flex: 1 1 auto;
+    }
   }
 }

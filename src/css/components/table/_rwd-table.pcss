@@ -17,7 +17,9 @@
 	table-layout: fixed;
   background-color: #fff;
   &.is-disabled {
-    pointer-events: none;
+    td {
+      pointer-events: none;
+    }  
   }
   th {
     @mixin table-th;
@@ -76,10 +78,10 @@
     }
     @media (min-width: $above-desktop) {
       &:first-child {
-        padding-left: $block-gutter-m;
+        padding-left: $block-gutter-s;
       }
       &:last-child {
-        padding-right: $block-gutter-m;
+        padding-right: $block-gutter-s;
       }
     }
   }
@@ -116,6 +118,32 @@
     color: $gray;
     @media (max-width: $below-desktop) {
       word-break: break-all;
+    }
+  }
+
+  [data-sort] {
+    &::after {
+      font-size: 11px;
+      line-height: 1.2em;
+      position: relative;
+      top: -2px;
+      display: inline-block;
+      margin-left: 5px;
+      color: $orange;
+    }
+  }
+
+  [data-sort="high"] {
+    color: $orange;
+    &::after {
+      content: "▲";
+    }
+  }
+
+  [data-sort="low"] {
+    color: $orange;
+    &::after {
+      content: "▼";
     }
   }
 }
