@@ -246,6 +246,18 @@ const searchAndGroupByJobTitle = Vue.extend({
       router.setRoute(`/job-title/${encodeURIComponent(this.job_title_keyword)}` + routes[key]);
     },
   },
+  computed: {
+    section_title: function() {
+      const names = {
+        "week_work_time_descending": "工時排行榜",
+        "week_work_time_ascending": "工時排行榜（由低到高）",
+        "estimated_hourly_wage_descending": "估算時薪排行榜",
+        "estimated_hourly_wage_ascending": "估算時薪排行榜（由低到高）",
+      };
+      const key = `${this.search_result_sort.group_sort_by}_${this.search_result_sort.order}`;
+      return names[key];
+    },
+  },
 });
 
 const searchAndGroupByCompany = Vue.extend({
@@ -397,24 +409,6 @@ Vue.filter('two_digit_month', value => {
   }
   return "";
 });
-
-Vue.filter('search_by_job_title_section_title', (value) => {
-    const names = {
-      "week_work_time_descending": "工時排行榜",
-      "week_work_time_ascending": "工時排行榜（由低到高）",
-      "estimated_hourly_wage_descending": "估算時薪排行榜",
-      "estimated_hourly_wage_ascending": "估算時薪排行榜（由低到高）",
-    };
-
-    if(typeof value === 'object'){
-      if("group_sort_by" in value && "order" in value){
-        const key = `${value.group_sort_by}_${value.order}`;
-        return names[key];
-      }
-    }
-    return "工時排行榜";
-});
-
 
 const app = new Vue({
   el: "#app",
