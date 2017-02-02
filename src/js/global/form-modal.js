@@ -52,10 +52,10 @@ $('body').on('click', '#fb-login-and-submit-in-modal', (e) => {
   $("#work-form").trigger("submit");
 });
 
-$('body').on('click', '.modal__close', () => {
+$('body').on('click', '.js-close-modal', () => {
   closeFormModal();
 });
-$('body').on('click', '.modal', (event) => {
+$('body').on('click', '.form-modal', (event) => {
   if (!$(event.target).closest('.modal__container').length) {
     closeFormModal();
   }
