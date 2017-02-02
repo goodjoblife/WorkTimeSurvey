@@ -29,7 +29,7 @@
   </head>
   <body class="site body-show body-gray">
     <div id="fb-root"></div>
-    <div style="display:none"><svg xmlns="http://www.w3.org/2000/svg" class="svg-icon-lib">
+    <div style="display:none;"><svg xmlns="http://www.w3.org/2000/svg" class="svg-icon-lib">
   <defs>
       <filter id="a" filterUnits="userSpaceOnUse" x=".438" y="1.187" width="54.3" height="52.626"><feColorMatrix values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0"/></filter>
   </defs>
@@ -124,8 +124,8 @@
           <div class="page-banner__btns"><a class="btn-s btn-yellow-line" href="#/latest"><svg role="img" class="star"><use xlink:href="#star"></use></svg>最新資料</a><a class="btn-s btn-yellow-line" href="#/work-time-dashboard"><svg role="img" class="icon-sort"><use xlink:href="#icon-sort"></use></svg>工時排行</a><a class="btn-s btn-yellow-line" href="#/salary-dashboard"><svg role="img" class="icon-sort"><use xlink:href="#icon-sort"></use></svg>時薪排行</a></div><img class="page-banner__image" src="/assets/img/workers.jpg">
         </div>
       </section>
-      <div class="wrapper-m">
-        <section id="call-to-share-data" style="display:none" v-show="share.is_authed === false">
+      <div class="wrapper-m show-searchbar-wrapper">
+        <section id="call-to-share-data" style="display:none;" v-show="share.is_authed === false">
           <div class="dashed-line-box">
             <div class="not-login" v-if="!share.is_logged_in">哈囉！請先
               <button class="btn-login"><svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg> 登入</button>才能查看完整薪資工時資訊喔
@@ -165,6 +165,39 @@
         </section>
       </div>
       <div class="wrapper-l" id="app">
+        <div class="modal data-modal" data-modal="info-time">
+          <div class="modal__inner">
+            <div class="modal__close wrapper-s js-close-data-modal"><svg role="img"><use xlink:href="#x"></use></svg></div>
+            <div class="js-data-modal-container wrapper-s">
+              <div class="modal-content">
+                <div class="modal-content__icon"><svg role="img"><use xlink:href="#icon-question"></use></svg></div>
+                <h5 class="modal-content__heading">參考時間</h5>
+                <p class="modal-content__paragraph html-editor align-left">若分享該筆資料的使用者已離職，則參考時間為<bold>離職年、月</bold>。<br>若尚在職，則為<bold>分享資料的年、月</bold>。</p>
+                <button class="modal-content__btn btn-black btn-m js-close-data-modal">OK，我瞭解了</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal data-modal" data-modal="info-salary">
+          <div class="modal__inner">
+            <div class="modal__close wrapper-m js-close-data-modal"><svg role="img"><use xlink:href="#x"></use></svg></div>
+            <div class="js-data-modal-container wrapper-m">
+              <div class="modal-content">
+                <div class="modal-content__icon"><svg role="img"><use xlink:href="#icon-question"></use></svg></div>
+                <h5 class="modal-content__heading">時薪估計方式</h5>
+                <div class="html-editor align-left">
+                  <ul>
+                    <li>當薪資種類為「時薪」：無需估算</li>
+                    <li>當薪資種類為「日薪」：以 <bold>日薪 ÷ 工作日實際工時</bold> 估算</li>
+                    <li>當薪資種類為「月薪」：以 <bold>(月薪 × 12) ÷ (52 × 每週平均工時 - (12天國假 + 7天特休) × 工作日實際工時)</bold> 估算</li>
+                    <li>當薪資種類為「年薪」：以 <bold>年薪 ÷ (52 × 每週平均工時 - (12天國假+7天特休) × 工作日實際工時)</bold> 估算</li>
+                  </ul>
+                </div>
+                <button class="modal-content__btn btn-black btn-m js-close-data-modal">OK，我瞭解了</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <component :is="currentView" keep-alive></component>
       </div>
       <template id="app-search-and-group-by-company">
@@ -179,6 +212,9 @@
                 <option v-bind:value="{&quot;group_sort_by&quot;:&quot;estimated_hourly_wage&quot;,&quot;order&quot;: &quot;descending&quot;}">估算時薪（高到低）</option>
                 <option v-bind:value="{&quot;group_sort_by&quot;:&quot;estimated_hourly_wage&quot;,&quot;order&quot;: &quot;ascending&quot;}">估算時薪（低到高）</option>
               </select>
+            </div>
+            <div class="mobile-info-buttons"><div data-modal-id="info-salary" data-info-button>估計時薪</div>
+<div data-modal-id="info-time" data-info-button>參考時間</div>
             </div>
             <div class="search-result-list accordion">
               <div class="accordion__item search-result-list__item" v-for="g in data">
@@ -247,8 +283,8 @@
                         <th class="col-frequency">加班頻率</th>
                         <th class="col-experience">資歷</th>
                         <th class="col-salary align-right">薪資</th>
-                        <th class="col-hourly align-right">估計時薪</th>
-                        <th class="col-data-time">資料時間</th>
+                        <th class="col-hourly align-right"><div data-modal-id="info-salary" data-info-button>估計時薪</div></th>
+                        <th class="col-data-time"><div data-modal-id="info-time" data-info-button>參考時間</div></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -261,7 +297,7 @@
                         <td data-th="資歷"><span class="rwd-td"><span v-if="working.experience_in_year"><span v-if="working.experience_in_year &gt; 0">{{working.experience_in_year}} 年</span><span v-else>小於 1 年</span></span><span v-else>-</span></span></td>
                         <td data-th="薪資"><span class="rwd-td align-right"><span v-if="working.salary.amount | formatted_wage_string">{{working.salary.amount | formatted_wage_string}} / {{working.salary.type | salary_type_string}}</span><span v-else>-</span></span></td>
                         <td data-th="估計時薪"><span class="rwd-td align-right"><span v-if="working.estimated_hourly_wage | formatted_wage_string">{{working.estimated_hourly_wage | formatted_wage_string}} 元</span><span v-else>-</span></span></td>
-                        <td data-th="資料時間"><span class="rwd-td"><span class="data-time">{{working.data_time.year}}.{{working.data_time.month | two_digit_month}}</span></span></td>
+                        <td data-th="參考時間"><span class="rwd-td"><span class="data-time">{{working.data_time.year}}.{{working.data_time.month | two_digit_month}}</span></span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -277,7 +313,7 @@
       </template>
       <template id="app-search-and-group-by-job-title">
         <section class="search-result">
-          <h2 class="section__heading"> “<span class="search-query">{{job_title_keyword}}</span>” 的{{search_result_sort | search_by_job_title_section_title}}</h2>
+          <h2 class="section__heading"> “<span class="search-query">{{job_title_keyword}}</span>” 的{{section_title}}</h2>
           <div class="search-result__result">
             <div class="search-result__sort">
               <div class="label">排序：</div>
@@ -287,6 +323,9 @@
                 <option v-bind:value="{&quot;group_sort_by&quot;:&quot;estimated_hourly_wage&quot;,&quot;order&quot;: &quot;descending&quot;}">估算時薪（高到低）</option>
                 <option v-bind:value="{&quot;group_sort_by&quot;:&quot;estimated_hourly_wage&quot;,&quot;order&quot;: &quot;ascending&quot;}">估算時薪（低到高）</option>
               </select>
+            </div>
+            <div class="mobile-info-buttons"><div data-modal-id="info-salary" data-info-button>估計時薪</div>
+<div data-modal-id="info-time" data-info-button>參考時間</div>
             </div>
             <div class="search-result-list accordion">
               <div class="accordion__item search-result-list__item" v-for="g in data">
@@ -308,12 +347,12 @@
                         <th class="col-position">職稱</th>
                         <th class="col-type">職務型態</th>
                         <th class="col-day-time">表訂 / <br>實際工時</th>
-                        <th class="col-week-time">一週總工時</th>
+                        <th class="col-week-time" data-sort="low">一週總工時</th>
                         <th class="col-frequency">加班頻率</th>
                         <th class="col-experience">資歷</th>
                         <th class="col-salary align-right">薪資</th>
-                        <th class="col-hourly align-right">估計時薪</th>
-                        <th class="col-data-time">資料時間</th>
+                        <th class="col-hourly align-right" data-sort="low"><div data-modal-id="info-salary" data-info-button>估計時薪</div></th>
+                        <th class="col-data-time"><div data-modal-id="info-time" data-info-button>參考時間</div></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -326,7 +365,7 @@
                         <td data-th="資歷"><span class="rwd-td"><span v-if="working.experience_in_year"><span v-if="working.experience_in_year &gt; 0">{{working.experience_in_year}} 年</span><span v-else>小於 1 年</span></span><span v-else>-</span></span></td>
                         <td data-th="薪資"><span class="rwd-td align-right"><span v-if="working.salary.amount | formatted_wage_string">{{working.salary.amount | formatted_wage_string}} / {{working.salary.type | salary_type_string}}</span><span v-else>-</span></span></td>
                         <td data-th="估計時薪"><span class="rwd-td align-right"><span v-if="working.estimated_hourly_wage | formatted_wage_string">{{working.estimated_hourly_wage | formatted_wage_string}} 元</span><span v-else>-</span></span></td>
-                        <td data-th="資料時間"><span class="rwd-td"><span class="data-time">{{working.data_time.year}}.{{working.data_time.month | two_digit_month}}</span></span></td>
+                        <td data-th="參考時間"><span class="rwd-td"><span class="data-time">{{working.data_time.year}}.{{working.data_time.month | two_digit_month}}</span></span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -342,7 +381,7 @@
       </template>
       <template id="app-time-and-salary">
         <section class="search-result">
-          <h2 class="section__heading">{{search_result_sort | time_and_salary_section_title}}</h2>
+          <h2 class="section__heading">{{section_title}}</h2>
           <div class="search-result__result">
             <div class="search-result__sort">
               <div class="label">排序：</div>
@@ -355,6 +394,9 @@
                 <option v-bind:value="{&quot;sort_by&quot;:&quot;created_at&quot;,&quot;order&quot;:&quot;ascending&quot;}">資料時間（低到高）</option>
               </select>
             </div>
+            <div class="mobile-info-buttons"><div data-modal-id="info-salary" data-info-button>估計時薪</div>
+<div data-modal-id="info-time" data-info-button>參考時間</div>
+            </div>
             <table class="rwd-table latest-table" :class="{ 'is-disabled':  !share.is_authed}">
               <thead>
                 <tr>
@@ -363,8 +405,8 @@
                   <th class="col-week-time">一週總工時</th>
                   <th class="col-frequency">加班頻率</th>
                   <th class="col-salary align-right">薪資</th>
-                  <th class="col-hourly align-right">估計時薪</th>
-                  <th class="col-data-time">資料時間</th>
+                  <th class="col-hourly align-right" data-sort="high"><div data-modal-id="info-salary" data-info-button>估計時薪</div></th>
+                  <th class="col-data-time"><div data-modal-id="info-time" data-info-button>參考時間</div></th>
                 </tr>
               </thead>
               <tbody id="tbody-latest-data">
@@ -375,7 +417,7 @@
                   <td data-th="加班頻率"><span class="rwd-td"><span v-if="w.overtime_frequency | overtime_frequency_string"><span class="table-frequency-circle" data-frequency="{{w.overtime_frequency}}"></span>{{w.overtime_frequency | overtime_frequency_string}}</span><span v-else>-</span></span></td>
                   <td data-th="薪資"><span class="rwd-td align-right"><span v-if="w.salary.amount | formatted_wage_string">{{w.salary.amount | formatted_wage_string}} / {{w.salary.type | salary_type_string}}</span><span v-else>-</span></span></td>
                   <td data-th="估計時薪"><span class="rwd-td align-right"><span v-if="w.estimated_hourly_wage | formatted_wage_string">{{w.estimated_hourly_wage | formatted_wage_string}} 元</span><span v-else>-</span></span></td>
-                  <td data-th="資料時間"><span class="rwd-td"><span class="data-time">{{w.data_time.year}}.{{w.data_time.month | two_digit_month}}</span></span></td>
+                  <td data-th="參考時間"><span class="rwd-td"><span class="data-time">{{w.data_time.year}}.{{w.data_time.month | two_digit_month}}</span></span></td>
                 </tr>
               </tbody>
             </table>
