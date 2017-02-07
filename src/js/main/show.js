@@ -738,8 +738,8 @@ const callToShareDataApp = new Vue({
     ga("send", "event", category, "job-title-query-autocomplete-search", q);
   });
 
-  $search_bar.on("ompany-query-autocomplete-select", (e, q) => {
-    ga("send", "event", category, "ompany-query-autocomplete-select", q);
+  $search_bar.on("company-query-autocomplete-select", (e, q) => {
+    ga("send", "event", category, "company-query-autocomplete-select", q);
   });
 
   $search_bar.on("job-title-query-autocomplete-select", (e, q) => {
