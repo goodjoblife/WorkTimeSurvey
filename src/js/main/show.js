@@ -771,7 +771,6 @@ const callToShareDataApp = new Vue({
   //authentication & authorization related events
   app.$on("state-change", (type, newState) => {
     if(typeof(type) !== "undefined" && typeof(newState) !== "undefined"){
-      console.log("state-change", type, newState);
       if(type === "log-in-state-change"){
         if(newState === true){
           ga("send", "event", category, "log-in-success");
