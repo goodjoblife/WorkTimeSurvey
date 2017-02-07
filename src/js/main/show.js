@@ -26,12 +26,12 @@ const showjs_store = {
       showjs_store.state.is_authed = false;
     }
 
-    app.$emit("state-change");
+    app.$emit("state-change", "log-in-state-change", is_logged_in);
     searchBarApp.$emit("state-change");
   },
   changeAuthState: function(is_authed) {
     showjs_store.state.is_authed = is_authed;
-    app.$emit("state-change");
+    app.$emit("state-change", "auth-state-change", is_authed);
     searchBarApp.$emit("state-change");
   },
   changeViewState: function(new_view, new_params) {
@@ -767,6 +767,27 @@ const callToShareDataApp = new Vue({
   router.on("on", "/search-and-group/by-company/(.*)", (name) => {
     ga("send", "event", category, "visit-company", decodeURIComponent(name));
   });
+
+  //authentication & authorization related events
+  app.$on("state-change", (type, newState) => {
+    if(typeof(type) !== "undefined" && typeof(newState) !== "undefined"){
+      console.log("state-change", type, newState);
+      if(type === "log-in-state-change"){
+        if(newState === true){
+          ga("send", "event", category, "log-in-success");
+        } else if(newState === false){
+          ga("send", "event", category, "log-in-fail");
+        }
+      } else if (type == "auth-state-change"){
+        if(newState === true){
+          ga("send", "event", category, "authorized");
+        } else if(newState === false){
+          ga("send", "event", category, "unauthorized");
+        }
+      }
+    }
+  });
+
 })(window.jQuery, searchBarApp);
 //*************************************************
 //
