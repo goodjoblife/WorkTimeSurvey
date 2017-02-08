@@ -701,6 +701,7 @@ const callToShareDataApp = new Vue({
         href: this.user_link,
         quote: "想邀請身邊的朋友們，一起參與【工時透明化運動】！",
       });
+      this.$emit("click-fb-share-link");
     },
     queryRecommendationString: function() {
       const access_token = FB.getAccessToken();
@@ -768,6 +769,11 @@ const callToShareDataApp = new Vue({
     ga("send", "event", category, "visit-company", decodeURIComponent(name));
   });
 
+})(window.jQuery, searchBarApp);
+
+(($, app) => {
+  const category = "QUERY_PAGE";
+
   //authentication & authorization related events
   app.$on("state-change", (type, newState) => {
     if(typeof(type) !== "undefined" && typeof(newState) !== "undefined"){
@@ -787,7 +793,7 @@ const callToShareDataApp = new Vue({
     }
   });
 
-})(window.jQuery, searchBarApp);
+})(window.jQuery, app);
 //*************************************************
 //
 //  End of GA part
