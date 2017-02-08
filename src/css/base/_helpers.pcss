@@ -32,3 +32,15 @@
 .align-left {
 	text-align: left;
 }
+
+.link {
+	color: $blue;
+	border-bottom: 1px solid transparent;
+	transition: border .3s;
+	padding-bottom: 2px;
+	@media (min-width: $above-desktop) {
+		&:hover {
+			border-bottom: 1px solid $blue;
+		}
+	}
+}
