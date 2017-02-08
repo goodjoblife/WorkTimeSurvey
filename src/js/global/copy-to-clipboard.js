@@ -1,9 +1,6 @@
-const element = document.querySelector('[data-copytarget]');
-if (element) {
-  element.addEventListener('click', function() {
-    copyToClipboard(this);
-  });
-}
+$('body').on('click', '[data-copytarget]', function() {
+  copyToClipboard(this);
+});
 
 function copyToClipboard(t) {
   const name = t.dataset.copytarget ? t.dataset.copytarget : null;
