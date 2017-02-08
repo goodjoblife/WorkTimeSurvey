@@ -26,12 +26,12 @@ const showjs_store = {
       showjs_store.state.is_authed = false;
     }
 
-    app.$emit("state-change");
+    app.$emit("state-change", "log-in-state-change", is_logged_in);
     searchBarApp.$emit("state-change");
   },
   changeAuthState: function(is_authed) {
     showjs_store.state.is_authed = is_authed;
-    app.$emit("state-change");
+    app.$emit("state-change", "auth-state-change", is_authed);
     searchBarApp.$emit("state-change");
   },
   changeViewState: function(new_view, new_params) {
@@ -724,7 +724,14 @@ const callToShareDataApp = new Vue({
         display: 'popup',
         href: this.user_link,
         quote: "想邀請身邊的朋友們，一起參與【工時薪資透明化運動】！",
+      }, (response) => {
+        if (response && !response.error_message) {
+          this.$emit("fb-share-rec-link-success");
+        } else {
+          this.$emit("fb-share-rec-link-fail");
+        }
       });
+      this.$emit("click-fb-share-rec-link");
     },
     queryRecommendationString: function() {
       const access_token = FB.getAccessToken();
@@ -740,6 +747,12 @@ const callToShareDataApp = new Vue({
           this.user_link = null;
         });
     },
+    clickCopyUrlButton: function(){
+      this.$emit("click-copy-url-button");
+    },
+    clickToSectionFormButton: function(){
+      this.$emit("click-to-section-form-button");
+    }
   },
 });
 
@@ -762,8 +775,8 @@ const callToShareDataApp = new Vue({
     ga("send", "event", category, "job-title-query-autocomplete-search", q);
   });
 
-  $search_bar.on("ompany-query-autocomplete-select", (e, q) => {
-    ga("send", "event", category, "ompany-query-autocomplete-select", q);
+  $search_bar.on("company-query-autocomplete-select", (e, q) => {
+    ga("send", "event", category, "company-query-autocomplete-select", q);
   });
 
   $search_bar.on("job-title-query-autocomplete-select", (e, q) => {
@@ -791,7 +804,54 @@ const callToShareDataApp = new Vue({
   router.on("on", "/search-and-group/by-company/(.*)", (name) => {
     ga("send", "event", category, "visit-company", decodeURIComponent(name));
   });
+
 })(window.jQuery, searchBarApp);
+
+(($, app) => {
+  const category = "QUERY_PAGE";
+
+  //authentication & authorization related events
+  app.$on("state-change", (type, newState) => {
+    if(typeof(type) !== "undefined" && typeof(newState) !== "undefined"){
+      if(type === "log-in-state-change"){
+        if(newState === true){
+          ga("send", "event", category, "log-in-success");
+        } else if(newState === false){
+          ga("send", "event", category, "log-in-fail");
+        }
+      } else if (type == "auth-state-change"){
+        if(newState === true){
+          ga("send", "event", category, "authorized");
+        } else if(newState === false){
+          ga("send", "event", category, "unauthorized");
+        }
+      }
+    }
+  });
+
+})(window.jQuery, app);
+
+(($, app) => {
+  const category = "QUERY_PAGE";
+
+  //call-to-share section click events
+  app.$on("click-fb-share-rec-link", () => {
+    ga("send", "event", category, "click-fb-share-rec-link");
+  });
+  app.$on("fb-share-rec-link-success", () => {
+    ga("send", "event", category, "fb-share-rec-link-success");
+  });
+  app.$on("fb-share-rec-link-fail", () =>{
+    ga("send", "event", category, "fb-share-rec-link-fail");
+  });
+  app.$on("click-copy-url-button", () => {
+    ga("send", "event", category, "click-copy-url-button");
+  });
+  app.$on("click-to-section-form-button", () => {
+    ga("send", "event", category, "click-to-section-form-button");
+  })
+
+})(window.jQuery, callToShareDataApp);
 //*************************************************
 //
 //  End of GA part
