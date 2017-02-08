@@ -163,6 +163,30 @@ const timeAndSalary = Vue.extend({
       const key = `${this.search_result_sort.sort_by}_${this.search_result_sort.order}`;
       return names[key];
     },
+    salary_sort_indicator: function() {
+      const values = {
+        "estimated_hourly_wage_ascending": "high",
+        "estimated_hourly_wage_descending": "low",
+      };
+      const key = `${this.search_result_sort.sort_by}_${this.search_result_sort.order}`;
+      if(key in values){
+        return values[key];
+      } else {
+        return "";
+      }
+    },
+    work_time_sort_indicator: function() {
+      const values = {
+        "week_work_time_ascending": "high",
+        "week_work_time_descending": "low",
+      };
+      const key = `${this.search_result_sort.sort_by}_${this.search_result_sort.order}`;
+      if(key in values){
+        return values[key];
+      } else {
+        return "";
+      }
+    },
   },
 });
 
@@ -699,7 +723,7 @@ const callToShareDataApp = new Vue({
         method: 'share',
         display: 'popup',
         href: this.user_link,
-        quote: "想邀請身邊的朋友們，一起參與【工時透明化運動】！",
+        quote: "想邀請身邊的朋友們，一起參與【工時薪資透明化運動】！",
       }, (response) => {
         if (response && !response.error_message) {
           this.$emit("fb-share-rec-link-success");

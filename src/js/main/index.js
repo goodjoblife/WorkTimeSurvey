@@ -264,6 +264,9 @@ const checkFormField = () => {
       }
     }
   }
+  if(!$("#agree").is(":checked")){
+    throw new ValidationError("您必須同意遵守中華民國法律以及本站使用者條款", $("label[for='agree']"));
+  }
 };
 
 //to check whether the number string contains only [0-9] and no more than one "." (of course, no comma)
