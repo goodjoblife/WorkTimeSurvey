@@ -28,9 +28,9 @@ block content
 						div(class="link")
 							input(type="text" v-model="user_link" id="user-link")
 						| <svg role="img" class="icon-form-checked" id="user-link-icon"><use xlink:href="#form-checked" ></use></svg>
-						button(class="button" data-copytarget="#user-link") 複製連結
+						button(class="button" data-copytarget="#user-link" v-on:click="clickCopyUrlButton") 複製連結
 				div(class="dashed-line-box__buttons" v-if="share.is_logged_in")
-					a(class="btn-m btn-black" href="/#section-form") 馬上留資料
+					a(class="btn-m btn-black" href="/#section-form" v-on:click="clickToSectionFormButton") 馬上留資料
 					div(class="btn-m btn-yellow" id="share-rec-url" v-on:click="shareLink" v-if="user_link") fb 貼文分享
 		section(class="section show-searchbar", id="section-search", :class="{ 'is-disabled': !share.is_authed}")
 			div(class="show-searchbar__type")

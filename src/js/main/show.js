@@ -700,8 +700,14 @@ const callToShareDataApp = new Vue({
         display: 'popup',
         href: this.user_link,
         quote: "想邀請身邊的朋友們，一起參與【工時透明化運動】！",
+      }, (response) => {
+        if (response && !response.error_message) {
+          this.$emit("fb-share-rec-link-success");
+        } else {
+          this.$emit("fb-share-rec-link-fail");
+        }
       });
-      this.$emit("click-fb-share-link");
+      this.$emit("click-fb-share-rec-link");
     },
     queryRecommendationString: function() {
       const access_token = FB.getAccessToken();
@@ -717,6 +723,12 @@ const callToShareDataApp = new Vue({
           this.user_link = null;
         });
     },
+    clickCopyUrlButton: function(){
+      this.$emit("click-copy-url-button");
+    },
+    clickToSectionFormButton: function(){
+      this.$emit("click-to-section-form-button");
+    }
   },
 });
 
@@ -794,6 +806,28 @@ const callToShareDataApp = new Vue({
   });
 
 })(window.jQuery, app);
+
+(($, app) => {
+  const category = "QUERY_PAGE";
+
+  //call-to-share section click events
+  app.$on("click-fb-share-rec-link", () => {
+    ga("send", "event", category, "click-fb-share-rec-link");
+  });
+  app.$on("fb-share-rec-link-success", () => {
+    ga("send", "event", category, "fb-share-rec-link-success");
+  });
+  app.$on("fb-share-rec-link-fail", () =>{
+    ga("send", "event", category, "fb-share-rec-link-fail");
+  });
+  app.$on("click-copy-url-button", () => {
+    ga("send", "event", category, "click-copy-url-button");
+  });
+  app.$on("click-to-section-form-button", () => {
+    ga("send", "event", category, "click-to-section-form-button");
+  })
+
+})(window.jQuery, callToShareDataApp);
 //*************************************************
 //
 //  End of GA part
