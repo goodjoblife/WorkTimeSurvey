@@ -723,7 +723,7 @@ const callToShareDataApp = new Vue({
         method: 'share',
         display: 'popup',
         href: this.user_link,
-        quote: "想邀請身邊的朋友們，一起參與【工時透明化運動】！",
+        quote: "想邀請身邊的朋友們，一起參與【工時薪資透明化運動】！",
       });
     },
     queryRecommendationString: function() {
