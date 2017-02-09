@@ -23,7 +23,7 @@ section(class="search-result")
 						div(class="sort-item" v-else v-show="g.average.week_work_time")
 							div
 								span(class="heading") 平均一週總工時：
-								span(class="value") {{g.average.week_work_time}} 小時
+								span(class="value") {{g.average.week_work_time.toFixed(1)}} 小時
 					span(class="accordion__icon") <svg role="img"><use xlink:href="#icon-minus"></use></svg>
 				div(class="accordion__content")
 					div(class="search-result-list__content")
