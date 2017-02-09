@@ -19,9 +19,9 @@ block content
 				div(class="not-login" v-if="!share.is_logged_in")
 					| 哈囉！請先
 					button(class="btn-login") <svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg> 登入
-					| 才能查看完整薪資工時資訊喔
+					| 才能查看完整工時、薪資資訊喔
 				div(class="logined" v-if="share.is_logged_in")
-					| 請留下至少一筆資料，才能查看完整薪資、工時資訊。
+					| 請留下至少一筆資料，才能查看完整工時、薪資資訊。
 					br
 					| 沒有工作經驗嗎？沒有關係，分享以下連結給朋友，朋友留了資料，系統將開放您完整權限。
 					div(class="share-link")
