@@ -128,9 +128,9 @@
         <section id="call-to-share-data" style="display:none;" v-show="share.is_authed === false">
           <div class="dashed-line-box">
             <div class="not-login" v-if="!share.is_logged_in">哈囉！請先
-              <button class="btn-login"><svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg> 登入</button>才能查看完整薪資工時資訊喔
+              <button class="btn-login"><svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg> 登入</button>才能查看完整工時、薪資資訊喔
             </div>
-            <div class="logined" v-if="share.is_logged_in">請留下至少一筆資料，才能查看完整薪資、工時資訊。<br>沒有工作經驗嗎？沒有關係，分享以下連結給朋友，朋友留了資料，系統將開放您完整權限。
+            <div class="logined" v-if="share.is_logged_in">請留下至少一筆資料，才能查看完整工時、薪資資訊。<br>沒有工作經驗嗎？沒有關係，分享以下連結給朋友，朋友留了資料，系統將開放您完整權限。
               <div class="share-link">
                 <div class="link">
                   <input type="text" v-model="user_link" id="user-link">
@@ -390,8 +390,8 @@
                 <option v-bind:value="{&quot;sort_by&quot;:&quot;week_work_time&quot;,&quot;order&quot;:&quot;ascending&quot;}">一週平均總工時（低到高）</option>
                 <option v-bind:value="{&quot;sort_by&quot;:&quot;estimated_hourly_wage&quot;,&quot;order&quot;: &quot;descending&quot;}">估算時薪（高到低）</option>
                 <option v-bind:value="{&quot;sort_by&quot;:&quot;estimated_hourly_wage&quot;,&quot;order&quot;: &quot;ascending&quot;}">估算時薪（低到高）</option>
-                <option v-bind:value="{&quot;sort_by&quot;:&quot;created_at&quot;,&quot;order&quot;:&quot;descending&quot;}">資料時間（高到低）</option>
-                <option v-bind:value="{&quot;sort_by&quot;:&quot;created_at&quot;,&quot;order&quot;:&quot;ascending&quot;}">資料時間（低到高）</option>
+                <option v-bind:value="{&quot;sort_by&quot;:&quot;created_at&quot;,&quot;order&quot;:&quot;descending&quot;}">資料時間（新到舊）</option>
+                <option v-bind:value="{&quot;sort_by&quot;:&quot;created_at&quot;,&quot;order&quot;:&quot;ascending&quot;}">資料時間（舊到新）</option>
               </select>
             </div>
             <div class="mobile-info-buttons"><div data-modal-id="info-salary" data-info-button>估計時薪</div>
