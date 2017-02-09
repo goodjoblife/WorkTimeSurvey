@@ -432,7 +432,7 @@ $work_form.on("submitted", (e, result) => {
     if (result.type === "ValidationError") {
       showTooltipAndScroll(result.error.target, result.error.message);
     } else if (result.type === "AuthError") {
-      showAlert('alert', 'Facebook 登入失敗', '為了避免使用者大量輸入假資訊，我們會以您的 Facebook 帳戶做驗證。但別擔心！您的帳戶資訊不會以任何形式被揭露、顯示。每一帳戶目前僅能上傳 5 次工時資訊。', 'go-fb-login');
+      showAlert('alert', 'Facebook 登入失敗', '為了避免使用者大量輸入假資訊，我們會以您的 Facebook 帳戶做驗證。但別擔心！您的帳戶資訊不會以任何形式被揭露、顯示。每一帳戶目前僅能上傳 5 次工時、薪資資訊。', 'go-fb-login');
     } else if (result.type === "SendError") {
       if (result.jqXHR.readyState === 0) {
         showAlert('alert', 'Oops 有些錯誤發生', '請查看你的網路連線再試一次！', 'go-to-form');
