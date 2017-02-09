@@ -433,14 +433,6 @@ Vue.filter('formatted_wage_string', value => {
   return value;
 });
 
-//Attribution: http://stackoverflow.com/a/29249277/4844397
-//http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
-Vue.filter('formatted_work_time_string', value => {
-  if (typeof value == 'number') {
-    return parseFloat(value).toFixed(1).replace(/\.?0*$/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
-});
-
 Vue.filter('two_digit_month', value => {
   if (typeof value === 'number') {
     return value > 9 ? value.toString() : "0" + value;
