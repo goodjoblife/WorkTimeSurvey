@@ -251,7 +251,7 @@ const searchAndGroupByJobTitle = Vue.extend({
         this.$emit('data_loaded');
       });
     },
-    getData: function(job_title, group_sort_by, group_sort_order {
+    getData: function(job_title, group_sort_by, group_sort_order) {
       const opt = {
         params: {
           job_title,
