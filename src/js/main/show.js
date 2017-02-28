@@ -240,9 +240,9 @@ const searchAndGroupByJobTitle = Vue.extend({
       this.is_loading = true;
 
       const group_sort_by = searchResultSort.group_sort_by;
-      const order = searchResultSort.order;
+      const group_sort_order = searchResultSort.order;
 
-      this.getData(job_title_keyword, group_sort_by, order).then(res => {
+      this.getData(job_title_keyword, group_sort_by, group_sort_order).then(res => {
         this.data = res.data;
       }, err => {
         this.data = [];
@@ -251,12 +251,12 @@ const searchAndGroupByJobTitle = Vue.extend({
         this.$emit('data_loaded');
       });
     },
-    getData: function(job_title, group_sort_by, order) {
+    getData: function(job_title, group_sort_by, group_sort_order) {
       const opt = {
         params: {
           job_title,
           group_sort_by,
-          order,
+          group_sort_order,
           access_token: typeof FB !== 'undefined' ? FB.getAuthResponse().accessToken : undefined,
         },
       };
@@ -338,9 +338,9 @@ const searchAndGroupByCompany = Vue.extend({
       this.is_loading = true;
 
       const group_sort_by = searchResultSort.group_sort_by;
-      const order = searchResultSort.order;
+      const group_sort_order = searchResultSort.order;
 
-      this.getData(company_keyword, group_sort_by, order).then(res => {
+      this.getData(company_keyword, group_sort_by, group_sort_order).then(res => {
         this.data = res.data;
       }, err => {
         this.data = [];
@@ -350,12 +350,12 @@ const searchAndGroupByCompany = Vue.extend({
         this.$emit('data_loaded');
       });
     },
-    getData: function(company, group_sort_by, order) {
+    getData: function(company, group_sort_by, group_sort_order) {
       const opt = {
         params: {
           company,
           group_sort_by,
-          order,
+          group_sort_order,
           access_token: typeof FB !== 'undefined' ? FB.getAuthResponse().accessToken : undefined,
         },
       };
