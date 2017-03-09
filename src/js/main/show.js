@@ -641,10 +641,16 @@ $(function() {
           },
         };
         Vue.http.get(url, opt).then(res => res.json()).then(res => {
-          const nameList = $.map(res, (item, i) => ({
-            value: item._id.name,
-            id: item._id.name,
-          }));
+          const nameList = $.map(res, (item, i) => {
+            let name = item._id.name;
+            if(Array.isArray(name)) {
+              name = name.filter(x => x.toLowerCase().indexOf(request.term.toLowerCase()) >= 0)[0];
+            }
+            return {
+              value: name,
+              id: name,
+            }
+          });
           response(nameList);
         }).catch(err => {
           response([]);
