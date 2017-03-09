@@ -650,6 +650,7 @@ $(function() {
           const nameList = $.map(res, (item, i) => {
             let name = item._id.name;
             if(Array.isArray(name)) {
+              // Choose the name that matches the query
               name = name.filter(x => x.toLowerCase().indexOf(request.term.toLowerCase()) >= 0)[0];
             }
             return {
