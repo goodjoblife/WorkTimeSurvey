@@ -117,14 +117,20 @@ const timeAndSalary = Vue.extend({
       };
 
       this.$http.get(`${WTS.constants.backendURL}workings`, opt).then(res => res.json()).then(data => {
+        // 將Array公司名稱轉換成String
+        const time_and_salary = data.time_and_salary.map(row => {
+          const name = row.company.name;
+          row.company.name = Array.isArray(name)? name[0]: name;
+          return row;
+        });
         // 當讀取的是第 0 頁，代表資料要被取代
         if (page === 0) {
-          this.time_and_salary = data.time_and_salary;
+          this.time_and_salary = time_and_salary;
         } else {
-          this.time_and_salary = this.time_and_salary.concat(data.time_and_salary);
+          this.time_and_salary = this.time_and_salary.concat(time_and_salary);
         }
         // 這個只是讓 current_page 不要一直加上去（但不影響功能）
-        if (data.time_and_salary.length === 0) {
+        if (time_and_salary.length === 0) {
           this.current_page;
         } else {
           this.current_page = page;
@@ -665,10 +671,17 @@ $(function() {
           },
         };
         Vue.http.get(url, opt).then(res => res.json()).then(res => {
-          const nameList = $.map(res, (item, i) => ({
-            value: item._id.name,
-            id: item._id.name,
-          }));
+          const nameList = $.map(res, (item, i) => {
+            let name = item._id.name;
+            if(Array.isArray(name)) {
+              // Choose the name that matches the query
+              name = name.filter(x => x.toLowerCase().indexOf(request.term.toLowerCase()) >= 0)[0];
+            }
+            return {
+              value: name,
+              id: name,
+            }
+          });
           response(nameList);
         }).catch(err => {
           response([]);
