@@ -8,7 +8,7 @@ const showAlert = (type, message1, message2, button_type) => {
   let button;
   let icon;
   if (button_type == 'go-to-show') {
-    button = '<a href="/show.html" class="modal-content__btn btn-black btn-m">查看最新工時</a>'
+    button = '<a href="/show.html" class="modal-content__btn btn-black btn-m">查看最新工時、薪資</a>'
   } else if (button_type == 'go-to-form') {
     button = '<button class="modal-content__btn btn-black btn-m" id="modal-scroll-to-form">重新填寫</button>'
   } else if (button_type == 'go-fb-login') {

@@ -133,10 +133,17 @@
 
 .form-year-month {
 	display: flex;
+  @media (max-width: $below-tablet) {
+    flex-direction: column;
+  }
 	> div {
 		flex: 0 1 50%;
 		display: flex;
 		align-items: center;
+    @media (max-width: $below-tablet) {
+      flex: 1 1 auto;
+      margin-bottom: 10px;
+    }
 		> label {
 			margin: 0 20px 0 10px;
 		}

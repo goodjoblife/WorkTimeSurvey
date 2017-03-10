@@ -15,6 +15,7 @@ input[type="checkbox"] + label {
 		border: 1px solid $primary-color;
 		margin-right: 10px;
 		transition: all .3s;
+		cursor: pointer;
 		@media (max-width: $below-tablet) {
 			width: 15px;
 			height: 15px;
@@ -25,6 +26,9 @@ input[type="checkbox"] + label {
 		text-transform: capitalize;
 		display: inline-block;
 		vertical-align: middle;
+		width: calc(100% - 30px);
+		padding-left: 5px;
+		line-height: 1.2em;
 	}
 	.checkbox-text--bold {
 		@include heading-5;

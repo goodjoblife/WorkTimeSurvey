@@ -26,12 +26,12 @@ const showjs_store = {
       showjs_store.state.is_authed = false;
     }
 
-    app.$emit("state-change");
+    app.$emit("state-change", "log-in-state-change", is_logged_in);
     searchBarApp.$emit("state-change");
   },
   changeAuthState: function(is_authed) {
     showjs_store.state.is_authed = is_authed;
-    app.$emit("state-change");
+    app.$emit("state-change", "auth-state-change", is_authed);
     searchBarApp.$emit("state-change");
   },
   changeViewState: function(new_view, new_params) {
@@ -117,14 +117,20 @@ const timeAndSalary = Vue.extend({
       };
 
       this.$http.get(`${WTS.constants.backendURL}workings`, opt).then(res => res.json()).then(data => {
+        // 將Array公司名稱轉換成String
+        const time_and_salary = data.time_and_salary.map(row => {
+          const name = row.company.name;
+          row.company.name = Array.isArray(name)? name[0]: name;
+          return row;
+        });
         // 當讀取的是第 0 頁，代表資料要被取代
         if (page === 0) {
-          this.time_and_salary = data.time_and_salary;
+          this.time_and_salary = time_and_salary;
         } else {
-          this.time_and_salary = this.time_and_salary.concat(data.time_and_salary);
+          this.time_and_salary = this.time_and_salary.concat(time_and_salary);
         }
         // 這個只是讓 current_page 不要一直加上去（但不影響功能）
-        if (data.time_and_salary.length === 0) {
+        if (time_and_salary.length === 0) {
           this.current_page;
         } else {
           this.current_page = page;
@@ -162,6 +168,30 @@ const timeAndSalary = Vue.extend({
       };
       const key = `${this.search_result_sort.sort_by}_${this.search_result_sort.order}`;
       return names[key];
+    },
+    salary_sort_indicator: function() {
+      const values = {
+        "estimated_hourly_wage_ascending": "high",
+        "estimated_hourly_wage_descending": "low",
+      };
+      const key = `${this.search_result_sort.sort_by}_${this.search_result_sort.order}`;
+      if(key in values){
+        return values[key];
+      } else {
+        return "";
+      }
+    },
+    work_time_sort_indicator: function() {
+      const values = {
+        "week_work_time_ascending": "high",
+        "week_work_time_descending": "low",
+      };
+      const key = `${this.search_result_sort.sort_by}_${this.search_result_sort.order}`;
+      if(key in values){
+        return values[key];
+      } else {
+        return "";
+      }
     },
   },
 });
@@ -216,9 +246,9 @@ const searchAndGroupByJobTitle = Vue.extend({
       this.is_loading = true;
 
       const group_sort_by = searchResultSort.group_sort_by;
-      const order = searchResultSort.order;
+      const group_sort_order = searchResultSort.order;
 
-      this.getData(job_title_keyword, group_sort_by, order).then(res => {
+      this.getData(job_title_keyword, group_sort_by, group_sort_order).then(res => {
         this.data = res.data;
       }, err => {
         this.data = [];
@@ -227,12 +257,12 @@ const searchAndGroupByJobTitle = Vue.extend({
         this.$emit('data_loaded');
       });
     },
-    getData: function(job_title, group_sort_by, order) {
+    getData: function(job_title, group_sort_by, group_sort_order) {
       const opt = {
         params: {
           job_title,
           group_sort_by,
-          order,
+          group_sort_order,
           access_token: typeof FB !== 'undefined' ? FB.getAuthResponse().accessToken : undefined,
         },
       };
@@ -314,9 +344,9 @@ const searchAndGroupByCompany = Vue.extend({
       this.is_loading = true;
 
       const group_sort_by = searchResultSort.group_sort_by;
-      const order = searchResultSort.order;
+      const group_sort_order = searchResultSort.order;
 
-      this.getData(company_keyword, group_sort_by, order).then(res => {
+      this.getData(company_keyword, group_sort_by, group_sort_order).then(res => {
         this.data = res.data;
       }, err => {
         this.data = [];
@@ -326,12 +356,12 @@ const searchAndGroupByCompany = Vue.extend({
         this.$emit('data_loaded');
       });
     },
-    getData: function(company, group_sort_by, order) {
+    getData: function(company, group_sort_by, group_sort_order) {
       const opt = {
         params: {
           company,
           group_sort_by,
-          order,
+          group_sort_order,
           access_token: typeof FB !== 'undefined' ? FB.getAuthResponse().accessToken : undefined,
         },
       };
@@ -641,10 +671,17 @@ $(function() {
           },
         };
         Vue.http.get(url, opt).then(res => res.json()).then(res => {
-          const nameList = $.map(res, (item, i) => ({
-            value: item._id.name,
-            id: item._id.name,
-          }));
+          const nameList = $.map(res, (item, i) => {
+            let name = item._id.name;
+            if(Array.isArray(name)) {
+              // Choose the name that matches the query
+              name = name.filter(x => x.toLowerCase().indexOf(request.term.toLowerCase()) >= 0)[0];
+            }
+            return {
+              value: name,
+              id: name,
+            }
+          });
           response(nameList);
         }).catch(err => {
           response([]);
@@ -699,8 +736,15 @@ const callToShareDataApp = new Vue({
         method: 'share',
         display: 'popup',
         href: this.user_link,
-        quote: "想邀請身邊的朋友們，一起參與【工時透明化運動】！",
+        quote: "想邀請身邊的朋友們，一起參與【工時薪資透明化運動】！",
+      }, (response) => {
+        if (response && !response.error_message) {
+          this.$emit("fb-share-rec-link-success");
+        } else {
+          this.$emit("fb-share-rec-link-fail");
+        }
       });
+      this.$emit("click-fb-share-rec-link");
     },
     queryRecommendationString: function() {
       const access_token = FB.getAccessToken();
@@ -716,6 +760,12 @@ const callToShareDataApp = new Vue({
           this.user_link = null;
         });
     },
+    clickCopyUrlButton: function(){
+      this.$emit("click-copy-url-button");
+    },
+    clickToSectionFormButton: function(){
+      this.$emit("click-to-section-form-button");
+    }
   },
 });
 
@@ -738,8 +788,8 @@ const callToShareDataApp = new Vue({
     ga("send", "event", category, "job-title-query-autocomplete-search", q);
   });
 
-  $search_bar.on("ompany-query-autocomplete-select", (e, q) => {
-    ga("send", "event", category, "ompany-query-autocomplete-select", q);
+  $search_bar.on("company-query-autocomplete-select", (e, q) => {
+    ga("send", "event", category, "company-query-autocomplete-select", q);
   });
 
   $search_bar.on("job-title-query-autocomplete-select", (e, q) => {
@@ -767,7 +817,54 @@ const callToShareDataApp = new Vue({
   router.on("on", "/search-and-group/by-company/(.*)", (name) => {
     ga("send", "event", category, "visit-company", decodeURIComponent(name));
   });
+
 })(window.jQuery, searchBarApp);
+
+(($, app) => {
+  const category = "QUERY_PAGE";
+
+  //authentication & authorization related events
+  app.$on("state-change", (type, newState) => {
+    if(typeof(type) !== "undefined" && typeof(newState) !== "undefined"){
+      if(type === "log-in-state-change"){
+        if(newState === true){
+          ga("send", "event", category, "log-in-success");
+        } else if(newState === false){
+          ga("send", "event", category, "log-in-fail");
+        }
+      } else if (type == "auth-state-change"){
+        if(newState === true){
+          ga("send", "event", category, "authorized");
+        } else if(newState === false){
+          ga("send", "event", category, "unauthorized");
+        }
+      }
+    }
+  });
+
+})(window.jQuery, app);
+
+(($, app) => {
+  const category = "QUERY_PAGE";
+
+  //call-to-share section click events
+  app.$on("click-fb-share-rec-link", () => {
+    ga("send", "event", category, "click-fb-share-rec-link");
+  });
+  app.$on("fb-share-rec-link-success", () => {
+    ga("send", "event", category, "fb-share-rec-link-success");
+  });
+  app.$on("fb-share-rec-link-fail", () =>{
+    ga("send", "event", category, "fb-share-rec-link-fail");
+  });
+  app.$on("click-copy-url-button", () => {
+    ga("send", "event", category, "click-copy-url-button");
+  });
+  app.$on("click-to-section-form-button", () => {
+    ga("send", "event", category, "click-to-section-form-button");
+  })
+
+})(window.jQuery, callToShareDataApp);
 //*************************************************
 //
 //  End of GA part
