@@ -1,5 +1,5 @@
 #!/bin/bash
-[  "$TRAVIS_PULL_REQUEST" != "false" ] || [  "$TRAVIS_BRANCH" != "migrate" ] && echo -e "\n" && exit 0
+[  "$TRAVIS_PULL_REQUEST" != "false" ] || [  "$TRAVIS_BRANCH" != "master" ] && echo -e "\n" && exit 0
 
 git remote set-url origin $REPO.git
 git config --global user.email "findyourgoodjob@gmail.com"
