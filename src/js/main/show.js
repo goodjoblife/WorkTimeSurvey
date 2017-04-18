@@ -12,27 +12,14 @@ const SEARCH_COMPANY_VIEW = 'SEARCH_COMPANY_VIEW';
  */
 const showjs_store = {
   state: {
-    is_logged_in: null,
-    is_authed: null,
+    is_logged_in: true,
+    is_authed: true,
     current_view: null,
     view_params: {},
   },
   changeLoggedInState: function(is_logged_in) {
-    showjs_store.state.is_logged_in = is_logged_in;
-
-    if (showjs_store.state.is_logged_in === true) {
-      testSearchPermission();
-    } else if (showjs_store.state.is_logged_in === false) {
-      showjs_store.state.is_authed = false;
-    }
-
-    app.$emit("state-change", "log-in-state-change", is_logged_in);
-    searchBarApp.$emit("state-change");
   },
   changeAuthState: function(is_authed) {
-    showjs_store.state.is_authed = is_authed;
-    app.$emit("state-change", "auth-state-change", is_authed);
-    searchBarApp.$emit("state-change");
   },
   changeViewState: function(new_view, new_params) {
     showjs_store.state.current_view = new_view;
@@ -65,36 +52,9 @@ const timeAndSalary = Vue.extend({
       };
       this.current_page = 0;
 
-      // 權限未確認狀態，保持原樣
-      if (this.share.is_authed === null) {
-        return;
-      }
-
-      // 有查詢權限
-      if (this.share.is_authed === true) {
-        this.loadTimeAndSalary(0);
-        return;
-      }
-
-      // 無查詢權限，僅允許 最新薪時，其餘轉址
-      if (this.share.is_authed === false) {
-        if (this.share.view_params.sort_by === "created_at" && this.share.view_params.order === "descending") {
-          this.loadTimeAndSalary(0);
-          return;
-        }
-        router.setRoute("/latest");
-        return;
-      }
+      this.loadTimeAndSalary(0);
     },
     scroll_bottom_reach: function() {
-      if (! this.share.is_authed) {
-        return;
-      }
-      // we don't want the two loading
-      if (this.is_loading) {
-        return;
-      }
-
       this.loadMorePage();
     },
   },
@@ -112,7 +72,6 @@ const timeAndSalary = Vue.extend({
           order: this.share.view_params.order,
           page,
           limit,
-          access_token: (this.share.is_authed === true && typeof FB !== 'undefined') ? FB.getAuthResponse().accessToken : undefined,
         },
       };
 
@@ -209,22 +168,6 @@ const searchAndGroupByJobTitle = Vue.extend({
   },
   events: {
     load_search_and_group_by_job_title: function() {
-      // 權限未確認狀態，保持原樣
-      if (this.share.is_authed === null) {
-        // passed
-      }
-
-      // 有查詢權限
-      if (this.share.is_authed === true) {
-        // passed
-      }
-
-      // 無查詢權限，僅允許 最新薪時，其餘轉址
-      if (this.share.is_authed === false) {
-        router.setRoute("/latest");
-        return;
-      }
-
       this.search_result_sort = {
         group_sort_by: this.share.view_params.group_sort_by,
         order: this.share.view_params.order,
@@ -263,7 +206,6 @@ const searchAndGroupByJobTitle = Vue.extend({
           job_title,
           group_sort_by,
           group_sort_order,
-          access_token: typeof FB !== 'undefined' ? FB.getAuthResponse().accessToken : undefined,
         },
       };
       return this.$http.get(`${WTS.constants.backendURL}workings/search_by/job_title/group_by/company`, opt);
@@ -307,22 +249,6 @@ const searchAndGroupByCompany = Vue.extend({
   },
   events: {
     load_search_and_group_by_company: function() {
-      // 權限未確認狀態，保持原樣
-      if (this.share.is_authed === null) {
-        // passed
-      }
-
-      // 有查詢權限
-      if (this.share.is_authed === true) {
-        // passed
-      }
-
-      // 無查詢權限，僅允許 最新薪時，其餘轉址
-      if (this.share.is_authed === false) {
-        router.setRoute("/latest");
-        return;
-      }
-
       this.search_result_sort = {
         group_sort_by: this.share.view_params.group_sort_by,
         order: this.share.view_params.order,
@@ -362,7 +288,6 @@ const searchAndGroupByCompany = Vue.extend({
           company,
           group_sort_by,
           group_sort_order,
-          access_token: typeof FB !== 'undefined' ? FB.getAuthResponse().accessToken : undefined,
         },
       };
       return this.$http.get(`${WTS.constants.backendURL}workings/search_by/company/group_by/company`, opt);
@@ -756,11 +681,7 @@ const callToShareDataApp = new Vue({
       this.$emit("click-fb-share-rec-link");
     },
     queryRecommendationString: function() {
-      const access_token = FB.getAccessToken();
-      const body = {
-        access_token,
-      };
-      return this.$http.post(`${WTS.constants.backendURL}me/recommendations`, body)
+      return this.$http.post(`${WTS.constants.backendURL}me/recommendations`)
         .then(response => response.json())
         .then(response => {
           this.user_link = `${WTS.constants.siteURL}?rec_by=${response.recommendation_string}`;
@@ -894,25 +815,3 @@ $(window).on('scroll', function() {
 
 // wait the event trigger done
 router.init(["/"]);
-
-function testSearchPermission() {
-  const access_token = FB.getAccessToken();
-  const opt = {
-    params: {
-      access_token,
-    },
-  };
-  return Vue.http.get(`${WTS.constants.backendURL}me/permissions/search`, opt)
-    .then(response => response.json())
-    .then(response => {
-      const hasSearchPermission = response.hasSearchPermission;
-      if (hasSearchPermission) {
-        showjs_store.changeAuthState(true);
-      } else {
-        showjs_store.changeAuthState(false);
-      }
-    })
-    .catch(err => {
-      showjs_store.changeAuthState(false);
-    });
-}
