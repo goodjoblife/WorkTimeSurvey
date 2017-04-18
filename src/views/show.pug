@@ -49,6 +49,9 @@ block content
 				form(class="search-bar" id="" v-on:submit.prevent="onSubmit")
 					input(type="text" placeholder="輸入公司 / 單位名稱" class="search-bar__input" id="search-bar-input" name="keyword" v-model="keyword")
 					button(class="search-bar__button" type="submit") 搜尋
+		div(class="mobile-info-buttons")
+			<div data-modal-id="info-salary" data-info-button>估計時薪</div>
+			<div data-modal-id="info-time" data-info-button>參考時間</div>
 	div(class="wrapper-l" id="app")
 		div(class="modal data-modal" data-modal="info-time")
 			div(class="modal__inner")

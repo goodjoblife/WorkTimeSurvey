@@ -8,9 +8,6 @@ section(class="search-result")
 				option(v-bind:value='{"group_sort_by":"week_work_time","order":"ascending"}') 一週平均總工時（低到高）
 				option(v-bind:value='{"group_sort_by":"estimated_hourly_wage","order": "descending"}') 估算時薪（高到低）
 				option(v-bind:value='{"group_sort_by":"estimated_hourly_wage","order": "ascending"}') 估算時薪（低到高）
-		div(class="mobile-info-buttons")
-			<div data-modal-id="info-salary" data-info-button>估計時薪</div>
-			<div data-modal-id="info-time" data-info-button>參考時間</div>
 		div(class="search-result-list accordion")
 			div(class="accordion__item search-result-list__item" v-for="g in data")
 				button(class="accordion__trigger")

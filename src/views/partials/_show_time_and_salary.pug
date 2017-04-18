@@ -10,9 +10,6 @@ section(class="search-result")
 				option(v-bind:value='{"sort_by":"estimated_hourly_wage","order": "ascending"}') 估算時薪（低到高）
 				option(v-bind:value='{"sort_by":"created_at","order":"descending"}') 資料時間（新到舊）
 				option(v-bind:value='{"sort_by":"created_at","order":"ascending"}') 資料時間（舊到新）
-		div(class="mobile-info-buttons")
-			<div data-modal-id="info-salary" data-info-button>估計時薪</div>
-			<div data-modal-id="info-time" data-info-button>參考時間</div>
 		table(class="rwd-table latest-table", :class="{ 'is-disabled':  !share.is_authed}")
 			thead
 				tr
