@@ -217,7 +217,7 @@ const checkFormField = () => {
       }
 
       if (data.experience_in_year === "") {
-        throw new ValidationError("需填寫相關職務工作經歷", $("#form-experience-in-year"));
+        throw new ValidationError("需填寫當時業界工作經歷", $("#form-experience-in-year"));
       }
     }
 
