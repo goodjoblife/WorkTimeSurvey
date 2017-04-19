@@ -34,7 +34,7 @@ section(class="search-result")
 								th(class="col-day-time") 表訂 / <br>實際工時
 								th(class="col-week-time") 一週總工時
 								th(class="col-frequency") 加班頻率
-								th(class="col-experience") 資歷
+								th(class="col-experience") 業界工作經歷
 								th(class="col-salary align-right") 薪資
 								th(class="col-hourly align-right")
 									<div data-modal-id="info-salary" data-info-button>估計時薪</div>
@@ -64,7 +64,7 @@ section(class="search-result")
 											span(class="table-frequency-circle" data-frequency="{{working.overtime_frequency}}")
 											span {{working.overtime_frequency | overtime_frequency_string}}
 										span(v-else) -
-								td(data-th="資歷")
+								td(data-th="業界工作經歷")
 									span(class="rwd-td")
 										span(v-if="working.experience_in_year")
 											span(v-if="working.experience_in_year > 0") {{working.experience_in_year}} 年

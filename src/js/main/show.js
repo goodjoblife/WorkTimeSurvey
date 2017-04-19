@@ -511,6 +511,15 @@ const searchBarApp = new Vue({
       }
     },
   },
+  computed: {
+    search_input_placeholder: function() {
+      if (this.search_type === "by-company") {
+        return '輸入公司 / 單位名稱';
+      } else {
+        return '輸入職稱';
+      }
+    },
+  },
 });
 
 const router = Router({
