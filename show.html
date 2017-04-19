@@ -163,6 +163,9 @@
             </form>
           </div>
         </section>
+        <div class="mobile-info-buttons"><div data-modal-mobile-id="info-salary" data-info-button>估計時薪</div>
+<div data-modal-mobile-id="info-time" data-info-button>參考時間</div>
+        </div>
       </div>
       <div class="wrapper-l" id="app">
         <div class="modal data-modal" data-modal="info-time">
@@ -212,9 +215,6 @@
                 <option v-bind:value="{&quot;group_sort_by&quot;:&quot;estimated_hourly_wage&quot;,&quot;order&quot;: &quot;descending&quot;}">估算時薪（高到低）</option>
                 <option v-bind:value="{&quot;group_sort_by&quot;:&quot;estimated_hourly_wage&quot;,&quot;order&quot;: &quot;ascending&quot;}">估算時薪（低到高）</option>
               </select>
-            </div>
-            <div class="mobile-info-buttons"><div data-modal-id="info-salary" data-info-button>估計時薪</div>
-<div data-modal-id="info-time" data-info-button>參考時間</div>
             </div>
             <div class="search-result-list accordion">
               <div class="accordion__item search-result-list__item" v-for="g in data">
@@ -324,9 +324,6 @@
                 <option v-bind:value="{&quot;group_sort_by&quot;:&quot;estimated_hourly_wage&quot;,&quot;order&quot;: &quot;ascending&quot;}">估算時薪（低到高）</option>
               </select>
             </div>
-            <div class="mobile-info-buttons"><div data-modal-id="info-salary" data-info-button>估計時薪</div>
-<div data-modal-id="info-time" data-info-button>參考時間</div>
-            </div>
             <div class="search-result-list accordion">
               <div class="accordion__item search-result-list__item" v-for="g in data">
                 <button class="accordion__trigger">
@@ -393,9 +390,6 @@
                 <option v-bind:value="{&quot;sort_by&quot;:&quot;created_at&quot;,&quot;order&quot;:&quot;descending&quot;}">資料時間（新到舊）</option>
                 <option v-bind:value="{&quot;sort_by&quot;:&quot;created_at&quot;,&quot;order&quot;:&quot;ascending&quot;}">資料時間（舊到新）</option>
               </select>
-            </div>
-            <div class="mobile-info-buttons"><div data-modal-id="info-salary" data-info-button>估計時薪</div>
-<div data-modal-id="info-time" data-info-button>參考時間</div>
             </div>
             <table class="rwd-table latest-table" :class="{ 'is-disabled':  !share.is_authed}">
               <thead>
