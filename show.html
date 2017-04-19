@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-eqiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>查看工時、薪資 | 工時薪資透明化運動</title>
+    <title>查看工時、薪資 | 工時薪資透明化運動 goodjob</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <link rel="icon" type="image/png" href="/assets/img/common/favicon.ico">
     <link rel="stylesheet" href="/assets/css/style.css">
@@ -11,10 +11,10 @@
     <meta name="description" content="分享你的真實工時、薪資資訊，讓我們一起改善工作資訊不透明的現況">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="zh_TW">
-    <meta property="og:title" content="查看工時、薪資 | 工時薪資透明化運動">
+    <meta property="og:title" content="查看工時、薪資 | 工時薪資透明化運動 goodjob">
     <meta property="og:description" content="分享你的真實工時、薪資資訊，讓我們一起改善工作資訊不透明的現況">
     <meta property="og:url" content="https://www.goodjob.life/show.html">
-    <meta property="og:site_name" content="工時薪資透明化運動">
+    <meta property="og:site_name" content="工時薪資透明化運動 goodjob">
     <meta property="og:image" content="https://www.goodjob.life/assets/img/common/og-image_1200-630.png"><!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --><!-- WARNING: Respond.js doesn't work if you view the page via file:// --><!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -158,7 +158,7 @@
           </div>
           <div class="show-searchbar__form">
             <form class="search-bar" id="" v-on:submit.prevent="onSubmit">
-              <input class="search-bar__input" type="text" placeholder="輸入公司 / 單位名稱" id="search-bar-input" name="keyword" v-model="keyword">
+              <input class="search-bar__input" type="text" v-bind="{ placeholder: search_input_placeholder }" id="search-bar-input" name="keyword" v-model="keyword">
               <button class="search-bar__button" type="submit">搜尋</button>
             </form>
           </div>
@@ -281,7 +281,7 @@
                         <th class="col-day-time">表訂 / <br>實際工時</th>
                         <th class="col-week-time">一週總工時</th>
                         <th class="col-frequency">加班頻率</th>
-                        <th class="col-experience">資歷</th>
+                        <th class="col-experience">業界工作經歷</th>
                         <th class="col-salary align-right">薪資</th>
                         <th class="col-hourly align-right"><div data-modal-id="info-salary" data-info-button>估計時薪</div></th>
                         <th class="col-data-time"><div data-modal-id="info-time" data-info-button>參考時間</div></th>
@@ -294,7 +294,7 @@
                         <td data-th="表訂 / 實際工時"><span class="rwd-td"><span v-if="working.day_promised_work_time">{{working.day_promised_work_time}} / {{working.day_real_work_time}}</span><span v-else>-</span></span></td>
                         <td data-th="一週總工時"><span class="rwd-td"><span v-if="working.week_work_time"><span class="table-time-bar" data-time="{{working.week_work_time}}" v-bind:style="{ width: working.week_work_time + 'px' }">{{working.week_work_time}}</span></span><span v-else>-</span></span></td>
                         <td data-th="加班頻率"><span class="rwd-td"><span v-if="working.overtime_frequency | overtime_frequency_string"><span class="table-frequency-circle" data-frequency="{{working.overtime_frequency}}"></span>{{working.overtime_frequency | overtime_frequency_string}}</span><span v-else>-</span></span></td>
-                        <td data-th="資歷"><span class="rwd-td"><span v-if="working.experience_in_year"><span v-if="working.experience_in_year &gt; 0">{{working.experience_in_year}} 年</span><span v-else>小於 1 年</span></span><span v-else>-</span></span></td>
+                        <td data-th="業界工作經歷"><span class="rwd-td"><span v-if="working.experience_in_year"><span v-if="working.experience_in_year &gt; 0">{{working.experience_in_year}} 年</span><span v-else>小於 1 年</span></span><span v-else>-</span></span></td>
                         <td data-th="薪資"><span class="rwd-td align-right"><span v-if="working.salary.amount | formatted_wage_string">{{working.salary.amount | formatted_wage_string}} / {{working.salary.type | salary_type_string}}</span><span v-else>-</span></span></td>
                         <td data-th="估計時薪"><span class="rwd-td align-right"><span v-if="working.estimated_hourly_wage | formatted_wage_string">{{working.estimated_hourly_wage | formatted_wage_string}} 元</span><span v-else>-</span></span></td>
                         <td data-th="參考時間"><span class="rwd-td"><span class="data-time">{{working.data_time.year}}.{{working.data_time.month | two_digit_month}}</span></span></td>
@@ -349,7 +349,7 @@
                         <th class="col-day-time">表訂 / <br>實際工時</th>
                         <th class="col-week-time">一週總工時</th>
                         <th class="col-frequency">加班頻率</th>
-                        <th class="col-experience">資歷</th>
+                        <th class="col-experience">業界工作經歷</th>
                         <th class="col-salary align-right">薪資</th>
                         <th class="col-hourly align-right"><div data-modal-id="info-salary" data-info-button>估計時薪</div></th>
                         <th class="col-data-time"><div data-modal-id="info-time" data-info-button>參考時間</div></th>
@@ -362,7 +362,7 @@
                         <td data-th="表訂 / 實際工時"><span class="rwd-td"><span v-if="working.day_promised_work_time">{{working.day_promised_work_time}} / {{working.day_real_work_time}}</span><span v-else>-</span></span></td>
                         <td data-th="一週總工時"><span class="rwd-td"><span v-if="working.week_work_time"><span class="table-time-bar" data-time="{{working.week_work_time}}" v-bind:style="{ width: working.week_work_time + 'px' }">{{working.week_work_time}}</span></span><span v-else>-</span></span></td>
                         <td data-th="加班頻率"><span class="rwd-td"><span v-if="working.overtime_frequency | overtime_frequency_string"><span class="table-frequency-circle" data-frequency="{{working.overtime_frequency}}"></span><span>{{working.overtime_frequency | overtime_frequency_string}}</span></span><span v-else>-</span></span></td>
-                        <td data-th="資歷"><span class="rwd-td"><span v-if="working.experience_in_year"><span v-if="working.experience_in_year &gt; 0">{{working.experience_in_year}} 年</span><span v-else>小於 1 年</span></span><span v-else>-</span></span></td>
+                        <td data-th="業界工作經歷"><span class="rwd-td"><span v-if="working.experience_in_year"><span v-if="working.experience_in_year &gt; 0">{{working.experience_in_year}} 年</span><span v-else>小於 1 年</span></span><span v-else>-</span></span></td>
                         <td data-th="薪資"><span class="rwd-td align-right"><span v-if="working.salary.amount | formatted_wage_string">{{working.salary.amount | formatted_wage_string}} / {{working.salary.type | salary_type_string}}</span><span v-else>-</span></span></td>
                         <td data-th="估計時薪"><span class="rwd-td align-right"><span v-if="working.estimated_hourly_wage | formatted_wage_string">{{working.estimated_hourly_wage | formatted_wage_string}} 元</span><span v-else>-</span></span></td>
                         <td data-th="參考時間"><span class="rwd-td"><span class="data-time">{{working.data_time.year}}.{{working.data_time.month | two_digit_month}}</span></span></td>
