@@ -374,8 +374,7 @@ $work_form.on("submit", function(e) {
     checkFormField();
   } catch (error) {
     // enable the form
-    $work_form_submit_button.prop("disabled", false);
-
+    ga && ga('send', 'event', 'LANDING_PAGE', 'check-form-fail', error.message);
     $work_form.trigger("submitted", {
       error: error,
       type: "ValidationError",
@@ -429,6 +428,7 @@ $work_form.on("submitted", (e, result) => {
   $("#auth_check_reminder").hide("slow");
 
   if (result.error) {
+    ga && ga('send', 'event', 'LANDING_PAGE', 'upload-fail');
     if (result.type === "ValidationError") {
       showTooltipAndScroll(result.error.target, result.error.message);
     } else if (result.type === "AuthError") {
@@ -447,7 +447,7 @@ $work_form.on("submitted", (e, result) => {
 
   // when submit success
   const quota = 5;
-
+  ga && ga('send', 'event', 'LANDING_PAGE', 'upload-success');
   const queries_count = result.data.queries_count;
   showAlert('success', '上傳成功', `您已經上傳 ${queries_count} 次，還有 ${quota - queries_count} 次可以上傳。`, 'go-to-show');
 });
