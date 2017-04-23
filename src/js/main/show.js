@@ -55,6 +55,11 @@ const timeAndSalary = Vue.extend({
       this.loadTimeAndSalary(0);
     },
     scroll_bottom_reach: function() {
+      // we don't want the two loading
+      if (this.is_loading) {
+        return;
+      }
+
       this.loadMorePage();
     },
   },
