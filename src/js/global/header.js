@@ -1,14 +1,3 @@
-const header = document.getElementById('header');
-if (breakpoint.above_small.matches) {
-  window.addEventListener('scroll', () => {
-    if (document.documentElement && document.documentElement.scrollTop || document.body.scrollTop > 100) {
-      header.classList.add('is-fixed');
-    } else if (document.documentElement && document.documentElement.scrollTop || document.body.scrollTop == 0) {
-      header.classList.remove('is-fixed');
-    }
-  });
-}
-
 const header_button = document.getElementById('header-button');
 const header_nav = document.getElementById('header-nav');
 header_button.addEventListener('click', function() {

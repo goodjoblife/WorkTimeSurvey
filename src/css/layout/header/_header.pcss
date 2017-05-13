@@ -9,26 +9,6 @@
 	@media (max-width: $below-small) {
 		height: $nav-height-s;
 	}
-	&.is-fixed {
-		height: $nav-height-m;
-		box-shadow: 0 0 8px rgba(0,0,0,.15);
-		.header__logo {
-			transform: translateY(0px);
-			svg {
-				transform: scale(0.8) translateY(6px);
-				transform-origin: 0% 50%;
-				fill: #000;
-			}
-		}
-		.header__nav {
-			height: 100%;
-		}
-		.site-menu {
-			> li {
-				line-height: $nav-height-m;
-			}
-		}
-	}
 }
 .header__wrapper {
 	height: 100%;
@@ -42,16 +22,15 @@
 }
 .header__logo {
 	flex: 0 0 170px;
-	@media (min-width: $above-small) {
-		transform: translateY(10px);
-	}
 	> a {
 		display: block;
 	}
 	svg {
-		transition: transform .25s, fill .1s;
-		fill: #fff;
-		@media (max-width: $below-small) {
+    transform: scale(0.8) translateY(6px);
+    transform-origin: 0% 50%;
+		fill: #000;
+		@media (max-width: 850px) {
+      transform: scale(1) translateY(0);
 			width: 120px;
 			fill: #000;
 		}
