@@ -2,6 +2,7 @@
 	@media (min-width: $above-small) {
 		height: 100%;
 		> li {
+			position: relative;
 			display: inline-block;
 			vertical-align: middle;
 			line-height: $nav-height-l;
@@ -34,6 +35,7 @@
 		margin-top: 20px;
 		width: 100%;
 		> li {
+			position: relative;
 			> a {
 				display: block;
 				font-size: 1.15em;
@@ -43,6 +45,22 @@
 					background-color: $yellow-bg.7;
 				}
 			}
+		}
+	}
+
+	.newItem {
+		> a {
+			padding-right: 18px;
+		}
+	}
+
+	.new {
+		position: absolute;
+		top: 0;
+		right: -5px;
+		z-index: 2;
+		@media (max-width: 850px) {
+			right: 0;
 		}
 	}
 }
