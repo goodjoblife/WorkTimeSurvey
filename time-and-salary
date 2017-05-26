@@ -436,9 +436,10 @@
             <p>Copyright©GoodJob.life team 2016</p>
             <p><a href="/user-term">使用者條款</a>與<a href="/privacy-policy">隱私權政策</a> Emoji provided free by <a href="http://emojione.com/">EmojiOne</a></p>
           </div>
+          <div class="footer__g0v"><a href="https://grants.g0v.tw/power/" target="_blank" title="g0v"><img src="//grants.g0v.tw/images/power/poweredby-square.svg" alt="power by g0v"></a></div>
         </div>
         <div class="footer__col-2">
-          <div class="share-buttons"><a class="share-buttons__item" href="https://github.com/goodjoblife"><svg class="footer-gitgub" role="img"><use xlink:href="#footer-github"></use></svg></a><a class="share-buttons__item" href="https://www.facebook.com/goodjob.life/"><svg class="footer-facebook" role="img" ><use xlink:href="#footer-facebook"></use></svg></a></div>
+          <div class="share-buttons"><a class="share-buttons__item" href="https://github.com/goodjoblife" title="github"><svg class="footer-gitgub" role="img"><use xlink:href="#footer-github"></use></svg></a><a class="share-buttons__item" href="https://www.facebook.com/goodjob.life/" title="facebook"><svg class="footer-facebook" role="img" ><use xlink:href="#footer-facebook"></use></svg></a></div>
         </div>
       </div>
     </footer>
