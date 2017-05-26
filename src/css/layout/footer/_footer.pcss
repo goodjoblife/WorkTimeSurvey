@@ -5,44 +5,58 @@
     height: $footer-height;
   }
   .wrapper-l {
-    @mixin clear;
+    display: flex;
+    @media (max-width: 850px) {
+      flex-direction: column;
+    }
   }
   &__col-1 {
-    @mixin clear;
-    float: left;
-    width: 70%;
-    @media (max-width: $below-small) {
-      float: none;
-      width: 100%;
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: space-between;
+    @media (max-width: 850px) {
+      flex: 1 1 auto;
+    }
+    @media (max-width: 550px) {
+      flex-direction: column;
     }
   }
   &__col-2 {
-    float: left;
-    width: 30%;
-    @media (max-width: $below-small) {
-      float: none;
-      width: 100%;
+    flex: 0 0 140px;
+    @media (max-width: 850px) {
+      flex: 1 1 auto;
     }
   }
   &__logo {
-    float: left;
-    width: 140px;
+    flex: 0 0 140px;
     svg {
       width: 120px;
     }
-    @media (max-width: $below-mobile) {
-      float: none;
-      width: 100%;
+    @media (max-width: 550px) {
+      flex: 1 1 auto;
+    }
+  }
+  &__g0v {
+    flex: 0 0 120px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    @media (max-width: 550px) {
+      flex: 1 1 auto;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    img {
+      width: 120px;
     }
   }
   &__content {
-    float: left;
-    width: calc(100% - 140px);
+    flex: 1 1 auto;
     font-size: .85em;
     line-height: 1.4em;
-    @media (max-width: $below-mobile) {
-      float: none;
-      width: 100%;
+    @media (max-width: 550px) {
+      flex: 1 1 auto;
     }
     a {
       @mixin hover-color $gray-dark;
