@@ -147,6 +147,73 @@ const appendJobExperienceTime = () => {
 };
 appendJobExperienceTime();
 
+/**
+ * Salary hint text
+ */
+
+//convert positive integer to [xxxx億][xxxx萬][xxxx]元 format
+const numToChineseReadableString = (num) => {
+  if (typeof num !== 'number') {
+    return;
+  }
+  if (num <= 0 || !Number.isInteger(num)) {
+    return;
+  }
+  const base = [1, 10000, 100000000];
+  const baseWord = ['', '萬', '億'];
+  let str = '';
+  let c;
+  for(let i = base.length; i >= 0; i--){
+    if (num >= base[i]) {
+      c = Math.floor(num / base[i]);
+      num = num - c * base[i];
+      str = str + `${c}${baseWord[i]}`;
+    }
+  }
+  return str + '元';
+}
+
+const shouldShowSalaryWarning = (salary_type, salary_amount) => {
+  if (typeof salary_amount !== 'number') {
+    return;
+  }
+  const ranges = {
+    'hour': [100, 500],
+    'day': [800, 4000],
+    'month': [20000, 100000],  //2萬, 10萬
+    'year': [200000, 1000000],  //20萬, 100萬
+  }
+  if (!salary_type in ranges){
+    return;
+  }
+  if (salary_amount <= ranges[salary_type][0] || salary_amount >= ranges[salary_type][1]){
+    return true;
+  } else {
+    return false;
+  }
+}
+
+const salaryHintHtml = (salary_type, salary_amount) => {
+  const readableStr = numToChineseReadableString(salary_amount);
+  const showWarning = shouldShowSalaryWarning(salary_type, salary_amount);
+  if (typeof readableStr === 'undefined' || typeof showWarning === 'undefined') {
+    return;
+  }
+  const salaryTypeWord = {
+    'hour': '時薪',
+    'day': '日薪',
+    'month': '月薪',
+    'year': '年薪',
+  }
+  let hint = `${salaryTypeWord[salary_type]} ${readableStr}`;
+
+  if (showWarning) {
+    return `<span class="form-warning-text">${hint}，確定嗎？</span>`;
+  } else {
+    return `<span>${hint}</span>`;
+  }
+}
+
 /*
  * Form Submit Controller
  */
