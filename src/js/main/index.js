@@ -193,7 +193,7 @@ const shouldShowSalaryWarning = (salary_type, salary_amount) => {
   }
 }
 
-const salaryHintHtml = (salary_type, salary_amount) => {
+const salaryHint = (salary_type, salary_amount) => {
   const readableStr = numToChineseReadableString(salary_amount);
   const showWarning = shouldShowSalaryWarning(salary_type, salary_amount);
   if (typeof readableStr === 'undefined' || typeof showWarning === 'undefined') {
@@ -205,13 +205,8 @@ const salaryHintHtml = (salary_type, salary_amount) => {
     'month': '月薪',
     'year': '年薪',
   }
-  let hint = `${salaryTypeWord[salary_type]} ${readableStr}`;
-
-  if (showWarning) {
-    return `<span class="form-warning-text">${hint}，確定嗎？</span>`;
-  } else {
-    return `<span>${hint}</span>`;
-  }
+  const hint = `${salaryTypeWord[salary_type]} ${readableStr}`;
+  return {showWarning, hint};
 }
 
 /*
