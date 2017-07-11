@@ -17,6 +17,8 @@ cp CNAME _public/
 mkdir -p _public/img
 cp src/img/common/og-image_1200-630.png _public/img/
 
+mkdir -p _public/share
+mv _public/index.html _public/share/time-and-salary
 mv _public/about.html _public/about
 mv _public/privacy-policy.html _public/privacy-policy
 mv _public/user-term.html _public/user-term
