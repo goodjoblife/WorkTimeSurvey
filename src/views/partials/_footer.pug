@@ -1,15 +1,38 @@
 footer(class="footer" id="site-footer")
-  div(class="wrapper-l")
-    div(class="footer__col-1")
+  section(class="footer__header")
+    div(class="wrapper-l footer__inner" style="display: flex; align-items: center; flex-wrap: wrap; width: 100%; max-width: 1264px; padding-left: 64px; padding-right: 64px; margin: 0 auto;")
       div(class="footer__logo")
         include ./_logo.pug
-      div(class="footer__content")
-        p Copyright©GoodJob.life team 2016
-        p <a href="/user-term">使用者條款</a>與<a href="/privacy-policy">隱私權政策</a> Emoji provided free by <a href="http://emojione.com/">EmojiOne</a>
-      div(class="footer__g0v")
-        a(href="https://grants.g0v.tw/power/" target="_blank" title="g0v")
-          img(src="//grants.g0v.tw/images/power/poweredby-square.svg" alt="power by g0v")
-    div(class="footer__col-2")
-      div(class="share-buttons")
-        a(href="https://github.com/goodjoblife" class="share-buttons__item" title="github") <svg class="footer-gitgub" role="img"><use xlink:href="#footer-github"></use></svg>
-        a(href="https://www.facebook.com/goodjob.life/" class="share-buttons__item" title="facebook") <svg class="footer-facebook" role="img" ><use xlink:href="#footer-facebook"></use></svg>
+      h1(class="footer__heading") 透明資訊求職平台
+      span(class="fb-like fb_iframe_widget" data-href="https://www.facebook.com/goodjob.life/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false" data-reactid="186" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;app_id=1844389232511081&amp;container_width=0&amp;href=https%3A%2F%2Fwww.facebook.com%2Fgoodjob.life%2F&amp;layout=button_count&amp;locale=zh_TW&amp;sdk=joey&amp;share=false&amp;show_faces=true&amp;size=small")
+        span(style="vertical-align: bottom; width: 76px; height: 20px;")
+          iframe(name="f8af41d2d517d" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:like Facebook Social Plugin" style="border: medium none; visibility: visible; width: 76px; height: 20px;" src="https://www.facebook.com/v2.6/plugins/like.php?action=like&amp;app_id=1844389232511081&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2FXBwzv5Yrm_1.js%3Fversion%3D42%23cb%3Df302a6fb52d5b28%26domain%3Dwww-stage.goodjob.life%26origin%3Dhttps%253A%252F%252Fwww-stage.goodjob.life%252Ff1534230887d3b6%26relation%3Dparent.parent&amp;container_width=0&amp;href=https%3A%2F%2Fwww.facebook.com%2Fgoodjob.life%2F&amp;layout=button_count&amp;locale=zh_TW&amp;sdk=joey&amp;share=false&amp;show_faces=true&amp;size=small" class="" width="1000px" height="1000px" frameborder="0")
+  div(style="display: flex; justify-content: space-between; padding-bottom: 16px; width: 100%; max-width: 1264px; padding-left: 64px; padding-right: 64px; margin: 0 auto;")
+    section(style="flex: 1 1 auto; display: flex; flex-wrap: wrap;")
+      div(style="flex-basis: 160px;")
+        h4(style="margin-bottom: 24px; font-size: 1.1em; letter-spacing: 2px;") 求職者工具
+        a(href="/share/time-and-salary") 薪資工時
+        a(href="/experiences/search") 面試・工作經驗
+        a(href="/labor-rights") 勞動小教室
+      div
+        h4 常見問題
+        a(href="/guidelines") 發文留言規定
+        a(href="/faq") 常見問題
+        a(href="/privacy-policy") 隱私權政策
+        a(href="/user-terms") 使用者條款
+      div
+        h4 Goodjob
+        a(href="/about") 關於我們
+        a(href="/contact") 聯絡我們
+        a(href="/recruit") 加入我們
+    section
+      h4 \ 感謝各大媒體採訪報導 /
+      a(href="/about")
+        img(src="https://s3-ap-northeast-1.amazonaws.com/goodjob.life/www/medias.jpg" alt="cheers yahoo 蘋果日報 數位時代")
+  div
+    div
+      div
+      | Copyright © GoodJob.life team 2017
+      div
+        a(href="https://grants.g0v.tw/power/" alt="power by g0v")
+          img(src="https://s3-ap-northeast-1.amazonaws.com/goodjob.life/www/logo-g0v-white.svg" alt="g0v")

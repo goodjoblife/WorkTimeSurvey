@@ -1,11 +1,36 @@
 .footer {
+  &__header {
+    margin-bottom: 24px;
+    padding-top: 24px;
+    justify-content: center;
+  }
+  &__inner {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+  &__heading {
+    color: #fff;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
+  .fb-like {
+    margin-left: 24px;
+  }
   background-color: $primary-color;
-  padding: 12px 0;
+  color: #fff;
   @media (min-width: $above-desktop) {
-    height: $footer-height;
   }
   .wrapper-l {
-    display: flex;
+    width: 100%;
+    max-width: 1264px;
+    padding-left: 64px;
+    padding-right: 64px;
+    margin: 0 auto;
     @media (max-width: 850px) {
       flex-direction: column;
     }
@@ -31,7 +56,9 @@
   &__logo {
     flex: 0 0 140px;
     svg {
+      margin-right: 16px;
       width: 120px;
+      fill: #fff;
     }
     @media (max-width: 550px) {
       flex: 1 1 auto;
