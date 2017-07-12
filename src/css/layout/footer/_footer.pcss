@@ -18,6 +18,44 @@
     letter-spacing: 1px;
     font-weight: 400;
   }
+  &__body {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    color: #eaeaea;
+    padding-bottom: 16px;
+  }
+  &__links {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+  &__link-item {
+    flex-basis: 160px;
+    &__heading {
+      margin-bottom: 24px;
+      font-size: 1.1em;
+      letter-spacing: 2px;
+      font-weight: 400;
+    }
+    &__link {
+      display: block;
+      font-size: .9375em;
+      font-weight: 300;
+      margin-bottom: 16px;
+      @media (min-width: $above-desktop) {
+        transition-duration: .3s;
+        transition-property: color;
+        &:hover {
+          color: #fcd406;
+        }
+      }
+    }
+  }
   .fb-like {
     margin-left: 24px;
   }
