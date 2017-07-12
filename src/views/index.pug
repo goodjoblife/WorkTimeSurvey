@@ -5,33 +5,6 @@ block vars
 	- var page_title = "首頁";
 
 block content
-	section(class="home-banner")
-		div(class="wrapper-l")
-			div(class="home-banner__img")
-				img(src="/assets/img/home-banner.png")
-			div(class="home-banner__heading")
-				div
-					h1(class="home-banner__main-heading") 工時薪資透明化運動
-					h3(class="home-banner__subheading") 分享你的真實工時、薪資資訊，讓我們一起改善工作資訊不透明的現況
-	section(class="section" id="section-about")
-		div(class="wrapper-m")
-			div(class="heading")
-				div(class="heading__icon")
-					include ./partials/_icon-light
-				h2(class="heading__heading") 關於工時薪資透明化
-			p(class="paragraph")
-				| 你是否和我們有一樣的經驗？
-				br
-				br
-				| 在求職網站上看到的工時及薪資總是只有「日班」、「面議」或「依公司規定」；面試時談好的工作時間或薪水總是和實際上不同。如果一開始就能知道真正的工作資訊，我們是不是可以做出更好的選擇？
-				br
-				br
-				| 「工時薪資透明化運動」希望藉由<strong>每個人匿名分享自己的實際工時及薪資資訊</strong>，讓不同公司、不同職位的工作資訊能夠更公開透明。
-				br
-				br
-				| 我們誠摯地邀請你，一起改善工作資訊不透明的現況！
-			div(class="btn-scroll-down js-scrollToForm")
-				include ./partials/_icon-arrow
 	section(class="section section--yellow" id="section-form")
 		div(class="modal form-modal" id="modal-alert")
 		div(class="modal data-modal" data-modal="why-facebook")
@@ -254,53 +227,5 @@ block content
 						| 如果一直沒有回應，請重新整理：(
 					div(class="text-center")
 						sapn(class="btn-why-facebook-login" data-modal-id="why-facebook") 為什麼需要 Facebook 帳戶驗證？
-	section(class="section-two-col")
-		div(class="section-two-col__item")
-			div
-				div(class="heading")
-					h2(class="heading__heading") 分享此活動
-				div(class="share-buttons")
-					span(id="fb-share-button" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A//www.goodjob.life/', 'newwindow', 'width=555, height=630'); return false;" class="share-buttons__item btn-white btn-m") <svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg> facebook
-					span(id="twitter-share-button" onclick="window.open('https://twitter.com/home?status=https%3A//www.goodjob.life/', 'newwindow', 'width=555, height=630'); return false;" class="share-buttons__item btn-white btn-m") <svg role="img" class="icon-twitter"><use xlink:href="#icon-twitter"></use></svg> twitter
-				div(class="like-fb-word")
-					span <a href="https://www.facebook.com/goodjob.life/">粉絲頁</a>按讚，隨時取得最新消息
-					span(class="fb-like" data-href="https://www.facebook.com/goodjob.life/" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="false")
-
-		div(class="section-two-col__item")
-			div
-				div(class="heading")
-					h2(class="heading__heading") 與我們聯繫
-				div(class="share-buttons")
-					a(href="https://github.com/goodjoblife" class="share-buttons__item") <svg role="img" class="icon-github"><use xlink:href="#icon-github"></use></svg>
-					a(href="https://www.facebook.com/goodjob.life/" class="share-buttons__item") <svg role="img" class="icon-facebook-circle"><use xlink:href="#icon-facebook-circle"></use></svg>
-	section(class="section" id="section-faq")
-		div(class="wrapper-m")
-			div(class="heading")
-				div(class="heading__icon")
-					include ./partials/_icon-question
-				h2(class="heading__heading") 常見問答
-			ol(class="faq")
-				li(class="faq__item")
-					div(class="question") 這個網站是匿名的嗎？ 為什麼匿名還需要以 Facebook 帳戶驗證？
-					div(class="answer html-editor") 是的，這個網站是匿名的，您的 Facebook 帳戶資訊不會於任何地方被顯示、揭露或分享。Facebook 帳戶驗證是為了避免惡意使用者大量輸入假資訊。目前設定每一個 Facebook 帳戶僅可以上傳 5 筆工時、薪資資訊，未來將視情況做調整。
-				li(class="faq__item")
-					div(class="question") 我提供的資料會如何被使用？
-					div(class="answer html-editor") 您的資料將會被運用於 GoodJob 團隊之服務中，供其他使用者查詢。未來也可能與其他工作資訊透明化專案合作，共享真實的工作資訊；但您的 Facebook 帳戶資訊並不會被共享。
-				li(class="faq__item")
-					div(class="question" id="how-to-fix-data") 我填錯了，想要刪除、修改資料怎麼辦？
-					div(class="answer html-editor") 請填寫<a href="https://goo.gl/forms/VbbMjRXaUSsKtOBU2">本表單</a>，用以確保您是本人，也保障您的權益。填寫完畢後當週的週日，工程師會統一處理，感謝您的耐心等候。
-				li(class="faq__item")
-					div(class="question") 哪裡可以查詢到工時、薪資的資訊?
-					div(class="answer html-editor") 您可以在導覽列中，找到「<a href="/time-and-salary">查看薪時</a>」的連結。
-				li(class="faq__item")
-					div(class="question") 請問你們是誰？
-					div(class="answer html-editor") 詳情請見<a href="/about">關於我們</a>。
-				li(class="faq__item")
-					div(class="question") 如果我對這個專案很有興趣，想要一起貢獻心力或洽談合作，該怎麼做?
-					div(class="answer html-editor") 這是一個開源專案，我們期待與任何個人或團體洽談合作，請用 <a href="https://www.facebook.com/goodjob.life">Facebook</a> 聯絡我們。其中，若您有以下任一專長或條件，我們非常希望您可以加入我們！
-						ul
-							li 具網頁前端開發能力者 (React)
-							li 有資訊設計專長者，以協助設計勞動權益資訊懶人包
-							li 對於推動工作資訊透明化、改善台灣勞動環境具有熱忱的任何人
 block scripts
 	script(src='/assets/js/index.js')
