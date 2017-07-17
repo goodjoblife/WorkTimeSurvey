@@ -33,9 +33,15 @@
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    @media (max-width: 850px) {
+      justify-content: space-between;
+    }
   }
   &__link-item {
     flex-basis: 160px;
+    @media (max-width: 850px) {
+      flex: 1;
+    }
     &__heading {
       margin-bottom: 24px;
       font-size: 1.1em;
@@ -68,6 +74,9 @@
        letter-spacing: 1px;
        text-align: center;
        margin-bottom: 8px;
+    }
+    @media (max-width: 850px) {
+       display:none;
     }
   }
   &__footer {
@@ -103,7 +112,8 @@
     padding-right: 64px;
     margin: 0 auto;
     @media (max-width: 850px) {
-      flex-direction: column;
+      padding-left: 40px;
+      padding-right: 40px;
     }
   }
   &__col-1 {
