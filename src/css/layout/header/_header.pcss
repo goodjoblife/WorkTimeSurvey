@@ -9,23 +9,6 @@
 	@media (max-width: $below-small) {
 		height: $nav-height-s;
 	}
-	.leave-data-btn {
-		color: #fff;
-		height: 40px;
-		padding-right: 20px;
-		padding-left: 20px;
-		border: 1px solid #bbb;
-		font-size: .95em;
-		letter-spacing: 1px;
-		display: flex;
-		align-items: center;
-		transition-property: background;
-		transition-duration: .3s;
-		background-color: hsla(0,0%,100%,.15);
-		&:hover {
-			background-color: hsla(0,0%,100%,.3);
-		}
-    }
 }
 .header__wrapper {
 	height: 100%;
@@ -43,13 +26,12 @@
 		display: block;
 	}
 	svg {
-    transform: scale(0.8) translateY(6px);
-    transform-origin: 0% 50%;
+ 		transform: scale(0.8) translateY(6px);
+		transform-origin: 0% 50%;
 		fill: #fff;
 		@media (max-width: 850px) {
-      transform: scale(1) translateY(0);
+			transform: scale(1) translateY(0);
 			width: 120px;
-			fill: #000;
 		}
 	}
 }
@@ -71,6 +53,7 @@
 		height: 100%;
 		z-index: 99;
 		flex-direction: column;
+ 		justify-content: flex-start;
 		&.is-open {
 			opacity: 1;
 			visibility: visible;
@@ -78,9 +61,6 @@
 	}
 }
 .header__user {
-	flex: 0 1 auto;
-	display: flex;
-	height: 100%;
 	align-items: center;
 	font-weight: 100;
 	.icon-user {
@@ -91,10 +71,43 @@
 	.name {
 		text-transform: lowercase;
 	}
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+	.leave-data-btn {
+		color: #fff;
+		height: 40px;
+		padding-right: 20px;
+		padding-left: 20px;
+		border: 1px solid #bbb;
+		font-size: .95em;
+		letter-spacing: 1px;
+		display: flex;
+		align-items: center;
+		transition-property: background;
+		transition-duration: .3s;
+		background-color: hsla(0,0%,100%,.15);
+		&:hover {
+			background-color: hsla(0,0%,100%,.3);
+		}
+        @media (max-width: $below-small) {
+            margin-top: 16px;
+		}
+    }
+    svg.icon-user {
+        fill: #fff;
+        width: 64px;
+        height: 64px;
+        position: relative;
+        top: 20px;
+        left: 30px;
+    }
 	.login-block {
 		min-width: 32px;
 		color: #fff;
-		margin-left:40px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -105,9 +118,6 @@
 	}
 	@media (max-width: $below-small) {
 		height: auto;
-		flex: 1 1 auto;
-		display: block;
 		text-align: center;
-		padding: 15px 0;
 	}
 }
