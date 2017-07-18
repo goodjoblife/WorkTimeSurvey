@@ -48,6 +48,14 @@
     @media (max-width: 850px) {
       flex: 1;
     }
+    @media (max-width: 550px) {
+        -ms-flex-positive: 0;
+        flex-grow: 0;
+        -ms-flex-negative: 0;
+        flex-shrink: 0;
+        -ms-flex-preferred-size: 50%;
+        flex-basis: 50%;
+    }
     &__heading {
       margin-bottom: 24px;
       font-size: 1.1em;
