@@ -3,6 +3,11 @@
     margin-bottom: 24px;
     padding-top: 24px;
     justify-content: center;
+    @media (max-width: 550px) {
+        margin-bottom: 20px;
+        border-bottom: 1px solid #4f4f4f;
+        padding-bottom: 16px;
+    }
   }
   &__inner {
     display: flex;
@@ -16,6 +21,10 @@
     font-size: 20px;
     letter-spacing: 1px;
     font-weight: 400;
+    @media (max-width: 550px) {
+        font-size: 18px;
+        margin-right: 16px;
+    }
   }
   &__body {
     display: flex;
@@ -61,6 +70,10 @@
   }
   .fb-like {
     margin-left: 24px;
+    @media (max-width: 550px) {
+        margin-left: 0;
+        margin-top: 8px;
+    }
   }
   &__medias {
     -ms-flex: 0 0 260px;
@@ -110,6 +123,10 @@
     @media (max-width: 850px) {
       padding-left: 40px;
       padding-right: 40px;
+    }
+    @media (max-width: 550px) {
+      padding-left: 15px;
+      padding-right: 15px;
     }
   }
   &__col-1 {
