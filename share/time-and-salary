@@ -27,7 +27,7 @@
       
     </script>
   </head>
-  <body class="site body-index">
+  <body class="site body-index" style="background-color:#f9f9f9;">
     <div id="fb-root"></div>
     <div style="display:none;"><svg xmlns="http://www.w3.org/2000/svg" class="svg-icon-lib">
   <defs>
@@ -100,17 +100,16 @@
         <div class="header__logo"><a href="/"><svg xmlns="http://www.w3.org/2000/svg" width="160" height="47" viewBox="0 0 160 47"><g><path d="M19.334 16.701c-1.124-1.168-2.21-1.92-3.259-2.364-.961-.458-2.217-.661-3.77-.661-3.237 0-5.935 1.115-8.093 3.317C2.069 19.181.997 21.945.997 25.27c0 2.957.924 5.429 2.771 7.409 1.848 1.937 4.19 2.906 7.028 2.906 2.276 0 4.449-.79 6.519-2.371l-.354 2.859c-.281 2.336-.946 4.04-1.996 5.112-1.049 1.071-2.579 1.607-4.589 1.607-1.863 0-3.237-.528-4.125-1.423C5.366 40.477 4.863 39 4.745 37H0c0 2 .207 3.311.621 4.316.414 1.094 1.138 2.109 2.173 2.967 2.025 1.715 4.671 2.592 7.938 2.592 3.163 0 5.735-.877 7.716-2.65a8.922 8.922 0 0 0 2.306-3.343c.252-.636.477-1.416.677-2.348.199-.932.38-2.131.543-3.388L24.544 14h-4.9l-.31 2.701zm-2.395 12.723c-1.301 1.39-2.963 2.084-4.988 2.084-1.818 0-3.282-.569-4.39-1.707-1.094-1.183-1.641-2.705-1.641-4.567 0-2.128.636-3.896 1.907-5.299 1.286-1.419 2.897-2.129 4.834-2.129 1.862 0 3.37.584 4.523 1.752 1.153 1.153 1.729 2.676 1.729 4.567 0 2.128-.658 3.895-1.974 5.299zM38.292 13.526c-3.37 0-6.179 1.079-8.425 3.237-2.232 2.143-3.348 4.833-3.348 8.07 0 3.163 1.079 5.779 3.237 7.849 2.144 2.056 4.908 3.083 8.292 3.083 3.238 0 5.957-1.087 8.16-3.26 2.218-2.173 3.326-4.856 3.326-8.049 0-3.237-1.05-5.861-3.148-7.871-2.085-2.039-4.782-3.059-8.094-3.059zm4.413 16.053c-1.242 1.404-2.823 2.106-4.745 2.106-1.921 0-3.488-.644-4.7-1.929-1.212-1.257-1.818-2.92-1.818-4.989 0-2.055.643-3.762 1.929-5.122 1.286-1.345 2.912-2.018 4.878-2.018 1.892 0 3.422.606 4.59 1.818 1.167 1.168 1.752 2.756 1.752 4.767-.001 2.189-.63 3.977-1.886 5.367zM63.863 13.526c-3.37 0-6.179 1.079-8.425 3.237-2.232 2.143-3.348 4.833-3.348 8.07 0 3.163 1.079 5.779 3.237 7.849 2.143 2.056 4.907 3.083 8.292 3.083 3.237 0 5.957-1.087 8.159-3.26 2.217-2.173 3.326-4.856 3.326-8.049 0-3.237-1.049-5.861-3.148-7.871-2.084-2.039-4.782-3.059-8.093-3.059zm4.412 16.053c-1.242 1.404-2.823 2.106-4.745 2.106s-3.489-.644-4.701-1.929c-1.212-1.257-1.818-2.92-1.818-4.989 0-2.055.643-3.762 1.929-5.122 1.286-1.345 2.912-2.018 4.878-2.018 1.892 0 3.422.606 4.59 1.818 1.168 1.168 1.752 2.756 1.752 4.767 0 2.189-.628 3.977-1.885 5.367zM109.964 1.553c-.71 0-1.323.259-1.841.776-.518.518-.775 1.131-.775 1.841 0 .739.266 1.382.798 1.929.532.532 1.16.798 1.885.798a2.57 2.57 0 0 0 1.885-.776c.517-.517.775-1.124.775-1.818 0-.754-.273-1.397-.82-1.929-.532-.547-1.169-.821-1.907-.821zM102.292 47h4.9l4.036-33h-4.901zM124.832 13.526c-3.37 0-6.179 1.079-8.426 3.237-2.231 2.143-3.348 4.833-3.348 8.07 0 3.163 1.079 5.779 3.237 7.849 2.144 2.056 4.907 3.083 8.292 3.083 3.237 0 5.957-1.087 8.159-3.26 2.218-2.173 3.326-4.856 3.326-8.049 0-3.237-1.05-5.861-3.148-7.871-2.083-2.039-4.78-3.059-8.092-3.059zm4.412 16.053c-1.241 1.404-2.822 2.106-4.744 2.106-1.923 0-3.489-.644-4.701-1.929-1.212-1.257-1.818-2.92-1.818-4.989 0-2.055.644-3.762 1.93-5.122 1.285-1.345 2.912-2.018 4.878-2.018 1.892 0 3.421.606 4.589 1.818 1.168 1.168 1.752 2.756 1.752 4.767-.001 2.189-.629 3.977-1.886 5.367zM98.015 0L95.93 17.196c-1.227-1.364-2.402-2.363-3.525-2.933-1.079-.554-2.409-.849-3.991-.849-3.09 0-5.654 1.093-7.693 3.296-2.04 2.203-3.06 4.965-3.06 8.292 0 3.117.931 5.663 2.793 7.642 1.863 1.963 4.258 2.944 7.185 2.944 1.285 0 2.364-.18 3.236-.54.888-.39 1.937-1.179 3.148-2.272L93.757 35h4.878l4.278-35h-4.898zm-4.79 29.157c-1.286 1.53-2.86 2.294-4.723 2.294-1.789 0-3.223-.562-4.302-1.686-1.079-1.14-1.618-2.646-1.618-4.52 0-2.218.628-4.054 1.885-5.508 1.256-1.454 2.846-2.18 4.767-2.18 1.774 0 3.208.555 4.302 1.664s1.641 2.562 1.641 4.361c-.001 2.219-.652 4.077-1.952 5.575zM144.789 29.168c-1.027-1.183-1.592-2.783-1.592-4.507 0-1.724.565-3.324 1.593-4.505 1.096-1.259 2.638-1.953 4.342-1.953l9.931-.02-.1-.228c-1.79-3.674-5.174-4.33-5.174-4.33-1.628-.226-7.595-.062-7.595-.062s.519-3.073 1.248-8.512c-.193-4.349-3.483-4.986-4.617-5.046L137.668 35H150.85c.999 0 2.479-1.051 3.332-1.61a12.55 12.55 0 0 0 2.609-2.282l-7.666.01c-1.703-.011-3.243-.69-4.336-1.95z"/><path d="M146.714 27.506c.608.701 1.438 1.073 2.401 1.085l9.562.021c.297-.567.76-1.612.977-2.612h-13.732c.161 1 .429 1.086.792 1.506zM159.874 21.013l-10.742-.119c-.97 0-1.806.302-2.419 1.006-.26.299-.471.896-.629 1.283-.056.206-.1-.182-.132.818h13.965c.061-1.001.171-2.189-.043-2.988z"/></g></svg></a></div>
         <nav class="header__nav" id="header-nav">
           <ul class="site-menu">
-            <li class="site-menu__item"><a class="js-scrollToForm js-scrollpage" href="/#section-form">開始參與</a></li>
-            <li class="site-menu__item"><a href="/time-and-salary">查看薪時</a></li>
-            <li class="site-menu__item"><a class="js-scrollToFaq js-scrollpage" href="/#section-faq">常見問答</a></li>
-            <li class="site-menu__item"><a href="/about">關於我們</a></li>
-            <li class="site-menu__item newItem"><a href="/labor-rights">
-                <svg width="46px" height="37px" viewBox="0 0 46 37" class="new"><polygon fill="#ce9411" points="40.078,29.716 45.795,33.953 40.109,36.903"></polygon><polygon fill="#e8ad1a" points="45.795,13.194 28.021,0 0.062,0 45.795,33.951"></polygon><g><polygon fill="#FFFFFF" points="21.961,10.228 22.382,3.869 22.366,3.857 19.174,8.158 18.175,7.417 22.338,1.809 23.661,2.791 23.285,8.975 23.301,8.986 26.394,4.82 27.392,5.561 23.228,11.168"></polygon><polygon fill="#FFFFFF" points="30.446,12.768 27.871,10.855 26.742,12.377 29.602,14.5 28.932,15.402 25.074,12.539 29.237,6.932 32.952,9.688 32.282,10.592 29.564,8.574 28.541,9.953 31.116,11.865"></polygon><polygon fill="#FFFFFF" points="35.07,19.96 36.939,14.726 36.925,14.715 32.456,18.02 31.537,17.337 34.045,10.5 35.138,11.312 33.192,16.133 33.209,16.146 37.466,13.04 38.448,13.77 36.686,18.727 36.702,18.738 40.802,15.516 41.815,16.269 36.02,20.665"></polygon></g></svg>
-                勞動小教室</a></li>
+            <li class="site-menu__item"><a href="/time-and-salary">薪資工時</a></li>
+            <li class="site-menu__item"><a href="/experiences/search">面試・工作經驗</a></li>
+            <li class="site-menu__item"><a href="/labor-rights">勞動小教室</a></li>
           </ul>
-          <div class="header__user">
-            <svg class="icon-user" role="img">
-              <use xlink:href="#icon-user"></use>
+          <div class="header__user"><a class="leave-data-btn" href="/share">留下資料
+              <svg width="148" height="148" viewBox="0 0 148 148" style="width:20px;height:20px;margin-left:8px;">
+                <path fill="#fff" d="M104.7581,108.714073 C103.3114,110.153697 103.3114,112.480659 104.7581,113.920282 C106.2048,115.359906 108.5432,115.359906 109.9899,113.920282 L146.9122,77.1785836 C147.6115,76.4937499 148,75.5585468 148,74.5791609 C148,74.5533876 147.9852,74.5276143 147.9852,74.501841 C147.9852,74.4760676 148,74.4539762 148,74.424521 C148,73.1984477 147.3599,72.1675152 146.4349,71.497409 L109.8382,35.0797177 C108.3915,33.6400941 106.0531,33.6400941 104.6064,35.0797177 C103.1597,36.5193413 103.1597,38.8463033 104.6064,40.285927 L135.2128,70.7426192 L3.7,70.7426192 C1.6539,70.7426192 0,72.3884293 0,74.424521 C0,76.4606127 1.6539,78.1064229 3.7,78.1064229 L135.5236,78.1064229 L104.7581,108.714073 L104.7581,108.714073 L104.7581,108.714073 Z"></path>
+              </svg></a>
+            <svg class="icon-user" role="img" width="148" height="148" viewBox="0 0 148 148">
+              <path fill="#fff" d="M63.834 61.199c-.767-3.404-6.562-24.541-31.855-24.541C4.607 36.658.071 61.406.028 61.657A2.006 2.006 0 0 0 2.004 64h59.992a2.005 2.005 0 0 0 1.838-2.801zM4.575 59.988c1.742-5.632 7.977-19.317 27.403-19.317S57.64 54.356 59.382 59.988H4.575zM31.977 32.895c9.063 0 16.436-7.377 16.436-16.447C48.412 7.379 41.04 0 31.977 0c-9.06 0-16.43 7.379-16.43 16.447 0 9.071 7.37 16.448 16.43 16.448zm0-28.883c6.854 0 12.428 5.578 12.428 12.436 0 6.856-5.573 12.436-12.428 12.436-6.849 0-12.422-5.579-12.422-12.436 0-6.858 5.573-12.436 12.422-12.436z"></path>
             </svg>
             <div class="login-block">
               <div class="name"></div>
@@ -121,362 +120,300 @@
       </div>
     </header>
     <main class="site-main">
-      <section class="home-banner">
-        <div class="wrapper-l">
-          <div class="home-banner__img"><img src="/assets/img/home-banner.png"></div>
-          <div class="home-banner__heading">
-            <div>
-              <h1 class="home-banner__main-heading">工時薪資透明化運動</h1>
-              <h3 class="home-banner__subheading">分享你的真實工時、薪資資訊，讓我們一起改善工作資訊不透明的現況</h3>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="section" id="section-about">
-        <div class="wrapper-m">
-          <div class="heading">
-            <div class="heading__icon"><svg xmlns="http://www.w3.org/2000/svg" width="80.5" height="80.498" viewBox="0 0 80.5 80.498"><path fill="#FCD406" d="M41.689 24.504c-.142-.01-.27.004-.39.027a1.529 1.529 0 0 0-.317-.027c-9.261.138-17.322 4.548-18.696 14.458-1.246 8.982 2.727 18.359 8.124 25.367-.829.624-1.495 1.449-1.559 2.545-.065 1.111.507 1.993 1.255 2.712-.682.591-1.199 1.345-1.255 2.302-.091 1.568 1.076 2.684 2.232 3.521.044.032.089.053.133.077-.332.41-.564.891-.597 1.461-.078 1.316.905 2.256 1.876 2.959.066.049.132.082.198.115.19.199.452.336.798.35 4.937.206 9.856.314 14.676-.945.313-.083.526-.253.663-.463.113-.125.207-.281.268-.479.356-1.191.217-2.396-.389-3.399.34-.077.678-.159 1.014-.247.373-.097.627-.3.789-.55.135-.149.245-.336.316-.57.441-1.473.238-2.958-.557-4.18.095-.08.177-.167.24-.265.147-.163.256-.357.316-.569.48-1.604.205-3.226-.776-4.502 10.609-12.577 12.924-38.173-8.362-39.698zm-8.977 48.611a1.444 1.444 0 0 0-.203-.18 4.746 4.746 0 0 1-.732-.67c-.064-.07-.08-.197-.093-.227.092-.254.44-.486.779-.667.121.032.25.055.392.055a362.569 362.569 0 0 0 15.038-.343c.244.357.34.738.322 1.161-5.104 1.199-10.292 1.083-15.503.871zm0-5.014a1.518 1.518 0 0 0-.203-.181 4.69 4.69 0 0 1-.732-.669c-.064-.07-.08-.199-.093-.227.092-.254.44-.486.779-.668.121.033.25.056.392.056a364.32 364.32 0 0 0 15.038-.343c.244.356.34.738.322 1.16-5.104 1.198-10.292 1.083-15.503.872zm1.152 9.875a1.276 1.276 0 0 0-.17-.15 3.965 3.965 0 0 1-.617-.562c-.053-.06-.066-.168-.077-.191.077-.213.37-.408.655-.562.102.028.21.048.33.048 4.218-.009 8.43-.106 12.644-.289.205.301.284.621.271.977-4.291 1.005-8.654.907-13.036.729zm13.894-15.443a1.464 1.464 0 0 0-.339.684c-1.892.08-3.785.137-5.677.188.255-3.803.295-7.608.3-11.418 2.595-2.344 4.345-5.395 5.133-8.834.412-1.797-2.313-2.561-2.725-.762-.646 2.812-1.966 5.2-3.974 7.17-2.13-1.718-3.653-3.992-4.374-6.69-.476-1.782-3.203-1.025-2.726.76.936 3.509 3.008 6.378 5.837 8.531-.006 3.772-.05 7.542-.304 11.307-1.857.036-3.715.07-5.573.075a1.559 1.559 0 0 0-.189-.293c-4.95-6.088-8.348-13.949-8.233-21.926.137-9.461 7.462-13.826 16.067-13.954.141-.002.265-.025.381-.058.103.029.211.049.326.058 18.824 1.348 15.171 24.736 6.07 35.162zM27.691 20.359a1.5 1.5 0 0 1-1.182-.574c-.112-.143-2.775-3.564-5.846-9.604a1.5 1.5 0 0 1 2.674-1.36c2.94 5.78 5.508 9.08 5.534 9.112a1.5 1.5 0 0 1-1.18 2.426zm16.308-1.734a1.5 1.5 0 0 1-1.273-2.291c.037-.06 3.749-6.101 5.629-13.215a1.499 1.499 0 1 1 2.9.766c-1.998 7.563-5.818 13.771-5.98 14.031a1.501 1.501 0 0 1-1.276.709zm-9.011-1.206a1.5 1.5 0 0 1-1.5-1.5c0-5.598-.968-14.162-.978-14.248a1.5 1.5 0 0 1 1.32-1.66 1.496 1.496 0 0 1 1.66 1.32c.041.357.998 8.822.998 14.588a1.5 1.5 0 0 1-1.5 1.5z"/></svg></div>
-            <h2 class="heading__heading">關於工時薪資透明化</h2>
-          </div>
-          <p class="paragraph">你是否和我們有一樣的經驗？<br><br>在求職網站上看到的工時及薪資總是只有「日班」、「面議」或「依公司規定」；面試時談好的工作時間或薪水總是和實際上不同。如果一開始就能知道真正的工作資訊，我們是不是可以做出更好的選擇？<br><br>「工時薪資透明化運動」希望藉由<strong>每個人匿名分享自己的實際工時及薪資資訊</strong>，讓不同公司、不同職位的工作資訊能夠更公開透明。<br><br>我們誠摯地邀請你，一起改善工作資訊不透明的現況！</p>
-          <div class="btn-scroll-down js-scrollToForm"><svg xmlns="http://www.w3.org/2000/svg" width="30.813" height="28.127" viewBox="0 0 30.813 28.127"><g><path d="M14.303 16.02a1.54 1.54 0 0 0 1.093.439c.406 0 .805-.16 1.093-.439L30.32 2.6a1.484 1.484 0 0 0 .037-2.174c-.586-.567-1.601-.568-2.187 0L15.42 12.822 2.646.426C2.06-.141 1.045-.141.46.426a1.498 1.498 0 0 0 0 2.163L14.303 16.02z"/><path d="M28.17 12.094L15.42 24.489 2.646 12.093c-.586-.567-1.601-.567-2.186 0a1.499 1.499 0 0 0 0 2.163l13.842 13.431a1.58 1.58 0 0 0 2.186 0L30.32 14.266a1.48 1.48 0 0 0 .037-2.173c-.585-.567-1.599-.568-2.187.001z"/></g></svg></div>
-        </div>
-      </section>
-      <section class="section section--yellow" id="section-form">
-        <div class="modal form-modal" id="modal-alert"></div>
-        <div class="modal data-modal" data-modal="why-facebook">
-          <div class="modal__inner">
-            <div class="modal__close wrapper-s js-close-data-modal"><svg role="img"><use xlink:href="#x"></use></svg></div>
-            <div class="js-data-modal-container wrapper-s">
-              <div class="modal-content">
-                <div class="modal-content__icon"><svg role="img"><use xlink:href="#icon-question"></use></svg></div>
-                <h5 class="modal-content__heading">為何需要 FB 帳戶驗證？</h5>
-                <p class="modal-content__paragraph">為了避免使用者大量輸入假資訊，我們會以您的 Facebook 帳戶做驗證。但別擔心！您的帳戶資訊不會以任何形式被揭露、顯示。每一帳戶目前僅能上傳 5 次工時、薪資資訊。</p>
-                <button class="modal-content__btn btn-black btn-m js-close-data-modal">好，我知道了</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="wrapper-s">
-          <div class="heading">
-            <h2 class="heading__heading">匿名參與工時薪資透明化運動</h2>
-          </div>
-          <form id="work-form" action="">
-            <div class="form-section">
-              <div class="form-group">
-                <label class="is-required" for="form-company-query">公司/單位 或 統一編號</label>
-                <div>
-                  <input class="is-required ui-autocomplete-input" type="text" placeholder="〇〇股份有限公司" id="form-company-query" name="company_query">
-                  <input type="hidden" placeholder="公司統編" id="form-company-id">
+      <div class="index__content">
+        <section class="section" id="section-form">
+          <div class="modal form-modal" id="modal-alert"></div>
+          <div class="modal data-modal" data-modal="why-facebook">
+            <div class="modal__inner">
+              <div class="modal__close wrapper-s js-close-data-modal"><svg role="img"><use xlink:href="#x"></use></svg></div>
+              <div class="js-data-modal-container wrapper-s">
+                <div class="modal-content">
+                  <div class="modal-content__icon"><svg role="img"><use xlink:href="#icon-question"></use></svg></div>
+                  <h5 class="modal-content__heading">為何需要 FB 帳戶驗證？</h5>
+                  <p class="modal-content__paragraph">為了避免使用者大量輸入假資訊，我們會以您的 Facebook 帳戶做驗證。但別擔心！您的帳戶資訊不會以任何形式被揭露、顯示。每一帳戶目前僅能上傳 5 次工時、薪資資訊。</p>
+                  <button class="modal-content__btn btn-black btn-m js-close-data-modal">好，我知道了</button>
                 </div>
               </div>
             </div>
-            <div class="form-section">
-              <div class="form-group--two">
-                <div class="form-group">
-                  <label class="is-required">你現在在職嗎？</label>
-                  <div class="radio-form inline-item">
-                    <input type="radio" value="yes" id="form-is-currently-employed" name="is_currently_employed" checked="true">
-                    <label class="radio-circle" for="form-is-currently-employed"><span class="radio-input"></span><span class="radio-text">在職</span></label>
-                  </div>
-                  <div class="radio-form inline-item">
-                    <input type="radio" value="no" id="form-not-currently-employed" name="is_currently_employed">
-                    <label class="radio-circle" for="form-not-currently-employed"><span class="radio-input"></span><span class="radio-text">已離職</span></label>
-                  </div>
-                </div>
-                <div class="form-group hide-first" id="form-job-ending-time">
-                  <label class="is-required">離職時間</label>
-                  <div class="form-year-month">
-                    <div>
-                      <select id="form-job-ending-year" name="job_ending_time"></select>
-                      <label>年</label>
-                    </div>
-                    <div>
-                      <select id="form-job-ending-month" name="job_ending_time"></select>
-                      <label>月</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          </div>
+          <div class="wrapper-s">
+            <div class="heading">
+              <h2 class="heading__heading">匿名參與工時薪資透明化運動</h2>
             </div>
-            <div class="form-section">
-              <div class="form-group--two">
+            <form id="work-form" action="">
+              <div class="form-section">
                 <div class="form-group">
-                  <label class="is-required" for="form-job-title">職稱</label>
-                  <input class="is-required ui-autocomplete-input" type="text" placeholder="硬體工程師" id="form-job-title" name="job_title">
-                </div>
-                <div class="form-group">
-                  <label for="form-sector">廠區/門市/分公司</label>
+                  <label class="is-required" for="form-company-query">公司/單位 或 統一編號</label>
                   <div>
-                    <input type="text" placeholder="楠梓廠區  研發部" id="form-sector" name="sector">
+                    <input class="is-required ui-autocomplete-input" type="text" placeholder="〇〇股份有限公司" id="form-company-query" name="company_query">
+                    <input type="hidden" placeholder="公司統編" id="form-company-id">
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="form-section">
-              <div class="form-group--two">
-                <div class="form-group">
-                  <label class="is-required" for="form-employed-type">職務型態</label>
-                  <select id="form-employed-type" name="employment_type">
-                    <option value="" selected>請選擇</option>
-                    <option value="full-time">全職</option>
-                    <option value="part-time">兼職(含打工)</option>
-                    <option value="intern">實習</option>
-                    <option value="temporary">臨時工</option>
-                    <option value="contract">約聘雇</option>
-                    <option value="dispatched-labor">派遣</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="form-gender">性別</label>
-                  <select id="form-gender" name="gender">
-                    <option value="" selected>請選擇</option>
-                    <option value="male">男</option>
-                    <option value="female">女</option>
-                    <option value="other">其他</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <h5 class="please-select-one">以下薪資 / 工時擇一必填</h5>
-            <section id="form-section-salary">
-              <div class="icon-line-divider"><svg><use xlink:href="#icon-coin"></use></svg></div>
               <div class="form-section">
                 <div class="form-group--two">
                   <div class="form-group">
-                    <label class="maybe-is-required">薪資</label>
-                    <div class="form-salary-group">
-                      <select class="maybe-is-required" id="salary-type" name="salary_type">
-                        <option value="" selected>請選擇</option>
-                        <option value="year">年薪</option>
-                        <option value="month">月薪</option>
-                        <option value="day">日薪</option>
-                        <option value="hour">時薪</option>
-                      </select>
-                      <div class="input-unit"><span class="unit">元</span>
-                        <input class="maybe-is-required" type="text" placeholder="22000" id="salary-amount" name="salary_amount">
+                    <label class="is-required">你現在在職嗎？</label>
+                    <div class="radio-form inline-item">
+                      <input type="radio" value="yes" id="form-is-currently-employed" name="is_currently_employed" checked="true">
+                      <label class="radio-circle" for="form-is-currently-employed"><span class="radio-input"></span><span class="radio-text">在職</span></label>
+                    </div>
+                    <div class="radio-form inline-item">
+                      <input type="radio" value="no" id="form-not-currently-employed" name="is_currently_employed">
+                      <label class="radio-circle" for="form-not-currently-employed"><span class="radio-input"></span><span class="radio-text">已離職</span></label>
+                    </div>
+                  </div>
+                  <div class="form-group hide-first" id="form-job-ending-time">
+                    <label class="is-required">離職時間</label>
+                    <div class="form-year-month">
+                      <div>
+                        <select id="form-job-ending-year" name="job_ending_time"></select>
+                        <label>年</label>
+                      </div>
+                      <div>
+                        <select id="form-job-ending-month" name="job_ending_time"></select>
+                        <label>月</label>
                       </div>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label class="maybe-is-required" for="form-experience-in-year">當時業界工作經歷</label>
-                    <select class="maybe-is-required" id="form-experience-in-year" name="experience_in_year">
-                      <option value="" selected>請選擇</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-info">
-                  <p>薪資請以包含平常的<strong>薪資、分紅、年終、績效獎金</strong>等實質上獲得的價值去計算。</p>
                 </div>
               </div>
-            </section>
-            <section id="form-section-work-time">
-              <div class="icon-line-divider"><svg><use xlink:href="#icon-clock"></use></svg></div>
               <div class="form-section">
                 <div class="form-group--two">
                   <div class="form-group">
-                    <label class="maybe-is-required" for="form-day-promised-work-time">工作日表訂工時</label>
-                    <div class="input-unit"><span class="unit">小時</span>
-                      <input class="maybe-is-required" type="text" placeholder="8 或 8.5" id="form-day-promised-work-time" name="day_promised_work_time">
-                    </div>
+                    <label class="is-required" for="form-job-title">職稱</label>
+                    <input class="is-required ui-autocomplete-input" type="text" placeholder="硬體工程師" id="form-job-title" name="job_title">
                   </div>
                   <div class="form-group">
-                    <label class="maybe-is-required" for="form-day-real-work-time">實際平均工時</label>
+                    <label for="form-sector">廠區/門市/分公司</label>
+                    <div>
+                      <input type="text" placeholder="楠梓廠區  研發部" id="form-sector" name="sector">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-section">
+                <div class="form-group--two">
+                  <div class="form-group">
+                    <label class="is-required" for="form-employed-type">職務型態</label>
+                    <select id="form-employed-type" name="employment_type">
+                      <option value="" selected>請選擇</option>
+                      <option value="full-time">全職</option>
+                      <option value="part-time">兼職(含打工)</option>
+                      <option value="intern">實習</option>
+                      <option value="temporary">臨時工</option>
+                      <option value="contract">約聘雇</option>
+                      <option value="dispatched-labor">派遣</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="form-gender">性別</label>
+                    <select id="form-gender" name="gender">
+                      <option value="" selected>請選擇</option>
+                      <option value="male">男</option>
+                      <option value="female">女</option>
+                      <option value="other">其他</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <h5 class="please-select-one">以下薪資 / 工時擇一必填</h5>
+              <section id="form-section-salary">
+                <div class="icon-line-divider"><svg><use xlink:href="#icon-coin"></use></svg></div>
+                <div class="form-section">
+                  <div class="form-group--two">
+                    <div class="form-group">
+                      <label class="maybe-is-required">薪資</label>
+                      <div class="form-salary-group">
+                        <select class="maybe-is-required" id="salary-type" name="salary_type">
+                          <option value="" selected>請選擇</option>
+                          <option value="year">年薪</option>
+                          <option value="month">月薪</option>
+                          <option value="day">日薪</option>
+                          <option value="hour">時薪</option>
+                        </select>
+                        <div class="input-unit"><span class="unit">元</span>
+                          <input class="maybe-is-required" type="text" placeholder="22000" id="salary-amount" name="salary_amount">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="maybe-is-required" for="form-experience-in-year">當時業界工作經歷</label>
+                      <select class="maybe-is-required" id="form-experience-in-year" name="experience_in_year">
+                        <option value="" selected>請選擇</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-info">
+                    <p>薪資請以包含平常的<strong>薪資、分紅、年終、績效獎金</strong>等實質上獲得的價值去計算。</p>
+                  </div>
+                </div>
+              </section>
+              <section id="form-section-work-time">
+                <div class="icon-line-divider"><svg><use xlink:href="#icon-clock"></use></svg></div>
+                <div class="form-section">
+                  <div class="form-group--two">
+                    <div class="form-group">
+                      <label class="maybe-is-required" for="form-day-promised-work-time">工作日表訂工時</label>
+                      <div class="input-unit"><span class="unit">小時</span>
+                        <input class="maybe-is-required" type="text" placeholder="8 或 8.5" id="form-day-promised-work-time" name="day_promised_work_time">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="maybe-is-required" for="form-day-real-work-time">實際平均工時</label>
+                      <div class="input-unit"><span class="unit">小時</span>
+                        <input class="maybe-is-required" type="text" placeholder="10 或 10.5" id="form-day-real-work-time" name="day_real_work_time">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-info">
+                    <p><strong>工作日</strong>指與雇主約定的上班日，或是排班排定的日子。</p>
+                    <p><strong>實際平均工時</strong>包含在家工作、待命的時間。<span class="form-info__btn" data-show-trigger="info1">我有疑問</span></p>
+                    <p class="hide" data-show="info1">例如: 公司規定 9:00上班，18:00 下班，午休 1 小時。 那麼表訂工作時間為 (18:00-9:00)-1=8 小時。<br>若實際上平均 20:00 才下班，則實際工作時間為 (20:00-9:00)-1=10 小時。</p>
+                  </div>
+                </div>
+                <div class="form-section">
+                  <div class="form-group">
+                    <label class="maybe-is-required" for="form-week-work-time">一週總工時</label>
                     <div class="input-unit"><span class="unit">小時</span>
-                      <input class="maybe-is-required" type="text" placeholder="10 或 10.5" id="form-day-real-work-time" name="day_real_work_time">
+                      <input class="maybe-is-required" type="text" placeholder="40 或 40.5" id="form-week-work-time" name="week_work_time">
+                    </div>
+                  </div>
+                  <div class="form-info">
+                    <p>請您留下最近一週的「實際工作時數（不含休息時間，如：午休）」。<span class="form-info__btn" data-show-trigger="info2">我有疑問</span></p>
+                    <p class="hide" data-show="info2">例如: 週一至週五工作 10 小時，週六加班 8 小時，則最近一週工時為 10x5+8 = 58 小時。<br>若您為每月排班，您可以考慮將整個月個工時加總，除上該月天數，再乘上七估算。</p>
+                  </div>
+                </div>
+                <div class="form-section">
+                  <div class="form-group">
+                    <label class="maybe-is-required">加班頻率</label>
+                    <div class="radio-button radio-button--icon" id="form-overtime-frequency">
+                      <div class="radio-button__item">
+                        <input class="maybe-is-required toggled-radio-button" type="radio" value="0" name="frequency" id="feq0">
+                        <label class="radio-square" for="feq0"><i class="radio-square__icon emoji-0"></i><span class="radio-square__text">幾乎不<span class="hide-m">加班</span></span></label>
+                      </div>
+                      <div class="radio-button__item">
+                        <input class="maybe-is-required toggled-radio-button" type="radio" value="1" name="frequency" id="feq1">
+                        <label class="radio-square" for="feq1"><i class="radio-square__icon emoji-1"></i><span class="radio-square__text">偶爾<span class="hide-m">加班</span></span></label>
+                      </div>
+                      <div class="radio-button__item">
+                        <input class="maybe-is-required toggled-radio-button" type="radio" value="2" name="frequency" id="feq2">
+                        <label class="radio-square" for="feq2"><i class="radio-square__icon emoji-2"></i><span class="radio-square__text">經常<span class="hide-m">加班</span></span></label>
+                      </div>
+                      <div class="radio-button__item">
+                        <input class="maybe-is-required toggled-radio-button" type="radio" value="3" name="frequency" id="feq3">
+                        <label class="radio-square" for="feq3"><i class="radio-square__icon emoji-3"></i><span class="radio-square__text">幾乎每天<span class="hide-m">加班</span></span></label>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="form-info">
-                  <p><strong>工作日</strong>指與雇主約定的上班日，或是排班排定的日子。</p>
-                  <p><strong>實際平均工時</strong>包含在家工作、待命的時間。<span class="form-info__btn" data-show-trigger="info1">我有疑問</span></p>
-                  <p class="hide" data-show="info1">例如: 公司規定 9:00上班，18:00 下班，午休 1 小時。 那麼表訂工作時間為 (18:00-9:00)-1=8 小時。<br>若實際上平均 20:00 才下班，則實際工作時間為 (20:00-9:00)-1=10 小時。</p>
+                <div class="form-section">
+                  <div class="form-group">
+                    <label class="not-required">加班有無加班費</label>
+                    <div class="radio-button" id="select-fee">
+                      <div class="radio-button__item">
+                        <input class="not-required toggled-radio-button" type="radio" value="yes" name="fee" id="fee_yes">
+                        <label class="radio-square" for="fee_yes"><span class="radio-square__text">有</span></label>
+                      </div>
+                      <div class="radio-button__item">
+                        <input class="not-required toggled-radio-button" type="radio" value="no" name="fee" id="fee_no">
+                        <label class="radio-square" for="fee_no"><span class="radio-square__text">沒有</span></label>
+                      </div>
+                      <div class="radio-button__item">
+                        <input class="not-required toggled-radio-button" type="radio" value="don't know" name="fee" id="fee_unknown">
+                        <label class="radio-square" for="fee_unknown"><span class="radio-square__text">不知道</span></label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group" id="has-fee-options">
+                    <div class="radio-form">
+                      <input class="toggled-radio-button" type="radio" value="yes" id="pay1" name="has_pay">
+                      <label class="radio-circle" for="pay1"><span class="radio-input"></span><span class="radio-text">有，優於或符合勞基法</span></label>
+                    </div>
+                    <div class="radio-form">
+                      <input class="toggled-radio-button" type="radio" value="no" id="pay2" name="has_pay">
+                      <label class="radio-circle" for="pay2"><span class="radio-input"></span><span class="radio-text">有，不符合勞基法</span></label>
+                    </div>
+                    <div class="radio-form">
+                      <input class="toggled-radio-button" type="radio" value="don't know" id="pay3" name="has_pay">
+                      <label class="radio-circle" for="pay3"><span class="radio-input"></span><span class="radio-text">有，不清楚是否符合勞基法</span></label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-section">
+                  <div class="form-group">
+                    <label class="not-required">加班有無補休</label>
+                    <div class="radio-button" id="form-has-compensatory-dayoff">
+                      <div class="radio-button__item">
+                        <input class="not-required toggled-radio-button" type="radio" value="yes" name="time_off" id="off_yes">
+                        <label class="radio-square" for="off_yes"><span class="radio-square__text">有</span></label>
+                      </div>
+                      <div class="radio-button__item">
+                        <input class="not-required toggled-radio-button" type="radio" value="no" name="time_off" id="off_no">
+                        <label class="radio-square" for="off_no"><span class="radio-square__text">沒有</span></label>
+                      </div>
+                      <div class="radio-button__item">
+                        <input class="not-required toggled-radio-button" type="radio" value="don't know" name="time_off" id="off_unknown">
+                        <label class="radio-square" for="off_unknown"><span class="radio-square__text">不知道</span></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <div class="form-section">
+                <div class="form-group">
+                  <label for="form-email">電子郵件 - 有消息時將通知您</label>
+                  <div>
+                    <input type="email" placeholder="example@email.com" id="form-email" name="email">
+                  </div>
                 </div>
               </div>
               <div class="form-section">
-                <div class="form-group">
-                  <label class="maybe-is-required" for="form-week-work-time">一週總工時</label>
-                  <div class="input-unit"><span class="unit">小時</span>
-                    <input class="maybe-is-required" type="text" placeholder="40 或 40.5" id="form-week-work-time" name="week_work_time">
-                  </div>
-                </div>
-                <div class="form-info">
-                  <p>請您留下最近一週的「實際工作時數（不含休息時間，如：午休）」。<span class="form-info__btn" data-show-trigger="info2">我有疑問</span></p>
-                  <p class="hide" data-show="info2">例如: 週一至週五工作 10 小時，週六加班 8 小時，則最近一週工時為 10x5+8 = 58 小時。<br>若您為每月排班，您可以考慮將整個月個工時加總，除上該月天數，再乘上七估算。</p>
+                <div class="form-group checkbox-form-group">
+                  <input type="checkbox" id="agree">
+                  <label for="agree"><span class="checkbox-input"></span><span class="checkbox-text">我分享的是真實資訊，並且遵守中華民國法律以及<a href="/user-term" class="link" target="_blank">本站使用者條款</a>。</span></label>
                 </div>
               </div>
               <div class="form-section">
-                <div class="form-group">
-                  <label class="maybe-is-required">加班頻率</label>
-                  <div class="radio-button radio-button--icon" id="form-overtime-frequency">
-                    <div class="radio-button__item">
-                      <input class="maybe-is-required toggled-radio-button" type="radio" value="0" name="frequency" id="feq0">
-                      <label class="radio-square" for="feq0"><i class="radio-square__icon emoji-0"></i><span class="radio-square__text">幾乎不<span class="hide-m">加班</span></span></label>
-                    </div>
-                    <div class="radio-button__item">
-                      <input class="maybe-is-required toggled-radio-button" type="radio" value="1" name="frequency" id="feq1">
-                      <label class="radio-square" for="feq1"><i class="radio-square__icon emoji-1"></i><span class="radio-square__text">偶爾<span class="hide-m">加班</span></span></label>
-                    </div>
-                    <div class="radio-button__item">
-                      <input class="maybe-is-required toggled-radio-button" type="radio" value="2" name="frequency" id="feq2">
-                      <label class="radio-square" for="feq2"><i class="radio-square__icon emoji-2"></i><span class="radio-square__text">經常<span class="hide-m">加班</span></span></label>
-                    </div>
-                    <div class="radio-button__item">
-                      <input class="maybe-is-required toggled-radio-button" type="radio" value="3" name="frequency" id="feq3">
-                      <label class="radio-square" for="feq3"><i class="radio-square__icon emoji-3"></i><span class="radio-square__text">幾乎每天<span class="hide-m">加班</span></span></label>
-                    </div>
-                  </div>
+                <button class="btn-black btn-l" type="submit" id="submit"><span id="auth_check_text"><span id="auth_check_indicator"></span>努力上傳資料中</span><span id="submit_text"><span class="fb-login-word">以<svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg>驗證並</span>送出資料</span></button>
+                <div id="auth_check_reminder">如果一直沒有回應，請重新整理：(</div>
+                <div class="text-center">
+                  <sapn class="btn-why-facebook-login" data-modal-id="why-facebook">為什麼需要 Facebook 帳戶驗證？</sapn>
                 </div>
               </div>
-              <div class="form-section">
-                <div class="form-group">
-                  <label class="not-required">加班有無加班費</label>
-                  <div class="radio-button" id="select-fee">
-                    <div class="radio-button__item">
-                      <input class="not-required toggled-radio-button" type="radio" value="yes" name="fee" id="fee_yes">
-                      <label class="radio-square" for="fee_yes"><span class="radio-square__text">有</span></label>
-                    </div>
-                    <div class="radio-button__item">
-                      <input class="not-required toggled-radio-button" type="radio" value="no" name="fee" id="fee_no">
-                      <label class="radio-square" for="fee_no"><span class="radio-square__text">沒有</span></label>
-                    </div>
-                    <div class="radio-button__item">
-                      <input class="not-required toggled-radio-button" type="radio" value="don't know" name="fee" id="fee_unknown">
-                      <label class="radio-square" for="fee_unknown"><span class="radio-square__text">不知道</span></label>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group" id="has-fee-options">
-                  <div class="radio-form">
-                    <input class="toggled-radio-button" type="radio" value="yes" id="pay1" name="has_pay">
-                    <label class="radio-circle" for="pay1"><span class="radio-input"></span><span class="radio-text">有，優於或符合勞基法</span></label>
-                  </div>
-                  <div class="radio-form">
-                    <input class="toggled-radio-button" type="radio" value="no" id="pay2" name="has_pay">
-                    <label class="radio-circle" for="pay2"><span class="radio-input"></span><span class="radio-text">有，不符合勞基法</span></label>
-                  </div>
-                  <div class="radio-form">
-                    <input class="toggled-radio-button" type="radio" value="don't know" id="pay3" name="has_pay">
-                    <label class="radio-circle" for="pay3"><span class="radio-input"></span><span class="radio-text">有，不清楚是否符合勞基法</span></label>
-                  </div>
-                </div>
-              </div>
-              <div class="form-section">
-                <div class="form-group">
-                  <label class="not-required">加班有無補休</label>
-                  <div class="radio-button" id="form-has-compensatory-dayoff">
-                    <div class="radio-button__item">
-                      <input class="not-required toggled-radio-button" type="radio" value="yes" name="time_off" id="off_yes">
-                      <label class="radio-square" for="off_yes"><span class="radio-square__text">有</span></label>
-                    </div>
-                    <div class="radio-button__item">
-                      <input class="not-required toggled-radio-button" type="radio" value="no" name="time_off" id="off_no">
-                      <label class="radio-square" for="off_no"><span class="radio-square__text">沒有</span></label>
-                    </div>
-                    <div class="radio-button__item">
-                      <input class="not-required toggled-radio-button" type="radio" value="don't know" name="time_off" id="off_unknown">
-                      <label class="radio-square" for="off_unknown"><span class="radio-square__text">不知道</span></label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <div class="form-section">
-              <div class="form-group">
-                <label for="form-email">電子郵件 - 有消息時將通知您</label>
-                <div>
-                  <input type="email" placeholder="example@email.com" id="form-email" name="email">
-                </div>
-              </div>
-            </div>
-            <div class="form-section">
-              <div class="form-group checkbox-form-group">
-                <input type="checkbox" id="agree">
-                <label for="agree"><span class="checkbox-input"></span><span class="checkbox-text">我分享的是真實資訊，並且遵守中華民國法律以及<a href="/user-term" class="link" target="_blank">本站使用者條款</a>。</span></label>
-              </div>
-            </div>
-            <div class="form-section">
-              <button class="btn-black btn-l" type="submit" id="submit"><span id="auth_check_text"><span id="auth_check_indicator"></span>努力上傳資料中</span><span id="submit_text"><span class="fb-login-word">以<svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg>驗證並</span>送出資料</span></button>
-              <div id="auth_check_reminder">如果一直沒有回應，請重新整理：(</div>
-              <div class="text-center">
-                <sapn class="btn-why-facebook-login" data-modal-id="why-facebook">為什麼需要 Facebook 帳戶驗證？</sapn>
-              </div>
-            </div>
-          </form>
-        </div>
-      </section>
-      <section class="section-two-col">
-        <div class="section-two-col__item">
-          <div>
-            <div class="heading">
-              <h2 class="heading__heading">分享此活動</h2>
-            </div>
-            <div class="share-buttons"><span class="share-buttons__item btn-white btn-m" id="fb-share-button" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A//www.goodjob.life/', 'newwindow', 'width=555, height=630'); return false;"><svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg> facebook</span><span class="share-buttons__item btn-white btn-m" id="twitter-share-button" onclick="window.open('https://twitter.com/home?status=https%3A//www.goodjob.life/', 'newwindow', 'width=555, height=630'); return false;"><svg role="img" class="icon-twitter"><use xlink:href="#icon-twitter"></use></svg> twitter</span></div>
-            <div class="like-fb-word"><span><a href="https://www.facebook.com/goodjob.life/">粉絲頁</a>按讚，隨時取得最新消息</span><span class="fb-like" data-href="https://www.facebook.com/goodjob.life/" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="false"></span></div>
+            </form>
           </div>
-        </div>
-        <div class="section-two-col__item">
-          <div>
-            <div class="heading">
-              <h2 class="heading__heading">與我們聯繫</h2>
-            </div>
-            <div class="share-buttons"><a class="share-buttons__item" href="https://github.com/goodjoblife"><svg role="img" class="icon-github"><use xlink:href="#icon-github"></use></svg></a><a class="share-buttons__item" href="https://www.facebook.com/goodjob.life/"><svg role="img" class="icon-facebook-circle"><use xlink:href="#icon-facebook-circle"></use></svg></a></div>
-          </div>
-        </div>
-      </section>
-      <section class="section" id="section-faq">
-        <div class="wrapper-m">
-          <div class="heading">
-            <div class="heading__icon"><svg xmlns="http://www.w3.org/2000/svg" width="80.5" height="80.498" viewBox="0 0 80.5 80.498"><g fill="#FCD406"><path d="M37.97 51.552c-1.003.297-1.652 1.115-2.102 2.025-.467.949-.807 2.039-.594 3.102.12.604.381 1.289.714 1.805 1.442 2.236 4.23 2.527 6.44 1.381 2.278-1.182 3.43-3.947 1.664-6.074-1.328-1.606-4.04-2.854-6.122-2.239zm3.359 6.412c-1.246.752-2.802.43-3.594-.797-.504-.783-.422-1.967.062-2.727.556-.871 1.58-.797 2.453-.564.654.172 1.275.49 1.794.928 1.364 1.149.589 2.373-.715 3.16zM32.895 32.448c.646.973 1.925.648 2.353-.113 1.762-1.457 5.412-3.328 6.6-.312 1.305 3.315-2.93 4.909-5.406 5.249-.739.102-1.011.658-.943 1.229-.018.1-.026.204-.021.318.127 3.188.131 6.376.131 9.565 0 .141.023.266.055.381-.068.711.348 1.48 1.26 1.48 1.979-.002 3.951-.021 5.917-.266.212-.027.397-.094.556-.189.6-.064 1.153-.486 1.153-1.273v-5.875c5.337-3.237 10.614-9.986 7.722-16.506-3.85-8.68-16.521-5.355-22.716-1.884-.363.203-.556.494-.621.807-.379.48-.511 1.203-.04 1.812a95.681 95.681 0 0 1 4 5.577zm16.941-5.338c2.771 5.39-3.114 11.322-7.267 13.617-.531.294-.698.773-.634 1.234-.007.059-.017.115-.017.18v5.272a45.773 45.773 0 0 1-3.684.168c-.002-2.641-.016-5.28-.104-7.92 2.197-.462 4.221-1.465 5.578-3.356 1.123-1.568 1.246-3.729.478-5.465-.772-1.747-2.458-2.879-4.324-3.061-2.075-.201-3.993.727-5.621 1.969a107.54 107.54 0 0 0-2.616-3.6c5.132-2.637 14.915-5.448 18.211.962z"/><path d="M40.342 67.685c15.065 0 27.323-12.387 27.323-27.61 0-3.436-1.029-7.833-2.752-11.765-4.254-9.703-13.299-15.497-24.195-15.497-4.916 0-9.87 1.238-14.328 3.581-8.527 4.481-13.843 13.912-13.543 24.026.143 4.81 1.683 9.519 4.455 13.616 6.211 9.186 13.748 13.649 23.04 13.649zM27.66 19.102c4.073-2.142 8.593-3.271 13.072-3.271 9.733 0 17.799 5.145 21.575 13.76 1.556 3.549 2.522 7.619 2.522 10.622 0 13.643-10.982 24.742-24.486 24.742-8.27 0-15.044-4.072-20.711-12.451-2.459-3.637-3.825-7.801-3.951-12.047-.263-8.87 4.551-17.452 11.979-21.355z"/></g></svg></div>
-            <h2 class="heading__heading">常見問答</h2>
-          </div>
-          <ol class="faq">
-            <li class="faq__item">
-              <div class="question">這個網站是匿名的嗎？ 為什麼匿名還需要以 Facebook 帳戶驗證？</div>
-              <div class="answer html-editor">是的，這個網站是匿名的，您的 Facebook 帳戶資訊不會於任何地方被顯示、揭露或分享。Facebook 帳戶驗證是為了避免惡意使用者大量輸入假資訊。目前設定每一個 Facebook 帳戶僅可以上傳 5 筆工時、薪資資訊，未來將視情況做調整。</div>
-            </li>
-            <li class="faq__item">
-              <div class="question">我提供的資料會如何被使用？</div>
-              <div class="answer html-editor">您的資料將會被運用於 GoodJob 團隊之服務中，供其他使用者查詢。未來也可能與其他工作資訊透明化專案合作，共享真實的工作資訊；但您的 Facebook 帳戶資訊並不會被共享。</div>
-            </li>
-            <li class="faq__item">
-              <div class="question" id="how-to-fix-data">我填錯了，想要刪除、修改資料怎麼辦？</div>
-              <div class="answer html-editor">請填寫<a href="https://goo.gl/forms/VbbMjRXaUSsKtOBU2">本表單</a>，用以確保您是本人，也保障您的權益。填寫完畢後當週的週日，工程師會統一處理，感謝您的耐心等候。</div>
-            </li>
-            <li class="faq__item">
-              <div class="question">哪裡可以查詢到工時、薪資的資訊?</div>
-              <div class="answer html-editor">您可以在導覽列中，找到「<a href="/time-and-salary">查看薪時</a>」的連結。</div>
-            </li>
-            <li class="faq__item">
-              <div class="question">請問你們是誰？</div>
-              <div class="answer html-editor">詳情請見<a href="/about">關於我們</a>。</div>
-            </li>
-            <li class="faq__item">
-              <div class="question">如果我對這個專案很有興趣，想要一起貢獻心力或洽談合作，該怎麼做?</div>
-              <div class="answer html-editor">這是一個開源專案，我們期待與任何個人或團體洽談合作，請用 <a href="https://www.facebook.com/goodjob.life">Facebook</a> 聯絡我們。其中，若您有以下任一專長或條件，我們非常希望您可以加入我們！
-                <ul>
-                  <li>具網頁前端開發能力者 (React)</li>
-                  <li>有資訊設計專長者，以協助設計勞動權益資訊懶人包</li>
-                  <li>對於推動工作資訊透明化、改善台灣勞動環境具有熱忱的任何人</li>
-                </ul>
-              </div>
-            </li>
-          </ol>
-        </div>
-      </section>
+        </section>
+      </div>
     </main>
     <footer class="footer" id="site-footer">
-      <div class="wrapper-l">
-        <div class="footer__col-1">
+      <section class="footer__header">
+        <div class="wrapper-l footer__inner">
           <div class="footer__logo"><svg xmlns="http://www.w3.org/2000/svg" width="160" height="47" viewBox="0 0 160 47"><g><path d="M19.334 16.701c-1.124-1.168-2.21-1.92-3.259-2.364-.961-.458-2.217-.661-3.77-.661-3.237 0-5.935 1.115-8.093 3.317C2.069 19.181.997 21.945.997 25.27c0 2.957.924 5.429 2.771 7.409 1.848 1.937 4.19 2.906 7.028 2.906 2.276 0 4.449-.79 6.519-2.371l-.354 2.859c-.281 2.336-.946 4.04-1.996 5.112-1.049 1.071-2.579 1.607-4.589 1.607-1.863 0-3.237-.528-4.125-1.423C5.366 40.477 4.863 39 4.745 37H0c0 2 .207 3.311.621 4.316.414 1.094 1.138 2.109 2.173 2.967 2.025 1.715 4.671 2.592 7.938 2.592 3.163 0 5.735-.877 7.716-2.65a8.922 8.922 0 0 0 2.306-3.343c.252-.636.477-1.416.677-2.348.199-.932.38-2.131.543-3.388L24.544 14h-4.9l-.31 2.701zm-2.395 12.723c-1.301 1.39-2.963 2.084-4.988 2.084-1.818 0-3.282-.569-4.39-1.707-1.094-1.183-1.641-2.705-1.641-4.567 0-2.128.636-3.896 1.907-5.299 1.286-1.419 2.897-2.129 4.834-2.129 1.862 0 3.37.584 4.523 1.752 1.153 1.153 1.729 2.676 1.729 4.567 0 2.128-.658 3.895-1.974 5.299zM38.292 13.526c-3.37 0-6.179 1.079-8.425 3.237-2.232 2.143-3.348 4.833-3.348 8.07 0 3.163 1.079 5.779 3.237 7.849 2.144 2.056 4.908 3.083 8.292 3.083 3.238 0 5.957-1.087 8.16-3.26 2.218-2.173 3.326-4.856 3.326-8.049 0-3.237-1.05-5.861-3.148-7.871-2.085-2.039-4.782-3.059-8.094-3.059zm4.413 16.053c-1.242 1.404-2.823 2.106-4.745 2.106-1.921 0-3.488-.644-4.7-1.929-1.212-1.257-1.818-2.92-1.818-4.989 0-2.055.643-3.762 1.929-5.122 1.286-1.345 2.912-2.018 4.878-2.018 1.892 0 3.422.606 4.59 1.818 1.167 1.168 1.752 2.756 1.752 4.767-.001 2.189-.63 3.977-1.886 5.367zM63.863 13.526c-3.37 0-6.179 1.079-8.425 3.237-2.232 2.143-3.348 4.833-3.348 8.07 0 3.163 1.079 5.779 3.237 7.849 2.143 2.056 4.907 3.083 8.292 3.083 3.237 0 5.957-1.087 8.159-3.26 2.217-2.173 3.326-4.856 3.326-8.049 0-3.237-1.049-5.861-3.148-7.871-2.084-2.039-4.782-3.059-8.093-3.059zm4.412 16.053c-1.242 1.404-2.823 2.106-4.745 2.106s-3.489-.644-4.701-1.929c-1.212-1.257-1.818-2.92-1.818-4.989 0-2.055.643-3.762 1.929-5.122 1.286-1.345 2.912-2.018 4.878-2.018 1.892 0 3.422.606 4.59 1.818 1.168 1.168 1.752 2.756 1.752 4.767 0 2.189-.628 3.977-1.885 5.367zM109.964 1.553c-.71 0-1.323.259-1.841.776-.518.518-.775 1.131-.775 1.841 0 .739.266 1.382.798 1.929.532.532 1.16.798 1.885.798a2.57 2.57 0 0 0 1.885-.776c.517-.517.775-1.124.775-1.818 0-.754-.273-1.397-.82-1.929-.532-.547-1.169-.821-1.907-.821zM102.292 47h4.9l4.036-33h-4.901zM124.832 13.526c-3.37 0-6.179 1.079-8.426 3.237-2.231 2.143-3.348 4.833-3.348 8.07 0 3.163 1.079 5.779 3.237 7.849 2.144 2.056 4.907 3.083 8.292 3.083 3.237 0 5.957-1.087 8.159-3.26 2.218-2.173 3.326-4.856 3.326-8.049 0-3.237-1.05-5.861-3.148-7.871-2.083-2.039-4.78-3.059-8.092-3.059zm4.412 16.053c-1.241 1.404-2.822 2.106-4.744 2.106-1.923 0-3.489-.644-4.701-1.929-1.212-1.257-1.818-2.92-1.818-4.989 0-2.055.644-3.762 1.93-5.122 1.285-1.345 2.912-2.018 4.878-2.018 1.892 0 3.421.606 4.589 1.818 1.168 1.168 1.752 2.756 1.752 4.767-.001 2.189-.629 3.977-1.886 5.367zM98.015 0L95.93 17.196c-1.227-1.364-2.402-2.363-3.525-2.933-1.079-.554-2.409-.849-3.991-.849-3.09 0-5.654 1.093-7.693 3.296-2.04 2.203-3.06 4.965-3.06 8.292 0 3.117.931 5.663 2.793 7.642 1.863 1.963 4.258 2.944 7.185 2.944 1.285 0 2.364-.18 3.236-.54.888-.39 1.937-1.179 3.148-2.272L93.757 35h4.878l4.278-35h-4.898zm-4.79 29.157c-1.286 1.53-2.86 2.294-4.723 2.294-1.789 0-3.223-.562-4.302-1.686-1.079-1.14-1.618-2.646-1.618-4.52 0-2.218.628-4.054 1.885-5.508 1.256-1.454 2.846-2.18 4.767-2.18 1.774 0 3.208.555 4.302 1.664s1.641 2.562 1.641 4.361c-.001 2.219-.652 4.077-1.952 5.575zM144.789 29.168c-1.027-1.183-1.592-2.783-1.592-4.507 0-1.724.565-3.324 1.593-4.505 1.096-1.259 2.638-1.953 4.342-1.953l9.931-.02-.1-.228c-1.79-3.674-5.174-4.33-5.174-4.33-1.628-.226-7.595-.062-7.595-.062s.519-3.073 1.248-8.512c-.193-4.349-3.483-4.986-4.617-5.046L137.668 35H150.85c.999 0 2.479-1.051 3.332-1.61a12.55 12.55 0 0 0 2.609-2.282l-7.666.01c-1.703-.011-3.243-.69-4.336-1.95z"/><path d="M146.714 27.506c.608.701 1.438 1.073 2.401 1.085l9.562.021c.297-.567.76-1.612.977-2.612h-13.732c.161 1 .429 1.086.792 1.506zM159.874 21.013l-10.742-.119c-.97 0-1.806.302-2.419 1.006-.26.299-.471.896-.629 1.283-.056.206-.1-.182-.132.818h13.965c.061-1.001.171-2.189-.043-2.988z"/></g></svg></div>
-          <div class="footer__content">
-            <p>Copyright©GoodJob.life team 2016</p>
-            <p><a href="/user-term">使用者條款</a>與<a href="/privacy-policy">隱私權政策</a> Emoji provided free by <a href="http://emojione.com/">EmojiOne</a></p>
-          </div>
-          <div class="footer__g0v"><a href="https://grants.g0v.tw/power/" target="_blank" title="g0v"><img src="//grants.g0v.tw/images/power/poweredby-square.svg" alt="power by g0v"></a></div>
+          <h1 class="footer__heading">透明資訊求職平台</h1><span class="fb-like fb_iframe_widget" data-href="https://www.facebook.com/goodjob.life/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false" data-reactid="186" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;amp;app_id=1844389232511081&amp;amp;container_width=0&amp;amp;href=https%3A%2F%2Fwww.facebook.com%2Fgoodjob.life%2F&amp;amp;layout=button_count&amp;amp;locale=zh_TW&amp;amp;sdk=joey&amp;amp;share=false&amp;amp;show_faces=true&amp;amp;size=small"><span style="vertical-align: bottom; width: 76px; height: 20px;">
+              <iframe name="f8af41d2d517d" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:like Facebook Social Plugin" style="border: medium none; visibility: visible; width: 76px; height: 20px;" src="https://www.facebook.com/v2.6/plugins/like.php?action=like&amp;amp;app_id=1844389232511081&amp;amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2FXBwzv5Yrm_1.js%3Fversion%3D42%23cb%3Df302a6fb52d5b28%26domain%3Dwww-stage.goodjob.life%26origin%3Dhttps%253A%252F%252Fwww-stage.goodjob.life%252Ff1534230887d3b6%26relation%3Dparent.parent&amp;amp;container_width=0&amp;amp;href=https%3A%2F%2Fwww.facebook.com%2Fgoodjob.life%2F&amp;amp;layout=button_count&amp;amp;locale=zh_TW&amp;amp;sdk=joey&amp;amp;share=false&amp;amp;show_faces=true&amp;amp;size=small" width="1000px" height="1000px" frameborder="0"></iframe></span></span>
         </div>
-        <div class="footer__col-2">
-          <div class="share-buttons"><a class="share-buttons__item" href="https://github.com/goodjoblife" title="github"><svg class="footer-gitgub" role="img"><use xlink:href="#footer-github"></use></svg></a><a class="share-buttons__item" href="https://www.facebook.com/goodjob.life/" title="facebook"><svg class="footer-facebook" role="img" ><use xlink:href="#footer-facebook"></use></svg></a></div>
+      </section>
+      <div class="wrapper-l footer__body">
+        <section class="footer__links">
+          <div class="footer__link-item">
+            <h4 class="footer__link-item__heading">求職者工具</h4><a class="footer__link-item__link" href="/time-and-salary">薪資工時</a><a class="footer__link-item__link" href="/experiences/search">面試・工作經驗</a><a class="footer__link-item__link" href="/labor-rights">勞動小教室</a>
+          </div>
+          <div class="footer__link-item">
+            <h4 class="footer__link-item__heading">常見問題</h4><a class="footer__link-item__link" href="/guidelines">發文留言規定</a><a class="footer__link-item__link" href="/faq">常見問題</a><a class="footer__link-item__link" href="/privacy-policy">隱私權政策</a><a class="footer__link-item__link" href="/user-terms">使用者條款</a>
+          </div>
+          <div class="footer__link-item">
+            <h4 class="footer__link-item__heading">Goodjob</h4><a class="footer__link-item__link" href="/about">關於我們</a><a class="footer__link-item__link" href="/contact">聯絡我們</a><a class="footer__link-item__link" href="/recruit">加入我們</a>
+          </div>
+        </section>
+        <section class="footer__medias">
+          <h4 class="footer__medias__heading">\ 感謝各大媒體採訪報導 /</h4><a class="footer__link-item__link" href="/about"><img src="https://s3-ap-northeast-1.amazonaws.com/goodjob.life/www/medias.jpg" alt="cheers yahoo 蘋果日報 數位時代"></a>
+        </section>
+      </div>
+      <div class="footer__footer">
+        <div class="wrapper-l footer__footer__inner">
+          <div class="p-s">Copyright © GoodJob.life team 2017</div>
+          <div class="footer__footer__g0v"><a href="https://grants.g0v.tw/power/" alt="power by g0v"><img src="https://s3-ap-northeast-1.amazonaws.com/goodjob.life/www/logo-g0v-white.svg" alt="g0v"></a></div>
         </div>
       </div>
     </footer>
