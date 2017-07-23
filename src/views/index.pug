@@ -5,302 +5,228 @@ block vars
 	- var page_title = "首頁";
 
 block content
-	section(class="home-banner")
-		div(class="wrapper-l")
-			div(class="home-banner__img")
-				img(src="/assets/img/home-banner.png")
-			div(class="home-banner__heading")
-				div
-					h1(class="home-banner__main-heading") 工時薪資透明化運動
-					h3(class="home-banner__subheading") 分享你的真實工時、薪資資訊，讓我們一起改善工作資訊不透明的現況
-	section(class="section" id="section-about")
-		div(class="wrapper-m")
-			div(class="heading")
-				div(class="heading__icon")
-					include ./partials/_icon-light
-				h2(class="heading__heading") 關於工時薪資透明化
-			p(class="paragraph")
-				| 你是否和我們有一樣的經驗？
-				br
-				br
-				| 在求職網站上看到的工時及薪資總是只有「日班」、「面議」或「依公司規定」；面試時談好的工作時間或薪水總是和實際上不同。如果一開始就能知道真正的工作資訊，我們是不是可以做出更好的選擇？
-				br
-				br
-				| 「工時薪資透明化運動」希望藉由<strong>每個人匿名分享自己的實際工時及薪資資訊</strong>，讓不同公司、不同職位的工作資訊能夠更公開透明。
-				br
-				br
-				| 我們誠摯地邀請你，一起改善工作資訊不透明的現況！
-			div(class="btn-scroll-down js-scrollToForm")
-				include ./partials/_icon-arrow
-	section(class="section section--yellow" id="section-form")
-		div(class="modal form-modal" id="modal-alert")
-		div(class="modal data-modal" data-modal="why-facebook")
-			div(class="modal__inner")
-				div(class="modal__close wrapper-s js-close-data-modal") <svg role="img"><use xlink:href="#x"></use></svg>
-				div(class="js-data-modal-container wrapper-s")
-					div(class="modal-content")
-						div(class="modal-content__icon") <svg role="img"><use xlink:href="#icon-question"></use></svg>
-						h5(class="modal-content__heading") 為何需要 FB 帳戶驗證？
-						p(class="modal-content__paragraph")
-							| 為了避免使用者大量輸入假資訊，我們會以您的 Facebook 帳戶做驗證。但別擔心！您的帳戶資訊不會以任何形式被揭露、顯示。每一帳戶目前僅能上傳 5 次工時、薪資資訊。
-						button(class="modal-content__btn btn-black btn-m js-close-data-modal") 好，我知道了
-		div(class="wrapper-s")
-			div(class="heading")
-				h2(class="heading__heading") 匿名參與工時薪資透明化運動
-			form(id="work-form" action="")
-				div(class="form-section")
-					div(class="form-group")
-						label(for="form-company-query" class="is-required") 公司/單位 或 統一編號
-						div
-							input(type="text" placeholder="〇〇股份有限公司" id="form-company-query" name="company_query" class="is-required ui-autocomplete-input")
-							input(type="hidden" placeholder="公司統編" id="form-company-id")
-				div(class="form-section")
-					div(class="form-group--two")
+	div(class="index__content")
+		section(class="section" id="section-form")
+			div(class="modal form-modal" id="modal-alert")
+			div(class="modal data-modal" data-modal="why-facebook")
+				div(class="modal__inner")
+					div(class="modal__close wrapper-s js-close-data-modal") <svg role="img"><use xlink:href="#x"></use></svg>
+					div(class="js-data-modal-container wrapper-s")
+						div(class="modal-content")
+							div(class="modal-content__icon") <svg role="img"><use xlink:href="#icon-question"></use></svg>
+							h5(class="modal-content__heading") 為何需要 FB 帳戶驗證？
+							p(class="modal-content__paragraph")
+								| 為了避免使用者大量輸入假資訊，我們會以您的 Facebook 帳戶做驗證。但別擔心！您的帳戶資訊不會以任何形式被揭露、顯示。每一帳戶目前僅能上傳 5 次工時、薪資資訊。
+							button(class="modal-content__btn btn-black btn-m js-close-data-modal") 好，我知道了
+			div(class="wrapper-s")
+				div(class="heading")
+					h2(class="heading__heading") 匿名參與工時薪資透明化運動
+				form(id="work-form" action="")
+					div(class="form-section")
 						div(class="form-group")
-							label(class="is-required") 你現在在職嗎？
-							div(class="radio-form inline-item")
-								input(type="radio" value="yes" id="form-is-currently-employed" name="is_currently_employed" checked="true")
-								label(for="form-is-currently-employed" class="radio-circle")
-									span(class="radio-input")
-									span(class="radio-text") 在職
-							div(class="radio-form inline-item")
-								input(type="radio" value="no" id="form-not-currently-employed" name="is_currently_employed")
-								label(for="form-not-currently-employed" class="radio-circle")
-									span(class="radio-input")
-									span(class="radio-text") 已離職
-						div(class="form-group hide-first" id="form-job-ending-time")
-							label(class="is-required") 離職時間
-							div(class="form-year-month")
-								div
-									select(id="form-job-ending-year" name="job_ending_time")
-									label 年
-								div
-									select(id="form-job-ending-month" name="job_ending_time")
-									label 月
-				div(class="form-section")
-					div(class="form-group--two")
-						div(class="form-group")
-							label(for="form-job-title" class="is-required") 職稱
-							input(type="text" placeholder="硬體工程師" id="form-job-title" name="job_title" class="is-required ui-autocomplete-input")
-						div(class="form-group")
-							label(for="form-sector") 廠區/門市/分公司
+							label(for="form-company-query" class="is-required") 公司/單位 或 統一編號
 							div
-								input(type="text" placeholder="楠梓廠區  研發部" id="form-sector" name="sector")
-				div(class="form-section")
-					div(class="form-group--two")
-						div(class="form-group")
-							label(for="form-employed-type" class="is-required") 職務型態
-							select(id="form-employed-type" name="employment_type")
-								option(value="" selected) 請選擇
-								option(value="full-time") 全職
-								option(value="part-time") 兼職(含打工)
-								option(value="intern") 實習
-								option(value="temporary") 臨時工
-								option(value="contract") 約聘雇
-								option(value="dispatched-labor") 派遣
-						div(class="form-group")
-							label(for="form-gender") 性別
-							select(id="form-gender" name="gender")
-								option(value="" selected) 請選擇
-								option(value="male") 男
-								option(value="female") 女
-								option(value="other") 其他
-				h5(class="please-select-one") 以下薪資 / 工時擇一必填
-				section(id="form-section-salary")
-					div(class="icon-line-divider") <svg><use xlink:href="#icon-coin"></use></svg>
+								input(type="text" placeholder="〇〇股份有限公司" id="form-company-query" name="company_query" class="is-required ui-autocomplete-input")
+								input(type="hidden" placeholder="公司統編" id="form-company-id")
 					div(class="form-section")
 						div(class="form-group--two")
 							div(class="form-group")
-								label(class="maybe-is-required") 薪資
-								div(class="form-salary-group")
-									select(id="salary-type" name="salary_type" class="maybe-is-required")
-										option(value="" selected) 請選擇
-										option(value="year") 年薪
-										option(value="month") 月薪
-										option(value="day") 日薪
-										option(value="hour") 時薪
-									div(class="input-unit")
-										span(class="unit") 元
-										input(type="text" placeholder="22000" id="salary-amount" name="salary_amount" class="maybe-is-required")
+								label(class="is-required") 你現在在職嗎？
+								div(class="radio-form inline-item")
+									input(type="radio" value="yes" id="form-is-currently-employed" name="is_currently_employed" checked="true")
+									label(for="form-is-currently-employed" class="radio-circle")
+										span(class="radio-input")
+										span(class="radio-text") 在職
+								div(class="radio-form inline-item")
+									input(type="radio" value="no" id="form-not-currently-employed" name="is_currently_employed")
+									label(for="form-not-currently-employed" class="radio-circle")
+										span(class="radio-input")
+										span(class="radio-text") 已離職
+							div(class="form-group hide-first" id="form-job-ending-time")
+								label(class="is-required") 離職時間
+								div(class="form-year-month")
+									div
+										select(id="form-job-ending-year" name="job_ending_time")
+										label 年
+									div
+										select(id="form-job-ending-month" name="job_ending_time")
+										label 月
+					div(class="form-section")
+						div(class="form-group--two")
 							div(class="form-group")
-								label(for="form-experience-in-year" class="maybe-is-required") 當時業界工作經歷
-								select(id="form-experience-in-year" name="experience_in_year" class="maybe-is-required")
+								label(for="form-job-title" class="is-required") 職稱
+								input(type="text" placeholder="硬體工程師" id="form-job-title" name="job_title" class="is-required ui-autocomplete-input")
+							div(class="form-group")
+								label(for="form-sector") 廠區/門市/分公司
+								div
+									input(type="text" placeholder="楠梓廠區  研發部" id="form-sector" name="sector")
+					div(class="form-section")
+						div(class="form-group--two")
+							div(class="form-group")
+								label(for="form-employed-type" class="is-required") 職務型態
+								select(id="form-employed-type" name="employment_type")
 									option(value="" selected) 請選擇
-						div(class="form-info")
-							p 薪資請以包含平常的<strong>薪資、分紅、年終、績效獎金</strong>等實質上獲得的價值去計算。
-				section(id="form-section-work-time")
-					div(class="icon-line-divider") <svg><use xlink:href="#icon-clock"></use></svg>
-					div(class="form-section")
-						div(class="form-group--two")
+									option(value="full-time") 全職
+									option(value="part-time") 兼職(含打工)
+									option(value="intern") 實習
+									option(value="temporary") 臨時工
+									option(value="contract") 約聘雇
+									option(value="dispatched-labor") 派遣
 							div(class="form-group")
-								label(for="form-day-promised-work-time" class="maybe-is-required") 工作日表訂工時
+								label(for="form-gender") 性別
+								select(id="form-gender" name="gender")
+									option(value="" selected) 請選擇
+									option(value="male") 男
+									option(value="female") 女
+									option(value="other") 其他
+					h5(class="please-select-one") 以下薪資 / 工時擇一必填
+					section(id="form-section-salary")
+						div(class="icon-line-divider") <svg><use xlink:href="#icon-coin"></use></svg>
+						div(class="form-section")
+							div(class="form-group--two")
+								div(class="form-group")
+									label(class="maybe-is-required") 薪資
+									div(class="form-salary-group")
+										select(id="salary-type" name="salary_type" class="maybe-is-required")
+											option(value="" selected) 請選擇
+											option(value="year") 年薪
+											option(value="month") 月薪
+											option(value="day") 日薪
+											option(value="hour") 時薪
+										div(class="input-unit")
+											span(class="unit") 元
+											input(type="text" placeholder="22000" id="salary-amount" name="salary_amount" class="maybe-is-required")
+								div(class="form-group")
+									label(for="form-experience-in-year" class="maybe-is-required") 當時業界工作經歷
+									select(id="form-experience-in-year" name="experience_in_year" class="maybe-is-required")
+										option(value="" selected) 請選擇
+							div(class="form-info")
+								p 薪資請以包含平常的<strong>薪資、分紅、年終、績效獎金</strong>等實質上獲得的價值去計算。
+					section(id="form-section-work-time")
+						div(class="icon-line-divider") <svg><use xlink:href="#icon-clock"></use></svg>
+						div(class="form-section")
+							div(class="form-group--two")
+								div(class="form-group")
+									label(for="form-day-promised-work-time" class="maybe-is-required") 工作日表訂工時
+									div(class="input-unit")
+										span(class="unit") 小時
+										input(type="text" placeholder="8 或 8.5" id="form-day-promised-work-time" name="day_promised_work_time" class="maybe-is-required")
+								div(class="form-group")
+									label(for="form-day-real-work-time" class="maybe-is-required") 實際平均工時
+									div(class="input-unit")
+										span(class="unit") 小時
+										input(type="text" placeholder="10 或 10.5" id="form-day-real-work-time" name="day_real_work_time" class="maybe-is-required")
+							div(class="form-info")
+								p <strong>工作日</strong>指與雇主約定的上班日，或是排班排定的日子。
+								p <strong>實際平均工時</strong>包含在家工作、待命的時間。
+									span(class="form-info__btn" data-show-trigger="info1") 我有疑問
+								p(class="hide" data-show="info1") 例如: 公司規定 9:00上班，18:00 下班，午休 1 小時。 那麼表訂工作時間為 (18:00-9:00)-1=8 小時。<br>若實際上平均 20:00 才下班，則實際工作時間為 (20:00-9:00)-1=10 小時。
+						div(class="form-section")
+							div(class="form-group")
+								label(for="form-week-work-time" class="maybe-is-required") 一週總工時
 								div(class="input-unit")
 									span(class="unit") 小時
-									input(type="text" placeholder="8 或 8.5" id="form-day-promised-work-time" name="day_promised_work_time" class="maybe-is-required")
+									input(type="text" placeholder="40 或 40.5" id="form-week-work-time" name="week_work_time" class="maybe-is-required")
+							div(class="form-info")
+								p 請您留下最近一週的「實際工作時數（不含休息時間，如：午休）」。
+									span(class="form-info__btn" data-show-trigger="info2") 我有疑問
+								p(class="hide" data-show="info2") 例如: 週一至週五工作 10 小時，週六加班 8 小時，則最近一週工時為 10x5+8 = 58 小時。<br>若您為每月排班，您可以考慮將整個月個工時加總，除上該月天數，再乘上七估算。
+
+						div(class="form-section")
 							div(class="form-group")
-								label(for="form-day-real-work-time" class="maybe-is-required") 實際平均工時
-								div(class="input-unit")
-									span(class="unit") 小時
-									input(type="text" placeholder="10 或 10.5" id="form-day-real-work-time" name="day_real_work_time" class="maybe-is-required")
-						div(class="form-info")
-							p <strong>工作日</strong>指與雇主約定的上班日，或是排班排定的日子。
-							p <strong>實際平均工時</strong>包含在家工作、待命的時間。
-								span(class="form-info__btn" data-show-trigger="info1") 我有疑問
-							p(class="hide" data-show="info1") 例如: 公司規定 9:00上班，18:00 下班，午休 1 小時。 那麼表訂工作時間為 (18:00-9:00)-1=8 小時。<br>若實際上平均 20:00 才下班，則實際工作時間為 (20:00-9:00)-1=10 小時。
+								label(class="maybe-is-required") 加班頻率
+								div(class="radio-button radio-button--icon" id="form-overtime-frequency")
+									div(class="radio-button__item")
+										input(type="radio" value="0" name="frequency" id="feq0" class="maybe-is-required toggled-radio-button")
+										label(class="radio-square" for="feq0")
+											i(class="radio-square__icon emoji-0")
+											span(class="radio-square__text") 幾乎不<span class="hide-m">加班</span>
+									div(class="radio-button__item")
+										input(type="radio" value="1" name="frequency" id="feq1" class="maybe-is-required toggled-radio-button")
+										label(class="radio-square" for="feq1")
+											i(class="radio-square__icon emoji-1")
+											span(class="radio-square__text") 偶爾<span class="hide-m">加班</span>
+									div(class="radio-button__item")
+										input(type="radio" value="2" name="frequency" id="feq2" class="maybe-is-required toggled-radio-button")
+										label(class="radio-square" for="feq2")
+											i(class="radio-square__icon emoji-2")
+											span(class="radio-square__text") 經常<span class="hide-m">加班</span>
+									div(class="radio-button__item")
+										input(type="radio" value="3" name="frequency" id="feq3" class="maybe-is-required toggled-radio-button")
+										label(class="radio-square" for="feq3")
+											i(class="radio-square__icon emoji-3")
+											span(class="radio-square__text") 幾乎每天<span class="hide-m">加班</span>
+						div(class="form-section")
+							div(class="form-group")
+								label(class="not-required") 加班有無加班費
+								div(class="radio-button" id="select-fee")
+									div(class="radio-button__item")
+										input(type="radio" value="yes" name="fee" id="fee_yes" class="not-required toggled-radio-button")
+										label(class="radio-square" for="fee_yes")
+											span(class="radio-square__text") 有
+									div(class="radio-button__item")
+										input(type="radio" value="no" name="fee" id="fee_no" class="not-required toggled-radio-button")
+										label(class="radio-square" for="fee_no")
+											span(class="radio-square__text") 沒有
+									div(class="radio-button__item")
+										input(type="radio" value="don't know" name="fee" id="fee_unknown" class="not-required toggled-radio-button")
+										label(class="radio-square" for="fee_unknown")
+											span(class="radio-square__text") 不知道
+							div(class="form-group" id="has-fee-options")
+								div(class="radio-form")
+									input(type="radio" value="yes" id="pay1" name="has_pay" class="toggled-radio-button")
+									label(for="pay1" class="radio-circle")
+										span(class="radio-input")
+										span(class="radio-text") 有，優於或符合勞基法
+								div(class="radio-form")
+									input(type="radio" value="no" id="pay2" name="has_pay" class="toggled-radio-button")
+									label(for="pay2" class="radio-circle")
+										span(class="radio-input")
+										span(class="radio-text") 有，不符合勞基法
+								div(class="radio-form")
+									input(type="radio" value="don't know" id="pay3" name="has_pay" class="toggled-radio-button")
+									label(for="pay3" class="radio-circle")
+										span(class="radio-input")
+										span(class="radio-text") 有，不清楚是否符合勞基法
+						div(class="form-section")
+							div(class="form-group")
+								label(class="not-required") 加班有無補休
+								div(class="radio-button" id="form-has-compensatory-dayoff")
+									div(class="radio-button__item")
+										input(type="radio" value="yes" name="time_off" id="off_yes" class="not-required toggled-radio-button")
+										label(class="radio-square" for="off_yes")
+											span(class="radio-square__text") 有
+									div(class="radio-button__item")
+										input(type="radio" value="no" name="time_off" id="off_no" class="not-required toggled-radio-button")
+										label(class="radio-square" for="off_no")
+											span(class="radio-square__text") 沒有
+									div(class="radio-button__item")
+										input(type="radio" value="don't know" name="time_off" id="off_unknown" class="not-required toggled-radio-button")
+										label(class="radio-square" for="off_unknown")
+											span(class="radio-square__text") 不知道
 					div(class="form-section")
 						div(class="form-group")
-							label(for="form-week-work-time" class="maybe-is-required") 一週總工時
-							div(class="input-unit")
-								span(class="unit") 小時
-								input(type="text" placeholder="40 或 40.5" id="form-week-work-time" name="week_work_time" class="maybe-is-required")
-						div(class="form-info")
-							p 請您留下最近一週的「實際工作時數（不含休息時間，如：午休）」。
-								span(class="form-info__btn" data-show-trigger="info2") 我有疑問
-							p(class="hide" data-show="info2") 例如: 週一至週五工作 10 小時，週六加班 8 小時，則最近一週工時為 10x5+8 = 58 小時。<br>若您為每月排班，您可以考慮將整個月個工時加總，除上該月天數，再乘上七估算。
-
+							label(for="form-email") 電子郵件 - 有消息時將通知您
+							div
+								input(type="email" placeholder="example@email.com" id="form-email" name="email")
 					div(class="form-section")
-						div(class="form-group")
-							label(class="maybe-is-required") 加班頻率
-							div(class="radio-button radio-button--icon" id="form-overtime-frequency")
-								div(class="radio-button__item")
-									input(type="radio" value="0" name="frequency" id="feq0" class="maybe-is-required toggled-radio-button")
-									label(class="radio-square" for="feq0")
-										i(class="radio-square__icon emoji-0")
-										span(class="radio-square__text") 幾乎不<span class="hide-m">加班</span>
-								div(class="radio-button__item")
-									input(type="radio" value="1" name="frequency" id="feq1" class="maybe-is-required toggled-radio-button")
-									label(class="radio-square" for="feq1")
-										i(class="radio-square__icon emoji-1")
-										span(class="radio-square__text") 偶爾<span class="hide-m">加班</span>
-								div(class="radio-button__item")
-									input(type="radio" value="2" name="frequency" id="feq2" class="maybe-is-required toggled-radio-button")
-									label(class="radio-square" for="feq2")
-										i(class="radio-square__icon emoji-2")
-										span(class="radio-square__text") 經常<span class="hide-m">加班</span>
-								div(class="radio-button__item")
-									input(type="radio" value="3" name="frequency" id="feq3" class="maybe-is-required toggled-radio-button")
-									label(class="radio-square" for="feq3")
-										i(class="radio-square__icon emoji-3")
-										span(class="radio-square__text") 幾乎每天<span class="hide-m">加班</span>
+						div(class="form-group checkbox-form-group")
+							input(type="checkbox" id="agree")
+							label(for="agree")
+								span(class="checkbox-input")
+								span(class="checkbox-text") 我分享的是真實資訊，並且遵守中華民國法律以及<a href="/user-term" class="link" target="_blank">本站使用者條款</a>。
 					div(class="form-section")
-						div(class="form-group")
-							label(class="not-required") 加班有無加班費
-							div(class="radio-button" id="select-fee")
-								div(class="radio-button__item")
-									input(type="radio" value="yes" name="fee" id="fee_yes" class="not-required toggled-radio-button")
-									label(class="radio-square" for="fee_yes")
-										span(class="radio-square__text") 有
-								div(class="radio-button__item")
-									input(type="radio" value="no" name="fee" id="fee_no" class="not-required toggled-radio-button")
-									label(class="radio-square" for="fee_no")
-										span(class="radio-square__text") 沒有
-								div(class="radio-button__item")
-									input(type="radio" value="don't know" name="fee" id="fee_unknown" class="not-required toggled-radio-button")
-									label(class="radio-square" for="fee_unknown")
-										span(class="radio-square__text") 不知道
-						div(class="form-group" id="has-fee-options")
-							div(class="radio-form")
-								input(type="radio" value="yes" id="pay1" name="has_pay" class="toggled-radio-button")
-								label(for="pay1" class="radio-circle")
-									span(class="radio-input")
-									span(class="radio-text") 有，優於或符合勞基法
-							div(class="radio-form")
-								input(type="radio" value="no" id="pay2" name="has_pay" class="toggled-radio-button")
-								label(for="pay2" class="radio-circle")
-									span(class="radio-input")
-									span(class="radio-text") 有，不符合勞基法
-							div(class="radio-form")
-								input(type="radio" value="don't know" id="pay3" name="has_pay" class="toggled-radio-button")
-								label(for="pay3" class="radio-circle")
-									span(class="radio-input")
-									span(class="radio-text") 有，不清楚是否符合勞基法
-					div(class="form-section")
-						div(class="form-group")
-							label(class="not-required") 加班有無補休
-							div(class="radio-button" id="form-has-compensatory-dayoff")
-								div(class="radio-button__item")
-									input(type="radio" value="yes" name="time_off" id="off_yes" class="not-required toggled-radio-button")
-									label(class="radio-square" for="off_yes")
-										span(class="radio-square__text") 有
-								div(class="radio-button__item")
-									input(type="radio" value="no" name="time_off" id="off_no" class="not-required toggled-radio-button")
-									label(class="radio-square" for="off_no")
-										span(class="radio-square__text") 沒有
-								div(class="radio-button__item")
-									input(type="radio" value="don't know" name="time_off" id="off_unknown" class="not-required toggled-radio-button")
-									label(class="radio-square" for="off_unknown")
-										span(class="radio-square__text") 不知道
-				div(class="form-section")
-					div(class="form-group")
-						label(for="form-email") 電子郵件 - 有消息時將通知您
-						div
-							input(type="email" placeholder="example@email.com" id="form-email" name="email")
-				div(class="form-section")
-					div(class="form-group checkbox-form-group")
-						input(type="checkbox" id="agree")
-						label(for="agree")
-							span(class="checkbox-input")
-							span(class="checkbox-text") 我分享的是真實資訊，並且遵守中華民國法律以及<a href="/user-term" class="link" target="_blank">本站使用者條款</a>。
-				div(class="form-section")
-					button(type="submit" id="submit" class="btn-black btn-l" )
-						span(id="auth_check_text")
-							span(id="auth_check_indicator")
-							| 努力上傳資料中
-						span(id="submit_text")
-							span(class="fb-login-word")
-								| 以<svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg>驗證並
-							| 送出資料
-					div(id="auth_check_reminder")
-						| 如果一直沒有回應，請重新整理：(
-					div(class="text-center")
-						sapn(class="btn-why-facebook-login" data-modal-id="why-facebook") 為什麼需要 Facebook 帳戶驗證？
-	section(class="section-two-col")
-		div(class="section-two-col__item")
-			div
-				div(class="heading")
-					h2(class="heading__heading") 分享此活動
-				div(class="share-buttons")
-					span(id="fb-share-button" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A//www.goodjob.life/', 'newwindow', 'width=555, height=630'); return false;" class="share-buttons__item btn-white btn-m") <svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg> facebook
-					span(id="twitter-share-button" onclick="window.open('https://twitter.com/home?status=https%3A//www.goodjob.life/', 'newwindow', 'width=555, height=630'); return false;" class="share-buttons__item btn-white btn-m") <svg role="img" class="icon-twitter"><use xlink:href="#icon-twitter"></use></svg> twitter
-				div(class="like-fb-word")
-					span <a href="https://www.facebook.com/goodjob.life/">粉絲頁</a>按讚，隨時取得最新消息
-					span(class="fb-like" data-href="https://www.facebook.com/goodjob.life/" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="false")
-
-		div(class="section-two-col__item")
-			div
-				div(class="heading")
-					h2(class="heading__heading") 與我們聯繫
-				div(class="share-buttons")
-					a(href="https://github.com/goodjoblife" class="share-buttons__item") <svg role="img" class="icon-github"><use xlink:href="#icon-github"></use></svg>
-					a(href="https://www.facebook.com/goodjob.life/" class="share-buttons__item") <svg role="img" class="icon-facebook-circle"><use xlink:href="#icon-facebook-circle"></use></svg>
-	section(class="section" id="section-faq")
-		div(class="wrapper-m")
-			div(class="heading")
-				div(class="heading__icon")
-					include ./partials/_icon-question
-				h2(class="heading__heading") 常見問答
-			ol(class="faq")
-				li(class="faq__item")
-					div(class="question") 這個網站是匿名的嗎？ 為什麼匿名還需要以 Facebook 帳戶驗證？
-					div(class="answer html-editor") 是的，這個網站是匿名的，您的 Facebook 帳戶資訊不會於任何地方被顯示、揭露或分享。Facebook 帳戶驗證是為了避免惡意使用者大量輸入假資訊。目前設定每一個 Facebook 帳戶僅可以上傳 5 筆工時、薪資資訊，未來將視情況做調整。
-				li(class="faq__item")
-					div(class="question") 我提供的資料會如何被使用？
-					div(class="answer html-editor") 您的資料將會被運用於 GoodJob 團隊之服務中，供其他使用者查詢。未來也可能與其他工作資訊透明化專案合作，共享真實的工作資訊；但您的 Facebook 帳戶資訊並不會被共享。
-				li(class="faq__item")
-					div(class="question" id="how-to-fix-data") 我填錯了，想要刪除、修改資料怎麼辦？
-					div(class="answer html-editor") 請填寫<a href="https://goo.gl/forms/VbbMjRXaUSsKtOBU2">本表單</a>，用以確保您是本人，也保障您的權益。填寫完畢後當週的週日，工程師會統一處理，感謝您的耐心等候。
-				li(class="faq__item")
-					div(class="question") 哪裡可以查詢到工時、薪資的資訊?
-					div(class="answer html-editor") 您可以在導覽列中，找到「<a href="/time-and-salary">查看薪時</a>」的連結。
-				li(class="faq__item")
-					div(class="question") 請問你們是誰？
-					div(class="answer html-editor") 詳情請見<a href="/about">關於我們</a>。
-				li(class="faq__item")
-					div(class="question") 如果我對這個專案很有興趣，想要一起貢獻心力或洽談合作，該怎麼做?
-					div(class="answer html-editor") 這是一個開源專案，我們期待與任何個人或團體洽談合作，請用 <a href="https://www.facebook.com/goodjob.life">Facebook</a> 聯絡我們。其中，若您有以下任一專長或條件，我們非常希望您可以加入我們！
-						ul
-							li 具網頁前端開發能力者 (React)
-							li 有資訊設計專長者，以協助設計勞動權益資訊懶人包
-							li 對於推動工作資訊透明化、改善台灣勞動環境具有熱忱的任何人
+						button(type="submit" id="submit" class="btn-black btn-l" )
+							span(id="auth_check_text")
+								span(id="auth_check_indicator")
+								| 努力上傳資料中
+							span(id="submit_text")
+								span(class="fb-login-word")
+									| 以<svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg>驗證並
+								| 送出資料
+						div(id="auth_check_reminder")
+							| 如果一直沒有回應，請重新整理：(
+						div(class="text-center")
+							sapn(class="btn-why-facebook-login" data-modal-id="why-facebook") 為什麼需要 Facebook 帳戶驗證？
 block scripts
 	script(src='/assets/js/index.js')
