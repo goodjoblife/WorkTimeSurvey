@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <link rel="icon" type="image/png" href="/assets/img/common/favicon.ico">
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="canonical" href="https://www.goodjob.life/">
+    <link rel="canonical" href="https://www.goodjob.life/share/time-and-salary">
     <meta name="description" content="分享你的真實工時、薪資資訊，讓我們一起改善工作資訊不透明的現況">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="zh_TW">
     <meta property="og:title" content="首頁 | 工時薪資透明化運動 goodjob">
     <meta property="og:description" content="分享你的真實工時、薪資資訊，讓我們一起改善工作資訊不透明的現況">
-    <meta property="og:url" content="https://www.goodjob.life/">
+    <meta property="og:url" content="https://www.goodjob.life/share/time-and-salary">
     <meta property="og:site_name" content="工時薪資透明化運動 goodjob">
     <meta property="og:image" content="https://www.goodjob.life/assets/img/common/og-image_1200-630.png"><!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --><!-- WARNING: Respond.js doesn't work if you view the page via file:// --><!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
     <script>
@@ -371,7 +371,7 @@
               <div class="form-section">
                 <div class="form-group checkbox-form-group">
                   <input type="checkbox" id="agree">
-                  <label for="agree"><span class="checkbox-input"></span><span class="checkbox-text">我分享的是真實資訊，並且遵守中華民國法律以及<a href="/user-term" class="link" target="_blank">本站使用者條款</a>。</span></label>
+                  <label for="agree"><span class="checkbox-input"></span><span class="checkbox-text">我分享的是真實資訊，並且遵守中華民國法律以及<a href="/user-terms" class="link" target="_blank">本站使用者條款</a>。</span></label>
                 </div>
               </div>
               <div class="form-section">
@@ -403,7 +403,7 @@
             <h4 class="footer__link-item__heading">常見問題</h4><a class="footer__link-item__link" href="/guidelines">發文留言規定</a><a class="footer__link-item__link" href="/faq">常見問題</a><a class="footer__link-item__link" href="/privacy-policy">隱私權政策</a><a class="footer__link-item__link" href="/user-terms">使用者條款</a>
           </div>
           <div class="footer__link-item">
-            <h4 class="footer__link-item__heading">Goodjob</h4><a class="footer__link-item__link" href="/about">關於我們</a><a class="footer__link-item__link" href="/contact">聯絡我們</a><a class="footer__link-item__link" href="/recruit">加入我們</a>
+            <h4 class="footer__link-item__heading">Goodjob</h4><a class="footer__link-item__link" href="/about">關於我們</a><a class="footer__link-item__link" href="/about#contact">聯絡我們</a><a class="footer__link-item__link" href="/about#join-us">加入我們</a>
           </div>
         </section>
         <section class="footer__medias">
