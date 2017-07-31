@@ -1,6 +1,7 @@
 .site-menu {
 	@media (min-width: $above-small) {
 		height: 100%;
+		display: flex;
 		> li {
 			position: relative;
 			display: inline-block;
@@ -9,7 +10,7 @@
 			position: relative;
 			&:hover {
 				> a {
-					color: #fcd406;
+					color: $primary-color;
 				}
 			}
 			> a {
@@ -17,14 +18,13 @@
 				display: block;
 				color: #fff;
 				font-size: 0.95em;
-				font-weight: 100;
 				height: 100%;
 				letter-spacing: 0.08em;
 				padding-right: 16px;
 				padding-left: 16px;
 				transition: color .3s, background-color .3s;
 				&.is-current {
-					background-color: $yellow-bg.4;
+					background-color: rgba(255, 255, 255, 0.15);
 				}
 			}
 		}
@@ -43,7 +43,7 @@
 				margin-bottom: 16px;
 				text-align: center;
 				&.is-current {
-					background-color: $yellow-bg.7;
+					background-color: rgba(255, 255, 255, 0.15);
 				}
 			}
 		}
