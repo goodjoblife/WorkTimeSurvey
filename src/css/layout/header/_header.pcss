@@ -6,6 +6,7 @@
 	top: 0;
 	height: $nav-height-l;
 	background-color: $black-bg;
+	font-weight: 300;
 	@media (max-width: $below-small) {
 		height: $nav-height-s;
 	}
@@ -15,10 +16,6 @@
 	transition: transform;
 	display: flex;
 	justify-content: space-between;
-	@media (max-width: $below-small) {
-		padding-top: 2px;
-		padding-bottom: 0;
-	}
 }
 .header__logo {
 	flex: 0 0 170px;
@@ -29,9 +26,11 @@
     transform: scale(0.8) translateY(6px);
     transform-origin: 0% 50%;
 		fill: #fff;
+
 		@media (max-width: 850px) {
-      transform: scale(1) translateY(0);
+			transform: scale(1) translateY(0);
 			width: 120px;
+			fill: #fff;
 		}
 	}
 }
@@ -40,6 +39,7 @@
 	flex: 1 0 auto;
 	display: flex;
 	justify-content: space-between;
+
 	@media (max-width: $below-small) {
 		opacity: 0;
 		visibility: hidden;
@@ -60,63 +60,69 @@
 		}
 	}
 }
+
+/* buttonsArea */
 .header__user {
-	align-items: center;
-	font-weight: 100;
-	.icon-user {
-		width: 20px;
-		height: 20px;
-		margin-right: 10px;
-	}
-	.name {
-		text-transform: lowercase;
-	}
-    display: flex;
-    -ms-flex-align: center;
-    align-items: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-	.leave-data-btn {
-		color: #fff;
-		height: 40px;
-		padding-right: 20px;
-		padding-left: 20px;
-		border: 1px solid #bbb;
-		font-size: .95em;
-		letter-spacing: 1px;
-		display: flex;
-		align-items: center;
-		transition-property: background;
-		transition-duration: .3s;
-		background-color: hsla(0,0%,100%,.15);
-		&:hover {
-			background-color: hsla(0,0%,100%,.3);
-		}
-        @media (max-width: $below-small) {
-            margin-top: 16px;
-		}
+	display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leaveDataBtn {
+	color: #fff;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  padding-right: 20px;
+  padding-left: 20px;
+  border: 1px solid #bbb;
+  background-color: rgba(255,255,255,.15);
+  font-size: .92em;
+  letter-spacing: 1px;
+  transition-property: background, color;
+  transition-duration: .3s;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+    margin-left: 8px;
+  }
+
+  @media (min-width: 851px) {
+    &:hover {
+      background-color: rgba(255,255,255, .3);
     }
-    svg.icon-user {
-        fill: #fff;
-        width: 64px;
-        height: 64px;
-        position: relative;
-        top: 20px;
-        left: 30px;
+  }
+
+  @media (max-width: 850px) {
+    margin-top: 16px;
+  }
+}
+
+/* loginBtn */
+.login-block {
+  color: #fff;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin-left: 40px;
+  transition-property: color;
+  transition-duration: .3s;
+  text-transform: lowercase;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+    margin-right: 8px;
+  }
+
+  @media (min-width: 851px) {
+    &:hover {
+      color: $primary-color;
     }
-	.login-block {
-		min-width: 32px;
-		color: #fff;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		@media (max-width: $below-small) {
-			display: inline-block;
-			font-size: 1.15em;
-		}
-	}
-	@media (max-width: $below-small) {
-		height: auto;
-		text-align: center;
-	}
+  }
 }
