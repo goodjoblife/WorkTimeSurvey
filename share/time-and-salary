@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-eqiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>首頁 | 工時薪資透明化運動 goodjob</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" type="image/png" href="/assets/img/common/favicon.ico">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="canonical" href="https://www.goodjob.life/share/time-and-salary">
+    <meta name="description" content="分享你的真實工時、薪資資訊，讓我們一起改善工作資訊不透明的現況">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_TW">
+    <meta property="og:title" content="首頁 | 工時薪資透明化運動 goodjob">
+    <meta property="og:description" content="分享你的真實工時、薪資資訊，讓我們一起改善工作資訊不透明的現況">
+    <meta property="og:url" content="https://www.goodjob.life/share/time-and-salary">
+    <meta property="og:site_name" content="工時薪資透明化運動 goodjob">
+    <meta property="og:image" content="https://www.goodjob.life/assets/img/common/og-image_1200-630.png"><!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --><!-- WARNING: Respond.js doesn't work if you view the page via file:// --><!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-79990667-1', 'auto');
+      ga('send', 'pageview');
+      
+    </script>
+  </head>
+  <body class="site body-index" style="background-color:#f9f9f9;">
+    <div id="fb-root"></div>
+    <div style="display:none;"><svg xmlns="http://www.w3.org/2000/svg" class="svg-icon-lib">
+  <defs>
+      <filter id="a" filterUnits="userSpaceOnUse" x=".438" y="1.187" width="54.3" height="52.626"><feColorMatrix values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0"/></filter>
+  </defs>
+    <symbol id="footer-facebook" viewBox="0 0 39 39">
+      <title>facebook</title><g fill="none" fill-rule="evenodd"><ellipse fill="#000" cx="19.324" cy="19.848" rx="19.324" ry="19.152"/><path d="M23.064 17.369h-2.631v-1.71c0-.643.43-.793.732-.793h1.857v-2.823l-2.557-.01c-2.84 0-3.485 2.106-3.485 3.453v1.883h-1.642v2.91h1.642v8.233h3.453v-8.234h2.33l.301-2.91z" fill="#FFF"/></g>
+    </symbol>
+    <symbol id="footer-github" viewBox="0 0 39 39">
+      <title>github</title><g fill="none" fill-rule="evenodd"><circle fill="#FFF" cx="19.5" cy="19.5" r="15.5"/><path d="M11.652 19.515c-.035 0 .38.872.392.872.909 1.606 2.66 2.605 5.613 2.882-.421.311-.928.902-.998 1.586-.53.333-1.596.444-2.424.19-1.162-.358-1.606-2.597-3.345-2.277-.376.068-.301.31.024.515.53.335 1.029.753 1.413 1.642.296.683.917 1.903 2.882 1.903a8.89 8.89 0 0 0 1.325-.09s.015 1.743.015 2.42c0 .783-1.083 1.003-1.083 1.379 0 .149.358.163.646.163.57 0 1.754-.463 1.754-1.276 0-.645.011-2.816.011-3.196 0-.83.457-1.093.457-1.093s.057 4.43-.109 5.026c-.194.698-.546.6-.546.91 0 .464 1.427.115 1.9-.903.365-.791.205-5.14.205-5.14l.39-.007s.021 1.99.008 2.9c-.014.942-.08 2.133.495 2.695.378.37 1.6 1.018 1.6.425 0-.344-.67-.627-.67-1.558v-4.287c.536 0 .455 1.41.455 1.41l.04 2.619s-.119.954 1.06 1.353c.415.142 1.304.18 1.345-.058.042-.238-1.07-.592-1.08-1.33-.007-.451.02-.714.02-2.673s-.27-2.683-1.21-3.26c2.903-.29 4.7-.99 5.576-2.864.068.002.358-.875.32-.875.196-.707.302-1.544.323-2.535-.005-2.687-1.326-3.638-1.579-4.084.374-2.035-.063-2.96-.265-3.278-.749-.26-2.603.667-3.617 1.319-1.652-.471-5.144-.426-6.454.12-2.416-1.684-3.695-1.426-3.695-1.426s-.826 1.442-.218 3.553c-.795.987-1.387 1.685-1.387 3.536 0 1.043.127 1.977.41 2.792zm8.024 18.789C9.003 38.304.35 29.729.35 19.152.351 8.574 9.003 0 19.676 0 30.348 0 39 8.574 39 19.152c0 10.577-8.652 19.152-19.324 19.152z" fill="#000"/></g>
+    </symbol>
+    <symbol id="form-alert" viewBox="0 0 81 76">
+      <title>warning</title><g fill="#FCD406"><circle cx="40.478" cy="60.733" r="2.846"/><path d="M37.947 29.03v21.835a2.529 2.529 0 0 0 2.53 2.529 2.528 2.528 0 0 0 2.53-2.529V29.03a2.53 2.53 0 1 0-5.06 0z"/><path d="M80.443 72.203L42.711 1.365c-.879-1.65-3.588-1.65-4.466 0L.514 72.203a2.529 2.529 0 0 0 2.234 3.72h75.46a2.53 2.53 0 0 0 2.235-3.72zm-73.481-1.34L40.478 7.937l33.517 62.927H6.962z"/></g>
+    </symbol>
+    <symbol id="form-checked" viewBox="0 0 82 82">
+      <title>checked</title><path fill="#FCD406" d="M58.97 23.173L30.892 54.206l-8.854-9.785a2.562 2.562 0 1 0-3.799 3.437l10.312 11.396a2.522 2.522 0 0 0 2.084 1.089c.094 0 .188-.038.282-.05.065.006.128.041.192.041.759 0 1.494-.341 1.993-.929l29.666-32.794a2.564 2.564 0 0 0-.181-3.621 2.558 2.558 0 0 0-3.617.183z"/><path fill="#FCD406" d="M40.998 0C18.391 0 0 18.393 0 41s18.391 41 40.998 41C63.607 82 82 63.607 82 41S63.607 0 40.998 0zm0 76.875C21.219 76.875 5.125 60.781 5.125 41S21.219 5.125 40.998 5.125C60.78 5.125 76.875 21.219 76.875 41S60.779 76.875 40.998 76.875z"/>
+    </symbol>
+    <symbol id="icon-arrow-up" viewBox="200.923 200.923 50 50">
+      <path d="M249.897 234.197l-21.498-21.5a3.493 3.493 0 0 0-2.476-1.024 3.49 3.49 0 0 0-2.475 1.025l-21.499 21.499a3.5 3.5 0 1 0 4.952 4.952l19.022-19.023 19.022 19.022a3.501 3.501 0 0 0 4.952-4.951z"/>
+    </symbol>
+    <symbol id="icon-clock" viewBox="0 0 187.852 187.852">
+      <path d="M185.975 75.172a6.002 6.002 0 0 0-7.077-4.682 6 6 0 0 0-4.682 7.077c6.364 31.255-6.146 63.636-31.873 82.495-17.538 12.856-39.179 18.089-60.937 14.739-21.758-3.352-40.821-14.856-53.677-32.395C.999 105.938 8.919 54.523 45.385 27.791c17.538-12.855 39.18-18.088 60.937-14.739 21.13 3.255 39.701 14.217 52.531 30.91l-5.516-.793a5.996 5.996 0 0 0-6.793 5.085 6 6 0 0 0 5.085 6.793l19.915 2.864c.132.019.262.018.394.028.156.012.313.034.468.034a6.003 6.003 0 0 0 5.932-5.147l2.864-19.915a6 6 0 1 0-11.878-1.708l-.811 5.639C153.788 17.58 132.439 4.933 108.15 1.192c-24.925-3.842-49.735 2.17-69.858 16.92C18.168 32.865 4.97 54.716 1.131 79.641-2.708 104.567 3.3 129.376 18.052 149.5c14.751 20.123 36.602 33.32 61.528 37.16a96.45 96.45 0 0 0 14.691 1.131c19.833 0 39.012-6.209 55.167-18.052 29.49-21.618 43.832-58.738 36.537-94.567z"/><path d="M126.601 96.171h-20.48a14.978 14.978 0 0 0-7.633-7.633V42.504a6 6 0 0 0-12 0v46.034c-5.236 2.314-8.904 7.55-8.904 13.633 0 8.218 6.686 14.904 14.904 14.904 6.083 0 11.319-3.668 13.633-8.904h20.48a6 6 0 0 0 0-12zm-37.018 6c0-1.602 1.303-2.905 2.904-2.905s2.905 1.303 2.905 2.905-1.303 2.904-2.905 2.904-2.904-1.303-2.904-2.904z"/>
+    </symbol>
+    <symbol id="icon-coin" viewBox="0 0 212.755 212.755">
+      <path d="M106.377 0C47.721 0 0 47.721 0 106.377s47.721 106.377 106.377 106.377 106.377-47.721 106.377-106.377S165.034 0 106.377 0zm0 198.755C55.44 198.755 14 157.314 14 106.377S55.44 14 106.377 14s92.377 41.44 92.377 92.377-41.44 92.378-92.377 92.378z"/><path d="M113.377 100.096V60.352a20.136 20.136 0 0 1 9.82 7.82 7 7 0 0 0 11.692-7.699 34.073 34.073 0 0 0-21.512-14.647v-11.12a7 7 0 1 0-14 0v11.099c-15.493 3.23-27.168 16.989-27.168 33.426s11.676 30.198 27.168 33.428v39.744a20.136 20.136 0 0 1-9.82-7.82 7 7 0 1 0-11.692 7.699 34.073 34.073 0 0 0 21.512 14.647v11.119a7 7 0 1 0 14 0V166.95c15.493-3.23 27.168-16.989 27.168-33.426s-11.675-30.198-27.168-33.428zM86.209 79.231c0-8.653 5.494-16.027 13.168-18.874v37.748c-7.674-2.847-13.168-10.221-13.168-18.874zm27.168 73.166v-37.748c7.674 2.847 13.168 10.221 13.168 18.874s-5.493 16.027-13.168 18.874z"/>
+    </symbol>
+    <symbol id="icon-facebook-circle" viewBox="452.5 252.5 55 55">
+      <path d="M480 252.5c-15.188 0-27.5 12.312-27.5 27.5s12.312 27.5 27.5 27.5 27.5-12.312 27.5-27.5-12.312-27.5-27.5-27.5zm6.513 23.492v4.256h-5.168v12.78h-4.881v-12.78h-4.425v-4.256h4.425v-2.504c0-3.592 2.493-6.513 5.915-6.513h4.135l.001 4.53h-4.135c-.489 0-1.034.642-1.034 1.502v2.985h5.167z"/>
+    </symbol>
+    <symbol id="icon-facebook" viewBox="0 0 20 20">
+      <path d="M14.563 6.424h-3.12V4.378c0-.769.51-.948.868-.948h2.202V.05L11.48.039c-3.366 0-4.132 2.52-4.132 4.133v2.252H5.4v3.482h1.947v9.852h4.095V9.906h2.763l.357-3.482z"/>
+    </symbol>
+    <symbol id="icon-github" viewBox="0 0 55 55">
+      <mask maskUnits="userSpaceOnUse" x=".438" y="1.187" width="54.3" height="52.626" id="b"><path fill="#FFF" d="M54.737 53.813V1.188H.439v52.625h54.298z" filter="url(#a)"/></mask><path mask="url(#b)" d="M.439 28.169c0 11.916 7.777 22.029 18.568 25.597 1.357.248 1.853-.584 1.853-1.301 0-.641-.022-2.336-.037-4.588-7.551 1.633-9.146-3.615-9.146-3.615-1.234-3.119-3.014-3.947-3.014-3.947-2.466-1.676.187-1.639.187-1.639 2.726.189 4.157 2.777 4.157 2.777 2.423 4.125 6.354 2.936 7.902 2.242.247-1.744.947-2.932 1.723-3.607-6.027-.68-12.365-2.994-12.365-13.333 0-2.944 1.059-5.354 2.795-7.239-.28-.683-1.212-3.427.266-7.14 0 0 2.279-.726 7.465 2.767 2.166-.601 4.489-.897 6.797-.91 2.306.013 4.629.31 6.798.91 5.183-3.492 7.458-2.767 7.458-2.767 1.482 3.713.55 6.457.27 7.139 1.74 1.887 2.792 4.296 2.792 7.24 0 10.363-6.349 12.644-12.397 13.316.976.83 1.844 2.477 1.844 4.992 0 3.607-.033 6.52-.033 7.402 0 .721.488 1.562 1.867 1.297 10.777-3.574 18.551-13.68 18.551-25.593.001-14.903-12.156-26.982-27.15-26.982C12.596 1.187.438 13.266.439 28.169z"/>
+    </symbol>
+    <symbol id="icon-magnifying" viewBox="0 0 512 512">
+      <path d="M495 466.2L377.2 348.4c29.2-35.6 46.8-81.2 46.8-130.9C424 103.5 331.5 11 217.5 11 103.4 11 11 103.5 11 217.5S103.4 424 217.5 424c49.7 0 95.2-17.5 130.8-46.7L466.1 495c8 8 20.9 8 28.9 0 8-7.9 8-20.9 0-28.8zm-277.5-83.3C126.2 382.9 52 308.7 52 217.5S126.2 52 217.5 52C308.7 52 383 126.3 383 217.5s-74.3 165.4-165.5 165.4z"/>
+    </symbol>
+    <symbol id="icon-messenger" viewBox="0 0 55 55">
+      <path d="M27.5 1C13.157 1 1.53 11.986 1.53 25.537c0 7.722 3.776 14.609 9.678 19.107V54l8.843-4.952c2.36.666 4.86 1.026 7.449 1.026 14.342 0 25.969-10.985 25.969-24.537C53.47 11.986 41.843 1 27.5 1zm2.58 33.043l-6.613-7.197-12.904 7.197 14.195-15.376 6.775 7.197 12.743-7.197L30.08 34.043z"/>
+    </symbol>
+    <symbol id="icon-minus" viewBox="0 0 18 18">
+      <title>Rectangle 6</title><path d="M0 8h18v2H0V8z"/><path d="M10 0v18H8V0h2z" fill="currentColor" class="plus"/>
+    </symbol>
+    <symbol id="icon-plus" viewBox="0 0 18 18">
+      <title>Combined Shape</title><path d="M8 8H0v2h8v8h2v-8h8V8h-8V0H8v8z"/>
+    </symbol>
+    <symbol id="icon-question" viewBox="0 0 82 82">
+      <title>question</title><g fill="#FCD406" fill-rule="evenodd"><path d="M41 0C18.392 0 0 18.392 0 41s18.392 41 41 41 41-18.392 41-41S63.608 0 41 0zm0 76.875C21.219 76.875 5.125 60.781 5.125 41S21.219 5.125 41 5.125 76.875 21.219 76.875 41 60.781 76.875 41 76.875z"/><path d="M41.693 13.369c-10.122 0-18.355 8.233-18.355 18.352a2.563 2.563 0 0 0 5.125 0c0-7.293 5.936-13.227 13.23-13.227 7.292 0 13.225 5.934 13.225 13.227S48.985 44.95 41.693 44.95a2.563 2.563 0 0 0-2.562 2.562v9.906a2.563 2.563 0 0 0 5.125 0v-7.523c8.908-1.25 15.787-8.923 15.787-18.174 0-10.12-8.232-18.351-18.35-18.351z"/><ellipse cx="41.691" cy="67.143" rx="2.805" ry="2.805"/></g>
+    </symbol>
+    <symbol id="icon-sort" viewBox="0 0 24 24">
+      <path d="M9 0c-.3 0-.5.1-.7.3l-8 8c-.2.2-.3.4-.3.7 0 .3.1.5.3.7l1.4 1.4c.2.2.5.3.7.3.3 0 .5-.1.7-.3l2-2c.3-.3.9-.1.9.4V23c0 .5.5 1 1 1h2c.5 0 1-.5 1-1V1c0-.3-.1-.5-.3-.7C9.5.1 9.3 0 9 0zM23.7 14.3l-1.4-1.4c-.2-.2-.5-.3-.7-.3-.3 0-.5.1-.7.3l-2 2c-.3.3-.9.1-.9-.4V1c0-.5-.5-1-1-1h-2c-.5 0-1 .5-1 1v22c0 .3.1.5.3.7s.5.3.7.3c.3 0 .5-.1.7-.3l8-8c.2-.2.3-.4.3-.7 0-.3-.1-.5-.3-.7z"/>
+    </symbol>
+    <symbol id="icon-twitter" viewBox="0 0 20 20">
+      <title>icon-twitter</title><path d="M19.449 3.977a7.871 7.871 0 0 1-2.266.62 3.958 3.958 0 0 0 1.733-2.182c-.774.46-1.62.784-2.504.958A3.944 3.944 0 0 0 9.693 6.97a11.199 11.199 0 0 1-8.13-4.12 3.923 3.923 0 0 0-.534 1.982c0 1.369.696 2.576 1.754 3.283a3.926 3.926 0 0 1-1.786-.494v.05a3.947 3.947 0 0 0 3.163 3.868c-.581.157-1.19.18-1.781.066a3.948 3.948 0 0 0 3.684 2.739 7.915 7.915 0 0 1-5.839 1.634 11.169 11.169 0 0 0 6.046 1.771c7.255 0 11.222-6.01 11.222-11.222 0-.17-.004-.341-.012-.51a7.957 7.957 0 0 0 1.969-2.04z"/>
+    </symbol>
+    <symbol id="icon-user" viewBox="0 0 64 64">
+      <g fill="#1D1D1B"><path d="M63.834 61.199c-.767-3.404-6.562-24.541-31.855-24.541C4.607 36.658.071 61.406.028 61.657A2.006 2.006 0 0 0 2.004 64h59.992a2.005 2.005 0 0 0 1.838-2.801zM4.575 59.988c1.742-5.632 7.977-19.317 27.403-19.317S57.64 54.356 59.382 59.988H4.575zM31.977 32.895c9.063 0 16.436-7.377 16.436-16.447C48.412 7.379 41.04 0 31.977 0c-9.06 0-16.43 7.379-16.43 16.447 0 9.071 7.37 16.448 16.43 16.448zm0-28.883c6.854 0 12.428 5.578 12.428 12.436 0 6.856-5.573 12.436-12.428 12.436-6.849 0-12.422-5.579-12.422-12.436 0-6.858 5.573-12.436 12.422-12.436z"/></g>
+    </symbol>
+    <symbol id="star" viewBox="0 0 16 16">
+      <title>star (1) copy</title><path d="M8.16.606l1.983 4.692 5.075.436a.4.4 0 0 1 .228.701l-3.85 3.335 1.154 4.962a.4.4 0 0 1-.596.433l-4.361-2.63-4.362 2.63a.4.4 0 0 1-.596-.433L3.99 9.77.139 6.434a.4.4 0 0 1 .227-.7l5.076-.436L7.424.606a.4.4 0 0 1 .737 0z" fill="#FCD406" fill-rule="evenodd"/>
+    </symbol>
+    <symbol id="x" viewBox="0 0 22 22">
+      <title>x</title><path d="M21.518.402a1.356 1.356 0 0 0-1.926 0L10.96 9.034 2.328.402a1.356 1.356 0 0 0-1.926 0 1.356 1.356 0 0 0 0 1.926l8.632 8.632-8.632 8.632a1.356 1.356 0 0 0 0 1.926c.262.262.615.403.958.403.343 0 .696-.131.958-.403l8.632-8.632 8.632 8.632c.262.262.615.403.957.403.354 0 .696-.131.959-.403a1.36 1.36 0 0 0 0-1.926l-8.612-8.632 8.632-8.632a1.356 1.356 0 0 0 0-1.926z"/>
+    </symbol></svg>
+    </div>
+    <header class="header" id="header">
+      <div class="wrapper-l header__wrapper">
+        <div class="m-header-button" id="header-button"><span></span></div>
+        <div class="header__logo"><a href="/"><svg xmlns="http://www.w3.org/2000/svg" width="160" height="47" viewBox="0 0 160 47"><g><path d="M19.334 16.701c-1.124-1.168-2.21-1.92-3.259-2.364-.961-.458-2.217-.661-3.77-.661-3.237 0-5.935 1.115-8.093 3.317C2.069 19.181.997 21.945.997 25.27c0 2.957.924 5.429 2.771 7.409 1.848 1.937 4.19 2.906 7.028 2.906 2.276 0 4.449-.79 6.519-2.371l-.354 2.859c-.281 2.336-.946 4.04-1.996 5.112-1.049 1.071-2.579 1.607-4.589 1.607-1.863 0-3.237-.528-4.125-1.423C5.366 40.477 4.863 39 4.745 37H0c0 2 .207 3.311.621 4.316.414 1.094 1.138 2.109 2.173 2.967 2.025 1.715 4.671 2.592 7.938 2.592 3.163 0 5.735-.877 7.716-2.65a8.922 8.922 0 0 0 2.306-3.343c.252-.636.477-1.416.677-2.348.199-.932.38-2.131.543-3.388L24.544 14h-4.9l-.31 2.701zm-2.395 12.723c-1.301 1.39-2.963 2.084-4.988 2.084-1.818 0-3.282-.569-4.39-1.707-1.094-1.183-1.641-2.705-1.641-4.567 0-2.128.636-3.896 1.907-5.299 1.286-1.419 2.897-2.129 4.834-2.129 1.862 0 3.37.584 4.523 1.752 1.153 1.153 1.729 2.676 1.729 4.567 0 2.128-.658 3.895-1.974 5.299zM38.292 13.526c-3.37 0-6.179 1.079-8.425 3.237-2.232 2.143-3.348 4.833-3.348 8.07 0 3.163 1.079 5.779 3.237 7.849 2.144 2.056 4.908 3.083 8.292 3.083 3.238 0 5.957-1.087 8.16-3.26 2.218-2.173 3.326-4.856 3.326-8.049 0-3.237-1.05-5.861-3.148-7.871-2.085-2.039-4.782-3.059-8.094-3.059zm4.413 16.053c-1.242 1.404-2.823 2.106-4.745 2.106-1.921 0-3.488-.644-4.7-1.929-1.212-1.257-1.818-2.92-1.818-4.989 0-2.055.643-3.762 1.929-5.122 1.286-1.345 2.912-2.018 4.878-2.018 1.892 0 3.422.606 4.59 1.818 1.167 1.168 1.752 2.756 1.752 4.767-.001 2.189-.63 3.977-1.886 5.367zM63.863 13.526c-3.37 0-6.179 1.079-8.425 3.237-2.232 2.143-3.348 4.833-3.348 8.07 0 3.163 1.079 5.779 3.237 7.849 2.143 2.056 4.907 3.083 8.292 3.083 3.237 0 5.957-1.087 8.159-3.26 2.217-2.173 3.326-4.856 3.326-8.049 0-3.237-1.049-5.861-3.148-7.871-2.084-2.039-4.782-3.059-8.093-3.059zm4.412 16.053c-1.242 1.404-2.823 2.106-4.745 2.106s-3.489-.644-4.701-1.929c-1.212-1.257-1.818-2.92-1.818-4.989 0-2.055.643-3.762 1.929-5.122 1.286-1.345 2.912-2.018 4.878-2.018 1.892 0 3.422.606 4.59 1.818 1.168 1.168 1.752 2.756 1.752 4.767 0 2.189-.628 3.977-1.885 5.367zM109.964 1.553c-.71 0-1.323.259-1.841.776-.518.518-.775 1.131-.775 1.841 0 .739.266 1.382.798 1.929.532.532 1.16.798 1.885.798a2.57 2.57 0 0 0 1.885-.776c.517-.517.775-1.124.775-1.818 0-.754-.273-1.397-.82-1.929-.532-.547-1.169-.821-1.907-.821zM102.292 47h4.9l4.036-33h-4.901zM124.832 13.526c-3.37 0-6.179 1.079-8.426 3.237-2.231 2.143-3.348 4.833-3.348 8.07 0 3.163 1.079 5.779 3.237 7.849 2.144 2.056 4.907 3.083 8.292 3.083 3.237 0 5.957-1.087 8.159-3.26 2.218-2.173 3.326-4.856 3.326-8.049 0-3.237-1.05-5.861-3.148-7.871-2.083-2.039-4.78-3.059-8.092-3.059zm4.412 16.053c-1.241 1.404-2.822 2.106-4.744 2.106-1.923 0-3.489-.644-4.701-1.929-1.212-1.257-1.818-2.92-1.818-4.989 0-2.055.644-3.762 1.93-5.122 1.285-1.345 2.912-2.018 4.878-2.018 1.892 0 3.421.606 4.589 1.818 1.168 1.168 1.752 2.756 1.752 4.767-.001 2.189-.629 3.977-1.886 5.367zM98.015 0L95.93 17.196c-1.227-1.364-2.402-2.363-3.525-2.933-1.079-.554-2.409-.849-3.991-.849-3.09 0-5.654 1.093-7.693 3.296-2.04 2.203-3.06 4.965-3.06 8.292 0 3.117.931 5.663 2.793 7.642 1.863 1.963 4.258 2.944 7.185 2.944 1.285 0 2.364-.18 3.236-.54.888-.39 1.937-1.179 3.148-2.272L93.757 35h4.878l4.278-35h-4.898zm-4.79 29.157c-1.286 1.53-2.86 2.294-4.723 2.294-1.789 0-3.223-.562-4.302-1.686-1.079-1.14-1.618-2.646-1.618-4.52 0-2.218.628-4.054 1.885-5.508 1.256-1.454 2.846-2.18 4.767-2.18 1.774 0 3.208.555 4.302 1.664s1.641 2.562 1.641 4.361c-.001 2.219-.652 4.077-1.952 5.575zM144.789 29.168c-1.027-1.183-1.592-2.783-1.592-4.507 0-1.724.565-3.324 1.593-4.505 1.096-1.259 2.638-1.953 4.342-1.953l9.931-.02-.1-.228c-1.79-3.674-5.174-4.33-5.174-4.33-1.628-.226-7.595-.062-7.595-.062s.519-3.073 1.248-8.512c-.193-4.349-3.483-4.986-4.617-5.046L137.668 35H150.85c.999 0 2.479-1.051 3.332-1.61a12.55 12.55 0 0 0 2.609-2.282l-7.666.01c-1.703-.011-3.243-.69-4.336-1.95z"/><path d="M146.714 27.506c.608.701 1.438 1.073 2.401 1.085l9.562.021c.297-.567.76-1.612.977-2.612h-13.732c.161 1 .429 1.086.792 1.506zM159.874 21.013l-10.742-.119c-.97 0-1.806.302-2.419 1.006-.26.299-.471.896-.629 1.283-.056.206-.1-.182-.132.818h13.965c.061-1.001.171-2.189-.043-2.988z"/></g></svg></a></div>
+        <nav class="header__nav" id="header-nav">
+          <ul class="site-menu">
+            <li class="site-menu__item"><a href="/time-and-salary">薪資工時</a></li>
+            <li class="site-menu__item"><a href="/experiences/search">面試・工作經驗</a></li>
+            <li class="site-menu__item"><a href="/labor-rights">勞動小教室</a></li>
+          </ul>
+          <div class="header__user"><a class="leaveDataBtn" href="/share">留下資料
+              <svg width="148" height="148" viewBox="0 0 148 148" style="width:20px;height:20px;margin-left:8px;">
+                <path fill="#fff" d="M104.7581,108.714073 C103.3114,110.153697 103.3114,112.480659 104.7581,113.920282 C106.2048,115.359906 108.5432,115.359906 109.9899,113.920282 L146.9122,77.1785836 C147.6115,76.4937499 148,75.5585468 148,74.5791609 C148,74.5533876 147.9852,74.5276143 147.9852,74.501841 C147.9852,74.4760676 148,74.4539762 148,74.424521 C148,73.1984477 147.3599,72.1675152 146.4349,71.497409 L109.8382,35.0797177 C108.3915,33.6400941 106.0531,33.6400941 104.6064,35.0797177 C103.1597,36.5193413 103.1597,38.8463033 104.6064,40.285927 L135.2128,70.7426192 L3.7,70.7426192 C1.6539,70.7426192 0,72.3884293 0,74.424521 C0,76.4606127 1.6539,78.1064229 3.7,78.1064229 L135.5236,78.1064229 L104.7581,108.714073 L104.7581,108.714073 L104.7581,108.714073 Z"></path>
+              </svg></a>
+            <div class="login-block">
+              <svg role="img" width="148" height="148" viewBox="0 0 148 148">
+                <path fill="#fff" d="M147.616125 141.522687C145.842438 133.650937 132.4415 84.771625 73.9514375 84.771625 10.6536875 84.771625.1641875 142.001375.06475 142.581812-.161875 143.925375.208125 145.30825 1.0915 146.351187 1.9725625 147.396437 3.269875 148 4.63425 148L143.270938 148 143.36575 148C145.921063 148 148 145.925687 148 143.361125 148 142.709 147.863563 142.082312 147.616125 141.522687zM10.5796875 138.72225C14.6080625 125.69825 29.0265 94.0516875 73.949125 94.0516875 118.87175 94.0516875 133.2925 125.69825 137.320875 138.72225L10.5796875 138.72225zM73.9468125 76.0696875C94.905 76.0696875 111.955062 59.010375 111.955062 38.036 111.95275 17.0639375 94.905 0 73.9468125 0 52.9955625 0 35.9524375 17.0639375 35.9524375 38.0336875 35.9524375 59.010375 52.9955625 76.0696875 73.9468125 76.0696875L73.9468125 76.0696875zM73.9468125 9.27775C89.7966875 9.27775 102.686563 22.176875 102.686563 38.036 102.686563 53.8905 89.799 66.79425 73.9468125 66.79425 58.1085 66.79425 45.2209375 53.8928125 45.2209375 38.036 45.2209375 22.176875 58.1085 9.27775 73.9468125 9.27775z"></path>
+              </svg>
+              <div class="name"></div>
+              <button class="btn-login hide">登入</button>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main class="site-main">
+      <div class="index__content">
+        <section class="section" id="section-form">
+          <div class="modal form-modal" id="modal-alert"></div>
+          <div class="modal data-modal" data-modal="why-facebook">
+            <div class="modal__inner">
+              <div class="modal__close wrapper-s js-close-data-modal"><svg role="img"><use xlink:href="#x"></use></svg></div>
+              <div class="js-data-modal-container wrapper-s">
+                <div class="modal-content">
+                  <div class="modal-content__icon"><svg role="img"><use xlink:href="#icon-question"></use></svg></div>
+                  <h5 class="modal-content__heading">為何需要 FB 帳戶驗證？</h5>
+                  <p class="modal-content__paragraph">為了避免使用者大量輸入假資訊，我們會以您的 Facebook 帳戶做驗證。但別擔心！您的帳戶資訊不會以任何形式被揭露、顯示。每一帳戶目前僅能上傳 5 次工時、薪資資訊。</p>
+                  <button class="modal-content__btn btn-black btn-m js-close-data-modal">好，我知道了</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="wrapper-s">
+            <div class="heading">
+              <h2 class="heading__heading">匿名參與工時薪資透明化運動</h2>
+            </div>
+            <form id="work-form" action="">
+              <div class="form-section">
+                <div class="form-group">
+                  <label class="is-required" for="form-company-query">公司/單位 或 統一編號</label>
+                  <div>
+                    <input class="is-required ui-autocomplete-input" type="text" placeholder="〇〇股份有限公司" id="form-company-query" name="company_query">
+                    <input type="hidden" placeholder="公司統編" id="form-company-id">
+                  </div>
+                </div>
+              </div>
+              <div class="form-section">
+                <div class="form-group--two">
+                  <div class="form-group">
+                    <label class="is-required">你現在在職嗎？</label>
+                    <div class="radio-form inline-item">
+                      <input type="radio" value="yes" id="form-is-currently-employed" name="is_currently_employed" checked="true">
+                      <label class="radio-circle" for="form-is-currently-employed"><span class="radio-input"></span><span class="radio-text">在職</span></label>
+                    </div>
+                    <div class="radio-form inline-item">
+                      <input type="radio" value="no" id="form-not-currently-employed" name="is_currently_employed">
+                      <label class="radio-circle" for="form-not-currently-employed"><span class="radio-input"></span><span class="radio-text">已離職</span></label>
+                    </div>
+                  </div>
+                  <div class="form-group hide-first" id="form-job-ending-time">
+                    <label class="is-required">離職時間</label>
+                    <div class="form-year-month">
+                      <div>
+                        <select id="form-job-ending-year" name="job_ending_time"></select>
+                        <label>年</label>
+                      </div>
+                      <div>
+                        <select id="form-job-ending-month" name="job_ending_time"></select>
+                        <label>月</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-section">
+                <div class="form-group--two">
+                  <div class="form-group">
+                    <label class="is-required" for="form-job-title">職稱</label>
+                    <input class="is-required ui-autocomplete-input" type="text" placeholder="硬體工程師" id="form-job-title" name="job_title">
+                  </div>
+                  <div class="form-group">
+                    <label for="form-sector">廠區/門市/分公司</label>
+                    <div>
+                      <input type="text" placeholder="楠梓廠區  研發部" id="form-sector" name="sector">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-section">
+                <div class="form-group--two">
+                  <div class="form-group">
+                    <label class="is-required" for="form-employed-type">職務型態</label>
+                    <select id="form-employed-type" name="employment_type">
+                      <option value="" selected>請選擇</option>
+                      <option value="full-time">全職</option>
+                      <option value="part-time">兼職(含打工)</option>
+                      <option value="intern">實習</option>
+                      <option value="temporary">臨時工</option>
+                      <option value="contract">約聘雇</option>
+                      <option value="dispatched-labor">派遣</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="form-gender">性別</label>
+                    <select id="form-gender" name="gender">
+                      <option value="" selected>請選擇</option>
+                      <option value="male">男</option>
+                      <option value="female">女</option>
+                      <option value="other">其他</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <h5 class="please-select-one">以下薪資 / 工時擇一必填</h5>
+              <section id="form-section-salary">
+                <div class="icon-line-divider"><svg><use xlink:href="#icon-coin"></use></svg></div>
+                <div class="form-section">
+                  <div class="form-group--two">
+                    <div class="form-group">
+                      <label class="maybe-is-required">薪資</label>
+                      <div class="form-salary-group">
+                        <select class="maybe-is-required" id="salary-type" name="salary_type">
+                          <option value="" selected>請選擇</option>
+                          <option value="year">年薪</option>
+                          <option value="month">月薪</option>
+                          <option value="day">日薪</option>
+                          <option value="hour">時薪</option>
+                        </select>
+                        <div class="input-unit"><span class="unit">元</span>
+                          <input class="maybe-is-required" type="text" placeholder="22000" id="salary-amount" name="salary_amount">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="maybe-is-required" for="form-experience-in-year">當時業界工作經歷</label>
+                      <select class="maybe-is-required" id="form-experience-in-year" name="experience_in_year">
+                        <option value="" selected>請選擇</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-info">
+                    <p>薪資請以包含平常的<strong>薪資、分紅、年終、績效獎金</strong>等實質上獲得的價值去計算。</p>
+                  </div>
+                </div>
+              </section>
+              <section id="form-section-work-time">
+                <div class="icon-line-divider"><svg><use xlink:href="#icon-clock"></use></svg></div>
+                <div class="form-section">
+                  <div class="form-group--two">
+                    <div class="form-group">
+                      <label class="maybe-is-required" for="form-day-promised-work-time">工作日表訂工時</label>
+                      <div class="input-unit"><span class="unit">小時</span>
+                        <input class="maybe-is-required" type="text" placeholder="8 或 8.5" id="form-day-promised-work-time" name="day_promised_work_time">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="maybe-is-required" for="form-day-real-work-time">實際平均工時</label>
+                      <div class="input-unit"><span class="unit">小時</span>
+                        <input class="maybe-is-required" type="text" placeholder="10 或 10.5" id="form-day-real-work-time" name="day_real_work_time">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-info">
+                    <p><strong>工作日</strong>指與雇主約定的上班日，或是排班排定的日子。</p>
+                    <p><strong>實際平均工時</strong>包含在家工作、待命的時間。<span class="form-info__btn" data-show-trigger="info1">我有疑問</span></p>
+                    <p class="hide" data-show="info1">例如: 公司規定 9:00上班，18:00 下班，午休 1 小時。 那麼表訂工作時間為 (18:00-9:00)-1=8 小時。<br>若實際上平均 20:00 才下班，則實際工作時間為 (20:00-9:00)-1=10 小時。</p>
+                  </div>
+                </div>
+                <div class="form-section">
+                  <div class="form-group">
+                    <label class="maybe-is-required" for="form-week-work-time">一週總工時</label>
+                    <div class="input-unit"><span class="unit">小時</span>
+                      <input class="maybe-is-required" type="text" placeholder="40 或 40.5" id="form-week-work-time" name="week_work_time">
+                    </div>
+                  </div>
+                  <div class="form-info">
+                    <p>請您留下最近一週的「實際工作時數（不含休息時間，如：午休）」。<span class="form-info__btn" data-show-trigger="info2">我有疑問</span></p>
+                    <p class="hide" data-show="info2">例如: 週一至週五工作 10 小時，週六加班 8 小時，則最近一週工時為 10x5+8 = 58 小時。<br>若您為每月排班，您可以考慮將整個月個工時加總，除上該月天數，再乘上七估算。</p>
+                  </div>
+                </div>
+                <div class="form-section">
+                  <div class="form-group">
+                    <label class="maybe-is-required">加班頻率</label>
+                    <div class="radio-button radio-button--icon" id="form-overtime-frequency">
+                      <div class="radio-button__item">
+                        <input class="maybe-is-required toggled-radio-button" type="radio" value="0" name="frequency" id="feq0">
+                        <label class="radio-square" for="feq0"><i class="radio-square__icon emoji-0"></i><span class="radio-square__text">幾乎不<span class="hide-m">加班</span></span></label>
+                      </div>
+                      <div class="radio-button__item">
+                        <input class="maybe-is-required toggled-radio-button" type="radio" value="1" name="frequency" id="feq1">
+                        <label class="radio-square" for="feq1"><i class="radio-square__icon emoji-1"></i><span class="radio-square__text">偶爾<span class="hide-m">加班</span></span></label>
+                      </div>
+                      <div class="radio-button__item">
+                        <input class="maybe-is-required toggled-radio-button" type="radio" value="2" name="frequency" id="feq2">
+                        <label class="radio-square" for="feq2"><i class="radio-square__icon emoji-2"></i><span class="radio-square__text">經常<span class="hide-m">加班</span></span></label>
+                      </div>
+                      <div class="radio-button__item">
+                        <input class="maybe-is-required toggled-radio-button" type="radio" value="3" name="frequency" id="feq3">
+                        <label class="radio-square" for="feq3"><i class="radio-square__icon emoji-3"></i><span class="radio-square__text">幾乎每天<span class="hide-m">加班</span></span></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-section">
+                  <div class="form-group">
+                    <label class="not-required">加班有無加班費</label>
+                    <div class="radio-button" id="select-fee">
+                      <div class="radio-button__item">
+                        <input class="not-required toggled-radio-button" type="radio" value="yes" name="fee" id="fee_yes">
+                        <label class="radio-square" for="fee_yes"><span class="radio-square__text">有</span></label>
+                      </div>
+                      <div class="radio-button__item">
+                        <input class="not-required toggled-radio-button" type="radio" value="no" name="fee" id="fee_no">
+                        <label class="radio-square" for="fee_no"><span class="radio-square__text">沒有</span></label>
+                      </div>
+                      <div class="radio-button__item">
+                        <input class="not-required toggled-radio-button" type="radio" value="don't know" name="fee" id="fee_unknown">
+                        <label class="radio-square" for="fee_unknown"><span class="radio-square__text">不知道</span></label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group" id="has-fee-options">
+                    <div class="radio-form">
+                      <input class="toggled-radio-button" type="radio" value="yes" id="pay1" name="has_pay">
+                      <label class="radio-circle" for="pay1"><span class="radio-input"></span><span class="radio-text">有，優於或符合勞基法</span></label>
+                    </div>
+                    <div class="radio-form">
+                      <input class="toggled-radio-button" type="radio" value="no" id="pay2" name="has_pay">
+                      <label class="radio-circle" for="pay2"><span class="radio-input"></span><span class="radio-text">有，不符合勞基法</span></label>
+                    </div>
+                    <div class="radio-form">
+                      <input class="toggled-radio-button" type="radio" value="don't know" id="pay3" name="has_pay">
+                      <label class="radio-circle" for="pay3"><span class="radio-input"></span><span class="radio-text">有，不清楚是否符合勞基法</span></label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-section">
+                  <div class="form-group">
+                    <label class="not-required">加班有無補休</label>
+                    <div class="radio-button" id="form-has-compensatory-dayoff">
+                      <div class="radio-button__item">
+                        <input class="not-required toggled-radio-button" type="radio" value="yes" name="time_off" id="off_yes">
+                        <label class="radio-square" for="off_yes"><span class="radio-square__text">有</span></label>
+                      </div>
+                      <div class="radio-button__item">
+                        <input class="not-required toggled-radio-button" type="radio" value="no" name="time_off" id="off_no">
+                        <label class="radio-square" for="off_no"><span class="radio-square__text">沒有</span></label>
+                      </div>
+                      <div class="radio-button__item">
+                        <input class="not-required toggled-radio-button" type="radio" value="don't know" name="time_off" id="off_unknown">
+                        <label class="radio-square" for="off_unknown"><span class="radio-square__text">不知道</span></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <div class="form-section">
+                <div class="form-group">
+                  <label for="form-email">電子郵件 - 有消息時將通知您</label>
+                  <div>
+                    <input type="email" placeholder="example@email.com" id="form-email" name="email">
+                  </div>
+                </div>
+              </div>
+              <div class="form-section">
+                <div class="form-group checkbox-form-group">
+                  <input type="checkbox" id="agree">
+                  <label for="agree"><span class="checkbox-input"></span><span class="checkbox-text">我分享的是真實資訊，並且遵守中華民國法律以及<a href="/user-terms" class="link" target="_blank">本站使用者條款</a>。</span></label>
+                </div>
+              </div>
+              <div class="form-section">
+                <button class="btn-black btn-l" type="submit" id="submit"><span id="auth_check_text"><span id="auth_check_indicator"></span>努力上傳資料中</span><span id="submit_text"><span class="fb-login-word">以<svg role="img" class="icon-facebook"><use xlink:href="#icon-facebook"></use></svg>驗證並</span>送出資料</span></button>
+                <div id="auth_check_reminder">如果一直沒有回應，請重新整理：(</div>
+                <div class="text-center">
+                  <sapn class="btn-why-facebook-login" data-modal-id="why-facebook">為什麼需要 Facebook 帳戶驗證？</sapn>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer class="footer" id="site-footer">
+      <section class="footer__header">
+        <div class="wrapper-l footer__inner">
+          <div class="footer__logo"><svg xmlns="http://www.w3.org/2000/svg" width="160" height="47" viewBox="0 0 160 47"><g><path d="M19.334 16.701c-1.124-1.168-2.21-1.92-3.259-2.364-.961-.458-2.217-.661-3.77-.661-3.237 0-5.935 1.115-8.093 3.317C2.069 19.181.997 21.945.997 25.27c0 2.957.924 5.429 2.771 7.409 1.848 1.937 4.19 2.906 7.028 2.906 2.276 0 4.449-.79 6.519-2.371l-.354 2.859c-.281 2.336-.946 4.04-1.996 5.112-1.049 1.071-2.579 1.607-4.589 1.607-1.863 0-3.237-.528-4.125-1.423C5.366 40.477 4.863 39 4.745 37H0c0 2 .207 3.311.621 4.316.414 1.094 1.138 2.109 2.173 2.967 2.025 1.715 4.671 2.592 7.938 2.592 3.163 0 5.735-.877 7.716-2.65a8.922 8.922 0 0 0 2.306-3.343c.252-.636.477-1.416.677-2.348.199-.932.38-2.131.543-3.388L24.544 14h-4.9l-.31 2.701zm-2.395 12.723c-1.301 1.39-2.963 2.084-4.988 2.084-1.818 0-3.282-.569-4.39-1.707-1.094-1.183-1.641-2.705-1.641-4.567 0-2.128.636-3.896 1.907-5.299 1.286-1.419 2.897-2.129 4.834-2.129 1.862 0 3.37.584 4.523 1.752 1.153 1.153 1.729 2.676 1.729 4.567 0 2.128-.658 3.895-1.974 5.299zM38.292 13.526c-3.37 0-6.179 1.079-8.425 3.237-2.232 2.143-3.348 4.833-3.348 8.07 0 3.163 1.079 5.779 3.237 7.849 2.144 2.056 4.908 3.083 8.292 3.083 3.238 0 5.957-1.087 8.16-3.26 2.218-2.173 3.326-4.856 3.326-8.049 0-3.237-1.05-5.861-3.148-7.871-2.085-2.039-4.782-3.059-8.094-3.059zm4.413 16.053c-1.242 1.404-2.823 2.106-4.745 2.106-1.921 0-3.488-.644-4.7-1.929-1.212-1.257-1.818-2.92-1.818-4.989 0-2.055.643-3.762 1.929-5.122 1.286-1.345 2.912-2.018 4.878-2.018 1.892 0 3.422.606 4.59 1.818 1.167 1.168 1.752 2.756 1.752 4.767-.001 2.189-.63 3.977-1.886 5.367zM63.863 13.526c-3.37 0-6.179 1.079-8.425 3.237-2.232 2.143-3.348 4.833-3.348 8.07 0 3.163 1.079 5.779 3.237 7.849 2.143 2.056 4.907 3.083 8.292 3.083 3.237 0 5.957-1.087 8.159-3.26 2.217-2.173 3.326-4.856 3.326-8.049 0-3.237-1.049-5.861-3.148-7.871-2.084-2.039-4.782-3.059-8.093-3.059zm4.412 16.053c-1.242 1.404-2.823 2.106-4.745 2.106s-3.489-.644-4.701-1.929c-1.212-1.257-1.818-2.92-1.818-4.989 0-2.055.643-3.762 1.929-5.122 1.286-1.345 2.912-2.018 4.878-2.018 1.892 0 3.422.606 4.59 1.818 1.168 1.168 1.752 2.756 1.752 4.767 0 2.189-.628 3.977-1.885 5.367zM109.964 1.553c-.71 0-1.323.259-1.841.776-.518.518-.775 1.131-.775 1.841 0 .739.266 1.382.798 1.929.532.532 1.16.798 1.885.798a2.57 2.57 0 0 0 1.885-.776c.517-.517.775-1.124.775-1.818 0-.754-.273-1.397-.82-1.929-.532-.547-1.169-.821-1.907-.821zM102.292 47h4.9l4.036-33h-4.901zM124.832 13.526c-3.37 0-6.179 1.079-8.426 3.237-2.231 2.143-3.348 4.833-3.348 8.07 0 3.163 1.079 5.779 3.237 7.849 2.144 2.056 4.907 3.083 8.292 3.083 3.237 0 5.957-1.087 8.159-3.26 2.218-2.173 3.326-4.856 3.326-8.049 0-3.237-1.05-5.861-3.148-7.871-2.083-2.039-4.78-3.059-8.092-3.059zm4.412 16.053c-1.241 1.404-2.822 2.106-4.744 2.106-1.923 0-3.489-.644-4.701-1.929-1.212-1.257-1.818-2.92-1.818-4.989 0-2.055.644-3.762 1.93-5.122 1.285-1.345 2.912-2.018 4.878-2.018 1.892 0 3.421.606 4.589 1.818 1.168 1.168 1.752 2.756 1.752 4.767-.001 2.189-.629 3.977-1.886 5.367zM98.015 0L95.93 17.196c-1.227-1.364-2.402-2.363-3.525-2.933-1.079-.554-2.409-.849-3.991-.849-3.09 0-5.654 1.093-7.693 3.296-2.04 2.203-3.06 4.965-3.06 8.292 0 3.117.931 5.663 2.793 7.642 1.863 1.963 4.258 2.944 7.185 2.944 1.285 0 2.364-.18 3.236-.54.888-.39 1.937-1.179 3.148-2.272L93.757 35h4.878l4.278-35h-4.898zm-4.79 29.157c-1.286 1.53-2.86 2.294-4.723 2.294-1.789 0-3.223-.562-4.302-1.686-1.079-1.14-1.618-2.646-1.618-4.52 0-2.218.628-4.054 1.885-5.508 1.256-1.454 2.846-2.18 4.767-2.18 1.774 0 3.208.555 4.302 1.664s1.641 2.562 1.641 4.361c-.001 2.219-.652 4.077-1.952 5.575zM144.789 29.168c-1.027-1.183-1.592-2.783-1.592-4.507 0-1.724.565-3.324 1.593-4.505 1.096-1.259 2.638-1.953 4.342-1.953l9.931-.02-.1-.228c-1.79-3.674-5.174-4.33-5.174-4.33-1.628-.226-7.595-.062-7.595-.062s.519-3.073 1.248-8.512c-.193-4.349-3.483-4.986-4.617-5.046L137.668 35H150.85c.999 0 2.479-1.051 3.332-1.61a12.55 12.55 0 0 0 2.609-2.282l-7.666.01c-1.703-.011-3.243-.69-4.336-1.95z"/><path d="M146.714 27.506c.608.701 1.438 1.073 2.401 1.085l9.562.021c.297-.567.76-1.612.977-2.612h-13.732c.161 1 .429 1.086.792 1.506zM159.874 21.013l-10.742-.119c-.97 0-1.806.302-2.419 1.006-.26.299-.471.896-.629 1.283-.056.206-.1-.182-.132.818h13.965c.061-1.001.171-2.189-.043-2.988z"/></g></svg></div>
+          <h1 class="footer__heading">好工作評論網</h1>
+          <h5 class="footer__subheading">—— 讓我們一起定義心中的理想工作</h5><span class="fb-like fb_iframe_widget" data-href="https://www.facebook.com/goodjob.life/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="false" data-reactid="186" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;amp;app_id=1844389232511081&amp;amp;container_width=0&amp;amp;href=https%3A%2F%2Fwww.facebook.com%2Fgoodjob.life%2F&amp;amp;layout=button_count&amp;amp;locale=zh_TW&amp;amp;sdk=joey&amp;amp;share=false&amp;amp;show_faces=true&amp;amp;size=small"><span style="vertical-align: bottom; width: 76px; height: 20px;">
+              <iframe name="f8af41d2d517d" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:like Facebook Social Plugin" style="border: medium none; visibility: visible; width: 76px; height: 20px;" src="https://www.facebook.com/v2.6/plugins/like.php?action=like&amp;amp;app_id=1844389232511081&amp;amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2FXBwzv5Yrm_1.js%3Fversion%3D42%23cb%3Df302a6fb52d5b28%26domain%3Dwww-stage.goodjob.life%26origin%3Dhttps%253A%252F%252Fwww-stage.goodjob.life%252Ff1534230887d3b6%26relation%3Dparent.parent&amp;amp;container_width=0&amp;amp;href=https%3A%2F%2Fwww.facebook.com%2Fgoodjob.life%2F&amp;amp;layout=button_count&amp;amp;locale=zh_TW&amp;amp;sdk=joey&amp;amp;share=false&amp;amp;show_faces=true&amp;amp;size=small" width="1000px" height="1000px" frameborder="0"></iframe></span></span>
+        </div>
+      </section>
+      <div class="wrapper-l footer__body">
+        <section class="footer__links">
+          <div class="footer__link-item">
+            <h4 class="footer__link-item__heading">求職者工具</h4><a class="footer__link-item__link" href="/time-and-salary">薪資工時</a><a class="footer__link-item__link" href="/experiences/search">面試・工作經驗</a><a class="footer__link-item__link" href="/labor-rights">勞動小教室</a>
+          </div>
+          <div class="footer__link-item">
+            <h4 class="footer__link-item__heading">常見問題</h4><a class="footer__link-item__link" href="/guidelines">發文留言規定</a><a class="footer__link-item__link" href="/faq">常見問題</a><a class="footer__link-item__link" href="/privacy-policy">隱私權政策</a><a class="footer__link-item__link" href="/user-terms">使用者條款</a>
+          </div>
+          <div class="footer__link-item">
+            <h4 class="footer__link-item__heading">GoodJob</h4><a class="footer__link-item__link" href="/about">關於我們</a><a class="footer__link-item__link" href="/about#contact">聯絡我們</a><a class="footer__link-item__link" href="/about#joinUs">加入我們</a>
+          </div>
+        </section>
+        <section class="footer__medias">
+          <h4 class="footer__medias__heading">\ 感謝各大媒體採訪報導 /</h4><a class="footer__link-item__link" href="/about"><img src="https://s3-ap-northeast-1.amazonaws.com/goodjob.life/www/medias.jpg" alt="cheers yahoo 蘋果日報 數位時代"></a>
+        </section>
+      </div>
+      <div class="footer__footer">
+        <div class="wrapper-l footer__footer__inner">
+          <div class="p-s">Copyright © GoodJob.life team 2017</div>
+          <div class="footer__footer__g0v"><a href="https://grants.g0v.tw/power/" alt="power by g0v"><img src="https://s3-ap-northeast-1.amazonaws.com/goodjob.life/www/logo-g0v-white.svg" alt="g0v"></a></div>
+        </div>
+      </div>
+    </footer>
+    <!-- add dependencies-->
+    <script src="/assets/js/dependencies.js"></script>
+    <script src="/assets/js/global.js"></script>
+    <script src="/assets/js/index.js"></script>
+  </body>
+</html>
