@@ -15,7 +15,7 @@
     <meta property="og:description" content="快來看看別人分享的薪資以及工時資訊！">
     <meta property="og:url" content="https://www.goodjob.life/time-and-salary">
     <meta property="og:site_name" content="GoodJob 好工作評論網">
-    <meta property="og:image" content="https://s3-ap-northeast-1.amazonaws.com/goodjob.life/www/og/time-and-salary.jpg"><!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --><!-- WARNING: Respond.js doesn't work if you view the page via file:// --><!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+    <meta property="og:image" content="https://image.goodjob.life/og/time-and-salary.jpg"><!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --><!-- WARNING: Respond.js doesn't work if you view the page via file:// --><!--[if lt IE 9]><script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script><script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -452,13 +452,13 @@
           </div>
         </section>
         <section class="footer__medias">
-          <h4 class="footer__medias__heading">\ 感謝各大媒體採訪報導 /</h4><a class="footer__link-item__link" href="/about"><img src="https://s3-ap-northeast-1.amazonaws.com/goodjob.life/www/medias.jpg" alt="cheers yahoo 蘋果日報 數位時代"></a>
+          <h4 class="footer__medias__heading">\ 感謝各大媒體採訪報導 /</h4><a class="footer__link-item__link" href="/about"><img src="https://image.goodjob.life/medias.jpg" alt="cheers yahoo 蘋果日報 數位時代"></a>
         </section>
       </div>
       <div class="footer__footer">
         <div class="wrapper-l footer__footer__inner">
           <div class="p-s">Copyright © GoodJob.life team 2017</div>
-          <div class="footer__footer__g0v"><a href="https://grants.g0v.tw/power/" alt="power by g0v"><img src="https://s3-ap-northeast-1.amazonaws.com/goodjob.life/www/logo-g0v-white.svg" alt="g0v"></a></div>
+          <div class="footer__footer__g0v"><a href="https://grants.g0v.tw/power/" alt="power by g0v"><img src="https://image.goodjob.life/logo-g0v-white.svg" alt="g0v"></a></div>
         </div>
       </div>
     </footer>
