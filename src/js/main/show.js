@@ -196,8 +196,8 @@ const searchAndGroupByJobTitle = Vue.extend({
       const group_sort_by = searchResultSort.group_sort_by;
       const group_sort_order = searchResultSort.order;
 
-      this.getData(job_title_keyword, group_sort_by, group_sort_order).then(res => {
-        this.data = res.data;
+      this.getData(job_title_keyword, group_sort_by, group_sort_order).then(res => res.json()).then(data => {
+        this.data = data;
       }, err => {
         this.data = [];
       }).then(() => {
@@ -277,8 +277,8 @@ const searchAndGroupByCompany = Vue.extend({
       const group_sort_by = searchResultSort.group_sort_by;
       const group_sort_order = searchResultSort.order;
 
-      this.getData(company_keyword, group_sort_by, group_sort_order).then(res => {
-        this.data = res.data;
+      this.getData(company_keyword, group_sort_by, group_sort_order).then(res => res.json()).then(data => {
+        this.data = data;
       }, err => {
         this.data = [];
       }).then(() => {
