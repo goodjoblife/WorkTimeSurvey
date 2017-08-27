@@ -36,15 +36,34 @@ const timeAndSalary = Vue.extend({
       // current page loaded
       current_page: 0,
       // 薪時資訊
+      extreme_time_and_salary: [],
       time_and_salary: [],
       total: 0,
       is_loading: false,
+      extreme_is_loading: false,
+      show_extreme: false,
       // 選單的內部狀態
       search_result_sort: {},
       share: showjs_store.state,
     };
   },
   events: {
+    toggle_extreme_time_and_salary: function() {
+      if (this.show_extreme) {
+        this.show_extreme = false;
+      }
+      else {
+        if (this.share.view_params.sort_by === 'created_at') {
+          return;
+        }
+        this.search_result_sort = {
+          sort_by: this.share.view_params.sort_by,
+          order: this.share.view_params.order,
+        };
+
+        this.loadExtremeTimeAndSalary();
+      }
+    },
     load_time_and_salary: function() {
       this.search_result_sort = {
         sort_by: this.share.view_params.sort_by,
@@ -53,6 +72,7 @@ const timeAndSalary = Vue.extend({
       this.current_page = 0;
 
       this.loadTimeAndSalary(0);
+      this.resetExtreme();
     },
     scroll_bottom_reach: function() {
       // we don't want the two loading
@@ -77,6 +97,7 @@ const timeAndSalary = Vue.extend({
           order: this.share.view_params.order,
           page,
           limit,
+          skip: this.share.view_params.sort_by !== 'created_at',
         },
       };
 
@@ -105,6 +126,34 @@ const timeAndSalary = Vue.extend({
         this.is_loading = false;
         this.current_page;
       });
+    },
+    loadExtremeTimeAndSalary: function() {
+      this.extreme_is_loading = true;
+
+      const opt = {
+        params: {
+          sort_by: this.share.view_params.sort_by,
+          order: this.share.view_params.order,
+        },
+      };
+
+      this.$http.get(`${WTS.constants.backendURL}workings/extreme`, opt).then(res => res.json()).then(data => {
+        // 將Array公司名稱轉換成String
+        const extreme_time_and_salary = data.time_and_salary.map(row => {
+          const name = row.company.name;
+          row.company.name = Array.isArray(name)? name[0]: name;
+          return row;
+        });
+        this.extreme_time_and_salary = extreme_time_and_salary;
+        this.extreme_is_loading = false;
+        this.show_extreme = true;
+      }, err => {
+        this.extreme_is_loading = false;
+      });
+    },
+    resetExtreme: function() {
+      this.extreme_time_and_salary = [];
+      this.show_extreme = false;
     },
     sortOnChange: function() {
       const routes = {
@@ -374,6 +423,16 @@ Vue.filter('two_digit_month', value => {
     return value > 9 ? value.toString() : "0" + value;
   }
   return "";
+});
+
+Vue.filter('extreme_button_text', value => {
+  return value ? '點我隱藏 - ' : '點我展開 + ';
+});
+
+Vue.filter('extreme_hint_text', value => {
+  return value ?
+    '以上的資料可能為使用者誤填或極端值，較不具參考價值，請斟酌參考。' :
+    '前 1 % 的資料可能包含極端值或為使用者誤填，較不具參考價值，預設為隱藏。';
 });
 
 const app = new Vue({
@@ -816,6 +875,15 @@ $(window).on('scroll', function() {
       app.$broadcast("scroll_bottom_reach");
     }
   }
+});
+
+
+$(document).ready(function() {
+  $("#show-extreme").on('click', function() {
+    if (app.currentView === TIME_AND_SALARY_VIEW) {
+      app.$broadcast("toggle_extreme_time_and_salary");
+    }
+  });
 });
 
 // wait the event trigger done
