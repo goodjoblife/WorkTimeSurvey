@@ -48,22 +48,6 @@ const timeAndSalary = Vue.extend({
     };
   },
   events: {
-    toggle_extreme_time_and_salary: function() {
-      if (this.show_extreme) {
-        this.show_extreme = false;
-      }
-      else {
-        if (this.share.view_params.sort_by === 'created_at') {
-          return;
-        }
-        this.search_result_sort = {
-          sort_by: this.share.view_params.sort_by,
-          order: this.share.view_params.order,
-        };
-
-        this.loadExtremeTimeAndSalary();
-      }
-    },
     load_time_and_salary: function() {
       this.search_result_sort = {
         sort_by: this.share.view_params.sort_by,
@@ -126,6 +110,22 @@ const timeAndSalary = Vue.extend({
         this.is_loading = false;
         this.current_page;
       });
+    },
+    toggleExtremeTimeAndSalary: function() {
+      if (this.show_extreme) {
+        this.show_extreme = false;
+      }
+      else {
+        if (this.share.view_params.sort_by === 'created_at') {
+          return;
+        }
+        this.search_result_sort = {
+          sort_by: this.share.view_params.sort_by,
+          order: this.share.view_params.order,
+        };
+
+        this.loadExtremeTimeAndSalary();
+      }
     },
     loadExtremeTimeAndSalary: function() {
       this.extreme_is_loading = true;
@@ -875,15 +875,6 @@ $(window).on('scroll', function() {
       app.$broadcast("scroll_bottom_reach");
     }
   }
-});
-
-
-$(document).ready(function() {
-  $("#show-extreme").on('click', function() {
-    if (app.currentView === TIME_AND_SALARY_VIEW) {
-      app.$broadcast("toggle_extreme_time_and_salary");
-    }
-  });
 });
 
 // wait the event trigger done

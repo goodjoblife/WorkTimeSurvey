@@ -60,7 +60,7 @@ section(class="search-result")
 						span(class="rwd-td")
 							span(class="data-time") {{w.data_time.year}}.{{w.data_time.month | two_digit_month}}
 		div(class="extreme-hint" v-show="search_result_sort.sort_by !== 'created_at'") {{ show_extreme | extreme_hint_text }}
-			button(id="show-extreme" class="extreme-button") {{ show_extreme | extreme_button_text }}
+			button(id="show-extreme" class="extreme-button" v-on:click="toggleExtremeTimeAndSalary") {{ show_extreme | extreme_button_text }}
 		table(class="rwd-table latest-table", :class="{ 'is-disabled':  !share.is_authed}")
 			tbody(id="tbody-latest-data")
 				tr(v-for="w in time_and_salary")
