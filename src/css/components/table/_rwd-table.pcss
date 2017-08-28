@@ -19,7 +19,7 @@
   &.is-disabled {
     td {
       pointer-events: none;
-    }  
+    }
   }
   th {
     @mixin table-th;
@@ -47,7 +47,7 @@
       width: 100%;
       padding: 10px 20px;
     }
-    &:before {
+    &:not(.td-extreme-hint):before {
 			@media (max-width: $below-small) {
 				content: attr(data-th);
         flex: 0 0 100px;
