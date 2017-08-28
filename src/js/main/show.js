@@ -81,7 +81,7 @@ const timeAndSalary = Vue.extend({
           order: this.share.view_params.order,
           page,
           limit,
-          skip: this.share.view_params.sort_by !== 'created_at',
+          skip: (this.share.view_params.sort_by !== 'created_at').toString(),
         },
       };
 
