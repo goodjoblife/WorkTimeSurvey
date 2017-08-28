@@ -416,10 +416,10 @@
                   <td data-th="參考時間"><span class="rwd-td"><span class="data-time">{{w.data_time.year}}.{{w.data_time.month | two_digit_month}}</span></span></td>
                 </tr>
               </tbody>
-              <tbody class="tbody-extreme-hint">
+              <tbody class="tbody-extreme-hint" v-show="search_result_sort.sort_by !== 'created_at'">
                 <tr>
                   <td class="td-extreme-hint" colspan="7">
-                    <div class="extreme-hint" v-show="search_result_sort.sort_by !== 'created_at'">{{ show_extreme | extreme_hint_text }}
+                    <div class="extreme-hint">{{ show_extreme | extreme_hint_text }}
                       <button class="extreme-button" id="show-extreme" v-on:click="toggleExtremeTimeAndSalary">{{ show_extreme | extreme_button_text }}</button>
                     </div>
                   </td>
