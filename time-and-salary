@@ -405,6 +405,26 @@
                   <th class="col-data-time"><div data-modal-id="info-time" data-info-button>參考時間</div></th>
                 </tr>
               </thead>
+              <tbody id="tbody-one-percent-data" v-if="show_extreme">
+                <tr v-for="w in extreme_time_and_salary">
+                  <td data-th="公司名稱"><span class="rwd-td"><a href="#/company/{{encodeURIComponent(w.company ? w.company.name : '')}}/work-time-dashboard">{{w.company ? w.company.name : ""}}</a></span></td>
+                  <td data-th="職稱 (廠區/門市/分公司)"><span class="rwd-td"><span><a href="#/job-title/{{encodeURIComponent(w.job_title)}}/work-time-dashboard">{{w.job_title}}</a></span><span class="table-sector">{{w.sector}}</span></span></td>
+                  <td data-th="一週總工時"><span class="rwd-td"><span v-if="w.week_work_time"><span class="table-time-bar" data-time="{{w.week_work_time}}" v-bind:style="{ width: w.week_work_time + 'px' }">{{w.week_work_time}}</span></span><span v-else>-</span></span></td>
+                  <td data-th="加班頻率"><span class="rwd-td"><span v-if="w.overtime_frequency | overtime_frequency_string"><span class="table-frequency-circle" data-frequency="{{w.overtime_frequency}}"></span>{{w.overtime_frequency | overtime_frequency_string}}</span><span v-else>-</span></span></td>
+                  <td data-th="薪資"><span class="rwd-td align-right"><span v-if="w.salary.amount | formatted_wage_string">{{w.salary.amount | formatted_wage_string}} / {{w.salary.type | salary_type_string}}</span><span v-else>-</span></span></td>
+                  <td data-th="估計時薪"><span class="rwd-td align-right"><span v-if="w.estimated_hourly_wage | formatted_wage_string">{{w.estimated_hourly_wage | formatted_wage_string}} 元</span><span v-else>-</span></span></td>
+                  <td data-th="參考時間"><span class="rwd-td"><span class="data-time">{{w.data_time.year}}.{{w.data_time.month | two_digit_month}}</span></span></td>
+                </tr>
+              </tbody>
+              <tbody class="tbody-extreme-hint">
+                <tr>
+                  <td class="td-extreme-hint" colspan="7">
+                    <div class="extreme-hint" v-show="search_result_sort.sort_by !== 'created_at'">{{ show_extreme | extreme_hint_text }}
+                      <button class="extreme-button" id="show-extreme" v-on:click="toggleExtremeTimeAndSalary">{{ show_extreme | extreme_button_text }}</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
               <tbody id="tbody-latest-data">
                 <tr v-for="w in time_and_salary">
                   <td data-th="公司名稱"><span class="rwd-td"><a href="#/company/{{encodeURIComponent(w.company ? w.company.name : '')}}/work-time-dashboard">{{w.company ? w.company.name : ""}}</a></span></td>
@@ -465,6 +485,6 @@
     <!-- add dependencies-->
     <script src="/assets/js/dependencies.js"></script>
     <script src="/assets/js/global.js"></script>
-    <script src="/assets/js/show-fa11322d50a28e5277062061f87525828c809405.js"></script>
+    <script src="/assets/js/show.js"></script>
   </body>
 </html>
