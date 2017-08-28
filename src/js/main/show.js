@@ -119,10 +119,6 @@ const timeAndSalary = Vue.extend({
         if (this.share.view_params.sort_by === 'created_at') {
           return;
         }
-        this.search_result_sort = {
-          sort_by: this.share.view_params.sort_by,
-          order: this.share.view_params.order,
-        };
 
         this.loadExtremeTimeAndSalary();
       }
