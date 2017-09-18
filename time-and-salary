@@ -103,6 +103,7 @@
             <li class="site-menu__item"><a href="/time-and-salary">薪資工時</a></li>
             <li class="site-menu__item"><a href="/experiences/search">面試・工作經驗</a></li>
             <li class="site-menu__item"><a href="/labor-rights">勞動小教室</a></li>
+            <li class="site-menu__item"><a href="/me">個人頁面</a></li>
           </ul>
           <div class="header__user"><a class="leaveDataBtn" href="/share">留下資料
               <svg width="148" height="148" viewBox="0 0 148 148" style="width:20px;height:20px;margin-left:8px;">
@@ -485,6 +486,6 @@
     <!-- add dependencies-->
     <script src="/assets/js/dependencies.js"></script>
     <script src="/assets/js/global.js"></script>
-    <script src="/assets/js/show-4df9fa743d222289283e06aca8db80b0f6cce1ee.js"></script>
+    <script src="/assets/js/show.js"></script>
   </body>
 </html>
