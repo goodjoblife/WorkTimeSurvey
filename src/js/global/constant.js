@@ -1,5 +1,5 @@
 window.WTS = window.WTS || {};
 WTS.constants = {
-  backendURL: 'https://tranquil-fortress-92731.herokuapp.com/',
+  backendURL: 'https://api.goodjob.life/',
   siteURL: 'https://www.goodjob.life/',
 };
