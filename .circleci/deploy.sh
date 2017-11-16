@@ -18,11 +18,6 @@ cp src/img/common/og-image_1200-630.png _public/img/
 
 mkdir -p _public/share
 mv _public/index.html _public/share/time-and-salary
-mv _public/time-and-salary.html _public/time-and-salary
-
-HASH=$(shasum "_public/assets/js/show.js" | awk '{print $1}')
-mv "_public/assets/js/show.js" "_public/assets/js/show-${HASH}.js"
-sed -i "s/show\.js/show-${HASH}\.js/" _public/time-and-salary
 
 cd _public
 git add -A .
